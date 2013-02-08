@@ -11,13 +11,16 @@
 
 package org.usfirst.frc330.Beachbot2013Java.commands;
 
+import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
-
+/*
+ * $Log$
+ */
 /**
  *
  */
-public class  MarsRock extends Command {
+public class  MarsRock extends AutoSpreadsheetCommand {
 
     public MarsRock() {
         // Use requires() here to declare subsystem dependencies
@@ -47,5 +50,21 @@ public class  MarsRock extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    }
+
+    public void setParam1(double param1) {
+    }
+
+    public void setParam2(double param2) {
+    }
+
+    public void setParam3(double param3) {
+    }
+
+    public void setStopAtEnd(boolean stopAtEnd) {
+    }
+
+    public AutoSpreadsheetCommand copy() {
+        return new MarsRock();
     }
 }
