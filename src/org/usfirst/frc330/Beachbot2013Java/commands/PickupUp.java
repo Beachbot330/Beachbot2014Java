@@ -30,6 +30,8 @@ public class  PickupUp extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        Robot.frisbeePickup.setFrisbeePickupUp();
+        Robot.frisbeePickup.setFrisbeePickupMotorStop();
     }
 
     // Called repeatedly when this Command is scheduled to run
