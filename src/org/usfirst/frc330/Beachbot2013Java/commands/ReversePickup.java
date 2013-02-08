@@ -30,6 +30,7 @@ public class  ReversePickup extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        Robot.frisbeePickup.setFrisbeePickupMotorReverse();
     }
 
     // Called repeatedly when this Command is scheduled to run
