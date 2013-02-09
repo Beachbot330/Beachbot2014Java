@@ -13,6 +13,7 @@ import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType; import edu.wpi.first.wpilibj.Encoder.PIDSourceParameter;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
@@ -40,4 +41,27 @@ public class Chassis extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    
+    public void tankDrive(Joystick leftJoystick, Joystick rightJoystick)
+    {
+        robotDrive.tankDrive(leftJoystick, rightJoystick, false);
+    }
+    
+    public void tankDrive(double left, double right)
+    {
+        robotDrive.tankDrive(left, right, false);
+    }
+    
+    public void shiftHigh()
+    {
+        shiftSolenoid.set(DoubleSolenoid.Value.kForward);
+//        System.out.println("Shifting into High");
+    }
+    
+    public void shiftLow()
+    {
+        shiftSolenoid.set(DoubleSolenoid.Value.kReverse);
+//        System.out.println("Shifting into Low");
+    }
+    
 }
