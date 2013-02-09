@@ -17,7 +17,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc0330.wpilibj.CFA634SPI;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 import org.usfirst.frc330.Beachbot2013Java.RobotMap;
-
+/*
+ * $Log$
+ */
 /**
  *
  */
@@ -39,10 +41,10 @@ public class  UpdateLCD extends Command {
         SmartDashboard.putNumber("Gyro Angle", 0);
         SmartDashboard.putNumber("Batt Voltage", 0);
         
-        Robot.lCD.lcd.addLine(CFA634SPI.Line.kUser1, "Batt Voltage");
-        Robot.lCD.lcd.addLine(CFA634SPI.Line.kUser2, "AngleToTarget");
-        Robot.lCD.lcd.addLine(CFA634SPI.Line.kUser3, "RangeToTarget");
-        Robot.lCD.lcd.addLine(CFA634SPI.Line.kUser4, "Gyro Angle");
+        Robot.lCD.addLine(CFA634SPI.Line.kUser1, "Batt Voltage");
+        Robot.lCD.addLine(CFA634SPI.Line.kUser2, "AngleToTarget");
+        Robot.lCD.addLine(CFA634SPI.Line.kUser3, "RangeToTarget");
+        Robot.lCD.addLine(CFA634SPI.Line.kUser4, "Gyro Angle");
     }
 
     // Called repeatedly when this Command is scheduled to run
