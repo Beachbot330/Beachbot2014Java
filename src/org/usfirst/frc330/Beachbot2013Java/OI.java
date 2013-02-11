@@ -91,14 +91,14 @@ public class OI {
         SmartDashboard.putData("AutonomousCommand", new AutonomousCommand());
         SmartDashboard.putData("ShiftHigh", new ShiftHigh());
         SmartDashboard.putData("ShiftLow", new ShiftLow());
-        SmartDashboard.putData("DriveEncoder", new DriveEncoder());
         SmartDashboard.putData("MarsRock", new MarsRock());
         SmartDashboard.putData("PickupDown", new PickupDown());
         SmartDashboard.putData("PickupUp", new PickupUp());
         SmartDashboard.putData("LaunchFrisbee", new LaunchFrisbee());
         SmartDashboard.putData("ShootHigh", new ShootHigh());
         SmartDashboard.putData("ShootLow", new ShootLow());
-        SmartDashboard.putData("PickupFrisbees", new PickupFrisbees());
+        SmartDashboard.putData("PickupFrisbeesOn", new PickupFrisbeesOn());
+        SmartDashboard.putData("PickupFrisbeesOff", new PickupFrisbeesOff());
         SmartDashboard.putData("ReversePickup", new ReversePickup());
         SmartDashboard.putData("SlowPickupFrisbees", new SlowPickupFrisbees());
         SmartDashboard.putData("ArmLowShooting", new ArmLowShooting());
