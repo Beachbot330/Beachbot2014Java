@@ -8,12 +8,13 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in th future.
 package org.usfirst.frc330.Beachbot2013Java.commands;
+import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
-public class  PickupDown extends Command {
+public class  PickupDown extends AutoSpreadsheetCommand {
     public PickupDown() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -27,8 +28,7 @@ public class  PickupDown extends Command {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.frisbeePickup.setFrisbeePickupDown();
-        Robot.frisbeePickup.setFrisbeePickupMotorPickup();
+        Robot.frisbeePickup.setFrisbeePickupDown();        
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -40,5 +40,16 @@ public class  PickupDown extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    }
+    public void setParam1(double param1) {
+    }
+    public void setParam2(double param2) {
+    }
+    public void setParam3(double param3) {
+    }
+    public void setStopAtEnd(boolean stopAtEnd) {
+    }
+    public AutoSpreadsheetCommand copy() {
+        return new PickupDown();
     }
 }
