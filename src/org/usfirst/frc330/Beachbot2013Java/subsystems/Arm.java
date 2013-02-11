@@ -81,23 +81,18 @@ public class Arm extends Subsystem {
         armSetPoint(Preferences.getInstance().
                 getDouble("armSetpointClimbing", 1));
     }
-
     public synchronized double getSetpoint() {
         return armPID.getSetpoint();
     }
-
     public synchronized boolean onTarget() {
         return armPID.onTarget();
     }
-
     public synchronized boolean isEnable() {
         return armPID.isEnable();
     }
-
     public synchronized void enable() {
         armPID.enable();
     }
-
     public synchronized void disable() {
         armPID.disable();
     }
