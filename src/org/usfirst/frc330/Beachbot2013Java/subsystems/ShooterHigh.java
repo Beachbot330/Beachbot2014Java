@@ -13,6 +13,7 @@ import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType; import edu.wpi.first.wpilibj.Encoder.PIDSourceParameter;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
@@ -30,5 +31,11 @@ public class ShooterHigh extends Subsystem {
 	
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    private static final String PREF_ShooterHigh_TimeToShoot = "ShooterHighTimeToShoot";
+    
+    public void shoot(double voltage) {
+        SmartDashboard.putNumber("voltage", voltage);
+        shooterHighController.set(voltage);
     }
 }
