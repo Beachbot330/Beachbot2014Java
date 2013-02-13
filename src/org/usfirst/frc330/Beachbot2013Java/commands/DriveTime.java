@@ -55,21 +55,16 @@ public class  DriveTime extends AutoSpreadsheetCommand {
     protected void interrupted() {
         end();
     }
-
     public void setParam1(double left) {
         this.left = left;
     }
-
     public void setParam2(double right) {
         this.right = right;
     }
-
     public void setParam3(double param3) {
     }
-
     public void setStopAtEnd(boolean stopAtEnd) {
     }
-
     public AutoSpreadsheetCommand copy() {
         return new DriveTime();
     }
