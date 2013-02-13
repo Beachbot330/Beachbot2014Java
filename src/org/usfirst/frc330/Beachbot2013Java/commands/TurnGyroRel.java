@@ -77,22 +77,17 @@ public class  TurnGyroRel extends AutoSpreadsheetCommand {
         stopAtEnd = true;
         end();
     }
-
     public void setParam1(double angle) {
         this.angle = angle;
     }
-
     public void setParam2(double tolerance) {
         Robot.chassis.gyroPIDLow.setAbsoluteTolerance(tolerance);
     }
-
     public void setParam3(double param3) {
     }
-
     public void setStopAtEnd(boolean stopAtEnd) {
         this.stopAtEnd = stopAtEnd;
     }
-
     public AutoSpreadsheetCommand copy() {
         return new TurnGyroRel(0);
     }
