@@ -32,7 +32,6 @@ public class ShooterHigh extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    private static final String PREF_ShooterHigh_TimeToShoot = "ShooterHighTimeToShoot";
     
     public void shoot(double voltage) {
         SmartDashboard.putNumber("voltage", voltage);
