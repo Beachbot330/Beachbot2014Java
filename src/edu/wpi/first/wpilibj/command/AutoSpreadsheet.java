@@ -16,6 +16,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.MarsRock;
 
 /*
  * $Log: AutoSpreadsheet.java,v $
+ * Revision 1.1  2013-02-08 04:19:43  jross
+ * Add AutoSpreadsheet
+ *
  * Revision 1.5  2013-01-30 05:01:13  echan
  * Added the AutoSpreadsheetCommandGroup to command
  *
@@ -58,7 +61,7 @@ import org.usfirst.frc330.Beachbot2013Java.commands.MarsRock;
 public class AutoSpreadsheet {
     FileConnection file = null;
     BufferedReader reader = null;
-    final String filename = "file:///2012AutoModesJava.csv";
+    final String filename = "file:///2013AutoModesJava.csv";
     SendableChooser autoChooser;
     
     public AutoSpreadsheet()
