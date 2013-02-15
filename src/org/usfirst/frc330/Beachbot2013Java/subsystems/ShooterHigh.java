@@ -34,7 +34,7 @@ public class ShooterHigh extends Subsystem {
     }
     
     public void shoot(double voltage) {
-        SmartDashboard.putNumber("voltage", voltage);
+        SmartDashboard.putNumber("voltageHigh", voltage);
         shooterHighController.set(voltage);
     }
 }
