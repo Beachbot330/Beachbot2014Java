@@ -62,7 +62,21 @@ public class Robot extends IterativeRobot {
         //initialize AutoSpreadsheet. Each auto command must be added here
         auto = new AutoSpreadsheet();
         auto.readScripts();
-        auto.addCommand(new MarsRock());
+//        System.out.println("After Auto Read Scripts");
+        auto.addCommand(new TurnGyroAbs(0));
+        auto.addCommand(new TurnGyroRel(0));
+        auto.addCommand(new Wait(0));
+        auto.addCommand(new ShiftLow());
+        auto.addCommand(new ShiftHigh());
+        auto.addCommand(new DriveEncoder(0));
+        auto.addCommand(new DriveEncoderRel());
+        auto.addCommand(new DriveEncoderGyro(0,0));
+        auto.addCommand(new DriveEncoderGyroRel());
+        auto.addCommand(new DriveTime());
+        auto.addCommand(new DriveEncoderGyroRamp(0,0));
+        auto.addCommand(new DriveEncoderGyroRampRel());
+        auto.addCommand(new DriveWaypoint(0,0,0,0,false));
+        auto.addCommand(new TurnGyroWaypoint());
     }
     public void autonomousInit() {
         // schedule the autonomous command (example)
