@@ -77,6 +77,19 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new DriveEncoderGyroRampRel());
         auto.addCommand(new DriveWaypoint(0,0,0,0,false));
         auto.addCommand(new TurnGyroWaypoint());
+        auto.addCommand(new ArmClimbing());
+        auto.addCommand(new ArmHighShooting());
+        auto.addCommand(new ArmLowShooting());
+        auto.addCommand(new HoldArm());
+        auto.addCommand(new LaunchFrisbee());
+        auto.addCommand(new MarsRock());
+        auto.addCommand(new PickupDown());
+        auto.addCommand(new PickupFrisbeesOff());
+        auto.addCommand(new PickupFrisbeesOn());
+        auto.addCommand(new PickupUp());
+        auto.addCommand(new ShootLow());
+        auto.addCommand(new ShootLowCommandGroup());
+        
     }
     public void autonomousInit() {
         // schedule the autonomous command (example)
