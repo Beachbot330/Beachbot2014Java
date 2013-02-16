@@ -5,6 +5,7 @@
 package org.usfirst.frc330.Beachbot2013Java.commands;
 
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
+import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 
 /**
@@ -68,7 +69,7 @@ public class DriveEncoderGyroRel extends DriveEncoderRel{
     public void setParam3(double tolerance) {
         this.tolerance = tolerance;
     }
-    public AutoSpreadsheetCommand copy() {
+    public Command copy() {
         return new DriveEncoderGyroRel();
     }
 }

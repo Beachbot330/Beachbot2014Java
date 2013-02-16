@@ -14,7 +14,7 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
-public class  TurnGyroAbs extends AutoSpreadsheetCommand {
+public class  TurnGyroAbs extends Command implements AutoSpreadsheetCommand {
     double angle;
     boolean stopAtEnd = false;
     
@@ -88,7 +88,7 @@ public class  TurnGyroAbs extends AutoSpreadsheetCommand {
     public void setStopAtEnd(boolean stopAtEnd) {
         this.stopAtEnd = stopAtEnd;
     }
-    public AutoSpreadsheetCommand copy() {
+    public Command copy() {
         return new TurnGyroAbs(0);
     }
 }

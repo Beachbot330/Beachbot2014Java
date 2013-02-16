@@ -6,6 +6,7 @@ package org.usfirst.frc330.Beachbot2013Java.commands;
 
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
@@ -28,7 +29,7 @@ public class DriveEncoderGyroRampRel extends DriveEncoderGyroRamp {
         super.initialize();
     }
 
-    public AutoSpreadsheetCommand copy() {
+    public Command copy() {
         return new DriveEncoderGyroRampRel();
     }
     

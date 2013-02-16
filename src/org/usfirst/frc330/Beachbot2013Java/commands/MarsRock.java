@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: MarsRock.java,v $
+ * Revision 1.3  2013-02-09 01:56:34  jross
+ * whitespace changes from RobotBuilder
+ *
  * Revision 1.2  2013-02-08 04:19:43  jross
  * Add AutoSpreadsheet
  *
@@ -20,7 +23,7 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
-public class  MarsRock extends AutoSpreadsheetCommand {
+public class  MarsRock extends Command implements AutoSpreadsheetCommand {
     public MarsRock() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -53,7 +56,7 @@ public class  MarsRock extends AutoSpreadsheetCommand {
     }
     public void setStopAtEnd(boolean stopAtEnd) {
     }
-    public AutoSpreadsheetCommand copy() {
+    public Command copy() {
         return new MarsRock();
     }
 }

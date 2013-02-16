@@ -9,8 +9,12 @@
 // it from being updated in th future.
 package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
+import edu.wpi.first.wpilibj.command.Command;
 /*
  * $Log: Wait.java,v $
+ * Revision 1.3  2013-02-16 06:26:55  jross
+ * Copy drive commands from beachbot2012robotbuilder
+ *
  * Revision 1.3  2013-01-03 04:54:13  jross
  * Whitespace changes from RobotBuilder
  *
@@ -22,7 +26,7 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
  * Do nothing until the timeout elapses
  * @author Joe Ross
  */
-public class  Wait extends AutoSpreadsheetCommand {
+public class Wait extends Command implements AutoSpreadsheetCommand {
     
     public Wait(double timeout) {
         // Use requires() here to declare subsystem dependencies
@@ -74,7 +78,7 @@ public class  Wait extends AutoSpreadsheetCommand {
      */
     public void setStopAtEnd(boolean stopAtEnd) {
     }
-    public AutoSpreadsheetCommand copy() {
+    public Command copy() {
         return new Wait(0);
     }
 }

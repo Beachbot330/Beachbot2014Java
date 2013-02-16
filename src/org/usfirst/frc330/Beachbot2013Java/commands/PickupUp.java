@@ -14,7 +14,7 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
-public class  PickupUp extends AutoSpreadsheetCommand {
+public class  PickupUp extends Command implements AutoSpreadsheetCommand {
     public PickupUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -50,7 +50,7 @@ public class  PickupUp extends AutoSpreadsheetCommand {
     }
     public void setStopAtEnd(boolean stopAtEnd) {
     }
-    public AutoSpreadsheetCommand copy() {
+    public Command copy() {
         return new PickupUp();
     }
 }

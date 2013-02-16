@@ -15,7 +15,7 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
-public class  DriveEncoderRamp extends AutoSpreadsheetCommand {
+public class  DriveEncoderRamp extends Command implements AutoSpreadsheetCommand {
     double distance, angle;
     double tolerance = 0.1;
     boolean stopAtEnd = false;
@@ -141,7 +141,7 @@ public class  DriveEncoderRamp extends AutoSpreadsheetCommand {
     public void setStopAtEnd(boolean stopAtEnd) {
         this.stopAtEnd = stopAtEnd;
     }
-    public AutoSpreadsheetCommand copy() {
+    public Command copy() {
         return new DriveEncoderRamp(0,0);
     }
 }

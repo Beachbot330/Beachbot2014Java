@@ -5,6 +5,7 @@
 package org.usfirst.frc330.Beachbot2013Java.commands;
 
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
+import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 
 /**
@@ -30,7 +31,7 @@ public class DriveEncoderRel extends DriveEncoder{
         System.out.println("EndInitialize LeftDistance: " + leftDistance);
     }
     
-    public AutoSpreadsheetCommand copy() {
+    public Command copy() {
         return new DriveEncoderRel();
     }
     

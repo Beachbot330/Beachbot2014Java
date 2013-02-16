@@ -6,6 +6,9 @@ package edu.wpi.first.wpilibj.command;
 
 /*
  * $Log: AutoSpreadsheetCommand.java,v $
+ * Revision 1.1  2013-02-08 04:19:43  jross
+ * Add AutoSpreadsheet
+ *
  * Revision 1.1  2013-01-01 19:53:50  jross
  * Import code from Beachbot2012JavaBeta Project
  *
@@ -24,21 +27,30 @@ package edu.wpi.first.wpilibj.command;
  *
  * @author joe
  */
-public abstract class AutoSpreadsheetCommand extends Command {
+public interface AutoSpreadsheetCommand{
+    /**
+     * The first parameter in the AutoSpreadsheet. This should be overridden by
+     * the AutoSpreadSheetCommand to do something useful.
+     * @param param1 
+     */
     public abstract void setParam1(double param1);
+    /**
+     * The second parameter in the AutoSpreadsheet. This should be overridden by
+     * the AutoSpreadSheetCommand to do something useful.
+     * @param param2 
+     */
     public abstract void setParam2(double param2);
+    /**
+     * The third parameter in the AutoSpreadsheet. This should be overridden by
+     * the AutoSpreadSheetCommand to do something useful.
+     * @param param3 
+     */
     public abstract void setParam3(double param3);
     public abstract void setStopAtEnd(boolean stopAtEnd);
-    public abstract AutoSpreadsheetCommand copy();
+    /**
+     * 
+     * @return a copy of the command
+     */
+    public abstract Command copy();
     
-    
-    public AutoSpreadsheetCommand()
-    {
-        super();
-    }
-    
-    public AutoSpreadsheetCommand(String name)
-    {
-        super(name);
-    }
 }

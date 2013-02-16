@@ -15,7 +15,7 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
-public class  ShootLow extends AutoSpreadsheetCommand {
+public class  ShootLow extends Command implements AutoSpreadsheetCommand {
     public ShootLow() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -53,7 +53,7 @@ public class  ShootLow extends AutoSpreadsheetCommand {
     }
     public void setStopAtEnd(boolean stopAtEnd) {
     }
-    public AutoSpreadsheetCommand copy() {
+    public Command copy() {
         return new ShootLow();
     }
 }

@@ -6,6 +6,7 @@ package org.usfirst.frc330.Beachbot2013Java.commands;
 
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
+import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 
 /**
@@ -79,7 +80,7 @@ public class DriveWaypoint extends DriveEncoderGyroRampRel {
         super.setParam2(calcAngle);
     }
     
-    public AutoSpreadsheetCommand copy() {
+    public Command copy() {
         return new DriveWaypoint(0,0,0,0,false);
     }
 

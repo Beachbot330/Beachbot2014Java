@@ -16,7 +16,7 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
-public class  LaunchFrisbee extends AutoSpreadsheetCommand {
+public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
     public LaunchFrisbee() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -60,7 +60,7 @@ public class  LaunchFrisbee extends AutoSpreadsheetCommand {
     }
     public void setStopAtEnd(boolean stopAtEnd) {
     }
-    public AutoSpreadsheetCommand copy() {
+    public Command copy() {
         return new LaunchFrisbee();
     }
 }

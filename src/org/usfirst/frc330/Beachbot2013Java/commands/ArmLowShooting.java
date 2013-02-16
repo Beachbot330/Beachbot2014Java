@@ -14,7 +14,7 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
-public class  ArmLowShooting extends AutoSpreadsheetCommand {
+public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
     public ArmLowShooting() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -52,7 +52,7 @@ public class  ArmLowShooting extends AutoSpreadsheetCommand {
     }
     public void setStopAtEnd(boolean stopAtEnd) {
     }
-    public AutoSpreadsheetCommand copy() {
+    public Command copy() {
         return new ArmLowShooting();
     }
 }

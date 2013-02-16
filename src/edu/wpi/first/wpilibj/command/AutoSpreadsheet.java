@@ -16,6 +16,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.MarsRock;
 
 /*
  * $Log: AutoSpreadsheet.java,v $
+ * Revision 1.2  2013-02-14 03:58:29  jross
+ * update name of file
+ *
  * Revision 1.1  2013-02-08 04:19:43  jross
  * Add AutoSpreadsheet
  *
@@ -75,7 +78,7 @@ public class AutoSpreadsheet {
     
     private Hashtable commandTable = new Hashtable();
     
-    public void addCommand(AutoSpreadsheetCommand command)
+    public void addCommand(Command command)
     {
         commandTable.put(command.getName().toUpperCase(), command);
     }
@@ -281,7 +284,7 @@ public class AutoSpreadsheet {
                             ((AutoSpreadsheetCommand)command).setParam1(param1);
                             ((AutoSpreadsheetCommand)command).setParam2(param2);
                             ((AutoSpreadsheetCommand)command).setParam3(param3);
-                            ((AutoSpreadsheetCommand)command).setTimeout(timeout);
+                            (command).setTimeout(timeout);
                             if (sequential)   
                                 cg.addSequential(command);
                             else

@@ -10,12 +10,25 @@
 package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
- *
+ * Drive the robot a specified distance using encoders and PID only. Finish when
+ * the robot is with the specified {@link #setParam2(double) tolerance}. 
+ * The {@link #setParam1(double) distance} is relative to the
+ * Robot's starting position. DriveEncoder should not be used if the robot has turned. 
+ * {@link DriveEncoderRel} should be used in this case.
+ * 
+ * For example, to drive 10 feet forward, set distance to 120 (inches).
+ * 3 inches is a reasonable tolerance for normal movements. If a smaller
+ * tolerance is used, the robot may not ever reach the tolerance, and the 
+ * {@link #setTimeout(double) timeout} may be reached.
+ * 
+ * @see DriveEncoderGyro
+ * @see DriveEncoderRel
+ * 
+ * @author Joe
  */
-public class  DriveEncoder extends AutoSpreadsheetCommand {
+public class  DriveEncoder extends Command implements AutoSpreadsheetCommand {
     double leftDistance, rightDistance, tolerance;
     boolean stopAtEnd = false;
     
@@ -105,16 +118,23 @@ public class  DriveEncoder extends AutoSpreadsheetCommand {
     }
     
         /**
-     * The first parameter in the AutoSpreadsheet
-     * @param distance The distance to drive
+     * The first parameter in the AutoSpreadsheet, distance. 
+     * The distance to drive in inches from the starting point of the robot. 
+     * To drive 10 feet forward, set distance to 120 (inches). To drive backwards
+     * set the distance negative.
+     * @param distance distance to drive in inches
      */
     public void setParam1(double distance) {
         this.leftDistance = distance;
         this.rightDistance = distance;
     }
     /**
-     * The second parameter in the AutoSpreadsheet
-     * @param tolerance The tolerance for how close to be to the distance before stopping
+     * The second parameter in the AutoSpreadsheet, tolerance. 
+     * The tolerance in inches for how close to be to the distance before stopping.
+     * 3 inches is a reasonable tolerance for normal movements. If a smaller
+     * tolerance is used, the robot may not ever reach the tolerance, and the 
+     * {@link #setTimeout(double) timeout} may be reached.
+     * @param tolerance in inches
      * @see edu.wpi.first.wpilibj.PIDController#setAbsoluteTolerance
      */
     public void setParam2(double tolerance) {
@@ -126,10 +146,15 @@ public class  DriveEncoder extends AutoSpreadsheetCommand {
      */
     public void setParam3(double param3) {
     }
+    /**
+     * Stop the drive train at the end of the command
+     * @param stopAtEnd if true, stop the drive train at the end of the command.
+     *  If false, keep the PID running at the end so the robot keeps its position
+     */
     public void setStopAtEnd(boolean stopAtEnd) {
         this.stopAtEnd = stopAtEnd;
     }
-    public AutoSpreadsheetCommand copy() {
+    public Command copy() {
         return new DriveEncoder();
     }
 }

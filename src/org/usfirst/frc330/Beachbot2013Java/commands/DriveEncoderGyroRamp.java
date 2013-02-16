@@ -9,9 +9,13 @@
 // it from being updated in th future.
 package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
+import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: DriveEncoderGyroRamp.java,v $
+ * Revision 1.1  2013-02-16 06:08:20  jross
+ * Copy drive commands from beachbot2012robotbuilder
+ *
  * Revision 1.11  2013-02-15 06:19:04  jross
  * fix extensions of Drive Encoder
  *
@@ -85,9 +89,14 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
-public class  DriveEncoderGyroRamp extends DriveEncoderGyro {
+public class  DriveEncoderGyroRamp extends DriveEncoderGyro{
     double maxoutput = 0;
     double maxoutputStep = .02;
+    
+    public DriveEncoderGyroRamp()
+    {
+        this(0,0,0,0,true);
+    }
      
     public DriveEncoderGyroRamp(double distance, double angle)
     {
@@ -121,8 +130,7 @@ public class  DriveEncoderGyroRamp extends DriveEncoderGyro {
             Robot.chassis.rightDrivePIDHigh.setOutputRange(-maxoutput, maxoutput);            
         }
     }
-
-    public AutoSpreadsheetCommand copy() {
-        return new DriveEncoderGyroRamp(0,0);
+    public Command copy() {
+        return new DriveEncoderGyroRamp();
     }
 }

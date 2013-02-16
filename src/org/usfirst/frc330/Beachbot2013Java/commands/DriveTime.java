@@ -14,7 +14,7 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
-public class  DriveTime extends AutoSpreadsheetCommand {
+public class  DriveTime extends Command implements AutoSpreadsheetCommand {
     double left, right;
     
     public DriveTime(double timeout, double left, double right) {
@@ -65,7 +65,7 @@ public class  DriveTime extends AutoSpreadsheetCommand {
     }
     public void setStopAtEnd(boolean stopAtEnd) {
     }
-    public AutoSpreadsheetCommand copy() {
+    public Command copy() {
         return new DriveTime();
     }
 }
