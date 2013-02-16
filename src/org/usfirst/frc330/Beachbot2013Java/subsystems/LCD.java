@@ -12,10 +12,13 @@ import org.usfirst.frc330.Beachbot2013Java.RobotMap;
 import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.usfirst.frc0330.wpilibj.CFA634SPI.Line;
-import org.usfirst.frc0330.wpilibj.SmartDashboardLCD;
+import org.usfirst.frc330.wpilibj.CFA634SPI.Line;
+import org.usfirst.frc330.wpilibj.SmartDashboardLCD;
 /*
  * $Log: LCD.java,v $
+ * Revision 1.3  2013-02-09 22:57:51  echan
+ * Robot Builder removed blank lines
+ *
  * Revision 1.2  2013-02-09 02:26:29  jross
  * Add LCD method forwarding
  *S

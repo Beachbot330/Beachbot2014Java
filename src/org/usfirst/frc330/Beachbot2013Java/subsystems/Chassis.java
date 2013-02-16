@@ -15,8 +15,8 @@ import edu.wpi.first.wpilibj.CounterBase.EncodingType;import edu.wpi.first.wpili
  import edu.wpi.first.wpilibj.Encoder.PIDSourceParameter;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc0330.wpilibj.BeachbotPrefSendablePIDController;
-import org.usfirst.frc0330.wpilibj.DummyPIDOutput;
+import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
+import org.usfirst.frc330.wpilibj.DummyPIDOutput;
 /**
  *
  */

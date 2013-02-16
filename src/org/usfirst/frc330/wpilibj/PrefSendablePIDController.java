@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.usfirst.frc0330.wpilibj;
+package org.usfirst.frc330.wpilibj;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.tables.ITableListener;
 
 /*
  * $Log: PrefSendablePIDController.java,v $
+ * Revision 1.1  2013-02-09 22:41:52  jross
+ * import BeachbotPID classes
+ *
  * Revision 1.1  2012-12-28 03:49:46  jross
  * Import from 2012 Java Beta Project
  *

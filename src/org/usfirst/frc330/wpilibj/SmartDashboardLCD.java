@@ -2,13 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.usfirst.frc0330.wpilibj;
+package org.usfirst.frc330.wpilibj;
 
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.SPIDevice;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /*
  * $Log: SmartDashboardLCD.java,v $
+ * Revision 1.1  2013-02-09 02:07:19  jross
+ * Add LCD
+ *
  * Revision 1.1  2013-01-28 03:14:46  jross
  * Working implementation of printing SmartDashboardLCD Variables to the CGA-634 LCD over SPI
  *

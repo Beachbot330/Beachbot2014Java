@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.usfirst.frc0330.wpilibj;
+package org.usfirst.frc330.wpilibj;
 
 import edu.wpi.first.wpilibj.PIDOutput;
 

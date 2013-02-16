@@ -2,13 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.usfirst.frc0330.wpilibj;
+package org.usfirst.frc330.wpilibj;
 
 import edu.wpi.first.wpilibj.SPIDevice;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.fpga.tSPI;
 /*
  * $Log: CFA634SPI.java,v $
+ * Revision 1.1  2013-02-09 02:07:19  jross
+ * Add LCD
+ *
  * Revision 1.1  2013-01-28 03:14:08  jross
  * Working implementation of the CFA-634 spi API
  *
