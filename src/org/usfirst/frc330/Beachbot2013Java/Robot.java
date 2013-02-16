@@ -66,6 +66,7 @@ public class Robot extends IterativeRobot {
     }
     public void autonomousInit() {
         // schedule the autonomous command (example)
+        chassis.resetPosition();
         autonomousCommand = auto.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
     }
@@ -73,6 +74,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+        chassis.calcPeriodic();
         Scheduler.getInstance().run();
     }
     public void teleopInit() {
@@ -86,6 +88,7 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        chassis.calcPeriodic();
         Scheduler.getInstance().run();
     }
     /**
@@ -95,7 +98,15 @@ public class Robot extends IterativeRobot {
         LiveWindow.run();
     }
     
-    public void disabledInit(){
+    public void disabledPeriodic()
+    {
+        chassis.calcPeriodic();
+        Scheduler.getInstance().run();
+    }
+    
+    public void disabledInit()
+    {
+//        System.out.println("In Disabled Init");
         auto.readScripts();
     }
 }

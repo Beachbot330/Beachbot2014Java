@@ -8,13 +8,12 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in th future.
 package org.usfirst.frc330.Beachbot2013Java.subsystems;
-import org.usfirst.frc330.Beachbot2013Java.RobotMap;
-import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
- import edu.wpi.first.wpilibj.Encoder.PIDSourceParameter;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc330.Beachbot2013Java.RobotMap;
+import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.wpilibj.DummyPIDOutput;
 /**
@@ -119,10 +118,20 @@ public class Chassis extends Subsystem {
     public void pidDrive()
     {
         double left, right;
-        
+        if (DriverStation.getInstance().isDisabled())
+        {
+            stopDrive();
+        }
+        else
+        {
+            SmartDashboard.putNumber("leftEncoder", getLeftDistance());
+            SmartDashboard.putNumber("rightEncoder", getRightDistance());
+            SmartDashboard.putNumber("Gyro", getAngle());
         left = -leftDriveOutputLow.getOutput() - leftDriveOutputHigh.getOutput() - gyroOutputLow.getOutput();
         right = -rightDriveOutputLow.getOutput() - rightDriveOutputHigh.getOutput() + gyroOutputLow.getOutput();
         tankDrive(left, right);
+    }
+    
     }
     
     
@@ -158,6 +167,7 @@ public class Chassis extends Subsystem {
     public void calcPeriodic()
     {
         calcXY();
+        pidDrive();
     }
     public double getX() {
         return x;
@@ -172,6 +182,8 @@ public class Chassis extends Subsystem {
         rightDriveEncoder.reset();
         gyro.reset();
         setXY(0,0);
+        this.prevLeftEncoderDistance = 0;
+        this.prevRightEncoderDistance = 0;
     }
     public double getRightDistance() {
         return rightDriveEncoder.getDistance();
@@ -181,4 +193,14 @@ public class Chassis extends Subsystem {
         return leftDriveEncoder.getDistance();
     }
     
+    public void stopDrive()
+    {
+        gyroPIDLow.disable();
+        gyroPIDHigh.disable();
+        leftDrivePIDLow.disable();
+        rightDrivePIDLow.disable();
+        leftDrivePIDHigh.disable();
+        rightDrivePIDHigh.disable();            
+        tankDrive(0, 0);  
+    }
 }
