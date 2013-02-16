@@ -114,8 +114,8 @@ public class RobotMap {
         shooterLowShooterLoadSolenoid = new DoubleSolenoid(1, 5, 6);      
 	
         
-        shooterLowShooterLowController = new Victor(1, 6);
-	LiveWindow.addActuator("Shooter Low", "ShooterLowController", (Victor) shooterLowShooterLowController);
+        shooterLowShooterLowController = new Talon(1, 6);
+	LiveWindow.addActuator("Shooter Low", "ShooterLowController", (Talon) shooterLowShooterLowController);
         
         shooterLowShooterLowEncoder = new Encoder(1, 3, 1, 4, false, EncodingType.k1X);
 	LiveWindow.addSensor("Shooter Low", "ShooterLowEncoder", shooterLowShooterLowEncoder);
