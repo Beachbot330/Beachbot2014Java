@@ -1,0 +1,78 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="ShooterLowCommand" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="684" y="32"/>
+		<width>192</width>
+		<height>20</height>
+	</widget>
+	<widget field="Autonomous mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="965" y="3"/>
+	</widget>
+	<widget field="StopShootLow" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="806" y="73"/>
+	</widget>
+	<widget field="StopShootHigh" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="805" y="49"/>
+	</widget>
+	<widget field="ArmClimbing" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="216" y="69"/>
+	</widget>
+	<widget field="ArmHighShooting" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="215" y="38"/>
+	</widget>
+	<widget field="ArmLowShooting" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="215" y="4"/>
+	</widget>
+	<widget field="SlowPickupFrisbees" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="436" y="161"/>
+	</widget>
+	<widget field="ReversePickup" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="437" y="129"/>
+	</widget>
+	<widget field="PickupFrisbeesOff" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="609" y="159"/>
+	</widget>
+	<widget field="PickupFrisbeesOn" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="610" y="130"/>
+	</widget>
+	<widget field="PickupFrisbees" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="438" y="61"/>
+	</widget>
+	<widget field="ShootLow" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="681" y="72"/>
+	</widget>
+	<widget field="ShootHigh" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="680" y="48"/>
+	</widget>
+	<widget field="ShooterHighCommand" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="684" y="9"/>
+	</widget>
+	<widget field="LaunchFrisbee" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1" y="36"/>
+	</widget>
+	<widget field="PickupUp" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="439" y="34"/>
+	</widget>
+	<widget field="PickupDown" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="438" y="5"/>
+	</widget>
+	<widget field="ShiftLow" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="127" y="122"/>
+	</widget>
+	<widget field="ShiftHigh" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="-1" y="121"/>
+	</widget>
+	<widget field="AutonomousCommand" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="2"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+	<hidden field="gyroPIDHigh"/>
+	<hidden field="MarsRock"/>
+	<hidden field="leftDrivePIDHigh"/>
+	<hidden field="rightDrivePIDHigh"/>
+	<hidden field="gyroPIDLow"/>
+	<hidden field="rightDrivePIDLow"/>
+	<hidden field="leftDrivePIDLow"/>
+</xml>
