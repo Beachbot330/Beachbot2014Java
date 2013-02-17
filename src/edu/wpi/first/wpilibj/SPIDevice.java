@@ -88,7 +88,7 @@ public class SPIDevice extends SensorBase {
         if (miso != null) {
             tSPI.writeChannels_MISO_Module(miso.getModuleForRouting());
             tSPI.writeChannels_MISO_Channel(miso.getChannelForRouting());
-            tSPI.writeConfig_WriteOnly(false);//TODO check these are right
+            tSPI.writeConfig_WriteOnly(false);
         } else {
             tSPI.writeChannels_MISO_Module(0);
             tSPI.writeChannels_MISO_Channel(0);
