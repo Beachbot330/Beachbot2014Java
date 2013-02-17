@@ -12,7 +12,10 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log$
+ * $Log: DriveEncoderGyro.java,v $
+ * Revision 1.6  2013-02-17 02:53:43  jross
+ * update javadocs
+ *
  */
 /**
  * Drive the robot a specified distance using encoders and the gyro to keep straight. Finish when
@@ -72,7 +75,6 @@ public class  DriveEncoderGyro extends DriveEncoder{
         }
             
     }
-
     // Called once after isFinished returns true
     protected void end() {
         super.end();
