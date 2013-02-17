@@ -8,12 +8,10 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in th future.
 package org.usfirst.frc330.Beachbot2013Java.subsystems;
-import org.usfirst.frc330.Beachbot2013Java.RobotMap;
-import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType; import edu.wpi.first.wpilibj.Encoder.PIDSourceParameter;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc330.Beachbot2013Java.RobotMap;
 /**
  *
  */
@@ -36,5 +34,10 @@ public class ShooterHigh extends Subsystem {
     public void shoot(double voltage) {
         SmartDashboard.putNumber("voltageHigh", voltage);
         shooterHighController.set(voltage);
+    }
+    
+    public double getSpeed()
+    {
+        return shooterHighEncoder.getRate();
     }
 }

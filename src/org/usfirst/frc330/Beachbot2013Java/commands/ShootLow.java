@@ -33,6 +33,7 @@ public class  ShootLow extends Command implements AutoSpreadsheetCommand {
     protected void execute() {
         voltage = SmartDashboard.getNumber("ShooterLowCommand");
         Robot.shooterHigh.shoot(voltage);
+        SmartDashboard.putNumber("ShooterLowSpeed", Robot.shooterLow.getSpeed());
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

@@ -49,4 +49,9 @@ public class ShooterLow extends Subsystem {
     public double launchFrisbeeSolenoidOffTime() {
         return Preferences.getInstance().getDouble("solenoidOffTime", 0.5);
     }
+    
+    public double getSpeed()
+    {
+        return shooterLowEncoder.getRate();
+    }
 }

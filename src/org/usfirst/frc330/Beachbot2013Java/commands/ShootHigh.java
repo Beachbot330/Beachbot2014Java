@@ -33,6 +33,7 @@ public class  ShootHigh extends Command {
     protected void execute() {
         voltage = SmartDashboard.getNumber("ShooterHighCommand");
         Robot.shooterHigh.shoot(voltage);
+        SmartDashboard.putNumber("ShooterHighSpeed", Robot.shooterHigh.getSpeed());
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
