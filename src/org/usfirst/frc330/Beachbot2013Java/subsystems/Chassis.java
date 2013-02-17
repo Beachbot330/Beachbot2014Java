@@ -38,6 +38,8 @@ public class Chassis extends Subsystem {
     private DummyPIDOutput gyroOutputLow, gyroOutputHigh, 
                         leftDriveOutputLow, rightDriveOutputLow, leftDriveOutputHigh, rightDriveOutputHigh;
     
+    double leftManual = 0;
+    double rightManual = 0;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void initDefaultCommand() {
@@ -51,6 +53,8 @@ public class Chassis extends Subsystem {
     
     public Chassis (){
         compressor.start();
+        
+        robotDrive.setSafetyEnabled(false);
         
         gyroOutputLow = new DummyPIDOutput();
         gyroOutputHigh = new DummyPIDOutput();
@@ -87,12 +91,16 @@ public class Chassis extends Subsystem {
     
     public void tankDrive(Joystick leftJoystick, Joystick rightJoystick)
     {
-        robotDrive.tankDrive(leftJoystick, rightJoystick, false);
+        leftManual = leftJoystick.getY();
+        rightManual = rightJoystick.getY();
+//        robotDrive.tankDrive(leftJoystick, rightJoystick, false);
     }
     
     public void tankDrive(double left, double right)
     {
-        robotDrive.tankDrive(left, right, false);
+        leftManual = left;
+        rightManual = right;
+//        robotDrive.tankDrive(left, right, false);
     }
     
     public void shiftHigh()
@@ -113,7 +121,7 @@ public class Chassis extends Subsystem {
             return true;
         else
             return false;
-        }
+    }
     
     public void pidDrive()
     {
@@ -127,9 +135,9 @@ public class Chassis extends Subsystem {
             SmartDashboard.putNumber("leftEncoder", getLeftDistance());
             SmartDashboard.putNumber("rightEncoder", getRightDistance());
             SmartDashboard.putNumber("Gyro", getAngle());
-        left = -leftDriveOutputLow.getOutput() - leftDriveOutputHigh.getOutput() - gyroOutputLow.getOutput();
-        right = -rightDriveOutputLow.getOutput() - rightDriveOutputHigh.getOutput() + gyroOutputLow.getOutput();
-        tankDrive(left, right);
+        left = leftManual-leftDriveOutputLow.getOutput() - leftDriveOutputHigh.getOutput() - gyroOutputLow.getOutput();
+        right = rightManual-rightDriveOutputLow.getOutput() - rightDriveOutputHigh.getOutput() + gyroOutputLow.getOutput();
+        robotDrive.tankDrive(left, right,false);
     }
     
     }
