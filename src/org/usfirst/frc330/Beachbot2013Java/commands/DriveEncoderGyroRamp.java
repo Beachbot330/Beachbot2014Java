@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: DriveEncoderGyroRamp.java,v $
+ * Revision 1.2  2013-02-16 21:49:25  jross
+ * Made AutoSpreadsheetCommand an interface instead of an absctract class so that implementing classes can be found
+ *
  * Revision 1.1  2013-02-16 06:08:20  jross
  * Copy drive commands from beachbot2012robotbuilder
  *
@@ -87,10 +90,35 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
  *
  */
 /**
- *
+ * Drive the robot a specified distance using encoders and the gyro to keep 
+ * straight and ramp up to full speed. Finish when
+ * one of the encoders is within the specified {@link #setParam3(double) tolerance}. 
+ * The {@link #setParam1(double) distance} is relative to the
+ * Robot's starting position. The {@link #setParam2(double) angle} is relative 
+ * to the angle where the robot started. The angle should be close to the 
+ * current angle of the robot (ie this command is not appropriate for both turning and driving).
+ * If the robot needs to turn prior to driving straight, use {@link TurnGyroAbs} 
+ * first. DriveEncoderGyro should not be used if the robot has previously turned 
+ * as the left and right encoders will be at different distances. 
+ * {@link DriveEncoderGyroRel} should be used in this case.
+ * <p>
+ * For example, to drive 10 feet forward, set distance to 120 (inches) and set angle to 0.
+ * A reasonable tolerance is 3 inches for normal movements. This will stop the robot
+ * when it is between 117 - 123 inches. If a smaller
+ * tolerance is used, the robot may not ever reach the tolerance, and the 
+ * {@link #setTimeout(double) timeout} will be exceeded. This will slow down the
+ * execution of future commands.
+ * 
+ * @see DriveEncoderGyro
+ * @see DriveEncoderGyroRampRel
+ * @see DriveWaypoint
+ * 
+ * @author Joe
  */
 public class  DriveEncoderGyroRamp extends DriveEncoderGyro{
     double maxoutput = 0;
+    //TODO make maxoutputStep a preference
+    //TODO make different maxoutputStep for low gear and high gear
     double maxoutputStep = .02;
     
     public DriveEncoderGyroRamp()

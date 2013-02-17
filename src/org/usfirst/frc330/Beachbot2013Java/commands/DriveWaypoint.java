@@ -8,10 +8,32 @@ import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
-
+/*
+ * $Log$
+ */
 /**
- *
- * @author joe
+ * Drive the robot to a specified waypoint (relative to where the robot started) 
+ * using the encoders and the gyro to keep straight and ramp up to full speed. Finish when
+ * one of the encoders is within the specified {@link #setParam3(double) tolerance}. 
+ * The {@link #setParam2(double) Y} location is positive to the front of the robot. 
+ * The {@link #setParam1(double) X} location is positive to the right of the robot.
+ * The robot's current angle should be close to the angle to drive to the waypoint
+ * (ie this command is not appropriate for both turning and driving).
+ * If the robot needs to turn prior to driving to the waypoint, use {@link TurnWaypoint} 
+ * first.
+ * <p>
+ * For example, to drive 10 feet forward from where the robot started, set Y to 
+ * 120 (inches) and set X to 0.
+ * A reasonable tolerance is 3 inches for normal movements. This will stop the robot
+ * when it is between 117 - 123 inches. If a smaller
+ * tolerance is used, the robot may not ever reach the tolerance, and the 
+ * {@link #setTimeout(double) timeout} may be exceeded. This will slow down the
+ * execution of future commands.
+ * 
+ * @see DriveEncoderGyroRamp
+ * @see TurnGyroWaypoint
+ * 
+ * @author Joe
  */
 public class DriveWaypoint extends DriveEncoderGyroRampRel {
     double x,y;
@@ -35,15 +57,15 @@ public class DriveWaypoint extends DriveEncoderGyroRampRel {
     
     
      /**
-     * The first parameter in the AutoSpreadsheet
-     * @param distance The distance to drive
+     * The first parameter in the AutoSpreadsheet, X
+     * @param X The X component of the waypoint
      */
     public void setParam1(double x) {
         this.x = x;
     }
     /**
-     * The second parameter in the AutoSpreadsheet
-     * @param angle The angle to maintain while driving
+     * The second parameter in the AutoSpreadsheet, Y
+     * @param Y The Y component of the waypoint
      */
     public void setParam2(double y) {
         this.y = y;

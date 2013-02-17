@@ -7,10 +7,31 @@ package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
-
+/*
+ * $Log$
+ */
 /**
- *
- * @author joe
+ * Drive the robot a specified distance using encoders and the gyro to keep straight. Finish when
+ * one of the encoders is within the specified {@link #setParam2(double) tolerance}. 
+ * The {@link #setParam1(double) distance} is relative to the
+ * Robot's current position. The {@link #setParam3(double) angle} is relative 
+ * to the angle where the robot started. The angle should be close to the 
+ * current angle of the robot (ie this command is not appropriate for both turning and driving).
+ * If the robot needs to turn prior to driving straight, use {@link TurnGyroAbs} 
+ * first.
+ * <p>
+ * For example, to drive 10 feet forward, set distance to 120 (inches) and set angle to 0.
+ * A reasonable tolerance is 3 inches for normal movements. This will stop the robot
+ * when it is between 117 - 123 inches. If a smaller
+ * tolerance is used, the robot may not ever reach the tolerance, and the 
+ * {@link #setTimeout(double) timeout} will be exceeded. This will slow down the
+ * execution of future commands.
+ * 
+ * @see DriveEncoder
+ * @see DriveEncoderRel
+ * @see DriveEncoderGyroRamp
+ * 
+ * @author Joe
  */
 public class DriveEncoderGyroRel extends DriveEncoderRel{
     double angle;
@@ -54,21 +75,18 @@ public class DriveEncoderGyroRel extends DriveEncoderRel{
         }
     }
     /**
-     * The second parameter in the AutoSpreadsheet
-     * @param angle The angle to maintain while driving
+     * The third parameter in the AutoSpreadsheet, angle.
+     * The angle is relative 
+     * to the angle where the robot started. The angle should be close to the 
+     * current angle of the robot (ie this command is not appropriate for both turning and driving).
+     * If the robot needs to turn prior to driving straight, use {@link TurnGyroAbs} 
+     * first. 
+     * @param angle The angle (in degrees) to maintain while driving
      */
-    public void setParam2(double angle) {
+    public void setParam3(double angle) {
         this.angle = angle;
     }
-    
-    /**
-     * The third parameter in the AutoSpreadsheet
-     * @param tolerance The tolerance for how close to be to the distance before stopping
-     * @see edu.wpi.first.wpilibj.PIDController#setAbsoluteTolerance
-     */
-    public void setParam3(double tolerance) {
-        this.tolerance = tolerance;
-    }
+
     public Command copy() {
         return new DriveEncoderGyroRel();
     }

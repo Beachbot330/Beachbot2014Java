@@ -11,20 +11,25 @@ package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
+/*
+ * $Log$
+ */
 /**
  * Drive the robot a specified distance using encoders and PID only. Finish when
- * the robot is with the specified {@link #setParam2(double) tolerance}. 
+ * one of the encoders is within the specified {@link #setParam2(double) tolerance}. 
  * The {@link #setParam1(double) distance} is relative to the
  * Robot's starting position. DriveEncoder should not be used if the robot has turned. 
  * {@link DriveEncoderRel} should be used in this case.
- * 
+ * <p>
  * For example, to drive 10 feet forward, set distance to 120 (inches).
- * 3 inches is a reasonable tolerance for normal movements. If a smaller
+ * A reasonable tolerance is 3 inches for normal movements. This will stop the robot
+ * when it is between 117 - 123 inches. If a smaller
  * tolerance is used, the robot may not ever reach the tolerance, and the 
- * {@link #setTimeout(double) timeout} may be reached.
+ * {@link #setTimeout(double) timeout} will be exceeded. This will slow down the
+ * execution of future commands.
  * 
- * @see DriveEncoderGyro
  * @see DriveEncoderRel
+ * @see DriveEncoderGyro
  * 
  * @author Joe
  */
@@ -117,11 +122,12 @@ public class  DriveEncoder extends Command implements AutoSpreadsheetCommand {
         end();
     }
     
-        /**
+    /**
      * The first parameter in the AutoSpreadsheet, distance. 
      * The distance to drive in inches from the starting point of the robot. 
      * To drive 10 feet forward, set distance to 120 (inches). To drive backwards
-     * set the distance negative.
+     * set the distance negative. To drive to the starting position, set a
+     * distance of 0.
      * @param distance distance to drive in inches
      */
     public void setParam1(double distance) {
