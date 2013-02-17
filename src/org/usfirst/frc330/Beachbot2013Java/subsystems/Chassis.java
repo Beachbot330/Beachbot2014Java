@@ -81,10 +81,11 @@ public class Chassis extends Subsystem {
         SmartDashboard.putData("rightDrivePIDLow", rightDrivePIDLow);
         SmartDashboard.putData("leftDrivePIDHigh", leftDrivePIDHigh);
         SmartDashboard.putData("rightDrivePIDHigh", rightDrivePIDHigh);
-        double diameter = 6;
-        double PulseperRevolution = 250;
-        double Fudgefactor = .93;
-        double distanceperpulse = Math.PI*diameter/PulseperRevolution * Fudgefactor;
+        final double diameter = 6;
+        final double PulseperRevolution = 360;
+        final double gearRatio = 3;
+        final double Fudgefactor = 1;
+        final double distanceperpulse = Math.PI*diameter/PulseperRevolution/gearRatio * Fudgefactor;
         leftDriveEncoder.setDistancePerPulse(distanceperpulse);
         rightDriveEncoder.setDistancePerPulse(distanceperpulse);
     }
