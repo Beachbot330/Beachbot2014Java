@@ -16,6 +16,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.MarsRock;
 
 /*
  * $Log: AutoSpreadsheet.java,v $
+ * Revision 1.3  2013-02-16 21:49:25  jross
+ * Made AutoSpreadsheetCommand an interface instead of an absctract class so that implementing classes can be found
+ *
  * Revision 1.2  2013-02-14 03:58:29  jross
  * update name of file
  *
@@ -67,6 +70,15 @@ public class AutoSpreadsheet {
     final String filename = "file:///2013AutoModesJava.csv";
     SendableChooser autoChooser;
     
+/*
+ * TODO: Crashes when MarsRock auto called twice.
+ *  edu.wpi.first.wpilibj.command.IllegalUseOfCommandException: Can not give command to a command group after already being put in a command group
+[cRIO]     at edu.wpi.first.wpilibj.command.Command.setParent(Command.java:333)
+[cRIO]     at edu.wpi.first.wpilibj.command.CommandGroup.addSequential(CommandGroup.java:79)
+[cRIO]     at edu.wpi.first.wpilibj.command.AutoSpreadsheet.getSelected(AutoSpreadsheet.java:99)
+[cRIO]     at org.usfirst.frc330.Beachbot2013Java.Robot.autonomousInit(Robot.java:97)
+ */    
+    
     public AutoSpreadsheet()
     {
 //        System.out.println("begin of AutoSpreadsheet Constructor");
@@ -93,7 +105,7 @@ public class AutoSpreadsheet {
         if (autoChooser.getSelected() instanceof MarsRock)
         {
             CommandGroup cg = new CommandGroup();
-            cg.addSequential((Command)autoChooser.getSelected());
+            cg.addSequential(new MarsRock());
             return (CommandGroup)cg;
         }
         else

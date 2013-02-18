@@ -82,7 +82,7 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new ArmLowShooting());
         auto.addCommand(new HoldArm());
         auto.addCommand(new LaunchFrisbee());
-        auto.addCommand(new MarsRock());
+//        auto.addCommand(new MarsRock());
         auto.addCommand(new PickupDown());
         auto.addCommand(new PickupFrisbeesOff());
         auto.addCommand(new PickupFrisbeesOn());
