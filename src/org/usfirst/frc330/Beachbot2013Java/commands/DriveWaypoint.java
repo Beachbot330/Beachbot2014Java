@@ -9,7 +9,10 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log$
+ * $Log: DriveWaypoint.java,v $
+ * Revision 1.3  2013-02-17 02:53:43  jross
+ * update javadocs
+ *
  */
 /**
  * Drive the robot to a specified waypoint (relative to where the robot started) 
@@ -44,7 +47,7 @@ public class DriveWaypoint extends DriveEncoderGyroRampRel {
         this.x = x;
         this.y = y;
         calcXY(x, y);
-        this.setParam3(tolerance);
+        super.setParam2(tolerance);
         this.setStopAtEnd(stopAtEnd);
         this.setTimeout(timeout);
     }
@@ -69,6 +72,19 @@ public class DriveWaypoint extends DriveEncoderGyroRampRel {
      */
     public void setParam2(double y) {
         this.y = y;
+    }
+    
+     /**
+     * The third parameter in the AutoSpreadsheet, tolerance. 
+     * The tolerance in inches for how close to be to the distance before stopping.
+     * 3 inches is a reasonable tolerance for normal movements. If a smaller
+     * tolerance is used, the robot may not ever reach the tolerance, and the 
+     * {@link #setTimeout(double) timeout} may be reached.
+     * @param tolerance in inches
+     * @see edu.wpi.first.wpilibj.PIDController#setAbsoluteTolerance
+     */
+    public void setParam3(double tolerance) {
+        super.setParam2(tolerance);
     }
 
     private void calcXY(double x, double y) {
@@ -99,7 +115,7 @@ public class DriveWaypoint extends DriveEncoderGyroRampRel {
         System.out.println("angle: " + calcAngle);
         
         super.setParam1(calcDistance);
-        super.setParam2(calcAngle);
+        super.setParam3(calcAngle);
     }
     
     public Command copy() {
