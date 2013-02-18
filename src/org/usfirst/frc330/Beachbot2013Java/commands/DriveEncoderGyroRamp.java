@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: DriveEncoderGyroRamp.java,v $
+ * Revision 1.4  2013-02-18 00:36:34  echan
+ * Added a step for high and low, and made them preferences
+ *
  * Revision 1.3  2013-02-17 02:53:43  jross
  * update javadocs
  *
@@ -120,8 +123,8 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
  */
 public class  DriveEncoderGyroRamp extends DriveEncoderGyro{
     double maxoutput = 0;
-    double maxoutputStepHigh = Robot.chassis.driveRampMaxStepHigh();
-    double maxoutputStepLow = Robot.chassis.driveRampMaxStepLow();
+    double maxoutputStepHigh = Robot.chassis.getDriveRampStepHigh();
+    double maxoutputStepLow = Robot.chassis.getDriveRampStepLow();
     
     public DriveEncoderGyroRamp()
     {

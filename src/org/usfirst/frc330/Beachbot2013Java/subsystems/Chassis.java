@@ -91,25 +91,25 @@ public class Chassis extends Subsystem {
         rightDriveEncoder.setDistancePerPulse(distanceperpulse);
     }
     
-    public double getDriveRampStepLow() {
-        if (!Preferences.getInstance().containsKey("DriveRampMaxOutpuStepHigh"))
-        {
-            Preferences.getInstance().putDouble("DriveRampMaxOutpuStepHigh", 
-                                                0.0);
-            Preferences.getInstance().save();
-        }
-        return Preferences.getInstance().getDouble("DriveRampMaxOutpuStepHigh",
-                                                   0.0);
-    }
     public double getDriveRampStepHigh() {
         if (!Preferences.getInstance().containsKey("DriveRampMaxOutpuStepHigh"))
         {
+            Preferences.getInstance().putDouble("DriveRampMaxOutpuStepHigh", 
+                                                0.02);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("DriveRampMaxOutpuStepHigh",
+                                                   0.02);
+    }
+    public double getDriveRampStepLow() {
+        if (!Preferences.getInstance().containsKey("DriveRampMaxOutpuStepLow"))
+        {
             Preferences.getInstance().putDouble("DriveRampMaxOutpuStepLow", 
-                                                0.0);
+                                                0.02);
             Preferences.getInstance().save();
         }
         return Preferences.getInstance().getDouble("DriveRampMaxOutpuStepLow", 
-                                                   0.0);
+                                                   0.02);
     }
     
     public void tankDrive(Joystick leftJoystick, Joystick rightJoystick)
@@ -233,17 +233,5 @@ public class Chassis extends Subsystem {
         leftDrivePIDHigh.disable();
         rightDrivePIDHigh.disable();            
         tankDrive(0, 0);  
-    }
-    
-    public double driveRampMaxStepHigh()
-    {
-        return Preferences.getInstance().getDouble("DriveRampMaxOutpuStepHigh",
-                                                   .02);
-    }
-    
-    public double driveRampMaxStepLow()
-    {
-        return Preferences.getInstance().getDouble("DriveRampMaxOutpuStepLow", 
-                                                   .02);
     }
 }
