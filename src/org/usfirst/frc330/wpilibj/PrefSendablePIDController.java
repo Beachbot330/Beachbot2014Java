@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.tables.ITableListener;
 
 /*
  * $Log: PrefSendablePIDController.java,v $
+ * Revision 1.1  2013-02-16 04:54:57  jross
+ * rename package to org.usfirst.frc330.wpilibj to match other packages
+ *
  * Revision 1.1  2013-02-09 22:41:52  jross
  * import BeachbotPID classes
  *
@@ -155,7 +158,7 @@ public class PrefSendablePIDController extends PIDController{
 //                    System.out.println(key + " changed");
                     if (key.equals("save"))
                     {
-                        System.out.println("prevSave: " + prevSave + "curSave: " + ((Boolean) value).booleanValue());
+//                        System.out.println("prevSave: " + prevSave + "curSave: " + ((Boolean) value).booleanValue());
                         if (((Boolean) value).booleanValue())
                         {
                             if (prevSave == false)
