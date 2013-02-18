@@ -16,6 +16,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.MarsRock;
 
 /*
  * $Log: AutoSpreadsheet.java,v $
+ * Revision 1.4  2013-02-18 00:41:06  jross
+ * try to fix crash when MarsRock called twice. needs to be tested
+ *
  * Revision 1.3  2013-02-16 21:49:25  jross
  * Made AutoSpreadsheetCommand an interface instead of an absctract class so that implementing classes can be found
  *
@@ -68,16 +71,7 @@ public class AutoSpreadsheet {
     FileConnection file = null;
     BufferedReader reader = null;
     final String filename = "file:///2013AutoModesJava.csv";
-    SendableChooser autoChooser;
-    
-/*
- * TODO: Crashes when MarsRock auto called twice.
- *  edu.wpi.first.wpilibj.command.IllegalUseOfCommandException: Can not give command to a command group after already being put in a command group
-[cRIO]     at edu.wpi.first.wpilibj.command.Command.setParent(Command.java:333)
-[cRIO]     at edu.wpi.first.wpilibj.command.CommandGroup.addSequential(CommandGroup.java:79)
-[cRIO]     at edu.wpi.first.wpilibj.command.AutoSpreadsheet.getSelected(AutoSpreadsheet.java:99)
-[cRIO]     at org.usfirst.frc330.Beachbot2013Java.Robot.autonomousInit(Robot.java:97)
- */    
+    SendableChooser autoChooser;   
     
     public AutoSpreadsheet()
     {
@@ -248,6 +242,7 @@ public class AutoSpreadsheet {
                             stop = false;
                         else
                             stop = true;
+//                        System.out.println("stop: " + stop + " " + line.toUpperCase());
                         
                         comma1 = line.indexOf(",");
                         comma2 = line.substring(comma1+1).indexOf(",")+comma1+1;
