@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: DriveEncoderGyroRamp.java,v $
+ * Revision 1.3  2013-02-17 02:53:43  jross
+ * update javadocs
+ *
  * Revision 1.2  2013-02-16 21:49:25  jross
  * Made AutoSpreadsheetCommand an interface instead of an absctract class so that implementing classes can be found
  *
@@ -117,9 +120,8 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
  */
 public class  DriveEncoderGyroRamp extends DriveEncoderGyro{
     double maxoutput = 0;
-    //TODO make maxoutputStep a preference
-    //TODO make different maxoutputStep for low gear and high gear
-    double maxoutputStep = .02;
+    double maxoutputStepHigh = Robot.chassis.driveRampMaxStepHigh();
+    double maxoutputStepLow = Robot.chassis.driveRampMaxStepLow();
     
     public DriveEncoderGyroRamp()
     {
@@ -137,12 +139,26 @@ public class  DriveEncoderGyroRamp extends DriveEncoderGyro{
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        maxoutput = maxoutputStep;
+        if (Robot.chassis.getShiftState())
+        {
+            maxoutput = maxoutputStepHigh;
+        }
+        else
+        {
+            maxoutput = maxoutputStepLow;
+        }
         super.initialize();
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        maxoutput = maxoutput + maxoutputStep;
+        if (Robot.chassis.getShiftState())
+        {
+            maxoutput = maxoutput + maxoutputStepHigh;
+        }
+        else
+        {
+            maxoutput = maxoutput + maxoutputStepLow;
+        }
         if (maxoutput > .8)
         {
             maxoutput = .8;
