@@ -205,7 +205,7 @@ Children:
           validators: &id015 [DigitalChannel]
           value: '5'
         Reverse Direction: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Reverse Direction, validators: null, value: false}
+          name: Reverse Direction, validators: null, value: true}
     - Name: RightDriveEncoder
       Base: Quadrature Encoder
       Children: []

@@ -81,7 +81,7 @@ public class RobotMap {
         chassisGyro = new Gyro(1, 1);
 	LiveWindow.addSensor("Chassis", "Gyro", chassisGyro);
         chassisGyro.setSensitivity(0.007);
-        chassisLeftDriveEncoder = new Encoder(1, 5, 1, 6, false, EncodingType.k4X);
+        chassisLeftDriveEncoder = new Encoder(1, 5, 1, 6, true, EncodingType.k4X);
 	LiveWindow.addSensor("Chassis", "LeftDriveEncoder", chassisLeftDriveEncoder);
         chassisLeftDriveEncoder.setDistancePerPulse(0.07539822368615504);
         chassisLeftDriveEncoder.setPIDSourceParameter(PIDSourceParameter.kDistance);
