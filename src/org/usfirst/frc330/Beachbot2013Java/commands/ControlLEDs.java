@@ -78,6 +78,16 @@ public class  ControlLEDs extends Command {
                 }
             }
         }
+        else if (Robot.vision.getLEDOverride())
+        {
+            Robot.vision.turnOnHighShooterLED();
+            Robot.vision.turnOnLowShooterLED();
+        }
+        else
+        {
+            Robot.vision.turnOffHighShooterLED();
+            Robot.vision.turnOffLowShooterLED();
+        }
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

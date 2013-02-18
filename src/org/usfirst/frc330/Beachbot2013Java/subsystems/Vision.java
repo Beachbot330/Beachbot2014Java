@@ -25,6 +25,7 @@ public class Vision extends Subsystem {
     boolean highLEDstate, lowLEDstate;
     public Vision() {
         SmartDashboard.putBoolean("LEDEnable", false);
+        SmartDashboard.putBoolean("LEDOverride", false);
         highLEDstate = false;
         lowLEDstate = false;
     }
@@ -67,6 +68,11 @@ public class Vision extends Subsystem {
     public boolean getLEDEnable()
     {
         return SmartDashboard.getBoolean("LEDEnable", false);
+    }
+    
+    public boolean getLEDOverride()
+    {
+        return SmartDashboard.getBoolean("LEDOverride", false);
     }
     
     public boolean getHighLEDState()
