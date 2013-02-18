@@ -34,9 +34,9 @@ public class  ControlLEDs extends Command {
         Robot.vision.turnOffLowShooterLED();
     }
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    protected void execute() {       
         if (Robot.vision.getLEDEnable() || DriverStation.getInstance().isFMSAttached())
-        {
+        {              
             double gyroAngle = Robot.chassis.getAngle();
             while (gyroAngle > 180)
             {
@@ -47,6 +47,7 @@ public class  ControlLEDs extends Command {
                 gyroAngle += 360;
             }
             SmartDashboard.putNumber("VisionGyroAngle: ",gyroAngle);
+            //TODO: make a preference for angles. Currently +/- 45 deg for turning off and +/- 35 degrees for turning on
             if (Robot.vision.getHighLEDState())
             {
                 if (gyroAngle < 135 || gyroAngle > -135)
