@@ -50,7 +50,6 @@ public class  ControlLEDs extends Command {
                 gyroAngle += 360;
             }
             SmartDashboard.putNumber("VisionGyroAngle: ",gyroAngle);
-            //TODO: make a preference for angles. Currently +/- 45 deg for turning off and +/- 35 degrees for turning on
             if (Robot.vision.getHighLEDState())
             {
                 if (gyroAngle < 180 - LEDOffangle || gyroAngle > -180 + LEDOffangle)
