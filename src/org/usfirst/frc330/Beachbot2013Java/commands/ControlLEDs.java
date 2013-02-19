@@ -10,6 +10,7 @@
 package org.usfirst.frc330.Beachbot2013Java.commands;
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.buttons.NetworkButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,6 +30,8 @@ public class  ControlLEDs extends Command {
         setRunWhenDisabled(true);
     }
     // Called just before this Command runs the first time
+    double LEDOffangle = Robot.vision.turnOffLEDAngle();
+    double LEDOnangle = Robot.vision.turnOnLEDAngle();
     protected void initialize() {
         Robot.vision.turnOffHighShooterLED();
         Robot.vision.turnOffLowShooterLED();
@@ -50,14 +53,14 @@ public class  ControlLEDs extends Command {
             //TODO: make a preference for angles. Currently +/- 45 deg for turning off and +/- 35 degrees for turning on
             if (Robot.vision.getHighLEDState())
             {
-                if (gyroAngle < 135 || gyroAngle > -135)
+                if (gyroAngle < 180 - LEDOffangle || gyroAngle > -180 + LEDOffangle)
                 {
                     Robot.vision.turnOffHighShooterLED();
                 }   
             }
             else
             {
-                if (gyroAngle > 145 || gyroAngle < - 145)
+                if (gyroAngle > 180 - LEDOnangle || gyroAngle < -180 + LEDOnangle)
                 {
                     Robot.vision.turnOnHighShooterLED();
                 }
@@ -65,14 +68,14 @@ public class  ControlLEDs extends Command {
             
             if (Robot.vision.getLowLEDState())
             {
-                if (gyroAngle > 45 || gyroAngle < -45)
+                if (gyroAngle > LEDOffangle || gyroAngle < LEDOffangle)
                 {
                     Robot.vision.turnOffLowShooterLED();
                 }
             }
             else
             {
-                if (gyroAngle < 35 && gyroAngle > -35)
+                if (gyroAngle < LEDOnangle && gyroAngle > -LEDOnangle)
                 {
                     Robot.vision.turnOnLowShooterLED();
                 }
