@@ -50,7 +50,7 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
     }
     
     
-    private void calcAngle(double x, double y) {
+    protected void calcAngle(double x, double y) {
         double curX, curY, deltaX, deltaY, calcAngle, robotAngle;
         
         curX = Robot.chassis.getX();

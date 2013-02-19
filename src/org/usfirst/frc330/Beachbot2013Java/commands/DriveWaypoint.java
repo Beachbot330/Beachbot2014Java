@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: DriveWaypoint.java,v $
+ * Revision 1.6  2013-02-19 10:59:25  jross
+ * add actionadd action item
+ *
  * Revision 1.5  2013-02-19 01:51:16  jross
  * make angle work for any number of robot rotations
  *
@@ -94,7 +97,7 @@ public class DriveWaypoint extends DriveEncoderGyroRampRel {
         super.setParam2(tolerance);
     }
 
-    private void calcXY(double x, double y) {
+    protected void calcXY(double x, double y) {
         double curX, curY, deltaX, deltaY, calcAngle, calcDistance, robotAngle;
         
         curX = Robot.chassis.getX();
