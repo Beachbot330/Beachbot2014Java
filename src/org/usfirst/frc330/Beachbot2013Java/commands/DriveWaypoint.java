@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: DriveWaypoint.java,v $
+ * Revision 1.5  2013-02-19 01:51:16  jross
+ * make angle work for any number of robot rotations
+ *
  * Revision 1.4  2013-02-18 21:10:13  jross
  * fix tolerance and passing angle parameters
  *
@@ -41,6 +44,7 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
  * 
  * @author Joe
  */
+//TODO need to be able to drive forward or backward. Right now, it always drives forward.
 public class DriveWaypoint extends DriveEncoderGyroRampRel {
     double x,y;
     public DriveWaypoint(double x, double y, double tolerance, double timeout, boolean stopAtEnd) {
