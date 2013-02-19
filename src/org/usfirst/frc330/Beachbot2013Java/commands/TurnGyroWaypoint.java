@@ -51,7 +51,7 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
     
     
     private void calcAngle(double x, double y) {
-        double curX, curY, deltaX, deltaY, calcAngle;
+        double curX, curY, deltaX, deltaY, calcAngle, robotAngle;
         
         curX = Robot.chassis.getX();
         curY = Robot.chassis.getY();
@@ -60,18 +60,20 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
         deltaY = y - curY;
         
         calcAngle = Math.toDegrees(MathUtils.atan2(deltaX, deltaY));
-        
-        if (Math.abs(Robot.chassis.getAngle()-calcAngle)<180)
+        robotAngle = Robot.chassis.getAngle();
+        if (Math.abs(robotAngle-calcAngle)<180)
         {
-            calcAngle=calcAngle;
+            //do nothing
         }
-        else if (Robot.chassis.getAngle() > calcAngle)
+        else if (robotAngle > calcAngle)
         {
-            calcAngle += 360;
+            while (robotAngle > calcAngle)
+                calcAngle += 360;
         }
-        else
+        else 
         {
-            calcAngle -= 360;
+            while (robotAngle < calcAngle)
+                calcAngle -= 360;
         }
         System.out.println("angle: " + calcAngle);
         

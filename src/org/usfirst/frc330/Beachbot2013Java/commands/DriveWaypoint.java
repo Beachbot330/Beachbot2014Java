@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: DriveWaypoint.java,v $
+ * Revision 1.4  2013-02-18 21:10:13  jross
+ * fix tolerance and passing angle parameters
+ *
  * Revision 1.3  2013-02-17 02:53:43  jross
  * update javadocs
  *
@@ -88,7 +91,7 @@ public class DriveWaypoint extends DriveEncoderGyroRampRel {
     }
 
     private void calcXY(double x, double y) {
-        double curX, curY, deltaX, deltaY, calcAngle, calcDistance;
+        double curX, curY, deltaX, deltaY, calcAngle, calcDistance, robotAngle;
         
         curX = Robot.chassis.getX();
         curY = Robot.chassis.getY();
@@ -99,17 +102,20 @@ public class DriveWaypoint extends DriveEncoderGyroRampRel {
         calcDistance = Math.sqrt(deltaX*deltaX+deltaY*deltaY);
         calcAngle = Math.toDegrees(MathUtils.atan2(deltaX, deltaY));
         
-        if (Math.abs(Robot.chassis.getAngle()-calcAngle)<180)
+        robotAngle = Robot.chassis.getAngle();
+        if (Math.abs(robotAngle-calcAngle)<180)
         {
-            calcAngle=calcAngle;
+            //do nothing
         }
-        else if (Robot.chassis.getAngle() > calcAngle)
+        else if (robotAngle > calcAngle)
         {
-            calcAngle += 360;
+            while (robotAngle > calcAngle)
+                calcAngle += 360;
         }
-        else
+        else 
         {
-            calcAngle -= 360;
+            while (robotAngle < calcAngle)
+                calcAngle -= 360;
         }
         System.out.println("distance: " + calcDistance);
         System.out.println("angle: " + calcAngle);
