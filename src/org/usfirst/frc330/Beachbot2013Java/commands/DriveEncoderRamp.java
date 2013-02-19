@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class  DriveEncoderRamp extends DriveEncoder{
     double maxoutput = 0;
     double maxoutputStep = .02;
+    //TODO make maxoutput step work like DriveEncoderGyroRamp
     
     public DriveEncoderRamp(double distance) {
         this(distance, 0, 0, true);
