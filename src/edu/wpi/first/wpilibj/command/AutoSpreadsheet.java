@@ -16,6 +16,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.MarsRock;
 
 /*
  * $Log: AutoSpreadsheet.java,v $
+ * Revision 1.6  2013-02-19 03:48:07  jross
+ * rewrite previous history comment to avoid erroneous action item.
+ *
  * Revision 1.5  2013-02-18 04:33:24  jross
  * delete comment about crashing, fixed crashing
  *
@@ -65,7 +68,7 @@ import org.usfirst.frc330.Beachbot2013Java.commands.MarsRock;
  * Read autonomous scripts from csv file
  *
  */
-
+//TODO automatically add a wait 15 seconds
 /**
  *
  * @author joe
