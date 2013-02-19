@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: DriveEncoderGyro.java,v $
+ * Revision 1.7  2013-02-17 05:16:27  jross
+ * whitespace changes from RobotBuilder
+ *
  * Revision 1.6  2013-02-17 02:53:43  jross
  * update javadocs
  *
@@ -74,15 +77,6 @@ public class  DriveEncoderGyro extends DriveEncoder{
             Robot.chassis.gyroPIDHigh.enable();
         }
             
-    }
-    // Called once after isFinished returns true
-    protected void end() {
-        super.end();
-        if (stopAtEnd)
-        {
-            Robot.chassis.gyroPIDLow.disable();
-            Robot.chassis.gyroPIDHigh.disable();
-        }
     }
  
     /**
