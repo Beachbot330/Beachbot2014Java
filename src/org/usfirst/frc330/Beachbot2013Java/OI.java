@@ -71,7 +71,7 @@ public class OI {
         operatorJoystick = new Joystick(3);
         
         reversePickupButton = new JoystickButton(operatorJoystick, 10);
-        reversePickupButton.whileHeld(new ReversePickup());
+        reversePickupButton.whenPressed(new ReversePickup());
         slowFrisbeePickupButton = new JoystickButton(operatorJoystick, 3);
         slowFrisbeePickupButton.whenPressed(new SlowPickupFrisbees());
         frisbeePickupOnButton = new JoystickButton(operatorJoystick, 9);
