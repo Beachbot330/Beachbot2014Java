@@ -15,7 +15,6 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
  *
  */
 public class  TurnGyroRel extends TurnGyroAbs implements AutoSpreadsheetCommand {
-
     
     public TurnGyroRel(double angle) {
         // Use requires() here to declare subsystem dependencies
