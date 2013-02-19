@@ -85,7 +85,7 @@ public class Chassis extends Subsystem {
         final double PulseperRevolution = 250;
         final double encoderGearRatio = 3;
         final double gearRatio = 64/20;
-        final double Fudgefactor = 1;
+        final double Fudgefactor = 0.94;
         final double distanceperpulse = Math.PI*diameter/PulseperRevolution/encoderGearRatio/gearRatio * Fudgefactor;
         leftDriveEncoder.setDistancePerPulse(distanceperpulse);
         rightDriveEncoder.setDistancePerPulse(distanceperpulse);
@@ -152,7 +152,7 @@ public class Chassis extends Subsystem {
     {
         double left, right;
         double gyroRate;
-        gyroRate = Math.abs(AnalogModule.getInstance(1).getVoltage(1)/0.007);
+        gyroRate = Math.abs(AnalogModule.getInstance(1).getVoltage(1)/0.007); //TODO need to subtract gyro calibrated value
         if (gyroRate > maxGyroRate)
             maxGyroRate = gyroRate;
         if (DriverStation.getInstance().isDisabled())
