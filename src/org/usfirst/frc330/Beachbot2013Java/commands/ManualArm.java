@@ -9,11 +9,13 @@
 // it from being updated in th future.
 package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
 public class  ManualArm extends Command {
+    //TODO set virtual limit switches using arm position and preferences
     public ManualArm() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -28,6 +30,7 @@ public class  ManualArm extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         Robot.arm.manualArm();
+        SmartDashboard.putNumber("ArmPosition", Robot.arm.getArmPosition());
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
