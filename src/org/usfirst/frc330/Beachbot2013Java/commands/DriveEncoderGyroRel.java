@@ -8,7 +8,10 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log$
+ * $Log: DriveEncoderGyroRel.java,v $
+ * Revision 1.3  2013-02-17 02:53:43  jross
+ * update javadocs
+ *
  */
 /**
  * Drive the robot a specified distance using encoders and the gyro to keep straight. Finish when
@@ -65,15 +68,7 @@ public class DriveEncoderGyroRel extends DriveEncoderRel{
             Robot.chassis.gyroPIDHigh.enable();
         }
     }
-    // Called once after isFinished returns true
-    protected void end() {
-        super.end();
-        if (stopAtEnd)
-        {
-            Robot.chassis.gyroPIDLow.disable();
-            Robot.chassis.gyroPIDHigh.disable();
-        }
-    }
+
     /**
      * The third parameter in the AutoSpreadsheet, angle.
      * The angle is relative 
