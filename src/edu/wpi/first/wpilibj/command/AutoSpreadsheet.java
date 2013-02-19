@@ -16,6 +16,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.MarsRock;
 
 /*
  * $Log: AutoSpreadsheet.java,v $
+ * Revision 1.5  2013-02-18 04:33:24  jross
+ * delete comment about crashing, fixed crashing
+ *
  * Revision 1.4  2013-02-18 00:41:06  jross
  * try to fix crash when MarsRock called twice. needs to be tested
  *
