@@ -146,9 +146,15 @@ public class Chassis extends Subsystem {
             return false;
     }
     
+    double maxGyroRate = 0;
+    
     public void pidDrive()
     {
         double left, right;
+        double gyroRate;
+        gyroRate = Math.abs(AnalogModule.getInstance(1).getVoltage(1)/0.007);
+        if (gyroRate > maxGyroRate)
+            maxGyroRate = gyroRate;
         if (DriverStation.getInstance().isDisabled())
         {
             stopDrive();
@@ -158,10 +164,12 @@ public class Chassis extends Subsystem {
             SmartDashboard.putNumber("leftEncoder", getLeftDistance());
             SmartDashboard.putNumber("rightEncoder", getRightDistance());
             SmartDashboard.putNumber("Gyro", getAngle());
-        left = leftManual-leftDriveOutputLow.getOutput() - leftDriveOutputHigh.getOutput() - gyroOutputLow.getOutput();
-        right = rightManual-rightDriveOutputLow.getOutput() - rightDriveOutputHigh.getOutput() + gyroOutputLow.getOutput();
-        robotDrive.tankDrive(left, right,false);
-    }
+            SmartDashboard.putNumber("GyroRate", gyroRate);
+            SmartDashboard.putNumber("MaxGyroRate", maxGyroRate);
+            left = leftManual-leftDriveOutputLow.getOutput() - leftDriveOutputHigh.getOutput() - gyroOutputLow.getOutput();
+            right = rightManual-rightDriveOutputLow.getOutput() - rightDriveOutputHigh.getOutput() + gyroOutputLow.getOutput();
+            robotDrive.tankDrive(left, right,false);
+        }
     
     }
     

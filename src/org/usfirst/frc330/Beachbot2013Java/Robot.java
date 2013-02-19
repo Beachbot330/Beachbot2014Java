@@ -89,6 +89,7 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new PickupUp());
         auto.addCommand(new ShootLow());
         auto.addCommand(new ShootLowCommandGroup());
+        auto.addCommand(new TurnCamera());
         
     }
     public void autonomousInit() {
