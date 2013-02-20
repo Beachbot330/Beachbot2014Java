@@ -16,6 +16,9 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 import org.usfirst.frc330.Beachbot2013Java.RobotMap;
 /*
  * $Log: UpdateLCD.java,v $
+ * Revision 1.6  2013-02-20 00:57:25  jross
+ * make LCD actually update, and change camera variables to Allen's names
+ *
  * Revision 1.5  2013-02-16 06:27:17  jross
  * run when disabled
  *
@@ -44,8 +47,6 @@ public class  UpdateLCD extends Command {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        SmartDashboard.putNumber("AngleToTarget", 0);
-        SmartDashboard.putNumber("RangeToTarget", 0);
         SmartDashboard.putNumber("Gyro Angle", 0);
         SmartDashboard.putNumber("Batt Voltage", 0);
         
