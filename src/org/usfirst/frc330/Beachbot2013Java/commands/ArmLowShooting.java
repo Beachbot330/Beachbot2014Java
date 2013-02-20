@@ -25,6 +25,7 @@ public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
+        //TODO have a preference delay after putting pickup down before moving arm
         Robot.frisbeePickup.setFrisbeePickupDown(); 
         Robot.arm.holdArmOff();
         Robot.arm.armSetPointLowShooting();

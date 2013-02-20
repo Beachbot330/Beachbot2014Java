@@ -13,6 +13,7 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
+//TODO put pickup down and have a preference delay before moving arm.
 public class  ArmLowPickup extends Command {
     public ArmLowPickup() {
         // Use requires() here to declare subsystem dependencies
