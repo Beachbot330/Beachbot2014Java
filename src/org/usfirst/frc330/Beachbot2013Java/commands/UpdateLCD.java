@@ -16,6 +16,9 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 import org.usfirst.frc330.Beachbot2013Java.RobotMap;
 /*
  * $Log: UpdateLCD.java,v $
+ * Revision 1.5  2013-02-16 06:27:17  jross
+ * run when disabled
+ *
  * Revision 1.4  2013-02-16 04:54:57  jross
  * rename package to org.usfirst.frc330.wpilibj to match other packages
  *
@@ -47,14 +50,15 @@ public class  UpdateLCD extends Command {
         SmartDashboard.putNumber("Batt Voltage", 0);
         
         Robot.lCD.addLine(CFA634SPI.Line.kUser1, "Batt Voltage");
-        Robot.lCD.addLine(CFA634SPI.Line.kUser2, "AngleToTarget");
-        Robot.lCD.addLine(CFA634SPI.Line.kUser3, "RangeToTarget");
+        Robot.lCD.addLine(CFA634SPI.Line.kUser2, "angleToCenter");
+        Robot.lCD.addLine(CFA634SPI.Line.kUser3, "distanceToCenter");
         Robot.lCD.addLine(CFA634SPI.Line.kUser4, "Gyro Angle");
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         SmartDashboard.putNumber("Batt Voltage", DriverStation.getInstance().getBatteryVoltage());
         SmartDashboard.putNumber("Gyro Angle", RobotMap.chassisGyro.getAngle());
+        Robot.lCD.updateLCD();
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
