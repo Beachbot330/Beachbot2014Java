@@ -15,7 +15,6 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
  *
  */
 public class  PickupFrisbeesOn extends Command implements AutoSpreadsheetCommand {
-    //TODO Need to figure out why Frisbee Pickup sometimes doesn't come on in Autonomous
     public PickupFrisbeesOn() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
