@@ -101,6 +101,12 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
                 getDouble("armSetpointLowShooting", .1));
     }
     
+    public void armSetPointLowPickup() {
+        //TODO check in preference exists and save if it doesn't
+        armSetPoint(Preferences.getInstance().
+                getDouble("armSetpointLowPickup", .1));
+    }
+    
     public void armSetPointClimbing() {
         //TODO check in preference exists and save if it doesn't
         armSetPoint(Preferences.getInstance().
