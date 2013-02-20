@@ -14,7 +14,6 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
-//TODO Need to make sure pickup is down before going to ArmLowShooting
 public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
     public ArmLowShooting() {
         // Use requires() here to declare subsystem dependencies
@@ -26,6 +25,7 @@ public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
+        Robot.frisbeePickup.setFrisbeePickupDown(); 
         Robot.arm.holdArmOff();
         Robot.arm.armSetPointLowShooting();
         Robot.arm.enable();
