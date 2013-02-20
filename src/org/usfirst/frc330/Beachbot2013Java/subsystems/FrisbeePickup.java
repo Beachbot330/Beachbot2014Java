@@ -66,13 +66,13 @@ public class FrisbeePickup extends Subsystem {
     
     public void setFrisbeePickupUp()
     {
-      pickupSolenoid.set(DoubleSolenoid.Value.kReverse);
+      pickupSolenoid.set(DoubleSolenoid.Value.kForward);
 //        System.err.println("setFrisbeePickupUp");
     }
     
     public void setFrisbeePickupDown()
     {
-        pickupSolenoid.set(DoubleSolenoid.Value.kForward);
+        pickupSolenoid.set(DoubleSolenoid.Value.kReverse);
 //        System.err.println("setFrisbeePickupDown");
     }
     
