@@ -13,9 +13,13 @@ import java.io.InputStreamReader;
 import java.util.Hashtable;
 import javax.microedition.io.Connector;
 import org.usfirst.frc330.Beachbot2013Java.commands.MarsRock;
+import org.usfirst.frc330.Beachbot2013Java.commands.Wait;
 
 /*
  * $Log: AutoSpreadsheet.java,v $
+ * Revision 1.7  2013-02-19 11:00:43  jross
+ * add action item
+ *
  * Revision 1.6  2013-02-19 03:48:07  jross
  * rewrite previous history comment to avoid erroneous action item.
  *
@@ -68,7 +72,6 @@ import org.usfirst.frc330.Beachbot2013Java.commands.MarsRock;
  * Read autonomous scripts from csv file
  *
  */
-//TODO automatically add a wait 15 seconds
 /**
  *
  * @author joe
@@ -210,6 +213,7 @@ public class AutoSpreadsheet {
                 {
 //                    System.out.println("End of Script: " + scriptName);
                     scriptStarted = false;
+                    cg.addSequential(new Wait(15));
                     break;
                 }
                 else if (line.startsWith(",")|| line.length() <= 2 )
