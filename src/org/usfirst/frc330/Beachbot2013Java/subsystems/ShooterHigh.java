@@ -11,6 +11,7 @@ package org.usfirst.frc330.Beachbot2013Java.subsystems;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc330.Beachbot2013Java.Robot;
 import org.usfirst.frc330.Beachbot2013Java.RobotMap;
 /**
  *
@@ -39,5 +40,13 @@ public class ShooterHigh extends Subsystem {
     public double getSpeed()
     {
         return shooterHighEncoder.getRate();
+    }
+    
+    public void ShooterHighMotorToggle(double voltage)
+    {
+        if ( voltage == 0 )
+            Robot.shooterHigh.shoot(voltage);
+        else
+            Robot.shooterHigh.shoot(0);
     }
 }
