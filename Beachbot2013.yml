@@ -708,7 +708,7 @@ Children:
           value: '13'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: UpdateLCD}
+        name: Default Command, type: Command, validators: null, value: None}
   Properties: {}
 - Name: Operator Interface
   Base: OI
@@ -1332,6 +1332,6 @@ Properties:
     validators: null, value: 330}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
-  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Prog\NetBeansProjects',
+  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\joe\NetBeansProjects',
     extension: null, folder: true, name: Java Project Directory, validators: null,
-    value: 'C:\BB\2013\Programming'}
+    value: 'C:\Users\joe\Documents\beachbot\2013\Programming'}
