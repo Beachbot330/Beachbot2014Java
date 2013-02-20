@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType; import edu.wpi.first.wpilibj.Encoder.PIDSourceParameter;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
@@ -54,4 +55,13 @@ public class ShooterLow extends Subsystem {
     {
         return shooterLowEncoder.getRate();
     }
+    
+    public void ShooterLowMotorToggle(double voltage)
+    {
+        if ( voltage == 0 )
+            Robot.shooterLow.shoot(voltage);
+        else
+            Robot.shooterLow.shoot(0);
+    }
+    
 }
