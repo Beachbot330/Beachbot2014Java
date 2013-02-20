@@ -32,7 +32,7 @@ public class  ShootHigh extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         voltage = SmartDashboard.getNumber("ShooterHighCommand");
-        Robot.shooterHigh.shoot(voltage);
+        Robot.shooterHigh.ShooterHighMotorToggle(voltage);
         SmartDashboard.putNumber("ShooterHighSpeed", Robot.shooterHigh.getSpeed());
     }
     // Make this return true when this Command no longer needs to run execute()
