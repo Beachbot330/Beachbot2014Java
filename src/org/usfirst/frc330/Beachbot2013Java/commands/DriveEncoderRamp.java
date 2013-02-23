@@ -18,7 +18,6 @@ public class  DriveEncoderRamp extends DriveEncoder{
     double maxoutput = 0;
     double maxoutputStepHigh = Robot.chassis.getDriveRampStepHigh();
     double maxoutputStepLow = Robot.chassis.getDriveRampStepLow();
-    //TODO make maxoutput step work like DriveEncoderGyroRamp
     
     public DriveEncoderRamp(double distance) {
         this(distance, 0, 0, true);
