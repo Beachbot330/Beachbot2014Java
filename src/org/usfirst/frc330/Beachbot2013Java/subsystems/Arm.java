@@ -55,15 +55,6 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         brakeArmSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
     
-    //TODO what is ArmPositionSetpoint?
-    public double getArmSetpoint() {
-        if (!Preferences.getInstance().containsKey("ArmPositionSetpoint"))
-        {
-            Preferences.getInstance().putDouble("ArmPositionSetpoint", 1.0);
-            Preferences.getInstance().save();
-        }
-        return Preferences.getInstance().getDouble("ArmPositionSetpoint", 1.0);
-    }
     public double getArmZero()
     {
         if (!Preferences.getInstance().containsKey("ArmPositionZero"))
