@@ -15,7 +15,6 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
  *
  */
 public class  ManualArm extends Command {
-    //TODO set virtual limit switches using arm position and preferences
     public ManualArm() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
