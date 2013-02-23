@@ -16,7 +16,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class  DriveEncoderRamp extends DriveEncoder{
     double maxoutput = 0;
-    double maxoutputStep = .02;
+    double maxoutputStepHigh = Robot.chassis.getDriveRampStepHigh();
+    double maxoutputStepLow = Robot.chassis.getDriveRampStepLow();
     //TODO make maxoutput step work like DriveEncoderGyroRamp
     
     public DriveEncoderRamp(double distance) {
@@ -31,13 +32,27 @@ public class  DriveEncoderRamp extends DriveEncoder{
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        maxoutput = maxoutputStep;
+        if (Robot.chassis.getShiftState())
+        {
+            maxoutput = maxoutputStepHigh;
+        }
+        else
+        {
+            maxoutput = maxoutputStepLow;
+        }
         
         super.initialize();
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        maxoutput = maxoutput + maxoutputStep;
+        if (Robot.chassis.getShiftState())
+        {
+            maxoutput = maxoutput + maxoutputStepHigh;
+        }
+        else
+        {
+            maxoutput = maxoutput + maxoutputStepLow;
+        }
         if (maxoutput > .8)
         {
             maxoutput = .8;
