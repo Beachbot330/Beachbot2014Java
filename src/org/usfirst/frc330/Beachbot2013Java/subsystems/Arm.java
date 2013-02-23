@@ -36,6 +36,9 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         //setDefaultCommand(new MySpecialCommand());
     }
     
+    private static final String PREF_Arm_ArmPickupTimeToWait = "ArmPickupTimeToWait";
+    private static final String PREF_Arm_ArmShootingTimeToWait = "ArmShootingTimeToWait";
+    
     public Arm(){
         armPID = new BeachbotPrefSendablePIDController(0,0,0,this,this, "armPID");
         armPID.setAbsoluteTolerance(0.1);
@@ -70,6 +73,38 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         }
         return Preferences.getInstance().getDouble("ArmPositionZero", 0.0);
     }
+    public double getArmHighShooting() {
+        if (!Preferences.getInstance().containsKey("armSetpointHighShooting"))
+        {
+            Preferences.getInstance().putDouble("armSetpointHighShooting", 1.5);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("armSetpointHighShooting", 1.5);
+    }
+    public double getArmLowShooting() {
+        if (!Preferences.getInstance().containsKey("armSetpointLowShooting"))
+        {
+            Preferences.getInstance().putDouble("armSetpointLowShooting", .1);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("armSetpointLowShooting", .1);
+    }
+    public double getArmLowPickup() {
+        if (!Preferences.getInstance().containsKey("armSetpointLowPickup"))
+        {
+            Preferences.getInstance().putDouble("armSetpointLowPickup", .1);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("armSetpointLowPickup", .1);
+    }
+    public double getArmClimbing() {
+        if (!Preferences.getInstance().containsKey("armSetpointClimbing"))
+        {
+            Preferences.getInstance().putDouble("armSetpointClimbing", 2);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("armSetpointClimbing", 2);
+    }
     
     public void manualArm() {
         double armCommand = Robot.oi.operatorJoystick.getY();
@@ -90,27 +125,53 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     }
     
     public void armSetPointHighShooting() {
-        //TODO check in preference exists and save if it doesn't
         armSetPoint(Preferences.getInstance().
                 getDouble("armSetpointHighShooting", 1.5));
     }
     
     public void armSetPointLowShooting() {
-        //TODO check in preference exists and save if it doesn't
         armSetPoint(Preferences.getInstance().
                 getDouble("armSetpointLowShooting", .1));
     }
     
     public void armSetPointLowPickup() {
-        //TODO check in preference exists and save if it doesn't
         armSetPoint(Preferences.getInstance().
                 getDouble("armSetpointLowPickup", .1));
     }
     
     public void armSetPointClimbing() {
-        //TODO check in preference exists and save if it doesn't
         armSetPoint(Preferences.getInstance().
                 getDouble("armSetpointClimbing", 2));
+    }
+    
+    public double armWaitPickup() {
+        double armpickuptimetowait = 0.5;
+        if (Preferences.getInstance().containsKey(PREF_Arm_ArmPickupTimeToWait))
+        {
+            armpickuptimetowait = Preferences.getInstance().getDouble(
+                            PREF_Arm_ArmPickupTimeToWait,armpickuptimetowait);
+        } else 
+        {
+            Preferences.getInstance().putDouble(PREF_Arm_ArmPickupTimeToWait, 
+                                                armpickuptimetowait);
+            Preferences.getInstance().save();
+        }
+        return armpickuptimetowait;
+    }
+    
+    public double armWaitShooting() {
+        double armshootingtimetowait = 0.5;
+        if (Preferences.getInstance().containsKey(PREF_Arm_ArmShootingTimeToWait))
+        {
+            armshootingtimetowait = Preferences.getInstance().getDouble(
+                            PREF_Arm_ArmShootingTimeToWait,armshootingtimetowait);
+        } else 
+        {
+            Preferences.getInstance().putDouble(PREF_Arm_ArmShootingTimeToWait, 
+                                                armshootingtimetowait);
+            Preferences.getInstance().save();
+        }
+        return armshootingtimetowait;
     }
     
     public synchronized double getSetpoint() {
