@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: DriveWaypoint.java,v $
+ * Revision 1.7  2013-02-19 18:47:56  jross
+ * create drive waypoint commands for driving backwards
+ *
  * Revision 1.6  2013-02-19 10:59:25  jross
  * add actionadd action item
  *
@@ -47,7 +50,6 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
  * 
  * @author Joe
  */
-//TODO need to be able to drive forward or backward. Right now, it always drives forward.
 public class DriveWaypoint extends DriveEncoderGyroRampRel {
     double x,y;
     public DriveWaypoint(double x, double y, double tolerance, double timeout, boolean stopAtEnd) {
