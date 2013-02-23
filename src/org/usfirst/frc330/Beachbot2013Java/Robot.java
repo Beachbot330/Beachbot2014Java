@@ -44,7 +44,6 @@ public class Robot extends IterativeRobot {
      */
     public boolean practicerobot;
     public void robotInit() {
-        //TODO create a preference for whether this is the practice robot or not.
         if (!Preferences.getInstance().containsKey("PracticeRobot"))
         {
             Preferences.getInstance().putBoolean("PracticeRobot", false);
