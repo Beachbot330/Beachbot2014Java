@@ -11,6 +11,7 @@ package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
+import org.usfirst.frc330.Beachbot2013Java.subsystems.Chassis;
 /**
  *
  */
@@ -43,38 +44,27 @@ public class  TurnGyroAbs extends Command implements AutoSpreadsheetCommand {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.chassis.leftDrivePIDLow.disable();
-        Robot.chassis.rightDrivePIDLow.disable();  
-        Robot.chassis.leftDrivePIDHigh.disable();
-        Robot.chassis.rightDrivePIDHigh.disable();
-        Robot.chassis.gyroPIDLow.setAbsoluteTolerance(tolerance);
-        Robot.chassis.gyroPIDHigh.setAbsoluteTolerance(tolerance);
+        Robot.chassis.leftDrivePID.disable();
+        Robot.chassis.rightDrivePID.disable();  
+        Robot.chassis.gyroPID.setAbsoluteTolerance(tolerance);
+
         if (!Robot.chassis.getShiftState())
         {
-            Robot.chassis.gyroPIDHigh.disable();
-            Robot.chassis.gyroPIDLow.setSetpoint(angle);
-            Robot.chassis.gyroPIDLow.enable();
+            Robot.chassis.gyroPID.setGainName(Chassis.TURNLOW);
         }
         else
         {
-            Robot.chassis.gyroPIDLow.disable();
-            Robot.chassis.gyroPIDHigh.setSetpoint(angle);
-            Robot.chassis.gyroPIDHigh.enable();
+            Robot.chassis.gyroPID.setGainName(Chassis.TURNHIGH);
         }
+        Robot.chassis.gyroPID.setSetpoint(angle);
+        Robot.chassis.gyroPID.enable();
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (!Robot.chassis.getShiftState())
-        {
-            if (Robot.chassis.gyroPIDLow.onTarget() || isTimedOut())
-            {
-                return true;            
-            }
-        }
-        else if (Robot.chassis.gyroPIDHigh.onTarget() || isTimedOut())
+        if (Robot.chassis.gyroPID.onTarget() || isTimedOut())
         {
             return true;
         }

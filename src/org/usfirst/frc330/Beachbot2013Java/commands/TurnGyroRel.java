@@ -33,16 +33,9 @@ public class  TurnGyroRel extends TurnGyroAbs{
     // Called just before this Command runs the first time
     protected void initialize() {
         super.initialize();
-        if (!Robot.chassis.getShiftState())
-        {
-            Robot.chassis.gyroPIDLow.setSetpoint(angle+Robot.chassis.getAngle());
-            Robot.chassis.gyroPIDLow.enable();
-        }
-        else
-        {
-            Robot.chassis.gyroPIDHigh.setSetpoint(angle+Robot.chassis.getAngle());
-            Robot.chassis.gyroPIDHigh.enable();
-        }
+        Robot.chassis.gyroPID.setSetpoint(angle+Robot.chassis.getAngle());
+        Robot.chassis.gyroPID.enable();
+
     }
     public Command copy() {
         return new TurnGyroRel(0);

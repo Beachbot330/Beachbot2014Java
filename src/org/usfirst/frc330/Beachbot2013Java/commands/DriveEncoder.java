@@ -11,8 +11,12 @@ package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
+import org.usfirst.frc330.Beachbot2013Java.subsystems.Chassis;
 /*
- * $Log$
+ * $Log: DriveEncoder.java,v $
+ * Revision 1.6  2013-02-17 02:53:43  jross
+ * update javadocs
+ *
  */
 /**
  * Drive the robot a specified distance using encoders and PID only. Finish when
@@ -67,42 +71,30 @@ public class  DriveEncoder extends Command implements AutoSpreadsheetCommand {
     
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.chassis.gyroPIDLow.disable();
-        Robot.chassis.gyroPIDHigh.disable();
+        Robot.chassis.gyroPID.disable();
         if (!Robot.chassis.getShiftState())
         {
-            Robot.chassis.leftDrivePIDLow.setSetpoint(leftDistance);
-            Robot.chassis.rightDrivePIDLow.setSetpoint(rightDistance);
-            Robot.chassis.leftDrivePIDLow.enable();
-            Robot.chassis.rightDrivePIDLow.enable();
-            Robot.chassis.leftDrivePIDLow.setAbsoluteTolerance(tolerance);
-            Robot.chassis.rightDrivePIDLow.setAbsoluteTolerance(tolerance);
+            Robot.chassis.leftDrivePID.setGainName(Chassis.DRIVELOW);
         }
         else
         {
-            Robot.chassis.leftDrivePIDHigh.setSetpoint(leftDistance);
-            Robot.chassis.rightDrivePIDHigh.setSetpoint(rightDistance);
-            Robot.chassis.leftDrivePIDHigh.enable();
-            Robot.chassis.rightDrivePIDHigh.enable(); 
-            Robot.chassis.leftDrivePIDHigh.setAbsoluteTolerance(tolerance);
-            Robot.chassis.rightDrivePIDHigh.setAbsoluteTolerance(tolerance);
+             Robot.chassis.leftDrivePID.setGainName(Chassis.DRIVEHIGH);
         }
-        //Robot.chassis.leftDrivePID.disable();
-        //Robot.chassis.rightDrivePID.disable();
+        Robot.chassis.leftDrivePID.setSetpoint(leftDistance);
+        Robot.chassis.rightDrivePID.setSetpoint(rightDistance);
+        Robot.chassis.leftDrivePID.enable();
+        Robot.chassis.rightDrivePID.enable();
+        Robot.chassis.leftDrivePID.setAbsoluteTolerance(tolerance);
+        Robot.chassis.rightDrivePID.setAbsoluteTolerance(tolerance);
+        
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (!Robot.chassis.getShiftState())
-        {
-            if (Robot.chassis.leftDrivePIDLow.onTarget() || Robot.chassis.rightDrivePIDLow.onTarget() || isTimedOut())
-            {
-                return true;            
-            }
-        }
-        else if (Robot.chassis.leftDrivePIDHigh.onTarget() || Robot.chassis.rightDrivePIDHigh.onTarget() || isTimedOut())
+
+        if (Robot.chassis.leftDrivePID.onTarget() || Robot.chassis.rightDrivePID.onTarget() || isTimedOut())
         {
                 return true;            
         }

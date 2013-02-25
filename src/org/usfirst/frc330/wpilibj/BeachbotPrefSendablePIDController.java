@@ -6,11 +6,15 @@ package org.usfirst.frc330.wpilibj;
 
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.Timer;
+import java.util.Timer;
 import edu.wpi.first.wpilibj.tables.ITable;
+import java.util.TimerTask;
 
 /*
  * $Log: BeachbotPrefSendablePIDController.java,v $
+ * Revision 1.1  2013-02-16 04:54:57  jross
+ * rename package to org.usfirst.frc330.wpilibj to match other packages
+ *
  * Revision 1.1  2013-02-09 22:41:52  jross
  * import BeachbotPID classes
  *
@@ -62,6 +66,17 @@ public class BeachbotPrefSendablePIDController extends PrefSendablePIDController
             return "BeachbotPrefPIDController";
         }
         
+        Timer timer;
+        private class SendDataTask extends TimerTask {
+            public void run()
+            {
+                BeachbotPrefSendablePIDController.this.table.putNumber("error", BeachbotPrefSendablePIDController.super.getError());
+                BeachbotPrefSendablePIDController.this.table.putNumber("output", BeachbotPrefSendablePIDController.super.get());
+                if (tolerance_set)
+                    BeachbotPrefSendablePIDController.this.table.putBoolean("onTarget", BeachbotPrefSendablePIDController.super.onTarget());
+            }
+        }
+        
         public void initTable(ITable table)
         {
             this.table = table;
@@ -71,20 +86,8 @@ public class BeachbotPrefSendablePIDController extends PrefSendablePIDController
                 table.putNumber("error", super.getError());
                 table.putNumber("output", super.get());
                 table.putBoolean("onTarget", false);
-                new Thread()
-                {
-                    public void run()
-                    {
-                        while (true)
-                        {
-                            Timer.delay(0.2);
-                            BeachbotPrefSendablePIDController.this.table.putNumber("error", BeachbotPrefSendablePIDController.super.getError());
-                            BeachbotPrefSendablePIDController.this.table.putNumber("output", BeachbotPrefSendablePIDController.super.get());
-                            if (tolerance_set)
-                                BeachbotPrefSendablePIDController.this.table.putBoolean("onTarget", BeachbotPrefSendablePIDController.super.onTarget());
-                        }
-                    }
-                }.start();
+                timer = new Timer();
+                timer.schedule(new SendDataTask(), 0, 250);
             }
         }
         
@@ -113,4 +116,5 @@ public class BeachbotPrefSendablePIDController extends PrefSendablePIDController
 	super.setPercentTolerance(percentage);
         tolerance_set = true;
     }
+     
 }

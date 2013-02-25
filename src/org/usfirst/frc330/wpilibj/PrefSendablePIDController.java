@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.tables.ITableListener;
 
 /*
  * $Log: PrefSendablePIDController.java,v $
+ * Revision 1.2  2013-02-18 04:35:28  jross
+ * remove debug print
+ *
  * Revision 1.1  2013-02-16 04:54:57  jross
  * rename package to org.usfirst.frc330.wpilibj to match other packages
  *
@@ -78,7 +81,7 @@ public class PrefSendablePIDController extends PIDController{
         readPIDPref(p,i,d);
     }
     
-    private void readPIDPref(double p, double i, double d)
+    protected void readPIDPref(double p, double i, double d)
     {
         boolean saveNeeded = false;
         

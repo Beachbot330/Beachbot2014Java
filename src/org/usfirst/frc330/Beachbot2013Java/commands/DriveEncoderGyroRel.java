@@ -7,8 +7,12 @@ package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
+import org.usfirst.frc330.Beachbot2013Java.subsystems.Chassis;
 /*
  * $Log: DriveEncoderGyroRel.java,v $
+ * Revision 1.4  2013-02-19 10:57:49  jross
+ * delete end method, super's end is fine
+ *
  * Revision 1.3  2013-02-17 02:53:43  jross
  * update javadocs
  *
@@ -59,14 +63,14 @@ public class DriveEncoderGyroRel extends DriveEncoderRel{
         super.initialize();
         if (!Robot.chassis.getShiftState())
         {
-            Robot.chassis.gyroPIDLow.setSetpoint(angle);
-            Robot.chassis.gyroPIDLow.enable();
+            Robot.chassis.gyroPID.setGainName(Chassis.DRIVELOW);
         }
         else
         {
-            Robot.chassis.gyroPIDHigh.setSetpoint(angle);
-            Robot.chassis.gyroPIDHigh.enable();
+            Robot.chassis.gyroPID.setGainName(Chassis.DRIVEHIGH);
         }
+        Robot.chassis.gyroPID.setSetpoint(angle);
+        Robot.chassis.gyroPID.enable();
     }
 
     /**

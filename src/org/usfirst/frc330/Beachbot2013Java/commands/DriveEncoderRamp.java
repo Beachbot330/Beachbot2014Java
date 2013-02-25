@@ -56,16 +56,8 @@ public class  DriveEncoderRamp extends DriveEncoder{
         {
             maxoutput = .8;
         }
-        if (!Robot.chassis.getShiftState())
-        {
-            Robot.chassis.leftDrivePIDLow.setOutputRange(-maxoutput, maxoutput);
-            Robot.chassis.rightDrivePIDLow.setOutputRange(-maxoutput, maxoutput);
-        }
-        else
-        {
-            Robot.chassis.leftDrivePIDHigh.setOutputRange(-maxoutput, maxoutput);
-            Robot.chassis.rightDrivePIDHigh.setOutputRange(-maxoutput, maxoutput);            
-        }
+        Robot.chassis.leftDrivePID.setOutputRange(-maxoutput, maxoutput);
+        Robot.chassis.rightDrivePID.setOutputRange(-maxoutput, maxoutput);
     }
     
     public Command copy() {

@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: DriveEncoderGyroRamp.java,v $
+ * Revision 1.5  2013-02-18 21:10:55  jross
+ * Fix getting ramp preferences
+ *
  * Revision 1.4  2013-02-18 00:36:34  echan
  * Added a step for high and low, and made them preferences
  *
@@ -166,16 +169,8 @@ public class  DriveEncoderGyroRamp extends DriveEncoderGyro{
         {
             maxoutput = .8;
         }
-        if (!Robot.chassis.getShiftState())
-        {
-            Robot.chassis.leftDrivePIDLow.setOutputRange(-maxoutput, maxoutput);
-            Robot.chassis.rightDrivePIDLow.setOutputRange(-maxoutput, maxoutput);
-        }
-        else
-        {
-            Robot.chassis.leftDrivePIDHigh.setOutputRange(-maxoutput, maxoutput);
-            Robot.chassis.rightDrivePIDHigh.setOutputRange(-maxoutput, maxoutput);            
-        }
+        Robot.chassis.leftDrivePID.setOutputRange(-maxoutput, maxoutput);
+        Robot.chassis.rightDrivePID.setOutputRange(-maxoutput, maxoutput);
     }
     public Command copy() {
         return new DriveEncoderGyroRamp();
