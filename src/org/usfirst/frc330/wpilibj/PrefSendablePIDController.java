@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.tables.ITableListener;
 
 /*
  * $Log: PrefSendablePIDController.java,v $
+ * Revision 1.3  2013-02-25 02:08:54  jross
+ * Change to use MultiPrefSendablePIDController
+ *
  * Revision 1.2  2013-02-18 04:35:28  jross
  * remove debug print
  *
@@ -126,7 +129,7 @@ public class PrefSendablePIDController extends PIDController{
         
     }
     
-    private void savePIDPref()
+    protected void savePIDPref()
     {
         Preferences.getInstance().putDouble(name+"P", getP());
         Preferences.getInstance().putDouble(name+"I", getI());

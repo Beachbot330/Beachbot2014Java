@@ -32,9 +32,9 @@ public class MultiPrefSendablePIDController extends PrefSendablePIDController{
         this.gainName = "default";
         readPIDPref(p,i,d, gainName);
     }
-    private void savePIDPref()
+    protected void savePIDPref()
     {
-        System.out.println("savePIDPref: " + name+gainName);
+//        System.out.println("savePIDPref: " + name+gainName);
         Preferences.getInstance().putDouble(name+gainName+"P", getP());
         Preferences.getInstance().putDouble(name+gainName+"I", getI());
         Preferences.getInstance().putDouble(name+gainName+"D", getD());
@@ -44,9 +44,9 @@ public class MultiPrefSendablePIDController extends PrefSendablePIDController{
 
     protected void readPIDPref(double p, double i, double d, String gainName) {
         String savedName = name;
-        
+        this.gainName = gainName;
         name = savedName+gainName;
-        System.out.println("readPIDPref: " +name);
+//        System.out.println("readPIDPref: " +name);
         super.readPIDPref(p, i, d);
         name = savedName;
         if (table != null && !gainName.equals(table.getString("gainName", gainName)))
