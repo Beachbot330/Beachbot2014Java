@@ -57,6 +57,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         brakeArmSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
     
+    //TODO if practice robot, get PracticeArmPositionZero. If Competition robot, get CompetitionArmPositionZero.
     public double getArmZero()
     {
         if (!Preferences.getInstance().containsKey("ArmPositionZero"))
@@ -190,8 +191,8 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         set(output);
     }
     
-    //TODO make these constants preferences.
-    //TODO may need different limits whether pickup is up or down
+    //TODO make these constants preferences. 0 is lower limit, 2 is upper limit
+    //TODO set different high limit whether pickup is up or down
     public void set(double output){
         if (output > 0 && getArmPosition() > 2)
             armSpeedController.set(0);
