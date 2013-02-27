@@ -39,6 +39,8 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     
     private static final String PREF_Arm_ArmPickupTimeToWait = "ArmPickupTimeToWait";
     private static final String PREF_Arm_ArmShootingTimeToWait = "ArmShootingTimeToWait";
+    private static final String PREF_Arm_ArmPositionLowerLimit = "ArmPositionLowerLimit";
+    private static final String PREF_Arm_ArmPositionUpperLimit = "ArmPositionUpperLimit";
     
     public Arm(){
         armPID = new BeachbotPrefSendablePIDController(0,0,0,this,this, "armPID");
@@ -169,6 +171,36 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         return armshootingtimetowait;
     }
     
+    public double armLowerLimit() {
+        double armpositionlowerlimit = 0;
+        if (Preferences.getInstance().containsKey(PREF_Arm_ArmPositionLowerLimit))
+        {
+            armpositionlowerlimit = Preferences.getInstance().getDouble(
+                            PREF_Arm_ArmPositionLowerLimit,armpositionlowerlimit);
+        } else 
+        {
+            Preferences.getInstance().putDouble(PREF_Arm_ArmPositionLowerLimit, 
+                                                armpositionlowerlimit);
+            Preferences.getInstance().save();
+        }
+        return armpositionlowerlimit;
+    }
+    
+    public double armUpperLimit() {
+        double armpositionupperlimit = 2;
+        if (Preferences.getInstance().containsKey(PREF_Arm_ArmPositionUpperLimit))
+        {
+            armpositionupperlimit = Preferences.getInstance().getDouble(
+                            PREF_Arm_ArmPositionUpperLimit,armpositionupperlimit);
+        } else 
+        {
+            Preferences.getInstance().putDouble(PREF_Arm_ArmPositionUpperLimit, 
+                                                armpositionupperlimit);
+            Preferences.getInstance().save();
+        }
+        return armpositionupperlimit;
+    }
+    
     public synchronized double getSetpoint() {
         return armPID.getSetpoint();
     }
@@ -191,12 +223,11 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         set(output);
     }
     
-    //TODO make these constants preferences. 0 is lower limit, 2 is upper limit
     //TODO set different high limit whether pickup is up or down
     public void set(double output){
-        if (output > 0 && getArmPosition() > 2)
+        if (output > armLowerLimit() && getArmPosition() > armUpperLimit())
             armSpeedController.set(0);
-        else if (output < 0 && getArmPosition() < 0)
+        else if (output < armLowerLimit() && getArmPosition() < armLowerLimit())
             armSpeedController.set(0);
         else
             armSpeedController.set(output);
