@@ -11,6 +11,9 @@ package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
+/*
+ * $Log$
+ */
 /**
  *
  */
@@ -34,7 +37,10 @@ public class  TurnCamera extends TurnGyroRel {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        angle = SmartDashboard.getNumber("angleToCenter", 0);
+        if (SmartDashboard.getNumber("centerAge", 1) < 0.5)
+            angle = SmartDashboard.getNumber("angleToCenter", 0);
+        else
+            angle = 0;
         super.initialize();
 //        System.out.println("Angle to Center: " + angle);
     }
