@@ -182,7 +182,8 @@ public class Chassis extends Subsystem {
     
     }
     
-    
+    //TODO JOE create an angle offset for use in autonomous
+    //TODO JOE create a command to set the angle offset to be used in autonomous
     public double getAngle() {
         return gyro.getAngle();
     }
