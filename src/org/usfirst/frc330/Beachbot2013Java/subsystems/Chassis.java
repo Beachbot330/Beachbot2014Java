@@ -95,6 +95,8 @@ public class Chassis extends Subsystem {
         final double distanceperpulse = Math.PI*diameter/PulseperRevolution/encoderGearRatio/gearRatio * Fudgefactor;
         leftDriveEncoder.setDistancePerPulse(distanceperpulse);
         rightDriveEncoder.setDistancePerPulse(distanceperpulse);
+        
+        setGyroOffset(0);
     }
     
     public double getDriveRampStepHigh() {
@@ -182,11 +184,17 @@ public class Chassis extends Subsystem {
     
     }
     
-    //TODO JOE create an angle offset for use in autonomous
-    //TODO JOE create a command to set the angle offset to be used in autonomous
     public double getAngle() {
-        return gyro.getAngle();
+        return gyro.getAngle() + gyroComp;
     }
+    
+    private double gyroComp = 0;
+
+    public void setGyroOffset(double gyroComp) {
+        this.gyroComp = gyroComp;
+        SmartDashboard.putNumber("gyroComp", gyroComp);
+    }
+    
     
     private double x=0, y=0;
     private double prevLeftEncoderDistance=0, prevRightEncoderDistance=0;
