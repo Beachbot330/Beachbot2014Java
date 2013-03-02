@@ -31,8 +31,10 @@ public class  ArmLowPickup extends Command {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        //TODO don't delay if pickup is already down
         if (Timer.getFPGATimestamp() > timer) {
             Robot.arm.armSetPointLowPickup();
+            //TODO only call enable once, instead of every loop
             Robot.arm.enable();
         }
     }

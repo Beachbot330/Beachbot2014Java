@@ -15,6 +15,7 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
+//TODO create a new command that always runs the lower shooter at full speed
 public class  ShootLow extends Command implements AutoSpreadsheetCommand {
     public ShootLow() {
         // Use requires() here to declare subsystem dependencies

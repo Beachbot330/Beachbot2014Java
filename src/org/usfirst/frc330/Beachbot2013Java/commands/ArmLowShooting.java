@@ -33,8 +33,10 @@ public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        //TODO don't delay if pickup is already down
         if (Timer.getFPGATimestamp() > timer) {
             Robot.arm.armSetPointLowShooting();
+            //TODO don't call enable every loop, only the first time it's needed
             Robot.arm.enable();
         }
     }
