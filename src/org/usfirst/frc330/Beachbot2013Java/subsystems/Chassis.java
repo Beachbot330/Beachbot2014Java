@@ -163,20 +163,20 @@ public class Chassis extends Subsystem {
         gyroRate = Math.abs(AnalogModule.getInstance(1).getVoltage(1)/0.007); //TODO need to subtract gyro calibrated value
         if (gyroRate > maxGyroRate)
             maxGyroRate = gyroRate;
+        if (counter % 10 == 0)
+        {
+            SmartDashboard.putNumber("leftEncoder", getLeftDistance());
+            SmartDashboard.putNumber("rightEncoder", getRightDistance());
+//            SmartDashboard.putNumber("Gyro", getAngle());
+//            SmartDashboard.putNumber("GyroRate", gyroRate);
+//            SmartDashboard.putNumber("MaxGyroRate", maxGyroRate);
+        }
         if (DriverStation.getInstance().isDisabled())
         {
             stopDrive();
         }
         else
         {
-            if (counter % 10 == 0)
-            {
-                SmartDashboard.putNumber("leftEncoder", getLeftDistance());
-                SmartDashboard.putNumber("rightEncoder", getRightDistance());
-                SmartDashboard.putNumber("Gyro", getAngle());
-                SmartDashboard.putNumber("GyroRate", gyroRate);
-                SmartDashboard.putNumber("MaxGyroRate", maxGyroRate);
-            }
             left = leftManual-leftDriveOutput.getOutput() - gyroOutput.getOutput();
             right = rightManual-rightDriveOutput.getOutput() + gyroOutput.getOutput();
             robotDrive.tankDrive(left, right,false);
@@ -189,7 +189,6 @@ public class Chassis extends Subsystem {
     }
     
     private double gyroComp = 0;
-
     public void setGyroOffset(double gyroComp) {
         this.gyroComp = gyroComp;
         SmartDashboard.putNumber("gyroComp", gyroComp);
