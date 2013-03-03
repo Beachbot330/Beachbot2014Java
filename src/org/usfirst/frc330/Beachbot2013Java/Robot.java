@@ -104,6 +104,9 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new TurnCamera());
         auto.addCommand(new DriveWaypointBackward(0,0,0,0,true));
         auto.addCommand(new TurnGyroWaypointBackward());
+        auto.addCommand(new AutoWait());
+        auto.addCommand(new TurnCameraIterative());
+        auto.addCommand(new setGyroComp());
         
 //        SmartDashboard.putData(Scheduler.getInstance());
     }

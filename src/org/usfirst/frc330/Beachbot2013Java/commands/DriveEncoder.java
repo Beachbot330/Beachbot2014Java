@@ -14,6 +14,9 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 import org.usfirst.frc330.Beachbot2013Java.subsystems.Chassis;
 /*
  * $Log: DriveEncoder.java,v $
+ * Revision 1.7  2013-02-25 02:08:54  jross
+ * Change to use MultiPrefSendablePIDController
+ *
  * Revision 1.6  2013-02-17 02:53:43  jross
  * update javadocs
  *
@@ -93,7 +96,6 @@ public class  DriveEncoder extends Command implements AutoSpreadsheetCommand {
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-
         if (Robot.chassis.leftDrivePID.onTarget() || Robot.chassis.rightDrivePID.onTarget() || isTimedOut())
         {
                 return true;            

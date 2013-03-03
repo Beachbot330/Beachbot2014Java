@@ -47,7 +47,6 @@ public class  TurnGyroAbs extends Command implements AutoSpreadsheetCommand {
         Robot.chassis.leftDrivePID.disable();
         Robot.chassis.rightDrivePID.disable();  
         Robot.chassis.gyroPID.setAbsoluteTolerance(tolerance);
-
         if (!Robot.chassis.getShiftState())
         {
             Robot.chassis.gyroPID.setGainName(Chassis.TURNLOW);

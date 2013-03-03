@@ -35,7 +35,6 @@ public class  TurnGyroRel extends TurnGyroAbs{
         super.initialize();
         Robot.chassis.gyroPID.setSetpoint(angle+Robot.chassis.getAngle());
         Robot.chassis.gyroPID.enable();
-
     }
     public Command copy() {
         return new TurnGyroRel(0);

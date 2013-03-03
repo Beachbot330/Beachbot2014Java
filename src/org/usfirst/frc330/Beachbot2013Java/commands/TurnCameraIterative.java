@@ -25,7 +25,6 @@ public class  TurnCameraIterative extends Command {
     double tolerance = 3;
     double stopTime = 0;
     boolean finished = false;
-
     public TurnCameraIterative() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -39,7 +38,6 @@ public class  TurnCameraIterative extends Command {
         state = checkingCamera;
         Robot.chassis.stopDrive();
         Robot.chassis.gyroPID.setAbsoluteTolerance(tolerance);
-
         if (!Robot.chassis.getShiftState())
         {
             Robot.chassis.gyroPID.setGainName(Chassis.TURNLOW);
