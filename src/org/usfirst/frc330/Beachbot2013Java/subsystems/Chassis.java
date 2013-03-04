@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc330.Beachbot2013Java.Robot;
 import org.usfirst.frc330.Beachbot2013Java.RobotMap;
 import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import org.usfirst.frc330.wpilibj.BeachbotMultiPrefSendablePIDController;
@@ -89,11 +90,16 @@ public class Chassis extends Subsystem {
 //        SmartDashboard.putData("rightDrivePIDHigh", rightDrivePIDHigh);
         final double diameter = 6;
         final double PulseperRevolution = 250;
+        final double leftPracticePulsePerRevolution = 360;
         final double encoderGearRatio = 3;
         final double gearRatio = 64/20;
         final double Fudgefactor = 0.94;
         final double distanceperpulse = Math.PI*diameter/PulseperRevolution/encoderGearRatio/gearRatio * Fudgefactor;
-        leftDriveEncoder.setDistancePerPulse(distanceperpulse);
+        final double leftPracticedistanceperpulse = Math.PI*diameter/leftPracticePulsePerRevolution/encoderGearRatio/gearRatio * Fudgefactor;
+        if (Robot.isPracticerobot())
+            leftDriveEncoder.setDistancePerPulse(leftPracticedistanceperpulse);
+        else
+            leftDriveEncoder.setDistancePerPulse(distanceperpulse);
         rightDriveEncoder.setDistancePerPulse(distanceperpulse);
         
         setGyroOffset(0);
