@@ -225,9 +225,9 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     
     //TODO set different high limit whether pickup is up or down
     public void set(double output){
-        if (output > armLowerLimit() && getArmPosition() > armUpperLimit())
+        if (output > 0 && getArmPosition() > armUpperLimit())
             armSpeedController.set(0);
-        else if (output < armLowerLimit() && getArmPosition() < armLowerLimit())
+        else if (output < 0 && getArmPosition() < armLowerLimit())
             armSpeedController.set(0);
         else
             armSpeedController.set(output);
