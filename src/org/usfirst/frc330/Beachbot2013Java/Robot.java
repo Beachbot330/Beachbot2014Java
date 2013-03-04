@@ -43,8 +43,11 @@ public class Robot extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
-    //TODO make practicerobot variable private and make a method that returns the value of the practicerobot variable
-    public boolean practicerobot;
+    private static boolean practicerobot;
+
+    public static boolean isPracticerobot() {
+        return practicerobot;
+    }
     public void robotInit() {
         if (!Preferences.getInstance().containsKey("PracticeRobot"))
         {
