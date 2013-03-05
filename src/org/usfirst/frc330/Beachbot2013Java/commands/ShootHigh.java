@@ -27,14 +27,18 @@ public class  ShootHigh extends Command {
         setRunWhenDisabled(true);
     }
     double voltage;
+    double counter;
     // Called just before this Command runs the first time
     protected void initialize() {
+        counter=0;
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         voltage = SmartDashboard.getNumber("ShooterHighCommand");
-        Robot.shooterHigh.ShooterHighMotorToggle(voltage);
-        SmartDashboard.putNumber("ShooterHighSpeed", Robot.shooterHigh.getSpeed());
+        Robot.shooterHigh.shoot(voltage);
+        if (counter%10==0)
+            SmartDashboard.putNumber("ShooterHighSpeed", Robot.shooterHigh.getSpeed());
+        counter++;
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

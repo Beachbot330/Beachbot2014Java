@@ -49,9 +49,9 @@ public class ShooterHigh extends Subsystem {
     
     public void ShooterHighMotorToggle(double voltage)
     {
-        if ( voltage == 0 )
+//        if ( voltage == 0 )
             Robot.shooterHigh.shoot(voltage);
-        else
-            Robot.shooterHigh.shoot(0);
+//        else
+//            Robot.shooterHigh.shoot(0);
     }
 }

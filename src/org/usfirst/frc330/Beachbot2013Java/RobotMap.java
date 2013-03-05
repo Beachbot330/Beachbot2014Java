@@ -108,8 +108,8 @@ public class RobotMap {
         frisbeePickupPickupSolenoid = new DoubleSolenoid(1, 1, 2);      
 	
         
-        shooterHighShooterHighController = new Talon(1, 5);
-	LiveWindow.addActuator("Shooter High", "ShooterHighController", (Talon) shooterHighShooterHighController);
+        shooterHighShooterHighController = new Jaguar(1, 5);
+	LiveWindow.addActuator("Shooter High", "ShooterHighController", (Jaguar) shooterHighShooterHighController);
         
         shooterHighShooterHighHallEffectSensor = new DigitalInput(1, 1);
 	LiveWindow.addSensor("Shooter High", "ShooterHighHallEffectSensor", shooterHighShooterHighHallEffectSensor);
@@ -117,8 +117,8 @@ public class RobotMap {
         shooterLowShooterLoadSolenoid = new DoubleSolenoid(1, 5, 6);      
 	
         
-        shooterLowShooterLowController = new Talon(1, 6);
-	LiveWindow.addActuator("Shooter Low", "ShooterLowController", (Talon) shooterLowShooterLowController);
+        shooterLowShooterLowController = new Victor(1, 6);
+	LiveWindow.addActuator("Shooter Low", "ShooterLowController", (Victor) shooterLowShooterLowController);
         
         shooterLowShooterLowHallEffectSensor = new DigitalInput(1, 3);
 	LiveWindow.addSensor("Shooter Low", "ShooterLowHallEffectSensor", shooterLowShooterLowHallEffectSensor);

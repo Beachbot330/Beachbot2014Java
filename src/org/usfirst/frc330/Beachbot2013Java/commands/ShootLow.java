@@ -29,12 +29,16 @@ public class  ShootLow extends Command implements AutoSpreadsheetCommand {
     double voltage;
     // Called just before this Command runs the first time
     protected void initialize() {
+        counter=0;
     }
+    double counter;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         voltage = SmartDashboard.getNumber("ShooterLowCommand");
-        Robot.shooterLow.ShooterLowMotorToggle(voltage);
-        SmartDashboard.putNumber("ShooterLowSpeed", Robot.shooterLow.getSpeed());
+        Robot.shooterLow.shoot(voltage);
+        if (counter%10==0)
+            SmartDashboard.putNumber("ShooterLowSpeed", Robot.shooterLow.getSpeed());
+        counter++;
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
