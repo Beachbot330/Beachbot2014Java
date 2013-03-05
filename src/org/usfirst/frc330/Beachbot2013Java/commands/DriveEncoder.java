@@ -14,6 +14,9 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 import org.usfirst.frc330.Beachbot2013Java.subsystems.Chassis;
 /*
  * $Log: DriveEncoder.java,v $
+ * Revision 1.8  2013-03-03 03:14:07  jross
+ * whitespace changes from RobotBuilder
+ *
  * Revision 1.7  2013-02-25 02:08:54  jross
  * Change to use MultiPrefSendablePIDController
  *
@@ -78,10 +81,12 @@ public class  DriveEncoder extends Command implements AutoSpreadsheetCommand {
         if (!Robot.chassis.getShiftState())
         {
             Robot.chassis.leftDrivePID.setGainName(Chassis.DRIVELOW);
+            Robot.chassis.rightDrivePID.setGainName(Chassis.DRIVELOW);
         }
         else
         {
              Robot.chassis.leftDrivePID.setGainName(Chassis.DRIVEHIGH);
+             Robot.chassis.rightDrivePID.setGainName(Chassis.DRIVEHIGH);
         }
         Robot.chassis.leftDrivePID.setSetpoint(leftDistance);
         Robot.chassis.rightDrivePID.setSetpoint(rightDistance);

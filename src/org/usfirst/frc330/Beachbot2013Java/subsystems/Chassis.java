@@ -96,9 +96,9 @@ public class Chassis extends Subsystem {
         final double Fudgefactor = 0.94;
         final double distanceperpulse = Math.PI*diameter/PulseperRevolution/encoderGearRatio/gearRatio * Fudgefactor;
         final double leftPracticedistanceperpulse = Math.PI*diameter/leftPracticePulsePerRevolution/encoderGearRatio/gearRatio * Fudgefactor;
-        if (Robot.isPracticerobot())
-            leftDriveEncoder.setDistancePerPulse(leftPracticedistanceperpulse);
-        else
+//        if (Robot.isPracticerobot())
+//            leftDriveEncoder.setDistancePerPulse(leftPracticedistanceperpulse);
+//        else
             leftDriveEncoder.setDistancePerPulse(distanceperpulse);
         rightDriveEncoder.setDistancePerPulse(distanceperpulse);
         
