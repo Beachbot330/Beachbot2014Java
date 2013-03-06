@@ -30,12 +30,13 @@ public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
         Robot.frisbeePickup.setFrisbeePickupDown(); 
         Robot.arm.holdArmOff();
         timer = Timer.getFPGATimestamp() + Robot.arm.armWaitShooting();
+        Robot.arm.disable();
+        Robot.arm.armSetPointLowShooting();
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         //TODO don't delay if pickup is already down
         if (Timer.getFPGATimestamp() > timer) {
-            Robot.arm.armSetPointLowShooting();
             //TODO don't call enable every loop, only the first time it's needed
             Robot.arm.enable();
         }

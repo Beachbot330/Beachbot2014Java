@@ -122,23 +122,19 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     }
     
     public void armSetPointHighShooting() {
-        armSetPoint(Preferences.getInstance().
-                getDouble("armSetpointHighShooting", 1.5));
+        armSetPoint(getArmHighShooting());
     }
     
     public void armSetPointLowShooting() {
-        armSetPoint(Preferences.getInstance().
-                getDouble("armSetpointLowShooting", .1));
+        armSetPoint(this.getArmLowShooting());
     }
     
     public void armSetPointLowPickup() {
-        armSetPoint(Preferences.getInstance().
-                getDouble("armSetpointLowPickup", .1));
+        armSetPoint(getArmLowPickup());
     }
     
     public void armSetPointClimbing() {
-        armSetPoint(Preferences.getInstance().
-                getDouble("armSetpointClimbing", 2));
+        armSetPoint(getArmClimbing());
     }
     
     public double armWaitPickup() {
