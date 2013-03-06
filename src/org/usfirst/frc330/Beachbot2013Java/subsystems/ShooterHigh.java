@@ -35,9 +35,11 @@ public class ShooterHigh extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
         setDefaultCommand(new ShootHigh());
     }
-    
+    double counter = 0;
     public void shoot(double voltage) {
-        SmartDashboard.putNumber("voltageHigh", voltage);
+        if (counter%10==0)
+            SmartDashboard.putNumber("voltageHigh", voltage);
+        counter++;
         shooterHighController.set(voltage);
     }
     
