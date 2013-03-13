@@ -74,7 +74,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
      */
     public void setArmZero()
     {
-            Preferences.getInstance().putDouble("ArmPositionZero", potentiometer.getAverageValue());
+            Preferences.getInstance().putDouble("ArmPositionZero", potentiometer.getAverageVoltage());
             Preferences.getInstance().save();
     }
     public double getArmHighShooting() {
