@@ -44,7 +44,6 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     private static boolean practicerobot;
-
     public static boolean isPracticerobot() {
         return practicerobot;
     }
