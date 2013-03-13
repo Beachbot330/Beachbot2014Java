@@ -62,20 +62,33 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     //TODO if practice robot, get PracticeArmPositionZero. If Competition robot, get CompetitionArmPositionZero.
     public double getArmZero()
     {
-        if (!Preferences.getInstance().containsKey("ArmPositionZero"))
+        String name;
+        
+        if (Robot.isPracticerobot())
+            name = "PracticeArmPositionZero";
+        else
+            name = "CompetitionArmPositionZero";
+        if (!Preferences.getInstance().containsKey(name))
         {
-            Preferences.getInstance().putDouble("ArmPositionZero", 0.0);
+            Preferences.getInstance().putDouble(name, 0.0);
             Preferences.getInstance().save();
         }
-        return Preferences.getInstance().getDouble("ArmPositionZero", 0.0);
+        return Preferences.getInstance().getDouble(name, 0.0);
     }
     /**
      * Set the arm zero at the current position of the arm.
      */
     public void setArmZero()
-    {
-            Preferences.getInstance().putDouble("ArmPositionZero", potentiometer.getAverageVoltage());
-            Preferences.getInstance().save();
+    {        
+        String name;
+        
+        if (Robot.isPracticerobot())
+            name = "PracticeArmPositionZero";
+        else
+            name = "CompetitionArmPositionZero";
+        
+        Preferences.getInstance().putDouble(name, potentiometer.getAverageVoltage());
+        Preferences.getInstance().save();
     }
     public double getArmHighShooting() {
         if (!Preferences.getInstance().containsKey("armSetpointHighShooting"))
