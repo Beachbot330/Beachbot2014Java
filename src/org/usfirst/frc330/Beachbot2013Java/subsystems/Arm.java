@@ -69,6 +69,14 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         }
         return Preferences.getInstance().getDouble("ArmPositionZero", 0.0);
     }
+    /**
+     * Set the arm zero at the current position of the arm.
+     */
+    public void setArmZero()
+    {
+            Preferences.getInstance().putDouble("ArmPositionZero", potentiometer.getAverageValue());
+            Preferences.getInstance().save();
+    }
     public double getArmHighShooting() {
         if (!Preferences.getInstance().containsKey("armSetpointHighShooting"))
         {
