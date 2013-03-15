@@ -11,6 +11,9 @@
 
 package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+/*
+ * $Log$
+ */
 
 /**
  *
