@@ -9,7 +9,10 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.tables.ITable;
 import java.util.Timer;
 import java.util.TimerTask;
-
+/*
+ * $Log$
+ */
+ 
 /**
  *
  * @author joe
