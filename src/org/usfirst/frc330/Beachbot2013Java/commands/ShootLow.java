@@ -13,9 +13,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log$
+ * $Log: ShootLow.java,v $
+ * Revision 1.13  2013-03-15 02:51:09  echan
+ * added cvs log comments
+ *
  */
-
 /**
  *
  */
