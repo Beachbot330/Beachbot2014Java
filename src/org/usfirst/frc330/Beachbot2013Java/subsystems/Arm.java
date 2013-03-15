@@ -16,7 +16,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log$
+ * $Log: Arm.java,v $
+ * Revision 1.22  2013-03-15 02:51:28  echan
+ * added cvs log comments
+ *
  */
  
 /**
@@ -64,7 +67,6 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         brakeArmSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
     
-    //TODO if practice robot, get PracticeArmPositionZero. If Competition robot, get CompetitionArmPositionZero.
     public double getArmZero()
     {
         String name;
