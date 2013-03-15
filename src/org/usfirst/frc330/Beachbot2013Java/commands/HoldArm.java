@@ -15,7 +15,10 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log$
+ * $Log: HoldArm.java,v $
+ * Revision 1.4  2013-03-15 02:50:55  echan
+ * added cvs log comments
+ *
  */
 
 /**
@@ -38,7 +41,6 @@ public class  HoldArm extends Command implements AutoSpreadsheetCommand {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.arm.holdArmOn();
     }
 
     // Make this return true when this Command no longer needs to run execute()
