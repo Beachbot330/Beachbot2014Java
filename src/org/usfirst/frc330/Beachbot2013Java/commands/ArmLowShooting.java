@@ -12,6 +12,10 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
+/*
+ * $Log$
+ */
+
 /**
  *
  */
