@@ -17,6 +17,9 @@ import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Arm.java,v $
+ * Revision 1.24  2013-03-15 03:13:53  echan
+ * Removed holdArmOff/On and the brake arm solenoid
+ *
  * Revision 1.23  2013-03-15 02:53:28  echan
  * Removed the todo
  *
@@ -146,7 +149,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     }
     
     public void armSetPointLowShooting() {
-        armSetPoint(this.getArmLowShooting());
+        armSetPoint(Robot.vision.armLookupTable(Robot.vision.getDistance()));
     }
     
     public void armSetPointLowPickup() {
