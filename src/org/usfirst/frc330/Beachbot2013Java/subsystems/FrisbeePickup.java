@@ -69,11 +69,28 @@ public class FrisbeePickup extends Subsystem {
       pickupSolenoid.set(DoubleSolenoid.Value.kForward);
 //        System.err.println("setFrisbeePickupUp");
     }
-    
+    private double pickupDownTime;
     public void setFrisbeePickupDown()
     {
         pickupSolenoid.set(DoubleSolenoid.Value.kReverse);
+        if (!isPickupDown())
+            pickupDownTime = Timer.getFPGATimestamp();
 //        System.err.println("setFrisbeePickupDown");
+    }
+    
+    public boolean isPickupDown()
+    {
+        if (pickupSolenoid.get() == DoubleSolenoid.Value.kReverse)
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+    
+    public double getPickupDownTime()
+    {
+        return pickupDownTime;
     }
     
     public void setFrisbeePickupMotorStop()
