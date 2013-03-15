@@ -26,7 +26,10 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 /*
- * $Log$
+ * $Log: RobotMap.java,v $
+ * Revision 1.17  2013-03-15 02:50:16  echan
+ * added cvs log comments
+ *
  */
  
 /**
@@ -58,7 +61,6 @@ public class RobotMap {
     public static DigitalOutput visionLowShooterLED;
     public static SpeedController armArmSpeedController;
     public static AnalogChannel armPotentiometer;
-    public static DoubleSolenoid armBrakeArmSolenoid;
     public static DigitalOutput lCDmosi;
     public static DigitalOutput lCDcs;
     public static DigitalOutput lCDclk;
@@ -139,9 +141,6 @@ public class RobotMap {
         armPotentiometer = new AnalogChannel(1, 3);
 	LiveWindow.addSensor("Arm", "Potentiometer", armPotentiometer);
         
-        armBrakeArmSolenoid = new DoubleSolenoid(1, 7, 8);      
-	
-        
         lCDmosi = new DigitalOutput(1, 11);
 	
         
@@ -156,7 +155,6 @@ public class RobotMap {
         LiveWindow.addActuator("Chassis", "ShiftSolenoid", chassisShiftSolenoid);
         LiveWindow.addActuator("FrisbeePickup", "PickupSolenoid", frisbeePickupPickupSolenoid);
         LiveWindow.addActuator("ShooterLow", "LoadSolenoid", shooterLowShooterLoadSolenoid);
-        LiveWindow.addActuator("Arm", "BrakeSolenoid", armBrakeArmSolenoid);
         
         shooterHighShooterHighHallEffectCounter = new Counter();
         shooterHighShooterHighHallEffectCounter.setUpSource(shooterHighShooterHighHallEffectSensor);
