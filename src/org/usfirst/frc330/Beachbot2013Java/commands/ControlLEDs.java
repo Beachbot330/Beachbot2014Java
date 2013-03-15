@@ -16,9 +16,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log$
+ * $Log: ControlLEDs.java,v $
+ * Revision 1.6  2013-03-15 02:50:30  echan
+ * added cvs log comments
+ *
  */
-
 /**
  *
  */
