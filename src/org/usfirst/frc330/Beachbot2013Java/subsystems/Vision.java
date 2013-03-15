@@ -14,6 +14,10 @@ import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.buttons.NetworkButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+/*
+ * $Log$
+ */
+ 
 /**
  *
  */

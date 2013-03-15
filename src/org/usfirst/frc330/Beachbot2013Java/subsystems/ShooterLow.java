@@ -14,6 +14,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 import org.usfirst.frc330.Beachbot2013Java.RobotMap;
 import org.usfirst.frc330.Beachbot2013Java.commands.*;
+/*
+ * $Log$
+ */
+ 
 /**
  *
  */
