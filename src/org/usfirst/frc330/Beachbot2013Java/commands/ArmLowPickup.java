@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmLowPickup.java,v $
+ * Revision 1.9  2013-03-15 02:58:57  echan
+ * robotbuilder update
+ *
  * Revision 1.8  2013-03-15 02:50:23  echan
  * added cvs log comments
  *
@@ -32,7 +35,6 @@ public class  ArmLowPickup extends Command {
     double timer;
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.arm.holdArmOff();
         timer = Timer.getFPGATimestamp() + Robot.arm.armWaitPickup();
         Robot.arm.disable();
         Robot.arm.armSetPointLowPickup();
@@ -50,7 +52,6 @@ public class  ArmLowPickup extends Command {
     }
     // Called once after isFinished returns true
     protected void end() {
-        Robot.arm.holdArmOn();
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run

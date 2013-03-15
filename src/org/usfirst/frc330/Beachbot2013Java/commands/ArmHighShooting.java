@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmHighShooting.java,v $
+ * Revision 1.7  2013-03-15 02:58:57  echan
+ * robotbuilder update
+ *
  * Revision 1.6  2013-03-15 02:50:23  echan
  * added cvs log comments
  *
@@ -31,7 +34,6 @@ public class  ArmHighShooting extends Command implements AutoSpreadsheetCommand 
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.arm.holdArmOff();
         Robot.arm.armSetPointHighShooting();
         Robot.arm.enable();
     }
@@ -44,7 +46,6 @@ public class  ArmHighShooting extends Command implements AutoSpreadsheetCommand 
     }
     // Called once after isFinished returns true
     protected void end() {
-        Robot.arm.holdArmOn();
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run

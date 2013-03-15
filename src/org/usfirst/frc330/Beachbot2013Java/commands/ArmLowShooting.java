@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmLowShooting.java,v $
+ * Revision 1.17  2013-03-15 02:58:57  echan
+ * robotbuilder update
+ *
  * Revision 1.16  2013-03-15 02:50:23  echan
  * added cvs log comments
  *
@@ -34,7 +37,6 @@ public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
     double timer;
     protected void initialize() {
         Robot.frisbeePickup.setFrisbeePickupDown(); 
-        Robot.arm.holdArmOff();
         timer = Robot.frisbeePickup.getPickupDownTime() + Robot.arm.armWaitShooting();
         Robot.arm.disable();
         Robot.arm.armSetPointLowShooting();
@@ -52,7 +54,6 @@ public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
     }
     // Called once after isFinished returns true
     protected void end() {
-        Robot.arm.holdArmOn();
         
     }
     // Called when another command which requires one or more of the same
