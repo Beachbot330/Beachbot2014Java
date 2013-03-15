@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ShootLow.java,v $
+ * Revision 1.14  2013-03-15 02:58:39  echan
+ * robotbuilder update
+ *
  * Revision 1.13  2013-03-15 02:51:09  echan
  * added cvs log comments
  *
@@ -21,7 +24,6 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
  *
  */
-//TODO create a new command that always runs the lower shooter at full speed
 public class  ShootLow extends Command implements AutoSpreadsheetCommand {
     public ShootLow() {
         // Use requires() here to declare subsystem dependencies
