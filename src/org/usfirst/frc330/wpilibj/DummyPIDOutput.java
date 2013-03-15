@@ -5,7 +5,10 @@
 package org.usfirst.frc330.wpilibj;
 
 import edu.wpi.first.wpilibj.PIDOutput;
-
+/*
+ * $Log$
+ */
+ 
 /** A dummy PID output that does not output to any hardware
  *
  * @author joe
