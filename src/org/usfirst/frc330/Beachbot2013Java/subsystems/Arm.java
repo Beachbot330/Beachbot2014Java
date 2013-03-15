@@ -50,6 +50,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         SmartDashboard.putData("ArmPID", armPID);
     }
     
+    //TODO remove holdArmOn and holdArmOff and remove brakeArmSolenoid, they won't be used
     public void holdArmOn() {
         brakeArmSolenoid.set(DoubleSolenoid.Value.kForward);
         set(0);
