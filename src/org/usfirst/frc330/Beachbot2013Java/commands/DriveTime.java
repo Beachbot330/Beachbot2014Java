@@ -12,9 +12,11 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log$
+ * $Log: DriveTime.java,v $
+ * Revision 1.6  2013-03-15 02:50:37  echan
+ * added cvs log comments
+ *
  */
-
 /**
  *
  */
