@@ -19,6 +19,10 @@ import org.usfirst.frc330.wpilibj.BeachbotMultiPrefSendablePIDController;
 import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.wpilibj.DummyPIDOutput;
 import org.usfirst.frc330.wpilibj.MultiPrefSendablePIDController;
+/*
+ * $Log$
+ */
+ 
 /**
  *
  */

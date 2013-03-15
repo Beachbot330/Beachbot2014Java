@@ -15,6 +15,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
+/*
+ * $Log$
+ */
+ 
 /**
  *
  */
