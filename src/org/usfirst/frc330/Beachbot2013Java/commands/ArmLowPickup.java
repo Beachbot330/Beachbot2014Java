@@ -12,9 +12,11 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log$
+ * $Log: ArmLowPickup.java,v $
+ * Revision 1.8  2013-03-15 02:50:23  echan
+ * added cvs log comments
+ *
  */
-
 /**
  *
  */
