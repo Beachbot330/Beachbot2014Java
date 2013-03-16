@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.10  2013-03-16 01:16:33  jross
+ * check if LED preferences key exist
+ *
  * Revision 1.9  2013-03-15 04:23:25  echan
  * Added the lookup table
  *
@@ -106,7 +109,7 @@ public class Vision extends Subsystem {
             Preferences.getInstance().putDouble("LEDoffAngle", 45);
             Preferences.getInstance().save();
         }
-        return Preferences.getInstance().getInt("LEDoffAngle", 45);
+        return Preferences.getInstance().getDouble("LEDoffAngle", 45);
     }
     
     public double turnOnLEDAngle()
@@ -116,7 +119,7 @@ public class Vision extends Subsystem {
             Preferences.getInstance().putDouble("LEDonAngle", 35);
             Preferences.getInstance().save();
         }
-        return Preferences.getInstance().getInt("LEDonAngle", 35);
+        return Preferences.getInstance().getDouble("LEDonAngle", 35);
     }
     
     public double armLookupTable(double x)
