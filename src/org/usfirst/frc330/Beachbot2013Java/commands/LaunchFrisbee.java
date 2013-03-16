@@ -15,13 +15,19 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: LaunchFrisbee.java,v $
+ * Revision 1.8  2013-03-15 02:58:19  echan
+ * robotbuilder update
+ *
  * Revision 1.7  2013-03-15 02:50:55  echan
  * added cvs log comments
  *
  */
 /**
- *
+ * Shoot a frisbee. Actuate the cylinder immediately and then wait until
+ * retracting it. The retract time is the Preference "solenoidOffTime".
  */
+
+//TODO wait to launch frisbee until shooter is at correct speed.
 public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
     public LaunchFrisbee() {
         // Use requires() here to declare subsystem dependencies

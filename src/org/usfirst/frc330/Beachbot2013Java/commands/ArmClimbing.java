@@ -13,12 +13,16 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmClimbing.java,v $
+ * Revision 1.7  2013-03-15 03:14:42  echan
+ * Removed holdArmOff/On and the brake arm solenoid
+ *
  * Revision 1.6  2013-03-15 02:50:23  echan
  * added cvs log comments
  *
  */
 /**
- *
+ * Move the arm to the climbing position. The climbing position is defined by
+ * the preference "armSetpointClimbing".
  */
 public class  ArmClimbing extends Command implements AutoSpreadsheetCommand{
     public ArmClimbing() {
@@ -48,12 +52,28 @@ public class  ArmClimbing extends Command implements AutoSpreadsheetCommand{
     // subsystems is scheduled to run
     protected void interrupted() {
     }
+    /**
+     * Not Used
+     * @param param1 
+     */
     public void setParam1(double param1) {
     }
+    /**
+     * Not Used
+     * @param param2 
+     */
     public void setParam2(double param2) {
     }
+    /**
+     * Not Used
+     * @param param3 
+     */
     public void setParam3(double param3) {
     }
+    /**
+     * Not Used
+     * @param stopAtEnd 
+     */
     public void setStopAtEnd(boolean stopAtEnd) {
     }
     public Command copy() {

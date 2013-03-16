@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: MarsRock.java,v $
+ * Revision 1.4  2013-02-16 21:49:25  jross
+ * Made AutoSpreadsheetCommand an interface instead of an absctract class so that implementing classes can be found
+ *
  * Revision 1.3  2013-02-09 01:56:34  jross
  * whitespace changes from RobotBuilder
  *
@@ -21,7 +24,7 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
  *
  */
 /**
- *
+ * Does nothing (acts as a MarsRock).
  */
 public class  MarsRock extends Command implements AutoSpreadsheetCommand {
     public MarsRock() {
@@ -48,12 +51,28 @@ public class  MarsRock extends Command implements AutoSpreadsheetCommand {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
+    /**
+     * Not Used
+     * @param param1 
+     */
     public void setParam1(double param1) {
     }
+    /**
+     * Not Used
+     * @param param2 
+     */
     public void setParam2(double param2) {
     }
+    /**
+     * Not Used
+     * @param param3 
+     */
     public void setParam3(double param3) {
     }
+    /**
+     * Not Used
+     * @param stopAtEnd 
+     */
     public void setStopAtEnd(boolean stopAtEnd) {
     }
     public Command copy() {

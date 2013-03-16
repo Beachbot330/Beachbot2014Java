@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /*
  * $Log: AutoWait.java,v $
+ * Revision 1.1  2013-03-03 03:27:25  jross
+ * Add AutoWait to wait a user configurable amount of time
+ *
  * Revision 1.4  2013-01-18 04:06:41  jross
  * Put AutoWait to SmartDashboard in constructor so it is availible to change
  *
@@ -24,7 +27,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 /**
- * Do nothing until the timeout elapses. Get the timeout from the NetworkTable variable "AutoWait"
+ * Do nothing until the timeout elapses. Get the timeout from the NetworkTable 
+ * variable "AutoWait". This is defined on the dashboard.
  * @author Joe Ross
  */
 public class AutoWait extends Command implements AutoSpreadsheetCommand {

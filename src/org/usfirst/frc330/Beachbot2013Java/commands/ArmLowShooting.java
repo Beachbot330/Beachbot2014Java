@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmLowShooting.java,v $
+ * Revision 1.18  2013-03-15 03:14:41  echan
+ * Removed holdArmOff/On and the brake arm solenoid
+ *
  * Revision 1.17  2013-03-15 02:58:57  echan
  * robotbuilder update
  *
@@ -22,7 +25,8 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
  *
  */
 /**
- *
+ * Move the arm to the shooting position for the Low Shooter. The position is 
+ * defined by the lookup table defined in 2013VisionTable.csv on the robot.
  */
 public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
     public ArmLowShooting() {
@@ -60,12 +64,28 @@ public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
+    /**
+     * Not Used
+     * @param param1 
+     */
     public void setParam1(double param1) {
     }
+    /**
+     * Not Used
+     * @param param2 
+     */
     public void setParam2(double param2) {
     }
+    /**
+     * Not Used
+     * @param param3 
+     */
     public void setParam3(double param3) {
     }
+    /**
+     * Not Used
+     * @param stopAtEnd 
+     */
     public void setStopAtEnd(boolean stopAtEnd) {
     }
     public Command copy() {

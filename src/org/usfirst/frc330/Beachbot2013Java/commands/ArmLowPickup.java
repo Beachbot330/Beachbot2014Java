@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmLowPickup.java,v $
+ * Revision 1.10  2013-03-15 03:14:42  echan
+ * Removed holdArmOff/On and the brake arm solenoid
+ *
  * Revision 1.9  2013-03-15 02:58:57  echan
  * robotbuilder update
  *
@@ -21,7 +24,8 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
  *
  */
 /**
- *
+ * Move the arm to the pickup position position. The pickup position is defined by
+ * the preference "armSetpointLowPickup".
  */
 public class  ArmLowPickup extends Command {
     public ArmLowPickup() {

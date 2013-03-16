@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /**
- *
+ * Runs the shooter at full speed to transfer disks across the field.
  */
 public class  FullSpeedShootLow extends Command implements AutoSpreadsheetCommand {
     public FullSpeedShootLow() {
@@ -41,12 +41,28 @@ public class  FullSpeedShootLow extends Command implements AutoSpreadsheetComman
     // subsystems is scheduled to run
     protected void interrupted() {
     }
+    /**
+     * Not Used
+     * @param param1 
+     */
     public void setParam1(double param1) {
     }
+    /**
+     * Not Used
+     * @param param2 
+     */
     public void setParam2(double param2) {
     }
+    /**
+     * Not Used
+     * @param param3 
+     */
     public void setParam3(double param3) {
     }
+    /**
+     * Not Used
+     * @param stopAtEnd 
+     */
     public void setStopAtEnd(boolean stopAtEnd) {
     }
     public Command copy() {

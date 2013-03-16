@@ -13,12 +13,18 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: DriveTime.java,v $
+ * Revision 1.7  2013-03-15 02:58:29  echan
+ * robotbuilder update
+ *
  * Revision 1.6  2013-03-15 02:50:37  echan
  * added cvs log comments
  *
  */
 /**
- *
+ * Drives the robot manually. {@link #setParam1(double)} sets the speed of the
+ * left side. {@link #setParam2(double) } sets the speed of the right side. 
+ * {@link #setTimeout(double) } controls how long it drives. It automatically 
+ * stops driving at the end.
  */
 public class  DriveTime extends Command implements AutoSpreadsheetCommand {
     double left, right;
@@ -61,14 +67,30 @@ public class  DriveTime extends Command implements AutoSpreadsheetCommand {
     protected void interrupted() {
         end();
     }
+    /**
+     * The output to send to the left motor
+     * @param left speed. 0 is neutral. 1 is full forward. -1 is full reverse.
+     */
     public void setParam1(double left) {
         this.left = left;
     }
+    /**
+     * The output to send to the right motor
+     * @param right speed. 0 is neutral. 1 is full forward. -1 is full reverse.
+     */
     public void setParam2(double right) {
         this.right = right;
     }
+    /**
+     * Not Used
+     * @param param3 
+     */
     public void setParam3(double param3) {
     }
+    /**
+     * Not Used. This command automatically stops at end.
+     * @param stopAtEnd 
+     */
     public void setStopAtEnd(boolean stopAtEnd) {
     }
     public Command copy() {
