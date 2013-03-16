@@ -21,6 +21,9 @@ import java.io.InputStreamReader;
 import javax.microedition.io.Connector;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.13  2013-03-16 18:00:14  echan
+ * completed Joe's code
+ *
  * Revision 1.12  2013-03-16 04:11:56  jross
  * read vision table from file
  *
@@ -144,16 +147,13 @@ public class Vision extends Subsystem {
         if (x != -1)
         {
             for (int i = 0; aP[0][i] < x; i++)
-            {
-                leftx = aP[0][i];
-                lefty = aP[1][i];
-            }
-
-            for (int i = aP.length; aP[0][i] > x; i--)
-            {
-                rightx = aP[0][i];
-                righty = aP[1][i];
-            }
+        {
+            leftx = aP[0][i];
+            rightx = aP[0][i+1];
+            
+            lefty = aP[1][i];
+            righty = aP[1][i+1];
+        }
 
             dx = rightx - leftx;
             dy = righty - lefty; 
