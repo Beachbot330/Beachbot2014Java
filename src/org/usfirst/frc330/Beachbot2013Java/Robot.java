@@ -18,7 +18,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import org.usfirst.frc330.Beachbot2013Java.subsystems.*;
 /*
- * $Log$
+ * $Log: Robot.java,v $
+ * Revision 1.21  2013-03-15 02:50:16  echan
+ * added cvs log comments
+ *
  */
  
 /**
@@ -112,6 +115,7 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new AutoWait());
         auto.addCommand(new TurnCameraIterative());
         auto.addCommand(new setGyroComp());
+        auto.addCommand(new FullSpeedShootLow());
         
 //        SmartDashboard.putData(Scheduler.getInstance());
     }
@@ -159,5 +163,6 @@ public class Robot extends IterativeRobot {
     {
 //        System.out.println("In Disabled Init");
         auto.readScripts();
+        Robot.vision.readVisionFile();
     }
 }
