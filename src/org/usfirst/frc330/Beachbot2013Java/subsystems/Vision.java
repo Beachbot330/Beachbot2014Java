@@ -21,6 +21,9 @@ import java.io.InputStreamReader;
 import javax.microedition.io.Connector;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.12  2013-03-16 04:11:56  jross
+ * read vision table from file
+ *
  * Revision 1.11  2013-03-16 02:25:38  jross
  * fix preferences angle to get doubles instead of ints
  *
@@ -58,37 +61,7 @@ public class Vision extends Subsystem {
             SmartDashboard.putBoolean("LEDOverride", false);
             highLEDstate = false;
             lowLEDstate = false;
-        try {
-            file = (FileConnection) Connector.open(filename, Connector.READ);
-            reader = new BufferedReader(new InputStreamReader(file.openInputStream()));
-            
-            String line;
-            int comma;
-            int lineCount=0;
-            double x1, y1;
-            
-            while ((line = reader.readLine()) != null && lineCount < 9)
-            {
-                comma = line.indexOf(",");
-                x1 = Double.parseDouble(line.substring(0,comma));
-                y1 = Double.parseDouble(line.substring(comma+1));
-//                System.out.println(x1 + ", " + y1);
-                
-                aP[0][lineCount] = x1;
-                aP[1][lineCount] = y1;
-                
-                lineCount++;
-            }
-            while (lineCount < 9)
-            {
-                aP[0][lineCount] = 55;
-                aP[1][lineCount] = 0;
-                lineCount++;
-            }
-            
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+            readVisionFile();
     }
     
     // Put methods for controlling this subsystem
@@ -203,5 +176,40 @@ public class Vision extends Subsystem {
     public double getAngle()
     {
         return SmartDashboard.getNumber("AngleToCenter",0);
+    }
+    
+    public void readVisionFile()
+    {
+        try {
+            file = (FileConnection) Connector.open(filename, Connector.READ);
+            reader = new BufferedReader(new InputStreamReader(file.openInputStream()));
+            
+            String line;
+            int comma;
+            int lineCount=0;
+            double x1, y1;
+            
+            while ((line = reader.readLine()) != null && lineCount < 9)
+            {
+                comma = line.indexOf(",");
+                x1 = Double.parseDouble(line.substring(0,comma));
+                y1 = Double.parseDouble(line.substring(comma+1));
+//                System.out.println(x1 + ", " + y1);
+                
+                aP[0][lineCount] = x1;
+                aP[1][lineCount] = y1;
+                
+                lineCount++;
+            }
+            while (lineCount < 9)
+            {
+                aP[0][lineCount] = 55;
+                aP[1][lineCount] = 0;
+                lineCount++;
+            }
+            
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
