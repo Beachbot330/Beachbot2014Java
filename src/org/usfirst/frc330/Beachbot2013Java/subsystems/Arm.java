@@ -17,6 +17,9 @@ import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Arm.java,v $
+ * Revision 1.25  2013-03-15 04:23:50  echan
+ * made the arm set point low to use the lookup table
+ *
  * Revision 1.24  2013-03-15 03:13:53  echan
  * Removed holdArmOff/On and the brake arm solenoid
  *
@@ -127,10 +130,13 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     
     public void manualArm() {
         double armCommand = Robot.oi.operatorJoystick.getY();
-        if (Math.abs(armCommand) > 0.05)
+        if (Math.abs(armCommand) > 0.05 && armPID.isEnable())
         {
-            if (armPID.isEnable())
-                armPID.disable();
+            armPID.disable();
+            set(armCommand);
+        }
+        else if (!armPID.isEnable())
+        {
             set(armCommand);
         }
     }
