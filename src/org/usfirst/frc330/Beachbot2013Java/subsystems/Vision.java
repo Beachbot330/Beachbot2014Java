@@ -8,14 +8,22 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in th future.
 package org.usfirst.frc330.Beachbot2013Java.subsystems;
+import com.sun.squawk.io.BufferedReader;
+import com.sun.squawk.microedition.io.FileConnection;
 import org.usfirst.frc330.Beachbot2013Java.RobotMap;
 import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.buttons.NetworkButton;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import javax.microedition.io.Connector;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.11  2013-03-16 02:25:38  jross
+ * fix preferences angle to get doubles instead of ints
+ *
  * Revision 1.10  2013-03-16 01:16:33  jross
  * check if LED preferences key exist
  *
@@ -40,11 +48,47 @@ public class Vision extends Subsystem {
                     {0, .25, .5, .75, 1, 1.25, 1.5, 1.75, 2}};
     double leftx = 0, rightx = 0, lefty = 0, righty = 0, dx, dy, m, y;
     
+    FileConnection file = null;
+    BufferedReader reader = null;
+    final String filename = "file:///2013VisionTable.csv";
+    
     public Vision() {
-        SmartDashboard.putBoolean("LEDEnable", false);
-        SmartDashboard.putBoolean("LEDOverride", false);
-        highLEDstate = false;
-        lowLEDstate = false;
+
+            SmartDashboard.putBoolean("LEDEnable", false);
+            SmartDashboard.putBoolean("LEDOverride", false);
+            highLEDstate = false;
+            lowLEDstate = false;
+        try {
+            file = (FileConnection) Connector.open(filename, Connector.READ);
+            reader = new BufferedReader(new InputStreamReader(file.openInputStream()));
+            
+            String line;
+            int comma;
+            int lineCount=0;
+            double x1, y1;
+            
+            while ((line = reader.readLine()) != null && lineCount < 9)
+            {
+                comma = line.indexOf(",");
+                x1 = Double.parseDouble(line.substring(0,comma));
+                y1 = Double.parseDouble(line.substring(comma+1));
+//                System.out.println(x1 + ", " + y1);
+                
+                aP[0][lineCount] = x1;
+                aP[1][lineCount] = y1;
+                
+                lineCount++;
+            }
+            while (lineCount < 9)
+            {
+                aP[0][lineCount] = 55;
+                aP[1][lineCount] = 0;
+                lineCount++;
+            }
+            
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
     
     // Put methods for controlling this subsystem
@@ -126,23 +170,23 @@ public class Vision extends Subsystem {
     {
         if (x != -1)
         {
-        for (int i = 0; aP[0][i] < x; i++)
-        {
-            leftx = aP[0][i];
-            lefty = aP[1][i];
-        }
-        
-        for (int i = aP.length; aP[0][i] > x; i--)
-        {
-            rightx = aP[0][i];
-            righty = aP[1][i];
-        }
-        
-        dx = rightx - leftx;
-        dy = righty - lefty; 
-        m = dy/dx;
-        y = m*(x-leftx) + lefty;
-        return y;
+            for (int i = 0; aP[0][i] < x; i++)
+            {
+                leftx = aP[0][i];
+                lefty = aP[1][i];
+            }
+
+            for (int i = aP.length; aP[0][i] > x; i--)
+            {
+                rightx = aP[0][i];
+                righty = aP[1][i];
+            }
+
+            dx = rightx - leftx;
+            dy = righty - lefty; 
+            m = dy/dx;
+            y = m*(x-leftx) + lefty;
+            return y;
         }
         
         else
