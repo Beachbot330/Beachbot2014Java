@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.9  2013-03-15 04:23:25  echan
+ * Added the lookup table
+ *
  * Revision 1.8  2013-03-15 02:51:40  echan
  * added cvs log comments
  *
@@ -98,11 +101,21 @@ public class Vision extends Subsystem {
     
     public double turnOffLEDAngle()
     {
+        if (!Preferences.getInstance().containsKey("LEDoffAngle"))
+        {
+            Preferences.getInstance().putDouble("LEDoffAngle", 45);
+            Preferences.getInstance().save();
+        }
         return Preferences.getInstance().getInt("LEDoffAngle", 45);
     }
     
     public double turnOnLEDAngle()
-    {
+    {       
+        if (!Preferences.getInstance().containsKey("LEDonAngle"))
+        {
+            Preferences.getInstance().putDouble("LEDonAngle", 35);
+            Preferences.getInstance().save();
+        }
         return Preferences.getInstance().getInt("LEDonAngle", 35);
     }
     
