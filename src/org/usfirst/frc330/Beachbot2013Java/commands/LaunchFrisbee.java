@@ -15,6 +15,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: LaunchFrisbee.java,v $
+ * Revision 1.11  2013-03-17 17:14:22  jross
+ * don't require shooter, because it may stop the shooter spinning
+ *
  * Revision 1.10  2013-03-17 01:57:22  jdavid
  * Added pickup sensor
  *
@@ -63,6 +66,7 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
     // Called once after isFinished returns true
     protected void end() {
         Robot.shooterLow.armLoadShooterOff();
+        Robot.frisbeePickup.decrementFrisbees();
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run

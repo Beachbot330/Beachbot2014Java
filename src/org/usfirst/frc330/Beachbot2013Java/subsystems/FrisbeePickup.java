@@ -12,9 +12,13 @@ import org.usfirst.frc330.Beachbot2013Java.RobotMap;
 import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: FrisbeePickup.java,v $
+ * Revision 1.12  2013-03-17 17:15:32  jross
+ * fix logic for PickupDown timer
+ *
  * Revision 1.11  2013-03-17 01:57:22  jdavid
  * Added pickup sensor
  *
@@ -35,6 +39,7 @@ public class FrisbeePickup extends Subsystem {
     public FrisbeePickup() {
         InitializeSlowFrisbeePickup();
         InitializeFrisbeePickup();
+        sensorState = pickupDiscSensor.get();
     }
     
     // Put methods for controlling this subsystem
@@ -132,5 +137,29 @@ public class FrisbeePickup extends Subsystem {
     {
         frisbeePickupController.set(-Preferences.getInstance().getDouble("FrisbeePickupMotorOutput", 0.6));
 //        System.err.println("setFrisbeePickupMotorReverse");
+    }
+    
+    public void calcPeriodic()
+    {
+        countFrisbees();
+    }
+    
+    boolean sensorState;
+    int frisbeeCount = 0;
+    private void countFrisbees()
+    {
+        if (pickupDiscSensor.get() == false && sensorState == true)
+        {
+            frisbeeCount++;
+            SmartDashboard.putNumber("FrisbeeCount", frisbeeCount);
+        }
+        sensorState = pickupDiscSensor.get();
+    }
+    
+    public void decrementFrisbees()
+    {
+        if (frisbeeCount > 0)
+            frisbeeCount--;
+        SmartDashboard.putNumber("FrisbeeCount", frisbeeCount);
     }
 }

@@ -19,6 +19,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import org.usfirst.frc330.Beachbot2013Java.subsystems.*;
 /*
  * $Log: Robot.java,v $
+ * Revision 1.22  2013-03-16 18:00:48  echan
+ * added the readvisionfile to robot
+ *
  * Revision 1.21  2013-03-15 02:50:16  echan
  * added cvs log comments
  *
@@ -130,6 +133,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         chassis.calcPeriodic();
+        frisbeePickup.calcPeriodic();
         Scheduler.getInstance().run();
     }
     public void teleopInit() {
@@ -144,6 +148,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         chassis.calcPeriodic();
+        frisbeePickup.calcPeriodic();
         Scheduler.getInstance().run();
     }
     /**
