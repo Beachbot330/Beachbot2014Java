@@ -17,6 +17,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ControlLEDs.java,v $
+ * Revision 1.8  2013-03-16 02:23:30  jross
+ * fix logic errors
+ *
  * Revision 1.7  2013-03-15 02:59:19  echan
  * robotbuilder update
  *
@@ -44,7 +47,6 @@ public class  ControlLEDs extends Command {
     double LEDOffangle;
     double LEDOnangle;
     protected void initialize() {
-
         LEDOffangle = Robot.vision.turnOffLEDAngle();
         LEDOnangle = Robot.vision.turnOnLEDAngle();
     }

@@ -27,6 +27,9 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 /*
  * $Log: RobotMap.java,v $
+ * Revision 1.18  2013-03-15 03:14:49  echan
+ * Removed holdArmOff/On and the brake arm solenoid
+ *
  * Revision 1.17  2013-03-15 02:50:16  echan
  * added cvs log comments
  *
@@ -52,6 +55,7 @@ public class RobotMap {
     public static DoubleSolenoid chassisShiftSolenoid;
     public static SpeedController frisbeePickupFrisbeePickupController;
     public static DoubleSolenoid frisbeePickupPickupSolenoid;
+    public static DigitalInput frisbeePickupPickupDiscSensor;
     public static SpeedController shooterHighShooterHighController;
     public static DigitalInput shooterHighShooterHighHallEffectSensor;
     public static DoubleSolenoid shooterLowShooterLoadSolenoid;
@@ -61,6 +65,7 @@ public class RobotMap {
     public static DigitalOutput visionLowShooterLED;
     public static SpeedController armArmSpeedController;
     public static AnalogChannel armPotentiometer;
+    public static DoubleSolenoid armBrakeArmSolenoid;
     public static DigitalOutput lCDmosi;
     public static DigitalOutput lCDcs;
     public static DigitalOutput lCDclk;
@@ -114,6 +119,9 @@ public class RobotMap {
         frisbeePickupPickupSolenoid = new DoubleSolenoid(1, 1, 2);      
 	
         
+        frisbeePickupPickupDiscSensor = new DigitalInput(1, 2);
+	LiveWindow.addSensor("FrisbeePickup", "PickupDiscSensor", frisbeePickupPickupDiscSensor);
+        
         shooterHighShooterHighController = new Jaguar(1, 5);
 	LiveWindow.addActuator("Shooter High", "ShooterHighController", (Jaguar) shooterHighShooterHighController);
         
@@ -140,6 +148,9 @@ public class RobotMap {
         
         armPotentiometer = new AnalogChannel(1, 3);
 	LiveWindow.addSensor("Arm", "Potentiometer", armPotentiometer);
+        
+        armBrakeArmSolenoid = new DoubleSolenoid(1, 7, 8);      
+	
         
         lCDmosi = new DigitalOutput(1, 11);
 	

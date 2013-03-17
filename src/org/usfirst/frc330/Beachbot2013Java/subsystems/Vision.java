@@ -21,6 +21,9 @@ import java.io.InputStreamReader;
 import javax.microedition.io.Connector;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.14  2013-03-16 19:18:39  echan
+ * Changed the lookup table to work for y values from high to low
+ *
  * Revision 1.13  2013-03-16 18:00:14  echan
  * completed Joe's code
  *
@@ -59,7 +62,6 @@ public class Vision extends Subsystem {
     final String filename = "file:///2013VisionTable.csv";
     
     public Vision() {
-
             SmartDashboard.putBoolean("LEDEnable", false);
             SmartDashboard.putBoolean("LEDOverride", false);
             highLEDstate = false;
@@ -154,7 +156,6 @@ public class Vision extends Subsystem {
             lefty = aP[1][i];
             righty = aP[1][i+1];
         }
-
             dx = rightx - leftx;
             dy = righty - lefty; 
             m = dy/dx;
