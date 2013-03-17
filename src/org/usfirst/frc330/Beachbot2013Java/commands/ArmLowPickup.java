@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmLowPickup.java,v $
+ * Revision 1.11  2013-03-16 21:17:47  jross
+ * add javadocs
+ *
  * Revision 1.10  2013-03-15 03:14:42  echan
  * Removed holdArmOff/On and the brake arm solenoid
  *
@@ -39,15 +42,16 @@ public class  ArmLowPickup extends Command {
     double timer;
     // Called just before this Command runs the first time
     protected void initialize() {
-        timer = Timer.getFPGATimestamp() + Robot.arm.armWaitPickup();
         Robot.arm.disable();
+        Robot.frisbeePickup.setFrisbeePickupDown();
+        timer = Robot.frisbeePickup.getPickupDownTime() + Robot.arm.armWaitPickup();
         Robot.arm.armSetPointLowPickup();
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if (Robot.frisbeePickup.isPickupDown() && Timer.getFPGATimestamp() > timer) {
             if(!Robot.arm.isEnable())
-            Robot.arm.enable();
+                Robot.arm.enable();
         }
     }
     // Make this return true when this Command no longer needs to run execute()
