@@ -13,7 +13,10 @@ package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommandGroup;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 /*
- * $Log$
+ * $Log: ShootLowCommandGroup.java,v $
+ * Revision 1.2  2013-03-15 02:51:09  echan
+ * added cvs log comments
+ *
  */
  
 /**
@@ -38,8 +41,8 @@ public class ShootLowCommandGroup extends AutoSpreadsheetCommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        addParallel(new ShootLow());
-        addSequential(new ArmLowShooting());
+        addParallel(new ArmLowShooting());
+        addSequential(new ShootLow());
     }
 
     public AutoSpreadsheetCommandGroup copy() {
