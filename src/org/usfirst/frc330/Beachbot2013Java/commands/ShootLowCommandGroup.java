@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommandGroup;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 /*
  * $Log: ShootLowCommandGroup.java,v $
+ * Revision 1.3  2013-03-17 18:20:54  jross
+ * reverse order of spinning up shooter and moving arm
+ *
  * Revision 1.2  2013-03-15 02:51:09  echan
  * added cvs log comments
  *
@@ -42,7 +45,7 @@ public class ShootLowCommandGroup extends AutoSpreadsheetCommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
         addParallel(new ArmLowShooting());
-        addSequential(new ShootLow());
+        addSequential(new ShootLowBangBang());
     }
 
     public AutoSpreadsheetCommandGroup copy() {
