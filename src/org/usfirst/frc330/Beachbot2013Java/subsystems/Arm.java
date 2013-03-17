@@ -17,6 +17,9 @@ import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Arm.java,v $
+ * Revision 1.27  2013-03-17 01:57:22  jdavid
+ * Added pickup sensor
+ *
  * Revision 1.26  2013-03-16 22:46:35  jross
  * fix manual arm so it turns off when joystick 0
  *
@@ -159,7 +162,8 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     }
     
     public void armSetPointLowShooting() {
-        armSetPoint(Robot.vision.armLookupTable(Robot.vision.getDistance()));
+//        armSetPoint(Robot.vision.armLookupTable(Robot.vision.getDistance()));
+        armSetPoint(getArmLowShooting());
     }
     
     public void armSetPointLowPickup() {
