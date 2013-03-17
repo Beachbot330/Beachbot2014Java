@@ -851,7 +851,7 @@ Children:
           name: Command
           type: Command
           validators: *id032
-          value: ArmLowShooting
+          value: ShootLowCommandGroup
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id033
           default: '1'
@@ -923,7 +923,7 @@ Children:
           name: Command
           type: Command
           validators: *id032
-          value: PickupFrisbeesOn
+          value: PickupOnCommandGroup
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id033
           default: '1'
@@ -1114,7 +1114,7 @@ Children:
     Children: []
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: Shooter Low}
+        name: Requires, type: Subsystem, validators: null, value: None}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
   - Name: ShootHigh
@@ -1273,12 +1273,18 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: None}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
+  - Name: PickupOnCommandGroup
+    Base: Command Group
+    Children: []
+    Properties:
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
   Properties: {}
 Properties:
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: None}
   Wiring File: !!robotbuilder.data.properties.FileProperty {default: '', extension: html,
-    folder: false, name: Wiring File, validators: null, value: 'C:\BB\2013\Programming\Beachbot2013Java\BeachBot2013Wiring.html'}
+    folder: false, name: Wiring File, validators: null, value: 'C:\Users\joe\Documents\beachbot\2013\Programming\Beachbot2013Java\BeachBot2013Wiring.html'}
   C++ Windriver Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Windriver\workspace',
     extension: null, folder: true, name: C++ Windriver Workspace, validators: null,
     value: 'C:\Windriver\workspace'}
@@ -1292,6 +1298,6 @@ Properties:
     validators: null, value: 330}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
-  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Prog\NetBeansProjects',
+  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\joe\NetBeansProjects',
     extension: null, folder: true, name: Java Project Directory, validators: null,
-    value: 'C:\BB\2013\Programming'}
+    value: 'C:\Users\joe\Documents\beachbot\2013\Programming'}
