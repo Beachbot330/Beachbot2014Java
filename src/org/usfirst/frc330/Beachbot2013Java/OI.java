@@ -14,6 +14,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /*
  * $Log: OI.java,v $
+ * Revision 1.20  2013-03-17 17:17:32  jross
+ * use command group for shooting and pickup on
+ *
  * Revision 1.19  2013-03-17 01:57:22  jdavid
  * Added pickup sensor
  *
@@ -87,9 +90,9 @@ public class OI {
         reversePickupButton.whenPressed(new ReversePickup());
         slowFrisbeePickupButton = new JoystickButton(operatorJoystick, 3);
         slowFrisbeePickupButton.whenPressed(new SlowPickupFrisbees());
-        frisbeePickupOnButton = new JoystickButton(operatorJoystick, 9);
+        frisbeePickupOnButton = new JoystickButton(operatorJoystick, 7);
         frisbeePickupOnButton.whenPressed(new PickupOnCommandGroup());
-        frisbeePickupOffButton = new JoystickButton(operatorJoystick, 8);
+        frisbeePickupOffButton = new JoystickButton(operatorJoystick, 6);
         frisbeePickupOffButton.whenPressed(new PickupFrisbeesOff());
         armClimbingButton = new JoystickButton(operatorJoystick, 5);
         armClimbingButton.whenPressed(new ArmClimbing());
@@ -99,9 +102,9 @@ public class OI {
         shootHighButton.whenPressed(new ArmHighShooting());
         shootButton = new JoystickButton(operatorJoystick, 1);
         shootButton.whenPressed(new LaunchFrisbee());
-        pickupUpButton = new JoystickButton(operatorJoystick, 6);
+        pickupUpButton = new JoystickButton(operatorJoystick, 8);
         pickupUpButton.whenPressed(new PickupUp());
-        pickupDownButton = new JoystickButton(operatorJoystick, 7);
+        pickupDownButton = new JoystickButton(operatorJoystick, 9);
         pickupDownButton.whenPressed(new PickupDown());
         rightJoystick = new Joystick(2);
         
