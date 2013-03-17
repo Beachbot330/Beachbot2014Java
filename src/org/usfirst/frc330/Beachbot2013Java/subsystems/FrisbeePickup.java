@@ -15,6 +15,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: FrisbeePickup.java,v $
+ * Revision 1.11  2013-03-17 01:57:22  jdavid
+ * Added pickup sensor
+ *
  * Revision 1.10  2013-03-15 02:51:28  echan
  * added cvs log comments
  *
@@ -80,9 +83,9 @@ public class FrisbeePickup extends Subsystem {
     private double pickupDownTime;
     public void setFrisbeePickupDown()
     {
-        pickupSolenoid.set(DoubleSolenoid.Value.kReverse);
         if (!isPickupDown())
             pickupDownTime = Timer.getFPGATimestamp();
+        pickupSolenoid.set(DoubleSolenoid.Value.kReverse);
 //        System.err.println("setFrisbeePickupDown");
     }
     
