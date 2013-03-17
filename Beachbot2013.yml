@@ -761,7 +761,7 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '7'
+          value: '9'
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
           name: Joystick, validators: null, value: OperatorJoystick}
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
@@ -785,7 +785,7 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '6'
+          value: '8'
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
           name: Joystick, validators: null, value: OperatorJoystick}
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
@@ -899,13 +899,13 @@ Children:
           name: Command
           type: Command
           validators: *id032
-          value: PickupFrisbeesOff
+          value: PickupOffCommandGroup
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id033
           default: '1'
           name: Button
           validators: null
-          value: '8'
+          value: '6'
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
           name: Joystick, validators: null, value: OperatorJoystick}
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
@@ -929,7 +929,7 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '9'
+          value: '7'
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
           name: Joystick, validators: null, value: OperatorJoystick}
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
@@ -1274,6 +1274,12 @@ Children:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
   - Name: PickupOnCommandGroup
+    Base: Command Group
+    Children: []
+    Properties:
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+  - Name: PickupOffCommandGroup
     Base: Command Group
     Children: []
     Properties:
