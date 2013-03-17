@@ -14,6 +14,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /*
  * $Log: OI.java,v $
+ * Revision 1.22  2013-03-17 17:27:05  jross
+ * Add PickupOffCommandGroup to safely turn off pickup and shooter
+ *
  * Revision 1.21  2013-03-17 17:21:06  jross
  * change pickup buttons per Matt's direction
  *
@@ -138,6 +141,7 @@ public class OI {
         SmartDashboard.putData("ArmClimbing", new ArmClimbing());
         SmartDashboard.putData("StopShootHigh", new StopShootHigh());
         SmartDashboard.putData("StopShootLow", new StopShootLow());
+        SmartDashboard.putData("ShootLowCommandGroup", new ShootLowCommandGroup());
         SmartDashboard.putData("ControlLEDs", new ControlLEDs());
         SmartDashboard.putData("TurnCamera", new TurnCamera());
         SmartDashboard.putData("TurnCameraIterative", new TurnCameraIterative());
