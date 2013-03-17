@@ -20,6 +20,9 @@ import org.usfirst.frc330.wpilibj.CFA634SPI.Line;
 import org.usfirst.frc330.wpilibj.SmartDashboardLCD;
 /*
  * $Log: LCD.java,v $
+ * Revision 1.5  2013-02-20 05:33:33  jross
+ * get rid of UpdateLCD command and make LCD subsystem create a timed task
+ *
  * Revision 1.4  2013-02-16 04:54:57  jross
  * rename package to org.usfirst.frc330.wpilibj to match other packages
  *
@@ -73,7 +76,7 @@ public class LCD extends Subsystem {
         class UpdateLCDtask extends TimerTask {
         public void run() {
             SmartDashboard.putNumber("Batt Voltage", DriverStation.getInstance().getBatteryVoltage());
-            SmartDashboard.putNumber("Gyro Angle", RobotMap.chassisGyro.getAngle());
+            SmartDashboard.putNumber("Gyro Angle", Robot.chassis.getAngle());
             Robot.lCD.updateLCD();
         }
     }
