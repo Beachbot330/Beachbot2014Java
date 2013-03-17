@@ -36,5 +36,6 @@ public class PickupOffCommandGroup extends CommandGroup {
         // arm.
         addSequential(new StopShootLow());
         addSequential(new PickupFrisbeesOff());
+        addSequential(new ArmLowPickup());
     }
 }
