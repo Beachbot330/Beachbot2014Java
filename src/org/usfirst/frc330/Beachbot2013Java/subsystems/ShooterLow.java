@@ -15,7 +15,10 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
 import org.usfirst.frc330.Beachbot2013Java.RobotMap;
 import org.usfirst.frc330.Beachbot2013Java.commands.*;
 /*
- * $Log$
+ * $Log: ShooterLow.java,v $
+ * Revision 1.9  2013-03-15 02:51:40  echan
+ * added cvs log comments
+ *
  */
  
 /**
@@ -49,11 +52,11 @@ public class ShooterLow extends Subsystem {
     }
     
     public void armLoadShooterOn() {
-        shooterLoadSolenoid.set(DoubleSolenoid.Value.kForward);
+        shooterLoadSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
     
     public void armLoadShooterOff() {
-        shooterLoadSolenoid.set(DoubleSolenoid.Value.kReverse);
+        shooterLoadSolenoid.set(DoubleSolenoid.Value.kForward);
     }
     
     public double launchFrisbeeSolenoidOffTime() {
