@@ -16,6 +16,9 @@ import org.usfirst.frc330.Beachbot2013Java.RobotMap;
 import org.usfirst.frc330.Beachbot2013Java.commands.*;
 /*
  * $Log: ShooterLow.java,v $
+ * Revision 1.10  2013-03-17 01:57:05  jross
+ * fix shooter cylinder positions to match practice robot
+ *
  * Revision 1.9  2013-03-15 02:51:40  echan
  * added cvs log comments
  *
@@ -41,7 +44,7 @@ public class ShooterLow extends Subsystem {
 	
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-        setDefaultCommand(new ShootLow());
+//        setDefaultCommand(new ShootLow());
     }
     double counter=0;
     public void shoot(double voltage) {
