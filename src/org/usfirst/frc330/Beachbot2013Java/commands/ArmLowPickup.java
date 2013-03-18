@@ -9,10 +9,14 @@
 // it from being updated in th future.
 package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmLowPickup.java,v $
+ * Revision 1.12  2013-03-17 17:16:26  jross
+ * use pickup down time
+ *
  * Revision 1.11  2013-03-16 21:17:47  jross
  * add javadocs
  *
@@ -30,7 +34,7 @@ import org.usfirst.frc330.Beachbot2013Java.Robot;
  * Move the arm to the pickup position position. The pickup position is defined by
  * the preference "armSetpointLowPickup".
  */
-public class  ArmLowPickup extends Command {
+public class  ArmLowPickup extends Command implements AutoSpreadsheetCommand {
     public ArmLowPickup() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
