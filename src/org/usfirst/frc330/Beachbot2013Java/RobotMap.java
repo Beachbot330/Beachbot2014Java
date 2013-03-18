@@ -27,6 +27,9 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 /*
  * $Log: RobotMap.java,v $
+ * Revision 1.19  2013-03-17 01:57:22  jdavid
+ * Added pickup sensor
+ *
  * Revision 1.18  2013-03-15 03:14:49  echan
  * Removed holdArmOff/On and the brake arm solenoid
  *
@@ -65,7 +68,6 @@ public class RobotMap {
     public static DigitalOutput visionLowShooterLED;
     public static SpeedController armArmSpeedController;
     public static AnalogChannel armPotentiometer;
-    public static DoubleSolenoid armBrakeArmSolenoid;
     public static DigitalOutput lCDmosi;
     public static DigitalOutput lCDcs;
     public static DigitalOutput lCDclk;
@@ -148,9 +150,6 @@ public class RobotMap {
         
         armPotentiometer = new AnalogChannel(1, 3);
 	LiveWindow.addSensor("Arm", "Potentiometer", armPotentiometer);
-        
-        armBrakeArmSolenoid = new DoubleSolenoid(1, 7, 8);      
-	
         
         lCDmosi = new DigitalOutput(1, 11);
 	
