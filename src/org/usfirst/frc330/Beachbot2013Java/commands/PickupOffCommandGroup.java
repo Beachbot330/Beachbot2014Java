@@ -10,12 +10,13 @@
 
 
 package org.usfirst.frc330.Beachbot2013Java.commands;
+import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommandGroup;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *
+ * Turns off the pickup motor and shooter motor and moves arm to the pickup position
  */
-public class PickupOffCommandGroup extends CommandGroup {
+public class PickupOffCommandGroup extends AutoSpreadsheetCommandGroup {
     
     public  PickupOffCommandGroup() {
         // Add Commands here:
@@ -37,5 +38,9 @@ public class PickupOffCommandGroup extends CommandGroup {
         addSequential(new StopShootLow());
         addSequential(new PickupFrisbeesOff());
         addSequential(new ArmLowPickup());
+    }
+
+    public AutoSpreadsheetCommandGroup copy() {
+        return new PickupOffCommandGroup();
     }
 }
