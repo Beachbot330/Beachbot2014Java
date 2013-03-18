@@ -12,9 +12,13 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: LaunchFrisbee.java,v $
+ * Revision 1.12  2013-03-17 20:26:34  jross
+ * count frisbees
+ *
  * Revision 1.11  2013-03-17 17:14:22  jross
  * don't require shooter, because it may stop the shooter spinning
  *
@@ -46,18 +50,55 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
     }
     private double endTime;
     private double solenoidOffTime;
+    final static int waitingForSpeed = 0;
+    final static int solenoidOn = 1;
+    final static int solenoidOff = 2;
+    final static int finish = 3;
+    int state;
+    int speedCounter = 0;
     // Called just before this Command runs the first time
     protected void initialize() {
-        solenoidOffTime = Robot.shooterLow.launchFrisbeeSolenoidOffTime();
-        endTime = Timer.getFPGATimestamp() + solenoidOffTime;
+        state = waitingForSpeed;
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.shooterLow.armLoadShooterOn();
+        
+        switch (state)
+        {
+            case waitingForSpeed:
+                if (Math.abs(Robot.shooterLow.getSpeed() - SmartDashboard.getNumber("ShooterLowRPM")) < 50 )
+                {
+                    speedCounter++;
+                }
+                else
+                    speedCounter = 0;
+                
+                if (speedCounter > 10 && Robot.arm.onTarget())
+                {
+                    state = solenoidOn;
+                    solenoidOffTime = Robot.shooterLow.launchFrisbeeSolenoidOffTime() + Timer.getFPGATimestamp();
+                }
+                break;
+            case solenoidOn:
+                Robot.shooterLow.armLoadShooterOn();
+                if (Timer.getFPGATimestamp() > solenoidOffTime)
+                {
+                    state = solenoidOff;
+                    endTime = Robot.shooterLow.launchFrisbeeSolenoidOffTime() + Timer.getFPGATimestamp();
+                }
+                break;
+            case solenoidOff:    
+                Robot.shooterLow.armLoadShooterOff();
+                if (Timer.getFPGATimestamp() > endTime)
+                {
+                    state = finish;
+                }
+                break;
+        }
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (Timer.getFPGATimestamp() > endTime) 
+        if (state == finish || isTimedOut()) 
         {
             return true;
         }
@@ -65,19 +106,36 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
     }
     // Called once after isFinished returns true
     protected void end() {
-        Robot.shooterLow.armLoadShooterOff();
+//        Robot.shooterLow.armLoadShooterOff();
         Robot.frisbeePickup.decrementFrisbees();
+        System.out.println("Launch Frisbee Finished");
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     }
+    /**
+     * Not Used
+     * @param param1 
+     */
     public void setParam1(double param1) {
     }
+    /**
+     * Not Used
+     * @param param2 
+     */
     public void setParam2(double param2) {
     }
+    /**
+     * Not Used
+     * @param param3 
+     */
     public void setParam3(double param3) {
     }
+    /**
+     * Not Used
+     * @param stopAtEnd 
+     */
     public void setStopAtEnd(boolean stopAtEnd) {
     }
     public Command copy() {
