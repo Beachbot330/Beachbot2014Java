@@ -19,6 +19,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import org.usfirst.frc330.Beachbot2013Java.subsystems.*;
 /*
  * $Log: Robot.java,v $
+ * Revision 1.23  2013-03-17 20:26:34  jross
+ * count frisbees
+ *
  * Revision 1.22  2013-03-16 18:00:48  echan
  * added the readvisionfile to robot
  *
@@ -119,6 +122,7 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new TurnCameraIterative());
         auto.addCommand(new setGyroComp());
         auto.addCommand(new FullSpeedShootLow());
+        auto.addCommand(new StopShootLow());
         
 //        SmartDashboard.putData(Scheduler.getInstance());
     }
