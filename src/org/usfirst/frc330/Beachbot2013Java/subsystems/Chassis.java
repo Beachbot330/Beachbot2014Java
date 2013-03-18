@@ -21,6 +21,9 @@ import org.usfirst.frc330.wpilibj.DummyPIDOutput;
 import org.usfirst.frc330.wpilibj.MultiPrefSendablePIDController;
 /*
  * $Log: Chassis.java,v $
+ * Revision 1.24  2013-03-17 20:26:09  jross
+ * fix gyro compensation
+ *
  * Revision 1.23  2013-03-15 02:51:28  echan
  * added cvs log comments
  *
@@ -223,7 +226,7 @@ public class Chassis extends Subsystem implements PIDSource {
         
         leftEncoderDistance = leftDriveEncoder.getDistance();
         rightEncoderDistance = rightDriveEncoder.getDistance();
-        gyroAngle = gyro.getAngle();
+        gyroAngle = getAngle();
         distance =  ((leftEncoderDistance - prevLeftEncoderDistance) + (rightEncoderDistance - prevRightEncoderDistance))/2;
         x = x + distance * Math.sin(Math.toRadians(gyroAngle));
         y = y + distance * Math.cos(Math.toRadians(gyroAngle));
