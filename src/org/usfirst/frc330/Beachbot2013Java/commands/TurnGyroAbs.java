@@ -13,11 +13,16 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 import org.usfirst.frc330.Beachbot2013Java.subsystems.Chassis;
 /*
- * $Log$
+ * $Log: TurnGyroAbs.java,v $
+ * Revision 1.9  2013-03-15 02:51:17  echan
+ * added cvs log comments
+ *
  */
  
 /**
- *
+ * Turn the robot to the specified angle using the gyro. {@link #setParam1(double) }
+ * defines the angle to  turn to relative to the starting position of the robot.
+ * {@link #setParam2(double) } 
  */
 public class  TurnGyroAbs extends Command implements AutoSpreadsheetCommand {
     double angle, tolerance;
