@@ -8,16 +8,20 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in th future.
 package org.usfirst.frc330.Beachbot2013Java.commands;
+import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log$
+ * $Log: StopShootLow.java,v $
+ * Revision 1.2  2013-03-15 02:51:09  echan
+ * added cvs log comments
+ *
  */
  
 /**
- *
+ * Turns off the lower shooter motor
  */
-public class  StopShootLow extends Command {
+public class  StopShootLow extends Command implements AutoSpreadsheetCommand{
     public StopShootLow() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -43,5 +47,33 @@ public class  StopShootLow extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    }
+    /**
+     * Not Used
+     * @param param1 
+     */
+    public void setParam1(double param1) {
+    }
+    /**
+     * Not Used
+     * @param param2 
+     */
+    public void setParam2(double param2) {
+    }
+    /**
+     * Not Used
+     * @param param3 
+     */
+    public void setParam3(double param3) {
+    }
+    /**
+     * Not Used
+     * @param stopAtEnd 
+     */
+    public void setStopAtEnd(boolean stopAtEnd) {
+    }
+
+    public Command copy() {
+        return new StopShootLow();
     }
 }
