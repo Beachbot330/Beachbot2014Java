@@ -16,6 +16,9 @@ import org.usfirst.frc330.Beachbot2013Java.RobotMap;
 import org.usfirst.frc330.Beachbot2013Java.commands.*;
 /*
  * $Log: ShooterLow.java,v $
+ * Revision 1.11  2013-03-17 18:18:08  jross
+ * delete ShootLow as default command (was added for debugging)
+ *
  * Revision 1.10  2013-03-17 01:57:05  jross
  * fix shooter cylinder positions to match practice robot
  *
@@ -63,6 +66,11 @@ public class ShooterLow extends Subsystem {
     }
     
     public double launchFrisbeeSolenoidOffTime() {
+        if (!Preferences.getInstance().containsKey("solenoidOffTime"))
+        {
+            Preferences.getInstance().putDouble("solenoidOffTime", 0.5);
+            Preferences.getInstance().save();
+        }
         return Preferences.getInstance().getDouble("solenoidOffTime", 0.5);
     }
     
