@@ -51,20 +51,15 @@ public class  ArmVariableShooting extends Command implements AutoSpreadsheetComm
     // subsystems is scheduled to run
     protected void interrupted() {
     }
-
     public void setParam1(double armSetpoint) {
         this.armSetpoint = armSetpoint;
     }
-
     public void setParam2(double param2) {
     }
-
     public void setParam3(double param3) {
     }
-
     public void setStopAtEnd(boolean stopAtEnd) {
     }
-
     public Command copy() {
         return new ArmVariableShooting();
     }
