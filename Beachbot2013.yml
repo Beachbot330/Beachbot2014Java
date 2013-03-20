@@ -607,6 +607,34 @@ Children:
           name: Reverse Channel (Solenoid)
           validators: *id023
           value: '8'
+    - Name: BlockerSolenoid
+      Base: Double Solenoid
+      Children: []
+      Properties:
+        Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id016
+          default: '1'
+          name: Forward Channel (Solenoid)
+          validators: *id017
+          value: '1'
+        Forward Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id018
+          default: '1'
+          name: Forward Module (Solenoid)
+          validators: *id019
+          value: '2'
+        Reverse Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id020
+          default: '1'
+          name: Reverse Module (Solenoid)
+          validators: *id021
+          value: '2'
+        Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id022
+          default: '1'
+          name: Reverse Channel (Solenoid)
+          validators: *id023
+          value: '2'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: ManualArm}
@@ -740,7 +768,7 @@ Children:
   - Name: OperatorJoystick
     Base: Joystick
     Children:
-    - Name: PickupDownButton
+    - Name: BlockerToggleButton
       Base: Joystick Button
       Children: []
       Properties:
@@ -749,7 +777,7 @@ Children:
           name: Command
           type: Command
           validators: *id032
-          value: PickupDown
+          value: BlockerToggle
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id033
           default: '1'
@@ -764,7 +792,7 @@ Children:
           name: When to Run
           validators: null
           value: whenPressed
-    - Name: PickupUpButton
+    - Name: PickupToggleButton
       Base: Joystick Button
       Children: []
       Properties:
@@ -773,7 +801,7 @@ Children:
           name: Command
           type: Command
           validators: *id032
-          value: PickupUp
+          value: PickupToggle
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id033
           default: '1'
@@ -1312,6 +1340,22 @@ Children:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
   - Name: LiftRobot
+    Base: Command
+    Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Arm}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+  - Name: PickupToggle
+    Base: Command
+    Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: FrisbeePickup}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+  - Name: BlockerToggle
     Base: Command
     Children: []
     Properties:

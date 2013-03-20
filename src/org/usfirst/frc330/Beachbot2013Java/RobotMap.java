@@ -27,6 +27,9 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 /*
  * $Log: RobotMap.java,v $
+ * Revision 1.21  2013-03-20 05:05:29  dstation
+ * added arm climber solenoid
+ *
  * Revision 1.20  2013-03-18 00:35:52  echan
  * removed arm brake solenoid
  *
@@ -72,6 +75,7 @@ public class RobotMap {
     public static SpeedController armArmSpeedController;
     public static AnalogChannel armPotentiometer;
     public static DoubleSolenoid armClimberSolenoid;
+    public static DoubleSolenoid armBlockerSolenoid;
     public static DigitalOutput lCDmosi;
     public static DigitalOutput lCDcs;
     public static DigitalOutput lCDclk;
@@ -156,6 +160,9 @@ public class RobotMap {
 	LiveWindow.addSensor("Arm", "Potentiometer", armPotentiometer);
         
         armClimberSolenoid = new DoubleSolenoid(1, 7, 8);      
+	
+        
+        armBlockerSolenoid = new DoubleSolenoid(2, 1, 2);      
 	
         
         lCDmosi = new DigitalOutput(1, 11);
