@@ -146,16 +146,16 @@ Children:
       Base: Gyro
       Children: []
       Properties:
-        Sensitivity: !!robotbuilder.data.properties.DoubleProperty {default: 0.007,
+        Sensitivity: !!robotbuilder.data.properties.DoubleProperty {default: 1.25,
           name: Sensitivity, validators: null, value: 0.007}
         Input Module (Analog): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['1']
+          choices: ['1', '2']
           default: '1'
           name: Input Module (Analog)
           validators: [AnalogInput]
           value: '1'
         Input Channel (Analog): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['1', '2']
+          choices: ['1', '2', '3', '4', '5', '6', '7', '8']
           default: '1'
           name: Input Channel (Analog)
           validators: [AnalogInput]
@@ -579,34 +579,6 @@ Children:
           name: Input Channel (Analog)
           validators: [AnalogInput]
           value: '3'
-    - Name: BrakeArmSolenoid
-      Base: Double Solenoid
-      Children: []
-      Properties:
-        Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id016
-          default: '1'
-          name: Forward Channel (Solenoid)
-          validators: *id017
-          value: '7'
-        Forward Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id018
-          default: '1'
-          name: Forward Module (Solenoid)
-          validators: *id019
-          value: '1'
-        Reverse Module (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id020
-          default: '1'
-          name: Reverse Module (Solenoid)
-          validators: *id021
-          value: '1'
-        Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id022
-          default: '1'
-          name: Reverse Channel (Solenoid)
-          validators: *id023
-          value: '8'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: ManualArm}
@@ -1133,14 +1105,6 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: Shooter Low}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
-  - Name: PickupFrisbees
-    Base: Command
-    Children: []
-    Properties:
-      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: FrisbeePickup}
-      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
   - Name: PickupFrisbeesOn
     Base: Command
     Children: []
@@ -1273,6 +1237,14 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: None}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
+  - Name: FullSpeedShootLow
+    Base: Command
+    Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Shooter Low}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
   - Name: PickupOnCommandGroup
     Base: Command Group
     Children: []
@@ -1290,7 +1262,8 @@ Properties:
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: None}
   Wiring File: !!robotbuilder.data.properties.FileProperty {default: '', extension: html,
-    folder: false, name: Wiring File, validators: null, value: 'C:\Users\joe\Documents\beachbot\2013\Programming\Beachbot2013Java\BeachBot2013Wiring.html'}
+    folder: false, name: Wiring File, validators: null, value: 'C:\Users\urfehtuioerho\Documents\BeachBot
+      CVS\2013\Programming\Beachbot2013Java\BeachBot2013Wiring.html'}
   C++ Windriver Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Windriver\workspace',
     extension: null, folder: true, name: C++ Windriver Workspace, validators: null,
     value: 'C:\Windriver\workspace'}
@@ -1304,6 +1277,6 @@ Properties:
     validators: null, value: 330}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
-  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\joe\NetBeansProjects',
+  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\urfehtuioerho\NetBeansProjects',
     extension: null, folder: true, name: Java Project Directory, validators: null,
-    value: 'C:\Users\joe\Documents\beachbot\2013\Programming'}
+    value: 'C:\Users\urfehtuioerho\Documents\BeachBot CVS\2013\Programming'}
