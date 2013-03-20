@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: FrisbeePickup.java,v $
+ * Revision 1.13  2013-03-17 20:26:34  jross
+ * count frisbees
+ *
  * Revision 1.12  2013-03-17 17:15:32  jross
  * fix logic for PickupDown timer
  *
@@ -78,7 +81,13 @@ public class FrisbeePickup extends Subsystem {
             Preferences.getInstance().save();
         }
     }
-    
+    public void toggleFrisbeePickup()
+    {
+        if (isPickupDown())
+            setFrisbeePickupUp();
+        else
+            setFrisbeePickupDown();
+    }
     
     public void setFrisbeePickupUp()
     {
