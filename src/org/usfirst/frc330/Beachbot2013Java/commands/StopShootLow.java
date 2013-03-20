@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: StopShootLow.java,v $
+ * Revision 1.3  2013-03-18 00:51:24  jross
+ * make autospreadsheetcommand
+ *
  * Revision 1.2  2013-03-15 02:51:09  echan
  * added cvs log comments
  *
@@ -72,7 +75,6 @@ public class  StopShootLow extends Command implements AutoSpreadsheetCommand{
      */
     public void setStopAtEnd(boolean stopAtEnd) {
     }
-
     public Command copy() {
         return new StopShootLow();
     }
