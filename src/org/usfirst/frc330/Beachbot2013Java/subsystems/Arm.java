@@ -17,6 +17,9 @@ import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Arm.java,v $
+ * Revision 1.30  2013-03-20 04:48:06  dstation
+ * Added method to toggle climb ten
+ *
  * Revision 1.29  2013-03-18 00:38:36  echan
  * removed arm brake solenoid
  *
@@ -179,7 +182,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     public void armSetPointClimbing() {
         armSetPoint(getArmClimbing());
     }
-    
+        
     public double armWaitPickup() {
         double armpickuptimetowait = 0.5;
         if (Preferences.getInstance().containsKey(PREF_Arm_ArmPickupTimeToWait))
