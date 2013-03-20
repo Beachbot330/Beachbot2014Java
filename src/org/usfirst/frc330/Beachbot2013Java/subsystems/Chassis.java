@@ -21,6 +21,9 @@ import org.usfirst.frc330.wpilibj.DummyPIDOutput;
 import org.usfirst.frc330.wpilibj.MultiPrefSendablePIDController;
 /*
  * $Log: Chassis.java,v $
+ * Revision 1.25  2013-03-18 06:43:32  jross
+ * fix angle in calcXY
+ *
  * Revision 1.24  2013-03-17 20:26:09  jross
  * fix gyro compensation
  *
@@ -282,7 +285,6 @@ public class Chassis extends Subsystem implements PIDSource {
 //        rightDrivePIDHigh.disable();            
         tankDrive(0, 0);  
     }
-
     public double pidGet() {
         return getAngle();
     }
