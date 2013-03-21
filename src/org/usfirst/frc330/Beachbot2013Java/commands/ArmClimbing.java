@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmClimbing.java,v $
+ * Revision 1.8  2013-03-16 21:17:47  jross
+ * add javadocs
+ *
  * Revision 1.7  2013-03-15 03:14:42  echan
  * Removed holdArmOff/On and the brake arm solenoid
  *
@@ -37,6 +40,7 @@ public class  ArmClimbing extends Command implements AutoSpreadsheetCommand{
     protected void initialize() {
         Robot.arm.armSetPointClimbing();
         Robot.arm.enable();
+        Robot.frisbeePickup.setFrisbeePickupUp();
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
