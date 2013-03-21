@@ -11,7 +11,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.tables.ITable;
 import edu.wpi.first.wpilibj.tables.ITableListener;
 /*
- * $Log$
+ * $Log: MultiPrefSendablePIDController.java,v $
+ * Revision 1.3  2013-03-15 02:51:54  echan
+ * added cvs log comments
+ *
  */
  
 /**
@@ -26,14 +29,27 @@ public class MultiPrefSendablePIDController extends PrefSendablePIDController{
     {
         super(p,i,d,source,output,period, name);
         this.gainName = "default";
-        readPIDPref(p,i,d,gainName);
+        readPIDPref(p,i,d,0,gainName);
     }
     
     public MultiPrefSendablePIDController(double p, double i, double d, PIDSource source, PIDOutput output, String name)
     {
         super(p,i,d,source,output,name);  
         this.gainName = "default";
-        readPIDPref(p,i,d, gainName);
+        readPIDPref(p,i,d,0,gainName);
+    }
+    public MultiPrefSendablePIDController(double p, double i, double d, double f, PIDSource source, PIDOutput output, double period, String name)
+    {
+        super(p,i,d,source,output,period, name);
+        this.gainName = "default";
+        readPIDPref(p,i,d,f,gainName);
+    }
+    
+    public MultiPrefSendablePIDController(double p, double i, double d, double f, PIDSource source, PIDOutput output, String name)
+    {
+        super(p,i,d,source,output,name);  
+        this.gainName = "default";
+        readPIDPref(p,i,d,f,gainName);
     }
     protected void savePIDPref()
     {
@@ -45,12 +61,12 @@ public class MultiPrefSendablePIDController extends PrefSendablePIDController{
 //        System.out.println("Saved PID Preferences: " + this.name);
     }
 
-    protected void readPIDPref(double p, double i, double d, String gainName) {
+    protected void readPIDPref(double p, double i, double d, double f, String gainName) {
         String savedName = name;
         this.gainName = gainName;
         name = savedName+gainName;
 //        System.out.println("readPIDPref: " +name);
-        super.readPIDPref(p, i, d);
+        super.readPIDPref(p, i, d, f);
         name = savedName;
         if (table != null && !gainName.equals(table.getString("gainName", gainName)))
             table.putString("gainName", gainName);
@@ -58,7 +74,7 @@ public class MultiPrefSendablePIDController extends PrefSendablePIDController{
     
     public void setGainName(String gainName)
     {
-        readPIDPref(0,0,0,gainName);
+        readPIDPref(0,0,0,0,gainName);
 
     }
     private ITable table;

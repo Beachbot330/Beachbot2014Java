@@ -10,7 +10,10 @@ import edu.wpi.first.wpilibj.tables.ITable;
 import java.util.Timer;
 import java.util.TimerTask;
 /*
- * $Log$
+ * $Log: BeachbotMultiPrefSendablePIDController.java,v $
+ * Revision 1.2  2013-03-15 02:51:46  echan
+ * added cvs log comments
+ *
  */
  
 /**
@@ -29,6 +32,16 @@ import java.util.TimerTask;
         {
             super(p, i, d, source, output, name);
         }
+        
+        public BeachbotMultiPrefSendablePIDController(double p, double i, double d, double f, PIDSource source, PIDOutput output, double period, String name)
+        {
+            super(p, i, d, f, source, output, period, name);
+        }
+        
+        public BeachbotMultiPrefSendablePIDController(double p, double i, double d, double f, PIDSource source, PIDOutput output, String name)
+        {
+            super(p, i, d, f, source, output, name);
+        }        
         
         private ITable table;
         

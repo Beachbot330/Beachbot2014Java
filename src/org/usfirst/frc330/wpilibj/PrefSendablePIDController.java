@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.tables.ITableListener;
 
 /*
  * $Log: PrefSendablePIDController.java,v $
+ * Revision 1.4  2013-02-25 03:35:24  jross
+ * Fix saving in MultiPrefSendablePIDController, remove debug statements
+ *
  * Revision 1.3  2013-02-25 02:08:54  jross
  * Change to use MultiPrefSendablePIDController
  *
@@ -69,22 +72,35 @@ import edu.wpi.first.wpilibj.tables.ITableListener;
 public class PrefSendablePIDController extends PIDController{
     
     String name;
+
+    public PrefSendablePIDController(double p, double i, double d, double f, PIDSource source, PIDOutput output, double period, String name) {
+        super(p, i, d, f, source, output, period);
+        this.name = name;
+        readPIDPref(p,i,d,f);
+    }
+
+
+    public PrefSendablePIDController(double p, double i, double d, double f, PIDSource source, PIDOutput output, String name) {
+        super(p, i, d, f, source, output);
+        this.name = name;
+        readPIDPref(p,i,d,f);
+    }
     
     public PrefSendablePIDController(double p, double i, double d, PIDSource source, PIDOutput output, double period, String name)
     {
         super(p,i,d,source,output,period);
         this.name = name;
-        readPIDPref(p,i,d);
+        readPIDPref(p,i,d, 0);
     }
     
     public PrefSendablePIDController(double p, double i, double d, PIDSource source, PIDOutput output, String name)
     {
         super(p,i,d,source,output);  
         this.name = name;
-        readPIDPref(p,i,d);
+        readPIDPref(p,i,d,0);
     }
     
-    protected void readPIDPref(double p, double i, double d)
+    protected void readPIDPref(double p, double i, double d, double f)
     {
         boolean saveNeeded = false;
         
@@ -120,7 +136,18 @@ public class PrefSendablePIDController extends PIDController{
             Preferences.getInstance().putDouble(name+"D", d);
             saveNeeded = true;
         }
-        setPID(p,i,d);
+        
+        if (Preferences.getInstance().containsKey(name + "F"))
+        {
+            d = Preferences.getInstance().getDouble(name + "F", f);
+        }
+        else 
+        {
+            Preferences.getInstance().putDouble(name+"F", f);
+            saveNeeded = true;
+        }
+        
+        setPID(p,i,d, f);
         
         if (saveNeeded)
         {
@@ -134,6 +161,7 @@ public class PrefSendablePIDController extends PIDController{
         Preferences.getInstance().putDouble(name+"P", getP());
         Preferences.getInstance().putDouble(name+"I", getI());
         Preferences.getInstance().putDouble(name+"D", getD());
+        Preferences.getInstance().putDouble(name+"F", getF());
         Preferences.getInstance().save();
 //        System.out.println("Saved PID Preferences: " + this.name);
     }

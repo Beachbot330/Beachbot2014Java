@@ -12,6 +12,9 @@ import java.util.TimerTask;
 
 /*
  * $Log: BeachbotPrefSendablePIDController.java,v $
+ * Revision 1.2  2013-02-25 02:08:54  jross
+ * Change to use MultiPrefSendablePIDController
+ *
  * Revision 1.1  2013-02-16 04:54:57  jross
  * rename package to org.usfirst.frc330.wpilibj to match other packages
  *
@@ -57,6 +60,15 @@ public class BeachbotPrefSendablePIDController extends PrefSendablePIDController
         public BeachbotPrefSendablePIDController(double p, double i, double d, PIDSource source, PIDOutput output, String name)
         {
             super(p, i, d, source, output, name);
+        }
+        public BeachbotPrefSendablePIDController(double p, double i, double d, double f, PIDSource source, PIDOutput output, double period, String name)
+        {
+            super(p, i, d, f, source, output, period, name);
+        }
+        
+        public BeachbotPrefSendablePIDController(double p, double i, double d, double f, PIDSource source, PIDOutput output, String name)
+        {
+            super(p, i, d, f, source, output, name);
         }
         
         private ITable table;
