@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: FrisbeePickup.java,v $
+ * Revision 1.15  2013-03-21 04:13:29  jross
+ * add a filter to need 5 consecutive samples of frisbee detected
+ *
  * Revision 1.14  2013-03-20 06:06:43  dstation
  * add pickup toggle command
  *
@@ -94,7 +97,8 @@ public class FrisbeePickup extends Subsystem {
     
     public void setFrisbeePickupUp()
     {
-      pickupSolenoid.set(DoubleSolenoid.Value.kForward);
+        if (Robot.arm.getArmPosition() > 1.4)
+            pickupSolenoid.set(DoubleSolenoid.Value.kForward);
 //        System.err.println("setFrisbeePickupUp");
     }
     private double pickupDownTime;
@@ -160,7 +164,7 @@ public class FrisbeePickup extends Subsystem {
     int frisbeeCount = 0;
     private void countFrisbees()
     {
-        if (pickupDiscSensor.get() == false && sensorState == 5)
+        if (pickupDiscSensor.get() == false && sensorState == 3)
         {
             frisbeeCount++;
             sensorState++;
@@ -169,10 +173,15 @@ public class FrisbeePickup extends Subsystem {
         else if (pickupDiscSensor.get() == false)
         {
             sensorState++;
+            if (sensorState == 10)
+            {
+                SmartDashboard.putBoolean("FrisbeeJammed", true);
+            }
         }
         else
         {
             sensorState = 0;
+            SmartDashboard.putBoolean("FrisbeeJammed", false);
         }
     }
     
