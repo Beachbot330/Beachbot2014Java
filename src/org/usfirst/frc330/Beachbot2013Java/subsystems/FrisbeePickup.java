@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: FrisbeePickup.java,v $
+ * Revision 1.14  2013-03-20 06:06:43  dstation
+ * add pickup toggle command
+ *
  * Revision 1.13  2013-03-17 20:26:34  jross
  * count frisbees
  *
@@ -42,7 +45,7 @@ public class FrisbeePickup extends Subsystem {
     public FrisbeePickup() {
         InitializeSlowFrisbeePickup();
         InitializeFrisbeePickup();
-        sensorState = pickupDiscSensor.get();
+        sensorState = 0;
     }
     
     // Put methods for controlling this subsystem
@@ -153,16 +156,24 @@ public class FrisbeePickup extends Subsystem {
         countFrisbees();
     }
     
-    boolean sensorState;
+    int sensorState = 0;
     int frisbeeCount = 0;
     private void countFrisbees()
     {
-        if (pickupDiscSensor.get() == false && sensorState == true)
+        if (pickupDiscSensor.get() == false && sensorState == 5)
         {
             frisbeeCount++;
+            sensorState++;
             SmartDashboard.putNumber("FrisbeeCount", frisbeeCount);
         }
-        sensorState = pickupDiscSensor.get();
+        else if (pickupDiscSensor.get() == false)
+        {
+            sensorState++;
+        }
+        else
+        {
+            sensorState = 0;
+        }
     }
     
     public void decrementFrisbees()
