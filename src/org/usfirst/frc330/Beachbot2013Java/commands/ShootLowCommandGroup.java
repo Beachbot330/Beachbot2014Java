@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommandGroup;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 /*
  * $Log: ShootLowCommandGroup.java,v $
+ * Revision 1.4  2013-03-17 20:25:33  jross
+ * Add bang bang control of the shooter motor
+ *
  * Revision 1.3  2013-03-17 18:20:54  jross
  * reverse order of spinning up shooter and moving arm
  *
@@ -44,6 +47,7 @@ public class ShootLowCommandGroup extends AutoSpreadsheetCommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+        addSequential(new PickupFrisbeesOff());
         addParallel(new ArmLowShooting());
         addSequential(new ShootLowBangBang());
     }
