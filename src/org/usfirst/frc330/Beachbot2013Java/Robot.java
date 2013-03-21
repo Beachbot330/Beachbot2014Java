@@ -19,6 +19,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import org.usfirst.frc330.Beachbot2013Java.subsystems.*;
 /*
  * $Log: Robot.java,v $
+ * Revision 1.25  2013-03-20 05:05:09  dstation
+ * added autos launcg frisbee no name and arm variable shooting
+ *
  * Revision 1.24  2013-03-18 06:53:48  jross
  * add additional commands
  *
@@ -124,7 +127,7 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new setGyroComp());
         auto.addCommand(new FullSpeedShootLow());
         auto.addCommand(new StopShootLow());
-        auto.addCommand(new LaunchFrisbeeNoName());
+        auto.addCommand(new LaunchFrisbeeNoCheck());
         auto.addCommand(new ArmVariableShooting());
         
 //        SmartDashboard.putData(Scheduler.getInstance());
