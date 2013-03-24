@@ -17,6 +17,9 @@ import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Arm.java,v $
+ * Revision 1.32  2013-03-20 07:16:33  dstation
+ * Add Blocker
+ *
  * Revision 1.31  2013-03-20 05:07:49  dstation
  * robotbuilder update
  *
@@ -185,6 +188,10 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     
     public void armSetPointClimbing() {
         armSetPoint(getArmClimbing());
+    }
+    
+    public void armSetPointPastClimbing() {
+        armSetPoint(getArmClimbing()+0.10);
     }
         
     public double armWaitPickup() {
