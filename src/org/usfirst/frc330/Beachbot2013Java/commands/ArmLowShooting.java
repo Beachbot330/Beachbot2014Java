@@ -11,9 +11,13 @@ package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmLowShooting.java,v $
+ * Revision 1.19  2013-03-16 21:17:47  jross
+ * add javadocs
+ *
  * Revision 1.18  2013-03-15 03:14:41  echan
  * Removed holdArmOff/On and the brake arm solenoid
  *
@@ -44,6 +48,7 @@ public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
         timer = Robot.frisbeePickup.getPickupDownTime() + Robot.arm.armWaitShooting();
         Robot.arm.disable();
         Robot.arm.armSetPointLowShooting();
+        SmartDashboard.putBoolean("BrightCamera", false);
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
