@@ -11,9 +11,13 @@ package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmLowPickup.java,v $
+ * Revision 1.13  2013-03-18 06:48:29  jross
+ * make implement AutoSpreadsheetCommand
+ *
  * Revision 1.12  2013-03-17 17:16:26  jross
  * use pickup down time
  *
@@ -50,6 +54,7 @@ public class  ArmLowPickup extends Command implements AutoSpreadsheetCommand {
         Robot.frisbeePickup.setFrisbeePickupDown();
         timer = Robot.frisbeePickup.getPickupDownTime() + Robot.arm.armWaitPickup();
         Robot.arm.armSetPointLowPickup();
+        SmartDashboard.putBoolean("BrightCamera", false);
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
