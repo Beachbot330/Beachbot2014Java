@@ -19,6 +19,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import org.usfirst.frc330.Beachbot2013Java.subsystems.*;
 /*
  * $Log: Robot.java,v $
+ * Revision 1.27  2013-03-24 17:43:57  jross
+ * Disable output when disabled
+ *
  * Revision 1.26  2013-03-21 02:07:43  echan
  * changed no name to no check
  *
@@ -180,6 +183,7 @@ public class Robot extends IterativeRobot {
     public void disabledInit()
     {
 //        System.out.println("In Disabled Init");
+        //TODO turn off pickup
         auto.readScripts();
         SmartDashboard.putBoolean("BrightCamera", false);
         Robot.vision.readVisionFile();
