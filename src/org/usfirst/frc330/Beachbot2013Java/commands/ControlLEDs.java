@@ -17,6 +17,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ControlLEDs.java,v $
+ * Revision 1.9  2013-03-17 01:57:22  jdavid
+ * Added pickup sensor
+ *
  * Revision 1.8  2013-03-16 02:23:30  jross
  * fix logic errors
  *
@@ -52,58 +55,16 @@ public class  ControlLEDs extends Command {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {       
-        if (Robot.vision.getLEDEnable() || DriverStation.getInstance().isFMSAttached())
-        {              
-            double gyroAngle = Robot.chassis.getAngle();
-            while (gyroAngle > 180)
-            {
-                gyroAngle -= 360;  
-            }
-            while (gyroAngle < -180)
-            {
-                gyroAngle += 360;
-            }
-            SmartDashboard.putNumber("VisionGyroAngle: ",gyroAngle);
-            if (Robot.vision.getHighLEDState())
-            {
-                if (gyroAngle < 180 - LEDOffangle && gyroAngle > -180 + LEDOffangle)
-                {
-                    Robot.vision.turnOffHighShooterLED();
-                }   
-            }
-            else
-            {
-                if (gyroAngle > 180 - LEDOnangle || gyroAngle < -180 + LEDOnangle)
-                {
-                    Robot.vision.turnOnHighShooterLED();
-                }
-            }
-            
-            if (Robot.vision.getLowLEDState())
-            {
-                if (gyroAngle > LEDOffangle || gyroAngle < -LEDOffangle)
-                {
-                    Robot.vision.turnOffLowShooterLED();
-                }
-            }
-            else
-            {
-                if (gyroAngle < LEDOnangle && gyroAngle > -LEDOnangle)
-                {
-                    Robot.vision.turnOnLowShooterLED();
-                }
-            }
-        }
-        else if (Robot.vision.getLEDOverride())
+//        if (Robot.vision.getLEDOverride() ||  DriverStation.getInstance().isFMSAttached())
         {
             Robot.vision.turnOnHighShooterLED();
             Robot.vision.turnOnLowShooterLED();
         }
-        else
+ /*       else
         {
             Robot.vision.turnOffHighShooterLED();
             Robot.vision.turnOffLowShooterLED();
-        }
+        }*/
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
