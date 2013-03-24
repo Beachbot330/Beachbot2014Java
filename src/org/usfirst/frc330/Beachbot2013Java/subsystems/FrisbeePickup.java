@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: FrisbeePickup.java,v $
+ * Revision 1.16  2013-03-21 07:04:50  jross
+ * only put pickup up if safe
+ *
  * Revision 1.15  2013-03-21 04:13:29  jross
  * add a filter to need 5 consecutive samples of frisbee detected
  *
@@ -143,6 +146,15 @@ public class FrisbeePickup extends Subsystem {
 //        System.err.println("setFrisbeePickupMotorPickup");
     }
     
+    public void setFrisbeePickupMotorPickupBatteryCompensated()
+    {
+        double pickupOutput = 0;
+        
+        pickupOutput = Preferences.getInstance().getDouble("FrisbeePickupMotorOutput", 0.6);
+        pickupOutput = 12/DriverStation.getInstance().getBatteryVoltage()*pickupOutput;
+        frisbeePickupController.set(pickupOutput);        
+    }
+    
     public void setSlowFrisbeePickupMotorPickup()
     {
         frisbeePickupController.set(Preferences.getInstance().getDouble("SlowFrisbeePickupMotorOutput", 0.3));
@@ -164,6 +176,7 @@ public class FrisbeePickup extends Subsystem {
     int frisbeeCount = 0;
     private void countFrisbees()
     {
+        //TODO find out why counting isn't working
         if (pickupDiscSensor.get() == false && sensorState == 3)
         {
             frisbeeCount++;
@@ -173,7 +186,7 @@ public class FrisbeePickup extends Subsystem {
         else if (pickupDiscSensor.get() == false)
         {
             sensorState++;
-            if (sensorState == 10)
+            if (sensorState == 20)
             {
                 SmartDashboard.putBoolean("FrisbeeJammed", true);
             }
@@ -183,6 +196,7 @@ public class FrisbeePickup extends Subsystem {
             sensorState = 0;
             SmartDashboard.putBoolean("FrisbeeJammed", false);
         }
+        SmartDashboard.putNumber("ToiletSeatTime", sensorState);
     }
     
     public void decrementFrisbees()
