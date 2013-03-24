@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ShootLowBangBang.java,v $
+ * Revision 1.2  2013-03-21 04:43:49  jross
+ * change setpoint and min speed to preferences
+ *
  * Revision 1.1  2013-03-17 20:25:33  jross
  * Add bang bang control of the shooter motor
  *
@@ -66,10 +69,12 @@ public class  ShootLowBangBang extends Command implements AutoSpreadsheetCommand
     }
     // Called once after isFinished returns true
     protected void end() {
+        SmartDashboard.putNumber("ShooterLowSpeed",0);
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        end();
     }
     public void setParam1(double param1) {
     }
