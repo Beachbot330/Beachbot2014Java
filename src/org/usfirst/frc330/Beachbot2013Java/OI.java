@@ -14,6 +14,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /*
  * $Log: OI.java,v $
+ * Revision 1.27  2013-03-20 07:16:33  dstation
+ * Add Blocker
+ *
  * Revision 1.26  2013-03-20 06:06:43  dstation
  * add pickup toggle command
  *
@@ -106,7 +109,7 @@ public class OI {
         operatorJoystick = new Joystick(3);
         
         climbButton = new JoystickButton(operatorJoystick, 11);
-        climbButton.whenPressed(new LiftRobot());
+        climbButton.whenPressed(new LiftRobotCommandGroup());
         reversePickupButton = new JoystickButton(operatorJoystick, 10);
         reversePickupButton.whenPressed(new ReversePickup());
         slowFrisbeePickupButton = new JoystickButton(operatorJoystick, 3);
@@ -116,7 +119,7 @@ public class OI {
         frisbeePickupOffButton = new JoystickButton(operatorJoystick, 6);
         frisbeePickupOffButton.whenPressed(new PickupOffCommandGroup());
         armClimbingButton = new JoystickButton(operatorJoystick, 5);
-        armClimbingButton.whenPressed(new ArmClimbing());
+        armClimbingButton.whenPressed(new ArmPastClimbing());
         shootLowButton = new JoystickButton(operatorJoystick, 2);
         shootLowButton.whenPressed(new ShootLowCommandGroup());
         shootHighButton = new JoystickButton(operatorJoystick, 4);
@@ -146,7 +149,7 @@ public class OI {
         SmartDashboard.putData("LaunchFrisbee", new LaunchFrisbee());
         SmartDashboard.putData("ShootHigh", new ShootHigh());
         SmartDashboard.putData("ShootLow", new ShootLow());
-        SmartDashboard.putData("PickupFrisbeesOn", new PickupFrisbeesOn());
+        SmartDashboard.putData("PickupFrisbeesOn", new PickupFrisbeesOnBatteryCompensated());
         SmartDashboard.putData("PickupFrisbeesOff", new PickupFrisbeesOff());
         SmartDashboard.putData("ReversePickup", new ReversePickup());
         SmartDashboard.putData("SlowPickupFrisbees", new SlowPickupFrisbees());
