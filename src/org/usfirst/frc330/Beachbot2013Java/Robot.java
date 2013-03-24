@@ -19,6 +19,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import org.usfirst.frc330.Beachbot2013Java.subsystems.*;
 /*
  * $Log: Robot.java,v $
+ * Revision 1.26  2013-03-21 02:07:43  echan
+ * changed no name to no check
+ *
  * Revision 1.25  2013-03-20 05:05:09  dstation
  * added autos launcg frisbee no name and arm variable shooting
  *
@@ -115,7 +118,7 @@ public class Robot extends IterativeRobot {
 //        auto.addCommand(new MarsRock());
         auto.addCommand(new PickupDown());
         auto.addCommand(new PickupFrisbeesOff());
-        auto.addCommand(new PickupFrisbeesOn());
+        auto.addCommand(new PickupFrisbeesOnBatteryCompensated());
         auto.addCommand(new PickupUp());
         auto.addCommand(new ShootLow());
         auto.addCommand(new ShootLowCommandGroup());
@@ -178,6 +181,10 @@ public class Robot extends IterativeRobot {
     {
 //        System.out.println("In Disabled Init");
         auto.readScripts();
+        SmartDashboard.putBoolean("BrightCamera", false);
         Robot.vision.readVisionFile();
+        Robot.arm.disable();
+        Robot.chassis.stopDrive();
+        Robot.shooterLow.shoot(0);
     }
 }
