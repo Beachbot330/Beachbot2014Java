@@ -10,9 +10,13 @@
 package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmClimbing.java,v $
+ * Revision 1.9  2013-03-21 07:04:25  jross
+ * make pickup go up when climbing, if safe
+ *
  * Revision 1.8  2013-03-16 21:17:47  jross
  * add javadocs
  *
@@ -41,6 +45,8 @@ public class  ArmClimbing extends Command implements AutoSpreadsheetCommand{
         Robot.arm.armSetPointClimbing();
         Robot.arm.enable();
         Robot.frisbeePickup.setFrisbeePickupUp();
+        SmartDashboard.putBoolean("BrightCamera", true);
+        SmartDashboard.putBoolean("TakeScreenshot", true);
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
