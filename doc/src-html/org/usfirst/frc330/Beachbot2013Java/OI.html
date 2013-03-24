@@ -22,178 +22,181 @@
 <span class="sourceLineNo">014</span>import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;<a name="line.14"></a>
 <span class="sourceLineNo">015</span>/*<a name="line.15"></a>
 <span class="sourceLineNo">016</span> * $Log: OI.java,v $<a name="line.16"></a>
-<span class="sourceLineNo">017</span> * Revision 1.27  2013-03-20 07:16:33  dstation<a name="line.17"></a>
-<span class="sourceLineNo">018</span> * Add Blocker<a name="line.18"></a>
+<span class="sourceLineNo">017</span> * Revision 1.28  2013-03-24 17:42:53  jross<a name="line.17"></a>
+<span class="sourceLineNo">018</span> * climbing changes from LA regional<a name="line.18"></a>
 <span class="sourceLineNo">019</span> *<a name="line.19"></a>
-<span class="sourceLineNo">020</span> * Revision 1.26  2013-03-20 06:06:43  dstation<a name="line.20"></a>
-<span class="sourceLineNo">021</span> * add pickup toggle command<a name="line.21"></a>
+<span class="sourceLineNo">020</span> * Revision 1.27  2013-03-20 07:16:33  dstation<a name="line.20"></a>
+<span class="sourceLineNo">021</span> * Add Blocker<a name="line.21"></a>
 <span class="sourceLineNo">022</span> *<a name="line.22"></a>
-<span class="sourceLineNo">023</span> * Revision 1.25  2013-03-20 05:04:25  dstation<a name="line.23"></a>
-<span class="sourceLineNo">024</span> * added climb button 11<a name="line.24"></a>
+<span class="sourceLineNo">023</span> * Revision 1.26  2013-03-20 06:06:43  dstation<a name="line.23"></a>
+<span class="sourceLineNo">024</span> * add pickup toggle command<a name="line.24"></a>
 <span class="sourceLineNo">025</span> *<a name="line.25"></a>
-<span class="sourceLineNo">026</span> * Revision 1.24  2013-03-18 00:36:38  echan<a name="line.26"></a>
-<span class="sourceLineNo">027</span> * removed armpickup<a name="line.27"></a>
+<span class="sourceLineNo">026</span> * Revision 1.25  2013-03-20 05:04:25  dstation<a name="line.26"></a>
+<span class="sourceLineNo">027</span> * added climb button 11<a name="line.27"></a>
 <span class="sourceLineNo">028</span> *<a name="line.28"></a>
-<span class="sourceLineNo">029</span> * Revision 1.23  2013-03-17 18:22:25  jross<a name="line.29"></a>
-<span class="sourceLineNo">030</span> * add shootLowCommandGroup to SmartDashboard<a name="line.30"></a>
+<span class="sourceLineNo">029</span> * Revision 1.24  2013-03-18 00:36:38  echan<a name="line.29"></a>
+<span class="sourceLineNo">030</span> * removed armpickup<a name="line.30"></a>
 <span class="sourceLineNo">031</span> *<a name="line.31"></a>
-<span class="sourceLineNo">032</span> * Revision 1.22  2013-03-17 17:27:05  jross<a name="line.32"></a>
-<span class="sourceLineNo">033</span> * Add PickupOffCommandGroup to safely turn off pickup and shooter<a name="line.33"></a>
+<span class="sourceLineNo">032</span> * Revision 1.23  2013-03-17 18:22:25  jross<a name="line.32"></a>
+<span class="sourceLineNo">033</span> * add shootLowCommandGroup to SmartDashboard<a name="line.33"></a>
 <span class="sourceLineNo">034</span> *<a name="line.34"></a>
-<span class="sourceLineNo">035</span> * Revision 1.21  2013-03-17 17:21:06  jross<a name="line.35"></a>
-<span class="sourceLineNo">036</span> * change pickup buttons per Matt's direction<a name="line.36"></a>
+<span class="sourceLineNo">035</span> * Revision 1.22  2013-03-17 17:27:05  jross<a name="line.35"></a>
+<span class="sourceLineNo">036</span> * Add PickupOffCommandGroup to safely turn off pickup and shooter<a name="line.36"></a>
 <span class="sourceLineNo">037</span> *<a name="line.37"></a>
-<span class="sourceLineNo">038</span> * Revision 1.20  2013-03-17 17:17:32  jross<a name="line.38"></a>
-<span class="sourceLineNo">039</span> * use command group for shooting and pickup on<a name="line.39"></a>
+<span class="sourceLineNo">038</span> * Revision 1.21  2013-03-17 17:21:06  jross<a name="line.38"></a>
+<span class="sourceLineNo">039</span> * change pickup buttons per Matt's direction<a name="line.39"></a>
 <span class="sourceLineNo">040</span> *<a name="line.40"></a>
-<span class="sourceLineNo">041</span> * Revision 1.19  2013-03-17 01:57:22  jdavid<a name="line.41"></a>
-<span class="sourceLineNo">042</span> * Added pickup sensor<a name="line.42"></a>
+<span class="sourceLineNo">041</span> * Revision 1.20  2013-03-17 17:17:32  jross<a name="line.41"></a>
+<span class="sourceLineNo">042</span> * use command group for shooting and pickup on<a name="line.42"></a>
 <span class="sourceLineNo">043</span> *<a name="line.43"></a>
-<span class="sourceLineNo">044</span> * Revision 1.18  2013-03-15 03:08:37  echan<a name="line.44"></a>
-<span class="sourceLineNo">045</span> * Added the command to shoot low at full speed<a name="line.45"></a>
+<span class="sourceLineNo">044</span> * Revision 1.19  2013-03-17 01:57:22  jdavid<a name="line.44"></a>
+<span class="sourceLineNo">045</span> * Added pickup sensor<a name="line.45"></a>
 <span class="sourceLineNo">046</span> *<a name="line.46"></a>
-<span class="sourceLineNo">047</span> * Revision 1.17  2013-03-15 02:50:16  echan<a name="line.47"></a>
-<span class="sourceLineNo">048</span> * added cvs log comments<a name="line.48"></a>
+<span class="sourceLineNo">047</span> * Revision 1.18  2013-03-15 03:08:37  echan<a name="line.47"></a>
+<span class="sourceLineNo">048</span> * Added the command to shoot low at full speed<a name="line.48"></a>
 <span class="sourceLineNo">049</span> *<a name="line.49"></a>
-<span class="sourceLineNo">050</span> */<a name="line.50"></a>
-<span class="sourceLineNo">051</span> <a name="line.51"></a>
-<span class="sourceLineNo">052</span>/**<a name="line.52"></a>
-<span class="sourceLineNo">053</span> * This class is the glue that binds the controls on the physical operator<a name="line.53"></a>
-<span class="sourceLineNo">054</span> * interface to the commands and command groups that allow control of the robot.<a name="line.54"></a>
-<span class="sourceLineNo">055</span> */<a name="line.55"></a>
-<span class="sourceLineNo">056</span>public class OI {<a name="line.56"></a>
-<span class="sourceLineNo">057</span>    //// CREATING BUTTONS<a name="line.57"></a>
-<span class="sourceLineNo">058</span>    // One type of button is a joystick button which is any button on a joystick.<a name="line.58"></a>
-<span class="sourceLineNo">059</span>    // You create one by telling it which joystick it's on and which button<a name="line.59"></a>
-<span class="sourceLineNo">060</span>    // number it is.<a name="line.60"></a>
-<span class="sourceLineNo">061</span>    // Joystick stick = new Joystick(port);<a name="line.61"></a>
-<span class="sourceLineNo">062</span>    // Button button = new JoystickButton(stick, buttonNumber);<a name="line.62"></a>
-<span class="sourceLineNo">063</span>    <a name="line.63"></a>
-<span class="sourceLineNo">064</span>    // Another type of button you can create is a DigitalIOButton, which is<a name="line.64"></a>
-<span class="sourceLineNo">065</span>    // a button or switch hooked up to the cypress module. These are useful if<a name="line.65"></a>
-<span class="sourceLineNo">066</span>    // you want to build a customized operator interface.<a name="line.66"></a>
-<span class="sourceLineNo">067</span>    // Button button = new DigitalIOButton(1);<a name="line.67"></a>
-<span class="sourceLineNo">068</span>    <a name="line.68"></a>
-<span class="sourceLineNo">069</span>    // There are a few additional built in buttons you can use. Additionally,<a name="line.69"></a>
-<span class="sourceLineNo">070</span>    // by subclassing Button you can create custom triggers and bind those to<a name="line.70"></a>
-<span class="sourceLineNo">071</span>    // commands the same as any other Button.<a name="line.71"></a>
-<span class="sourceLineNo">072</span>    <a name="line.72"></a>
-<span class="sourceLineNo">073</span>    //// TRIGGERING COMMANDS WITH BUTTONS<a name="line.73"></a>
-<span class="sourceLineNo">074</span>    // Once you have a button, it's trivial to bind it to a button in one of<a name="line.74"></a>
-<span class="sourceLineNo">075</span>    // three ways:<a name="line.75"></a>
-<span class="sourceLineNo">076</span>    <a name="line.76"></a>
-<span class="sourceLineNo">077</span>    // Start the command when the button is pressed and let it run the command<a name="line.77"></a>
-<span class="sourceLineNo">078</span>    // until it is finished as determined by it's isFinished method.<a name="line.78"></a>
-<span class="sourceLineNo">079</span>    // button.whenPressed(new ExampleCommand());<a name="line.79"></a>
-<span class="sourceLineNo">080</span>    <a name="line.80"></a>
-<span class="sourceLineNo">081</span>    // Run the command while the button is being held down and interrupt it once<a name="line.81"></a>
-<span class="sourceLineNo">082</span>    // the button is released.<a name="line.82"></a>
-<span class="sourceLineNo">083</span>    // button.whileHeld(new ExampleCommand());<a name="line.83"></a>
-<span class="sourceLineNo">084</span>    <a name="line.84"></a>
-<span class="sourceLineNo">085</span>    // Start the command when the button is released  and let it run the command<a name="line.85"></a>
-<span class="sourceLineNo">086</span>    // until it is finished as determined by it's isFinished method.<a name="line.86"></a>
-<span class="sourceLineNo">087</span>    // button.whenReleased(new ExampleCommand());<a name="line.87"></a>
-<span class="sourceLineNo">088</span>    <a name="line.88"></a>
-<span class="sourceLineNo">089</span>    // BEGIN AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=DECLARATIONS<a name="line.89"></a>
-<span class="sourceLineNo">090</span>    public JoystickButton shiftHighButton;<a name="line.90"></a>
-<span class="sourceLineNo">091</span>    public Joystick leftJoystick;<a name="line.91"></a>
-<span class="sourceLineNo">092</span>    public JoystickButton shiftLowButton;<a name="line.92"></a>
-<span class="sourceLineNo">093</span>    public Joystick rightJoystick;<a name="line.93"></a>
-<span class="sourceLineNo">094</span>    public JoystickButton blockerToggleButton;<a name="line.94"></a>
-<span class="sourceLineNo">095</span>    public JoystickButton pickupToggleButton;<a name="line.95"></a>
-<span class="sourceLineNo">096</span>    public JoystickButton shootButton;<a name="line.96"></a>
-<span class="sourceLineNo">097</span>    public JoystickButton shootHighButton;<a name="line.97"></a>
-<span class="sourceLineNo">098</span>    public JoystickButton shootLowButton;<a name="line.98"></a>
-<span class="sourceLineNo">099</span>    public JoystickButton armClimbingButton;<a name="line.99"></a>
-<span class="sourceLineNo">100</span>    public JoystickButton frisbeePickupOffButton;<a name="line.100"></a>
-<span class="sourceLineNo">101</span>    public JoystickButton frisbeePickupOnButton;<a name="line.101"></a>
-<span class="sourceLineNo">102</span>    public JoystickButton slowFrisbeePickupButton;<a name="line.102"></a>
-<span class="sourceLineNo">103</span>    public JoystickButton reversePickupButton;<a name="line.103"></a>
-<span class="sourceLineNo">104</span>    public JoystickButton climbButton;<a name="line.104"></a>
-<span class="sourceLineNo">105</span>    public Joystick operatorJoystick;<a name="line.105"></a>
-<span class="sourceLineNo">106</span>    // END AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=DECLARATIONS<a name="line.106"></a>
-<span class="sourceLineNo">107</span>    public OI() {<a name="line.107"></a>
-<span class="sourceLineNo">108</span>        // BEGIN AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=CONSTRUCTORS<a name="line.108"></a>
-<span class="sourceLineNo">109</span>        operatorJoystick = new Joystick(3);<a name="line.109"></a>
-<span class="sourceLineNo">110</span>        <a name="line.110"></a>
-<span class="sourceLineNo">111</span>        climbButton = new JoystickButton(operatorJoystick, 11);<a name="line.111"></a>
-<span class="sourceLineNo">112</span>        climbButton.whenPressed(new LiftRobot());<a name="line.112"></a>
-<span class="sourceLineNo">113</span>        reversePickupButton = new JoystickButton(operatorJoystick, 10);<a name="line.113"></a>
-<span class="sourceLineNo">114</span>        reversePickupButton.whenPressed(new ReversePickup());<a name="line.114"></a>
-<span class="sourceLineNo">115</span>        slowFrisbeePickupButton = new JoystickButton(operatorJoystick, 3);<a name="line.115"></a>
-<span class="sourceLineNo">116</span>        slowFrisbeePickupButton.whenPressed(new SlowPickupFrisbees());<a name="line.116"></a>
-<span class="sourceLineNo">117</span>        frisbeePickupOnButton = new JoystickButton(operatorJoystick, 7);<a name="line.117"></a>
-<span class="sourceLineNo">118</span>        frisbeePickupOnButton.whenPressed(new PickupOnCommandGroup());<a name="line.118"></a>
-<span class="sourceLineNo">119</span>        frisbeePickupOffButton = new JoystickButton(operatorJoystick, 6);<a name="line.119"></a>
-<span class="sourceLineNo">120</span>        frisbeePickupOffButton.whenPressed(new PickupOffCommandGroup());<a name="line.120"></a>
-<span class="sourceLineNo">121</span>        armClimbingButton = new JoystickButton(operatorJoystick, 5);<a name="line.121"></a>
-<span class="sourceLineNo">122</span>        armClimbingButton.whenPressed(new ArmClimbing());<a name="line.122"></a>
-<span class="sourceLineNo">123</span>        shootLowButton = new JoystickButton(operatorJoystick, 2);<a name="line.123"></a>
-<span class="sourceLineNo">124</span>        shootLowButton.whenPressed(new ShootLowCommandGroup());<a name="line.124"></a>
-<span class="sourceLineNo">125</span>        shootHighButton = new JoystickButton(operatorJoystick, 4);<a name="line.125"></a>
-<span class="sourceLineNo">126</span>        shootHighButton.whenPressed(new ArmHighShooting());<a name="line.126"></a>
-<span class="sourceLineNo">127</span>        shootButton = new JoystickButton(operatorJoystick, 1);<a name="line.127"></a>
-<span class="sourceLineNo">128</span>        shootButton.whenPressed(new LaunchFrisbee());<a name="line.128"></a>
-<span class="sourceLineNo">129</span>        pickupToggleButton = new JoystickButton(operatorJoystick, 8);<a name="line.129"></a>
-<span class="sourceLineNo">130</span>        pickupToggleButton.whenPressed(new PickupToggle());<a name="line.130"></a>
-<span class="sourceLineNo">131</span>        blockerToggleButton = new JoystickButton(operatorJoystick, 9);<a name="line.131"></a>
-<span class="sourceLineNo">132</span>        blockerToggleButton.whenPressed(new BlockerToggle());<a name="line.132"></a>
-<span class="sourceLineNo">133</span>        rightJoystick = new Joystick(2);<a name="line.133"></a>
-<span class="sourceLineNo">134</span>        <a name="line.134"></a>
-<span class="sourceLineNo">135</span>        shiftLowButton = new JoystickButton(rightJoystick, 1);<a name="line.135"></a>
-<span class="sourceLineNo">136</span>        shiftLowButton.whenPressed(new ShiftLow());<a name="line.136"></a>
-<span class="sourceLineNo">137</span>        leftJoystick = new Joystick(1);<a name="line.137"></a>
-<span class="sourceLineNo">138</span>        <a name="line.138"></a>
-<span class="sourceLineNo">139</span>        shiftHighButton = new JoystickButton(leftJoystick, 1);<a name="line.139"></a>
-<span class="sourceLineNo">140</span>        shiftHighButton.whenPressed(new ShiftHigh());<a name="line.140"></a>
-<span class="sourceLineNo">141</span>            <a name="line.141"></a>
-<span class="sourceLineNo">142</span>        // SmartDashboard Buttons<a name="line.142"></a>
-<span class="sourceLineNo">143</span>        SmartDashboard.putData("AutonomousCommand", new AutonomousCommand());<a name="line.143"></a>
-<span class="sourceLineNo">144</span>        SmartDashboard.putData("ShiftHigh", new ShiftHigh());<a name="line.144"></a>
-<span class="sourceLineNo">145</span>        SmartDashboard.putData("ShiftLow", new ShiftLow());<a name="line.145"></a>
-<span class="sourceLineNo">146</span>        SmartDashboard.putData("MarsRock", new MarsRock());<a name="line.146"></a>
-<span class="sourceLineNo">147</span>        SmartDashboard.putData("PickupDown", new PickupDown());<a name="line.147"></a>
-<span class="sourceLineNo">148</span>        SmartDashboard.putData("PickupUp", new PickupUp());<a name="line.148"></a>
-<span class="sourceLineNo">149</span>        SmartDashboard.putData("LaunchFrisbee", new LaunchFrisbee());<a name="line.149"></a>
-<span class="sourceLineNo">150</span>        SmartDashboard.putData("ShootHigh", new ShootHigh());<a name="line.150"></a>
-<span class="sourceLineNo">151</span>        SmartDashboard.putData("ShootLow", new ShootLow());<a name="line.151"></a>
-<span class="sourceLineNo">152</span>        SmartDashboard.putData("PickupFrisbeesOn", new PickupFrisbeesOn());<a name="line.152"></a>
-<span class="sourceLineNo">153</span>        SmartDashboard.putData("PickupFrisbeesOff", new PickupFrisbeesOff());<a name="line.153"></a>
-<span class="sourceLineNo">154</span>        SmartDashboard.putData("ReversePickup", new ReversePickup());<a name="line.154"></a>
-<span class="sourceLineNo">155</span>        SmartDashboard.putData("SlowPickupFrisbees", new SlowPickupFrisbees());<a name="line.155"></a>
-<span class="sourceLineNo">156</span>        SmartDashboard.putData("ArmLowShooting", new ArmLowShooting());<a name="line.156"></a>
-<span class="sourceLineNo">157</span>        SmartDashboard.putData("ArmHighShooting", new ArmHighShooting());<a name="line.157"></a>
-<span class="sourceLineNo">158</span>        SmartDashboard.putData("ArmClimbing", new ArmClimbing());<a name="line.158"></a>
-<span class="sourceLineNo">159</span>        SmartDashboard.putData("StopShootHigh", new StopShootHigh());<a name="line.159"></a>
-<span class="sourceLineNo">160</span>        SmartDashboard.putData("StopShootLow", new StopShootLow());<a name="line.160"></a>
-<span class="sourceLineNo">161</span>        SmartDashboard.putData("ShootLowCommandGroup", new ShootLowCommandGroup());<a name="line.161"></a>
-<span class="sourceLineNo">162</span>        SmartDashboard.putData("ControlLEDs", new ControlLEDs());<a name="line.162"></a>
-<span class="sourceLineNo">163</span>        SmartDashboard.putData("TurnCamera", new TurnCamera());<a name="line.163"></a>
-<span class="sourceLineNo">164</span>        SmartDashboard.putData("TurnCameraIterative", new TurnCameraIterative());<a name="line.164"></a>
-<span class="sourceLineNo">165</span>        SmartDashboard.putData("ArmLowPickup", new ArmLowPickup());<a name="line.165"></a>
-<span class="sourceLineNo">166</span>        SmartDashboard.putData("SetArmZero", new SetArmZero());<a name="line.166"></a>
-<span class="sourceLineNo">167</span>        SmartDashboard.putData("FullSpeedShootLow", new FullSpeedShootLow());<a name="line.167"></a>
-<span class="sourceLineNo">168</span>        SmartDashboard.putData("PickupOnCommandGroup", new PickupOnCommandGroup());<a name="line.168"></a>
-<span class="sourceLineNo">169</span>        SmartDashboard.putData("PickupOffCommandGroup", new PickupOffCommandGroup());<a name="line.169"></a>
-<span class="sourceLineNo">170</span>        SmartDashboard.putData("ArmVariableShooting", new ArmVariableShooting());<a name="line.170"></a>
-<span class="sourceLineNo">171</span>        SmartDashboard.putData("LiftRobot", new LiftRobot());<a name="line.171"></a>
-<span class="sourceLineNo">172</span>        SmartDashboard.putData("PickupToggle", new PickupToggle());<a name="line.172"></a>
-<span class="sourceLineNo">173</span>        SmartDashboard.putData("BlockerToggle", new BlockerToggle());<a name="line.173"></a>
-<span class="sourceLineNo">174</span>    // END AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=CONSTRUCTORS<a name="line.174"></a>
-<span class="sourceLineNo">175</span>    }<a name="line.175"></a>
-<span class="sourceLineNo">176</span>    <a name="line.176"></a>
-<span class="sourceLineNo">177</span>    // BEGIN AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=FUNCTIONS<a name="line.177"></a>
-<span class="sourceLineNo">178</span>    public Joystick getLeftJoystick() {<a name="line.178"></a>
-<span class="sourceLineNo">179</span>        return leftJoystick;<a name="line.179"></a>
-<span class="sourceLineNo">180</span>    }<a name="line.180"></a>
-<span class="sourceLineNo">181</span>    public Joystick getRightJoystick() {<a name="line.181"></a>
-<span class="sourceLineNo">182</span>        return rightJoystick;<a name="line.182"></a>
+<span class="sourceLineNo">050</span> * Revision 1.17  2013-03-15 02:50:16  echan<a name="line.50"></a>
+<span class="sourceLineNo">051</span> * added cvs log comments<a name="line.51"></a>
+<span class="sourceLineNo">052</span> *<a name="line.52"></a>
+<span class="sourceLineNo">053</span> */<a name="line.53"></a>
+<span class="sourceLineNo">054</span> <a name="line.54"></a>
+<span class="sourceLineNo">055</span>/**<a name="line.55"></a>
+<span class="sourceLineNo">056</span> * This class is the glue that binds the controls on the physical operator<a name="line.56"></a>
+<span class="sourceLineNo">057</span> * interface to the commands and command groups that allow control of the robot.<a name="line.57"></a>
+<span class="sourceLineNo">058</span> */<a name="line.58"></a>
+<span class="sourceLineNo">059</span>public class OI {<a name="line.59"></a>
+<span class="sourceLineNo">060</span>    //// CREATING BUTTONS<a name="line.60"></a>
+<span class="sourceLineNo">061</span>    // One type of button is a joystick button which is any button on a joystick.<a name="line.61"></a>
+<span class="sourceLineNo">062</span>    // You create one by telling it which joystick it's on and which button<a name="line.62"></a>
+<span class="sourceLineNo">063</span>    // number it is.<a name="line.63"></a>
+<span class="sourceLineNo">064</span>    // Joystick stick = new Joystick(port);<a name="line.64"></a>
+<span class="sourceLineNo">065</span>    // Button button = new JoystickButton(stick, buttonNumber);<a name="line.65"></a>
+<span class="sourceLineNo">066</span>    <a name="line.66"></a>
+<span class="sourceLineNo">067</span>    // Another type of button you can create is a DigitalIOButton, which is<a name="line.67"></a>
+<span class="sourceLineNo">068</span>    // a button or switch hooked up to the cypress module. These are useful if<a name="line.68"></a>
+<span class="sourceLineNo">069</span>    // you want to build a customized operator interface.<a name="line.69"></a>
+<span class="sourceLineNo">070</span>    // Button button = new DigitalIOButton(1);<a name="line.70"></a>
+<span class="sourceLineNo">071</span>    <a name="line.71"></a>
+<span class="sourceLineNo">072</span>    // There are a few additional built in buttons you can use. Additionally,<a name="line.72"></a>
+<span class="sourceLineNo">073</span>    // by subclassing Button you can create custom triggers and bind those to<a name="line.73"></a>
+<span class="sourceLineNo">074</span>    // commands the same as any other Button.<a name="line.74"></a>
+<span class="sourceLineNo">075</span>    <a name="line.75"></a>
+<span class="sourceLineNo">076</span>    //// TRIGGERING COMMANDS WITH BUTTONS<a name="line.76"></a>
+<span class="sourceLineNo">077</span>    // Once you have a button, it's trivial to bind it to a button in one of<a name="line.77"></a>
+<span class="sourceLineNo">078</span>    // three ways:<a name="line.78"></a>
+<span class="sourceLineNo">079</span>    <a name="line.79"></a>
+<span class="sourceLineNo">080</span>    // Start the command when the button is pressed and let it run the command<a name="line.80"></a>
+<span class="sourceLineNo">081</span>    // until it is finished as determined by it's isFinished method.<a name="line.81"></a>
+<span class="sourceLineNo">082</span>    // button.whenPressed(new ExampleCommand());<a name="line.82"></a>
+<span class="sourceLineNo">083</span>    <a name="line.83"></a>
+<span class="sourceLineNo">084</span>    // Run the command while the button is being held down and interrupt it once<a name="line.84"></a>
+<span class="sourceLineNo">085</span>    // the button is released.<a name="line.85"></a>
+<span class="sourceLineNo">086</span>    // button.whileHeld(new ExampleCommand());<a name="line.86"></a>
+<span class="sourceLineNo">087</span>    <a name="line.87"></a>
+<span class="sourceLineNo">088</span>    // Start the command when the button is released  and let it run the command<a name="line.88"></a>
+<span class="sourceLineNo">089</span>    // until it is finished as determined by it's isFinished method.<a name="line.89"></a>
+<span class="sourceLineNo">090</span>    // button.whenReleased(new ExampleCommand());<a name="line.90"></a>
+<span class="sourceLineNo">091</span>    <a name="line.91"></a>
+<span class="sourceLineNo">092</span>    // BEGIN AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=DECLARATIONS<a name="line.92"></a>
+<span class="sourceLineNo">093</span>    public JoystickButton shiftHighButton;<a name="line.93"></a>
+<span class="sourceLineNo">094</span>    public Joystick leftJoystick;<a name="line.94"></a>
+<span class="sourceLineNo">095</span>    public JoystickButton shiftLowButton;<a name="line.95"></a>
+<span class="sourceLineNo">096</span>    public Joystick rightJoystick;<a name="line.96"></a>
+<span class="sourceLineNo">097</span>    public JoystickButton blockerToggleButton;<a name="line.97"></a>
+<span class="sourceLineNo">098</span>    public JoystickButton pickupToggleButton;<a name="line.98"></a>
+<span class="sourceLineNo">099</span>    public JoystickButton shootButton;<a name="line.99"></a>
+<span class="sourceLineNo">100</span>    public JoystickButton shootHighButton;<a name="line.100"></a>
+<span class="sourceLineNo">101</span>    public JoystickButton shootLowButton;<a name="line.101"></a>
+<span class="sourceLineNo">102</span>    public JoystickButton armClimbingButton;<a name="line.102"></a>
+<span class="sourceLineNo">103</span>    public JoystickButton frisbeePickupOffButton;<a name="line.103"></a>
+<span class="sourceLineNo">104</span>    public JoystickButton frisbeePickupOnButton;<a name="line.104"></a>
+<span class="sourceLineNo">105</span>    public JoystickButton slowFrisbeePickupButton;<a name="line.105"></a>
+<span class="sourceLineNo">106</span>    public JoystickButton reversePickupButton;<a name="line.106"></a>
+<span class="sourceLineNo">107</span>    public JoystickButton climbButton;<a name="line.107"></a>
+<span class="sourceLineNo">108</span>    public Joystick operatorJoystick;<a name="line.108"></a>
+<span class="sourceLineNo">109</span>    // END AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=DECLARATIONS<a name="line.109"></a>
+<span class="sourceLineNo">110</span>    public OI() {<a name="line.110"></a>
+<span class="sourceLineNo">111</span>        // BEGIN AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=CONSTRUCTORS<a name="line.111"></a>
+<span class="sourceLineNo">112</span>        operatorJoystick = new Joystick(3);<a name="line.112"></a>
+<span class="sourceLineNo">113</span>        <a name="line.113"></a>
+<span class="sourceLineNo">114</span>        climbButton = new JoystickButton(operatorJoystick, 11);<a name="line.114"></a>
+<span class="sourceLineNo">115</span>        climbButton.whenPressed(new LiftRobotCommandGroup());<a name="line.115"></a>
+<span class="sourceLineNo">116</span>        reversePickupButton = new JoystickButton(operatorJoystick, 10);<a name="line.116"></a>
+<span class="sourceLineNo">117</span>        reversePickupButton.whenPressed(new ReversePickup());<a name="line.117"></a>
+<span class="sourceLineNo">118</span>        slowFrisbeePickupButton = new JoystickButton(operatorJoystick, 3);<a name="line.118"></a>
+<span class="sourceLineNo">119</span>        slowFrisbeePickupButton.whenPressed(new SlowPickupFrisbees());<a name="line.119"></a>
+<span class="sourceLineNo">120</span>        frisbeePickupOnButton = new JoystickButton(operatorJoystick, 7);<a name="line.120"></a>
+<span class="sourceLineNo">121</span>        frisbeePickupOnButton.whenPressed(new PickupOnCommandGroup());<a name="line.121"></a>
+<span class="sourceLineNo">122</span>        frisbeePickupOffButton = new JoystickButton(operatorJoystick, 6);<a name="line.122"></a>
+<span class="sourceLineNo">123</span>        frisbeePickupOffButton.whenPressed(new PickupOffCommandGroup());<a name="line.123"></a>
+<span class="sourceLineNo">124</span>        armClimbingButton = new JoystickButton(operatorJoystick, 5);<a name="line.124"></a>
+<span class="sourceLineNo">125</span>        armClimbingButton.whenPressed(new ArmPastClimbing());<a name="line.125"></a>
+<span class="sourceLineNo">126</span>        shootLowButton = new JoystickButton(operatorJoystick, 2);<a name="line.126"></a>
+<span class="sourceLineNo">127</span>        shootLowButton.whenPressed(new ShootLowCommandGroup());<a name="line.127"></a>
+<span class="sourceLineNo">128</span>        shootHighButton = new JoystickButton(operatorJoystick, 4);<a name="line.128"></a>
+<span class="sourceLineNo">129</span>        shootHighButton.whenPressed(new ArmHighShooting());<a name="line.129"></a>
+<span class="sourceLineNo">130</span>        shootButton = new JoystickButton(operatorJoystick, 1);<a name="line.130"></a>
+<span class="sourceLineNo">131</span>        shootButton.whenPressed(new LaunchFrisbee());<a name="line.131"></a>
+<span class="sourceLineNo">132</span>        pickupToggleButton = new JoystickButton(operatorJoystick, 8);<a name="line.132"></a>
+<span class="sourceLineNo">133</span>        pickupToggleButton.whenPressed(new PickupToggle());<a name="line.133"></a>
+<span class="sourceLineNo">134</span>        blockerToggleButton = new JoystickButton(operatorJoystick, 9);<a name="line.134"></a>
+<span class="sourceLineNo">135</span>        blockerToggleButton.whenPressed(new BlockerToggle());<a name="line.135"></a>
+<span class="sourceLineNo">136</span>        rightJoystick = new Joystick(2);<a name="line.136"></a>
+<span class="sourceLineNo">137</span>        <a name="line.137"></a>
+<span class="sourceLineNo">138</span>        shiftLowButton = new JoystickButton(rightJoystick, 1);<a name="line.138"></a>
+<span class="sourceLineNo">139</span>        shiftLowButton.whenPressed(new ShiftLow());<a name="line.139"></a>
+<span class="sourceLineNo">140</span>        leftJoystick = new Joystick(1);<a name="line.140"></a>
+<span class="sourceLineNo">141</span>        <a name="line.141"></a>
+<span class="sourceLineNo">142</span>        shiftHighButton = new JoystickButton(leftJoystick, 1);<a name="line.142"></a>
+<span class="sourceLineNo">143</span>        shiftHighButton.whenPressed(new ShiftHigh());<a name="line.143"></a>
+<span class="sourceLineNo">144</span>            <a name="line.144"></a>
+<span class="sourceLineNo">145</span>        // SmartDashboard Buttons<a name="line.145"></a>
+<span class="sourceLineNo">146</span>        SmartDashboard.putData("AutonomousCommand", new AutonomousCommand());<a name="line.146"></a>
+<span class="sourceLineNo">147</span>        SmartDashboard.putData("ShiftHigh", new ShiftHigh());<a name="line.147"></a>
+<span class="sourceLineNo">148</span>        SmartDashboard.putData("ShiftLow", new ShiftLow());<a name="line.148"></a>
+<span class="sourceLineNo">149</span>        SmartDashboard.putData("MarsRock", new MarsRock());<a name="line.149"></a>
+<span class="sourceLineNo">150</span>        SmartDashboard.putData("PickupDown", new PickupDown());<a name="line.150"></a>
+<span class="sourceLineNo">151</span>        SmartDashboard.putData("PickupUp", new PickupUp());<a name="line.151"></a>
+<span class="sourceLineNo">152</span>        SmartDashboard.putData("LaunchFrisbee", new LaunchFrisbee());<a name="line.152"></a>
+<span class="sourceLineNo">153</span>        SmartDashboard.putData("ShootHigh", new ShootHigh());<a name="line.153"></a>
+<span class="sourceLineNo">154</span>        SmartDashboard.putData("ShootLow", new ShootLow());<a name="line.154"></a>
+<span class="sourceLineNo">155</span>        SmartDashboard.putData("PickupFrisbeesOn", new PickupFrisbeesOnBatteryCompensated());<a name="line.155"></a>
+<span class="sourceLineNo">156</span>        SmartDashboard.putData("PickupFrisbeesOff", new PickupFrisbeesOff());<a name="line.156"></a>
+<span class="sourceLineNo">157</span>        SmartDashboard.putData("ReversePickup", new ReversePickup());<a name="line.157"></a>
+<span class="sourceLineNo">158</span>        SmartDashboard.putData("SlowPickupFrisbees", new SlowPickupFrisbees());<a name="line.158"></a>
+<span class="sourceLineNo">159</span>        SmartDashboard.putData("ArmLowShooting", new ArmLowShooting());<a name="line.159"></a>
+<span class="sourceLineNo">160</span>        SmartDashboard.putData("ArmHighShooting", new ArmHighShooting());<a name="line.160"></a>
+<span class="sourceLineNo">161</span>        SmartDashboard.putData("ArmClimbing", new ArmClimbing());<a name="line.161"></a>
+<span class="sourceLineNo">162</span>        SmartDashboard.putData("StopShootHigh", new StopShootHigh());<a name="line.162"></a>
+<span class="sourceLineNo">163</span>        SmartDashboard.putData("StopShootLow", new StopShootLow());<a name="line.163"></a>
+<span class="sourceLineNo">164</span>        SmartDashboard.putData("ShootLowCommandGroup", new ShootLowCommandGroup());<a name="line.164"></a>
+<span class="sourceLineNo">165</span>        SmartDashboard.putData("ControlLEDs", new ControlLEDs());<a name="line.165"></a>
+<span class="sourceLineNo">166</span>        SmartDashboard.putData("TurnCamera", new TurnCamera());<a name="line.166"></a>
+<span class="sourceLineNo">167</span>        SmartDashboard.putData("TurnCameraIterative", new TurnCameraIterative());<a name="line.167"></a>
+<span class="sourceLineNo">168</span>        SmartDashboard.putData("ArmLowPickup", new ArmLowPickup());<a name="line.168"></a>
+<span class="sourceLineNo">169</span>        SmartDashboard.putData("SetArmZero", new SetArmZero());<a name="line.169"></a>
+<span class="sourceLineNo">170</span>        SmartDashboard.putData("FullSpeedShootLow", new FullSpeedShootLow());<a name="line.170"></a>
+<span class="sourceLineNo">171</span>        SmartDashboard.putData("PickupOnCommandGroup", new PickupOnCommandGroup());<a name="line.171"></a>
+<span class="sourceLineNo">172</span>        SmartDashboard.putData("PickupOffCommandGroup", new PickupOffCommandGroup());<a name="line.172"></a>
+<span class="sourceLineNo">173</span>        SmartDashboard.putData("ArmVariableShooting", new ArmVariableShooting());<a name="line.173"></a>
+<span class="sourceLineNo">174</span>        SmartDashboard.putData("LiftRobot", new LiftRobot());<a name="line.174"></a>
+<span class="sourceLineNo">175</span>        SmartDashboard.putData("PickupToggle", new PickupToggle());<a name="line.175"></a>
+<span class="sourceLineNo">176</span>        SmartDashboard.putData("BlockerToggle", new BlockerToggle());<a name="line.176"></a>
+<span class="sourceLineNo">177</span>    // END AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=CONSTRUCTORS<a name="line.177"></a>
+<span class="sourceLineNo">178</span>    }<a name="line.178"></a>
+<span class="sourceLineNo">179</span>    <a name="line.179"></a>
+<span class="sourceLineNo">180</span>    // BEGIN AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=FUNCTIONS<a name="line.180"></a>
+<span class="sourceLineNo">181</span>    public Joystick getLeftJoystick() {<a name="line.181"></a>
+<span class="sourceLineNo">182</span>        return leftJoystick;<a name="line.182"></a>
 <span class="sourceLineNo">183</span>    }<a name="line.183"></a>
-<span class="sourceLineNo">184</span>    public Joystick getOperatorJoystick() {<a name="line.184"></a>
-<span class="sourceLineNo">185</span>        return operatorJoystick;<a name="line.185"></a>
+<span class="sourceLineNo">184</span>    public Joystick getRightJoystick() {<a name="line.184"></a>
+<span class="sourceLineNo">185</span>        return rightJoystick;<a name="line.185"></a>
 <span class="sourceLineNo">186</span>    }<a name="line.186"></a>
-<span class="sourceLineNo">187</span>    // END AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=FUNCTIONS<a name="line.187"></a>
-<span class="sourceLineNo">188</span>}<a name="line.188"></a>
+<span class="sourceLineNo">187</span>    public Joystick getOperatorJoystick() {<a name="line.187"></a>
+<span class="sourceLineNo">188</span>        return operatorJoystick;<a name="line.188"></a>
+<span class="sourceLineNo">189</span>    }<a name="line.189"></a>
+<span class="sourceLineNo">190</span>    // END AUTOGENERATED CODE, SOURCE=ROBOTBUILDER ID=FUNCTIONS<a name="line.190"></a>
+<span class="sourceLineNo">191</span>}<a name="line.191"></a>
 
 
 
