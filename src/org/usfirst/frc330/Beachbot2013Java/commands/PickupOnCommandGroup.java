@@ -12,7 +12,10 @@
 package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 /*
- * $Log$
+ * $Log: PickupOnCommandGroup.java,v $
+ * Revision 1.1  2013-03-17 17:15:01  jross
+ * create command group for safely picking up frisbees
+ *
  */
 /**
  *
@@ -38,6 +41,6 @@ public class PickupOnCommandGroup extends CommandGroup {
         // arm.
         addSequential(new StopShootLow());
         addSequential(new ArmLowPickup());
-        addSequential(new PickupFrisbeesOn());
+        addSequential(new PickupFrisbeesOnBatteryCompensated());
     }
 }
