@@ -17,6 +17,9 @@ import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Arm.java,v $
+ * Revision 1.33  2013-03-24 17:55:51  jross
+ * create method for putting the arm past the climbing position
+ *
  * Revision 1.32  2013-03-20 07:16:33  dstation
  * Add Blocker
  *
@@ -180,6 +183,11 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     public void armSetPointLowShooting() {
 //        armSetPoint(Robot.vision.armLookupTable(Robot.vision.getDistance()));
         armSetPoint(getArmLowShooting());
+    }
+    
+    public void armSetPointLowVision()
+    {
+        armSetPoint(Robot.vision.armLookupTable(Robot.vision.getDistance()));
     }
     
     public void armSetPointLowPickup() {
