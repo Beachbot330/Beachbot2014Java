@@ -21,6 +21,9 @@ import java.io.InputStreamReader;
 import javax.microedition.io.Connector;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.16  2013-03-17 01:58:46  jross
+ * add printout of vision table
+ *
  * Revision 1.15  2013-03-17 01:57:22  jdavid
  * Added pickup sensor
  *
@@ -101,11 +104,11 @@ public class Vision extends Subsystem {
         lowLEDstate = true;
     }
     
-    public void turnOffLowShooterLED()
-    {
-        lowShooterLED.set(false);
-        lowLEDstate = false;
-    }
+//    public void turnOffLowShooterLED()
+//    {
+//        lowShooterLED.set(false);
+//        lowLEDstate = false;
+//    }
     
     public boolean getLEDEnable()
     {
@@ -149,16 +152,17 @@ public class Vision extends Subsystem {
     
     public double armLookupTable(double x)
     {
+        System.out.println("Distance: " + x);
         if (x != -1)
         {
             for (int i = 0; aP[0][i] < x; i++)
-        {
-            leftx = aP[0][i];
-            rightx = aP[0][i+1];
-            
-            lefty = aP[1][i];
-            righty = aP[1][i+1];
-        }
+            {
+                leftx = aP[0][i];
+                rightx = aP[0][i+1];
+
+                lefty = aP[1][i];
+                righty = aP[1][i+1];
+            }
             System.out.println("X " + x + " lX " + leftx + " rX " + rightx + " lY " + lefty + " rY " + righty);
             dx = rightx - leftx;
             dy = righty - lefty; 
