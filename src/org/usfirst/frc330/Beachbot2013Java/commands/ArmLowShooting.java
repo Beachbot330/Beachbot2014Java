@@ -15,6 +15,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmLowShooting.java,v $
+ * Revision 1.20  2013-03-24 17:52:26  jross
+ * Set flags on dashboard to turn down brightness on camera
+ *
  * Revision 1.19  2013-03-16 21:17:47  jross
  * add javadocs
  *
@@ -47,7 +50,8 @@ public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
         Robot.frisbeePickup.setFrisbeePickupDown(); 
         timer = Robot.frisbeePickup.getPickupDownTime() + Robot.arm.armWaitShooting();
         Robot.arm.disable();
-        Robot.arm.armSetPointLowShooting();
+        //Robot.arm.armSetPointLowShooting();
+        Robot.arm.armSetPointLowVision();
         SmartDashboard.putBoolean("BrightCamera", false);
     }
     // Called repeatedly when this Command is scheduled to run
