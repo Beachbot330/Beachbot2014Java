@@ -15,6 +15,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmLowShooting.java,v $
+ * Revision 1.21  2013-03-25 05:05:38  jross
+ * add method to use vision table
+ *
  * Revision 1.20  2013-03-24 17:52:26  jross
  * Set flags on dashboard to turn down brightness on camera
  *
@@ -59,6 +62,11 @@ public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
         if (Robot.frisbeePickup.isPickupDown() && Timer.getFPGATimestamp() > timer) {
             if (!Robot.arm.isEnable())
                 Robot.arm.enable();
+            //TODO figure out why this isn't changing the arm. I think it's because the command is finishing too early.
+            if (Robot.oi.shootLowButton.get() == true)
+            {
+                Robot.arm.armSetPointLowVision();
+            }
         }
     }
     // Make this return true when this Command no longer needs to run execute()
