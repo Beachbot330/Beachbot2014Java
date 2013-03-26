@@ -715,7 +715,7 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '1'
+          value: '2'
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
           name: Joystick, validators: null, value: LeftJoystick}
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
@@ -744,6 +744,30 @@ Children:
           type: Command
           validators: *id032
           value: ShiftLow
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id033
+          default: '1'
+          name: Button
+          validators: null
+          value: '2'
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: RightJoystick}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id034
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whenPressed
+    - Name: ShootButton
+      Base: Joystick Button
+      Children: []
+      Properties:
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id032
+          value: LaunchFrisbee
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id033
           default: '1'
@@ -808,30 +832,6 @@ Children:
           name: Button
           validators: null
           value: '8'
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: OperatorJoystick}
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id034
-          default: whileHeld
-          name: When to Run
-          validators: null
-          value: whenPressed
-    - Name: ShootButton
-      Base: Joystick Button
-      Children: []
-      Properties:
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id032
-          value: LaunchFrisbee
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id033
-          default: '1'
-          name: Button
-          validators: null
-          value: '1'
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
           name: Joystick, validators: null, value: OperatorJoystick}
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
@@ -1382,6 +1382,6 @@ Properties:
     validators: null, value: 330}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
-  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Driver\NetBeansProjects',
+  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\joe\NetBeansProjects',
     extension: null, folder: true, name: Java Project Directory, validators: null,
-    value: 'C:\bb\2013\Programming'}
+    value: 'C:\Users\joe\Documents\beachbot\2013\Programming'}
