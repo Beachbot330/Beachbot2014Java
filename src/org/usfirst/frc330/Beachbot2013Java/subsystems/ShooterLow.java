@@ -16,6 +16,9 @@ import org.usfirst.frc330.Beachbot2013Java.RobotMap;
 import org.usfirst.frc330.Beachbot2013Java.commands.*;
 /*
  * $Log: ShooterLow.java,v $
+ * Revision 1.13  2013-03-21 04:42:45  jross
+ * save setpoint preferences and implement PIDSource and PIDwrite
+ *
  * Revision 1.12  2013-03-18 06:46:35  jross
  * fix preference of solenoidofftime
  *
@@ -95,7 +98,6 @@ public class ShooterLow extends Subsystem implements PIDSource, PIDOutput {
     
     public double getShootLowBangBangMinOutput()
     {
-
         if (!Preferences.getInstance().containsKey("shootLowBangBangMinOutput"))
         {
             Preferences.getInstance().putDouble("shootLowBangBangMinOutput", 0.8);
@@ -111,11 +113,9 @@ public class ShooterLow extends Subsystem implements PIDSource, PIDOutput {
         else
             Robot.shooterLow.shoot(0);
     }
-
     public double pidGet() {
         return getSpeed();
     }
-
     public void pidWrite(double output) {
         shoot(output);
     }
