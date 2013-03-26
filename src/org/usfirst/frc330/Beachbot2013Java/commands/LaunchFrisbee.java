@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: LaunchFrisbee.java,v $
+ * Revision 1.15  2013-03-24 18:12:05  jross
+ * if shooter wheel isn't up to speed, wait 1.5 seconds then launch it anyway
+ *
  * Revision 1.14  2013-03-21 02:08:29  echan
  * removed the todo
  *
@@ -67,7 +70,6 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
     protected void initialize() {
         state = waitingForSpeed;
         timeSinceStart = Timer.getFPGATimestamp();
-
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
@@ -108,6 +110,7 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+        //TODO exit immediately if shooter speed is 0. This keeps a shot from being queued up if the button is accidentally pressed.
         if (state == finish || isTimedOut()) 
         {
             return true;
