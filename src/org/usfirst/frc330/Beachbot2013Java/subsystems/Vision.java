@@ -21,6 +21,9 @@ import java.io.InputStreamReader;
 import javax.microedition.io.Connector;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.17  2013-03-25 05:13:10  jross
+ * add debug statement
+ *
  * Revision 1.16  2013-03-17 01:58:46  jross
  * add printout of vision table
  *
@@ -159,15 +162,25 @@ public class Vision extends Subsystem {
             {
                 leftx = aP[0][i];
                 rightx = aP[0][i+1];
-
                 lefty = aP[1][i];
                 righty = aP[1][i+1];
             }
             System.out.println("X " + x + " lX " + leftx + " rX " + rightx + " lY " + lefty + " rY " + righty);
+            if (x<leftx)
+            {
+                System.out.println("Angle: " + lefty);
+                return lefty;
+            }
+            if (x>rightx)
+            {
+                System.out.println("Angle: " + righty);
+                return righty;
+            }
             dx = rightx - leftx;
             dy = righty - lefty; 
             m = dy/dx;
             y = m*(x-leftx) + lefty;
+            System.out.println("Angle: " + y);
             return y;
         }
         
@@ -212,7 +225,7 @@ public class Vision extends Subsystem {
             }
             while (lineCount < 9)
             {
-                aP[0][lineCount] = 55;
+                aP[0][lineCount] = 0;
                 aP[1][lineCount] = 0;
                 lineCount++;
             }
