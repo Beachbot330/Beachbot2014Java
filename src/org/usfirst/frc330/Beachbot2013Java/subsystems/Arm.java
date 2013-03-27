@@ -17,6 +17,9 @@ import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Arm.java,v $
+ * Revision 1.34  2013-03-25 05:12:56  jross
+ * add method to use vision table
+ *
  * Revision 1.33  2013-03-24 17:55:51  jross
  * create method for putting the arm past the climbing position
  *
@@ -156,14 +159,18 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     
     public void manualArm() {
         double armCommand = Robot.oi.operatorJoystick.getY();
-        if (Math.abs(armCommand) > 0.05 && armPID.isEnable())
+        if (Math.abs(armCommand) > 0.10 && armPID.isEnable())
         {
             armPID.disable();
             set(armCommand);
         }
-        else if (!armPID.isEnable())
+        else if (!armPID.isEnable() && Math.abs(armCommand) > 0.10)
         {
             set(armCommand);
+        }
+        else if (!armPID.isEnable())
+        {
+            set(0);
         }
     }
     
