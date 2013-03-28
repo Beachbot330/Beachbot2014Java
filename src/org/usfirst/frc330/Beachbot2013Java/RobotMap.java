@@ -27,6 +27,9 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 /*
  * $Log: RobotMap.java,v $
+ * Revision 1.22  2013-03-20 07:16:33  dstation
+ * Add Blocker
+ *
  * Revision 1.21  2013-03-20 05:05:29  dstation
  * added arm climber solenoid
  *
@@ -65,8 +68,7 @@ public class RobotMap {
     public static SpeedController frisbeePickupFrisbeePickupController;
     public static DoubleSolenoid frisbeePickupPickupSolenoid;
     public static DigitalInput frisbeePickupPickupDiscSensor;
-    public static SpeedController shooterHighShooterHighController;
-    public static DigitalInput shooterHighShooterHighHallEffectSensor;
+    public static SpeedController frisbeePickupTransferController;
     public static DoubleSolenoid shooterLowShooterLoadSolenoid;
     public static SpeedController shooterLowShooterLowController;
     public static DigitalInput shooterLowShooterLowHallEffectSensor;
@@ -132,11 +134,8 @@ public class RobotMap {
         frisbeePickupPickupDiscSensor = new DigitalInput(1, 2);
 	LiveWindow.addSensor("FrisbeePickup", "PickupDiscSensor", frisbeePickupPickupDiscSensor);
         
-        shooterHighShooterHighController = new Jaguar(1, 5);
-	LiveWindow.addActuator("Shooter High", "ShooterHighController", (Jaguar) shooterHighShooterHighController);
-        
-        shooterHighShooterHighHallEffectSensor = new DigitalInput(1, 1);
-	LiveWindow.addSensor("Shooter High", "ShooterHighHallEffectSensor", shooterHighShooterHighHallEffectSensor);
+        frisbeePickupTransferController = new Jaguar(1, 5);
+	LiveWindow.addActuator("FrisbeePickup", "TransferController", (Jaguar) frisbeePickupTransferController);
         
         shooterLowShooterLoadSolenoid = new DoubleSolenoid(1, 5, 6);      
 	
@@ -179,13 +178,6 @@ public class RobotMap {
         LiveWindow.addActuator("Chassis", "ShiftSolenoid", chassisShiftSolenoid);
         LiveWindow.addActuator("FrisbeePickup", "PickupSolenoid", frisbeePickupPickupSolenoid);
         LiveWindow.addActuator("ShooterLow", "LoadSolenoid", shooterLowShooterLoadSolenoid);
-        
-        shooterHighShooterHighHallEffectCounter = new Counter();
-        shooterHighShooterHighHallEffectCounter.setUpSource(shooterHighShooterHighHallEffectSensor);
-        shooterHighShooterHighHallEffectCounter.setUpSourceEdge(false, true);
-        shooterHighShooterHighHallEffectCounter.setMaxPeriod(0.15);
-        shooterHighShooterHighHallEffectCounter.start();
-        LiveWindow.addSensor("Shooter High", "HallEffectCounter", shooterHighShooterHighHallEffectCounter);
         
         shooterLowShooterLowHallEffectCounter = new Counter();
         shooterLowShooterLowHallEffectCounter.setUpSource(shooterLowShooterLowHallEffectSensor);
