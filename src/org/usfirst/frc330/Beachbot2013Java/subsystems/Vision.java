@@ -21,6 +21,9 @@ import java.io.InputStreamReader;
 import javax.microedition.io.Connector;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.18  2013-03-26 05:41:56  jross
+ * return safe values if distance is outside of range
+ *
  * Revision 1.17  2013-03-25 05:13:10  jross
  * add debug statement
  *
@@ -158,7 +161,17 @@ public class Vision extends Subsystem {
         System.out.println("Distance: " + x);
         if (x != -1)
         {
-            for (int i = 0; aP[0][i] < x; i++)
+            if (x<minDistance)
+            {
+                System.out.println("Angle: " + minAngle);
+                return minAngle;
+            }
+            if (x>maxDistance)
+            {
+                System.out.println("Angle: " + maxAngle);
+                return maxAngle;
+            }
+            for (int i = 0; (aP[0][i] < x) || (x<9); i++)
             {
                 leftx = aP[0][i];
                 rightx = aP[0][i+1];
@@ -166,16 +179,7 @@ public class Vision extends Subsystem {
                 righty = aP[1][i+1];
             }
             System.out.println("X " + x + " lX " + leftx + " rX " + rightx + " lY " + lefty + " rY " + righty);
-            if (x<leftx)
-            {
-                System.out.println("Angle: " + lefty);
-                return lefty;
-            }
-            if (x>rightx)
-            {
-                System.out.println("Angle: " + righty);
-                return righty;
-            }
+
             dx = rightx - leftx;
             dy = righty - lefty; 
             m = dy/dx;
@@ -192,7 +196,13 @@ public class Vision extends Subsystem {
     
     public double getDistance()
     {
-        return SmartDashboard.getNumber("distanceToCenter",-1);
+        double age;
+        
+        age = SmartDashboard.getNumber("centerAge", 999999);
+        if (age < 1 && age >= 0 )
+            return SmartDashboard.getNumber("distanceToCenter",-1);
+        else
+            return -1;
     }
     
     public double getAngle()
@@ -200,6 +210,8 @@ public class Vision extends Subsystem {
         return SmartDashboard.getNumber("angleToCenter",0);
     }
     
+    double minDistance, minAngle;
+    double maxDistance, maxAngle;
     public void readVisionFile()
     {
         try {
@@ -209,7 +221,7 @@ public class Vision extends Subsystem {
             String line;
             int comma;
             int lineCount=0;
-            double x1, y1;
+            double x1=0, y1=0;
             
             while ((line = reader.readLine()) != null && lineCount < 9)
             {
@@ -220,9 +232,15 @@ public class Vision extends Subsystem {
                 
                 aP[0][lineCount] = x1;
                 aP[1][lineCount] = y1;
-                
+                if (lineCount == 0)
+                {    
+                    minDistance = x1;
+                    minAngle = y1;
+                }    
                 lineCount++;
             }
+            maxDistance = x1;
+            maxAngle = y1;
             while (lineCount < 9)
             {
                 aP[0][lineCount] = 0;
