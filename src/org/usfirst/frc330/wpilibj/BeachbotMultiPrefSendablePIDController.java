@@ -11,6 +11,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 /*
  * $Log: BeachbotMultiPrefSendablePIDController.java,v $
+ * Revision 1.3  2013-03-21 07:07:50  jross
+ * add feedforward term to PID controllers
+ *
  * Revision 1.2  2013-03-15 02:51:46  echan
  * added cvs log comments
  *
@@ -70,8 +73,8 @@ import java.util.TimerTask;
                 table.putNumber("error", super.getError());
                 table.putNumber("output", super.get());
                 table.putBoolean("onTarget", false);
-                timer = new Timer();
-                timer.schedule(new org.usfirst.frc330.wpilibj.BeachbotMultiPrefSendablePIDController.SendDataTask(), 0, 250);
+//                timer = new Timer();
+//                timer.schedule(new org.usfirst.frc330.wpilibj.BeachbotMultiPrefSendablePIDController.SendDataTask(), 0, 250);
             }
         }
         
