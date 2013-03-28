@@ -21,6 +21,9 @@ import java.io.InputStreamReader;
 import javax.microedition.io.Connector;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.19  2013-03-28 03:00:36  jross
+ * fix several crash bugs
+ *
  * Revision 1.18  2013-03-26 05:41:56  jross
  * return safe values if distance is outside of range
  *
@@ -179,7 +182,6 @@ public class Vision extends Subsystem {
                 righty = aP[1][i+1];
             }
             System.out.println("X " + x + " lX " + leftx + " rX " + rightx + " lY " + lefty + " rY " + righty);
-
             dx = rightx - leftx;
             dy = righty - lefty; 
             m = dy/dx;
