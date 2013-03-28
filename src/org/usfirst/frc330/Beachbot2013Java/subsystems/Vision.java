@@ -21,6 +21,9 @@ import java.io.InputStreamReader;
 import javax.microedition.io.Connector;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.20  2013-03-28 03:50:51  jross
+ * remove shoot high and make shoot high controller transfer controllerwhitespace change from robotbuilder
+ *
  * Revision 1.19  2013-03-28 03:00:36  jross
  * fix several crash bugs
  *
@@ -164,6 +167,11 @@ public class Vision extends Subsystem {
         System.out.println("Distance: " + x);
         if (x != -1)
         {
+            if (Double.isNaN(x) || Double.isInfinite(x))
+            {
+                System.out.println("Angle: " + minAngle);
+                return minAngle;                
+            }
             if (x<minDistance)
             {
                 System.out.println("Angle: " + minAngle);
