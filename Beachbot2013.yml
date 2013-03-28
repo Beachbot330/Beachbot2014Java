@@ -380,13 +380,7 @@ Children:
           name: Input Module (Digital)
           validators: &id027 [DigitalChannel]
           value: '1'
-    Properties:
-      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
-  - Name: Shooter High
-    Base: Subsystem
-    Children:
-    - Name: ShooterHighController
+    - Name: TransferController
       Base: Speed Controller
       Children: []
       Properties:
@@ -408,22 +402,6 @@ Children:
           name: Output Channel (PWM)
           validators: *id005
           value: '5'
-    - Name: ShooterHighHallEffectSensor
-      Base: Digital Input
-      Children: []
-      Properties:
-        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id024
-          default: '1'
-          name: Input Channel (Digital)
-          validators: *id025
-          value: '1'
-        Input Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id026
-          default: '1'
-          name: Input Module (Digital)
-          validators: *id027
-          value: '1'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: None}
@@ -1168,7 +1146,7 @@ Children:
     Children: []
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: Shooter High}
+        name: Requires, type: Subsystem, validators: null, value: None}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
   - Name: ShootLow
@@ -1248,7 +1226,7 @@ Children:
     Children: []
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: Shooter High}
+        name: Requires, type: Subsystem, validators: null, value: None}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
   - Name: StopShootLow
