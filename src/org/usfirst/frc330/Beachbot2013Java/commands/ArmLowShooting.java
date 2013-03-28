@@ -15,6 +15,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmLowShooting.java,v $
+ * Revision 1.22  2013-03-26 05:42:32  jross
+ * try to adjust arm angle if button 2 is pressed again
+ *
  * Revision 1.21  2013-03-25 05:05:38  jross
  * add method to use vision table
  *
@@ -71,7 +74,7 @@ public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.arm.onTarget();
+        return false;
     }
     // Called once after isFinished returns true
     protected void end() {
