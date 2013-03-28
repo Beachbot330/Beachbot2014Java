@@ -12,7 +12,10 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log: PickupFrisbeesOn.java,v $
+ * $Log: PickupFrisbeesOnBatteryCompensated.java,v $
+ * Revision 1.1  2013-03-24 18:08:13  jross
+ * Create new command for adjusting pickup speed based on linear scaling of battery voltage
+ *
  * Revision 1.8  2013-03-15 02:58:07  echan
  * robotbuilder update
  *
@@ -34,6 +37,7 @@ public class  PickupFrisbeesOnBatteryCompensated extends Command implements Auto
     }
     // Called just before this Command runs the first time
     protected void initialize() {
+        Robot.frisbeePickup.setFrisbeeTransferOutput();
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
