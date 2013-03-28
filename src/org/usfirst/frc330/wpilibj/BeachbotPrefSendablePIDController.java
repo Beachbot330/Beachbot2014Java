@@ -12,6 +12,9 @@ import java.util.TimerTask;
 
 /*
  * $Log: BeachbotPrefSendablePIDController.java,v $
+ * Revision 1.3  2013-03-21 07:07:50  jross
+ * add feedforward term to PID controllers
+ *
  * Revision 1.2  2013-02-25 02:08:54  jross
  * Change to use MultiPrefSendablePIDController
  *
@@ -98,8 +101,8 @@ public class BeachbotPrefSendablePIDController extends PrefSendablePIDController
                 table.putNumber("error", super.getError());
                 table.putNumber("output", super.get());
                 table.putBoolean("onTarget", false);
-                timer = new Timer();
-                timer.schedule(new SendDataTask(), 0, 250);
+//                timer = new Timer();
+//                timer.schedule(new SendDataTask(), 0, 250);
             }
         }
         
