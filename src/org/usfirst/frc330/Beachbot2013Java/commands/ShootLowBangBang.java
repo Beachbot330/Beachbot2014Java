@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ShootLowBangBang.java,v $
+ * Revision 1.3  2013-03-24 18:06:58  jross
+ * put speed to zero when shooter command is ended
+ *
  * Revision 1.2  2013-03-21 04:43:49  jross
  * change setpoint and min speed to preferences
  *
@@ -49,6 +52,7 @@ public class  ShootLowBangBang extends Command implements AutoSpreadsheetCommand
     double rpm;
     // Called just before this Command runs the first time
     protected void initialize() {
+        System.out.println("ShootLowBangBang Initialize");
         counter=0;
     }
     double counter;
@@ -69,11 +73,13 @@ public class  ShootLowBangBang extends Command implements AutoSpreadsheetCommand
     }
     // Called once after isFinished returns true
     protected void end() {
+        System.out.println("ShootLowBangBang End");
         SmartDashboard.putNumber("ShooterLowSpeed",0);
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        System.out.println("ShootLowBangBang Interrupted");
         end();
     }
     public void setParam1(double param1) {
