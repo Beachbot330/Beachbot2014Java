@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: PickupFrisbeesOn.java,v $
+ * Revision 1.8  2013-03-15 02:58:07  echan
+ * robotbuilder update
+ *
  * Revision 1.7  2013-03-15 02:51:09  echan
  * added cvs log comments
  *
@@ -35,6 +38,7 @@ public class  PickupFrisbeesOn extends Command implements AutoSpreadsheetCommand
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         Robot.frisbeePickup.setFrisbeePickupMotorPickup();
+        Robot.frisbeePickup.setFrisbeeTransferOutput();
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
