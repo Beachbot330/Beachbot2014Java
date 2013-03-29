@@ -11,10 +11,14 @@ package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmLowShooting.java,v $
+ * Revision 1.23  2013-03-28 02:59:40  jross
+ * don't finish so that the arm can change angles when 2 is pressed
+ *
  * Revision 1.22  2013-03-26 05:42:32  jross
  * try to adjust arm angle if button 2 is pressed again
  *
@@ -65,10 +69,9 @@ public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
         if (Robot.frisbeePickup.isPickupDown() && Timer.getFPGATimestamp() > timer) {
             if (!Robot.arm.isEnable())
                 Robot.arm.enable();
-            //TODO figure out why this isn't changing the arm. I think it's because the command is finishing too early.
-            if (Robot.oi.shootLowButton.get() == true)
+//            if (Robot.oi.shootLowButton.get() == true)
             {
-                Robot.arm.armSetPointLowVision();
+                Robot.arm.armSetPointLowCheckVision();
             }
         }
     }
