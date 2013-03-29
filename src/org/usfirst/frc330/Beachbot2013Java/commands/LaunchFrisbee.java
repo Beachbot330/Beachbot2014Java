@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: LaunchFrisbee.java,v $
+ * Revision 1.16  2013-03-26 05:40:09  jross
+ * add action item
+ *
  * Revision 1.15  2013-03-24 18:12:05  jross
  * if shooter wheel isn't up to speed, wait 1.5 seconds then launch it anyway
  *
@@ -70,6 +73,10 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
     protected void initialize() {
         state = waitingForSpeed;
         timeSinceStart = Timer.getFPGATimestamp();
+        if (Robot.shooterLow.getSpeed() == 0)
+        {
+            state = finish;
+        }
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
@@ -103,14 +110,20 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
                 Robot.shooterLow.armLoadShooterOff();
                 if (Timer.getFPGATimestamp() > endTime)
                 {
-                    state = finish;
+                    if (Robot.oi.shootButton.get() == true)
+                    {
+                        initialize();
+                    }
+                    else
+                    {
+                        state = finish;
+                    }
                 }
                 break;
         }
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        //TODO exit immediately if shooter speed is 0. This keeps a shot from being queued up if the button is accidentally pressed.
         if (state == finish || isTimedOut()) 
         {
             return true;
@@ -120,7 +133,8 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
     // Called once after isFinished returns true
     protected void end() {
 //        Robot.shooterLow.armLoadShooterOff();
-        Robot.frisbeePickup.decrementFrisbees();
+        if (Robot.shooterLow.getSpeed() > 0)
+            Robot.frisbeePickup.decrementFrisbees();
         System.out.println("Launch Frisbee Finished");
     }
     // Called when another command which requires one or more of the same
