@@ -19,8 +19,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import javax.microedition.io.Connector;
+import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.21  2013-03-28 04:41:54  jross
+ * check for NaN
+ *
  * Revision 1.20  2013-03-28 03:50:51  jross
  * remove shoot high and make shoot high controller transfer controllerwhitespace change from robotbuilder
  *
@@ -165,42 +169,50 @@ public class Vision extends Subsystem {
     public double armLookupTable(double x)
     {
         System.out.println("Distance: " + x);
-        if (x != -1)
+        try
         {
-            if (Double.isNaN(x) || Double.isInfinite(x))
+            if (x != -1)
             {
-                System.out.println("Angle: " + minAngle);
-                return minAngle;                
+                if (Double.isNaN(x) || Double.isInfinite(x))
+                {
+                    System.out.println("Angle: " + minAngle);
+                    return Robot.arm.getArmLowShooting();                
+                }
+                if (x<minDistance)
+                {
+                    System.out.println("Angle: " + minAngle);
+                    return minAngle;
+                }
+                if (x>maxDistance)
+                {
+                    System.out.println("Angle: " + maxAngle);
+                    return maxAngle;
+                }
+                for (int i = 0; (aP[0][i] < x) || (x<9); i++)
+                {
+                    leftx = aP[0][i];
+                    rightx = aP[0][i+1];
+                    lefty = aP[1][i];
+                    righty = aP[1][i+1];
+                }
+                System.out.println("X " + x + " lX " + leftx + " rX " + rightx + " lY " + lefty + " rY " + righty);
+                dx = rightx - leftx;
+                dy = righty - lefty; 
+                m = dy/dx;
+                y = m*(x-leftx) + lefty;
+                System.out.println("Angle: " + y);
+                return y;
             }
-            if (x<minDistance)
+
+            else
             {
-                System.out.println("Angle: " + minAngle);
-                return minAngle;
+                return Robot.arm.getArmLowShooting();
             }
-            if (x>maxDistance)
-            {
-                System.out.println("Angle: " + maxAngle);
-                return maxAngle;
-            }
-            for (int i = 0; (aP[0][i] < x) || (x<9); i++)
-            {
-                leftx = aP[0][i];
-                rightx = aP[0][i+1];
-                lefty = aP[1][i];
-                righty = aP[1][i+1];
-            }
-            System.out.println("X " + x + " lX " + leftx + " rX " + rightx + " lY " + lefty + " rY " + righty);
-            dx = rightx - leftx;
-            dy = righty - lefty; 
-            m = dy/dx;
-            y = m*(x-leftx) + lefty;
-            System.out.println("Angle: " + y);
-            return y;
         }
-        
-        else
+        catch (RuntimeException ex)
         {
-            return aP[1][0];
+            ex.printStackTrace();
+            return minAngle;
         }
     }
     
@@ -221,6 +233,22 @@ public class Vision extends Subsystem {
     }
     
     double minDistance, minAngle;
+
+    public double getMinDistance() {
+        return minDistance;
+    }
+
+    public double getMinAngle() {
+        return minAngle;
+    }
+
+    public double getMaxDistance() {
+        return maxDistance;
+    }
+
+    public double getMaxAngle() {
+        return maxAngle;
+    }
     double maxDistance, maxAngle;
     public void readVisionFile()
     {
