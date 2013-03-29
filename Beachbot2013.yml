@@ -615,7 +615,7 @@ Children:
           value: '2'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: ManualArm}
+        name: Default Command, type: Command, validators: null, value: None}
   - Name: LCD
     Base: Subsystem
     Children:
@@ -938,30 +938,6 @@ Children:
           name: When to Run
           validators: null
           value: whenPressed
-    - Name: SlowFrisbeePickupButton
-      Base: Joystick Button
-      Children: []
-      Properties:
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id032
-          value: SlowPickupFrisbees
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id033
-          default: '1'
-          name: Button
-          validators: null
-          value: '3'
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: OperatorJoystick}
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id034
-          default: whileHeld
-          name: When to Run
-          validators: null
-          value: whenPressed
     - Name: ReversePickupButton
       Base: Joystick Button
       Children: []
@@ -1010,6 +986,30 @@ Children:
           name: When to Run
           validators: null
           value: whenPressed
+    - Name: ManualArmButton
+      Base: Joystick Button
+      Children: []
+      Properties:
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id032
+          value: ManualArm
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id033
+          default: '1'
+          name: Button
+          validators: null
+          value: '3'
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: OperatorJoystick}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id034
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whileHeld
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: *id035
