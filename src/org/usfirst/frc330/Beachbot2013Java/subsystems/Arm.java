@@ -17,6 +17,9 @@ import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Arm.java,v $
+ * Revision 1.35  2013-03-27 04:15:38  jross
+ * make a bigger deadband for the arm
+ *
  * Revision 1.34  2013-03-25 05:12:56  jross
  * add method to use vision table
  *
@@ -195,6 +198,19 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     public void armSetPointLowVision()
     {
         armSetPoint(Robot.vision.armLookupTable(Robot.vision.getDistance()));
+    }
+    double prevDistance;
+    public void armSetPointLowCheckVision()
+    {
+        double distance;
+        
+        distance = Robot.vision.getDistance();
+        
+        if (distance > Robot.vision.getMinDistance() && distance < Robot.vision.getMaxDistance() && distance != prevDistance)
+        {
+            armSetPoint(Robot.vision.armLookupTable(distance));
+        }
+        prevDistance = distance;
     }
     
     public void armSetPointLowPickup() {
