@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ManualArm.java,v $
+ * Revision 1.7  2013-03-15 02:58:19  echan
+ * robotbuilder update
+ *
  * Revision 1.6  2013-03-15 02:50:55  echan
  * added cvs log comments
  *
@@ -43,9 +46,11 @@ public class  ManualArm extends Command {
     }
     // Called once after isFinished returns true
     protected void end() {
+        Robot.arm.set(0);
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        end();
     }
 }
