@@ -22,6 +22,9 @@ import javax.microedition.io.Connector;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.22  2013-03-29 03:52:47  jross
+ * return ArmLowShooting preference if invalid camera data
+ *
  * Revision 1.21  2013-03-28 04:41:54  jross
  * check for NaN
  *
@@ -203,7 +206,6 @@ public class Vision extends Subsystem {
                 System.out.println("Angle: " + y);
                 return y;
             }
-
             else
             {
                 return Robot.arm.getArmLowShooting();
@@ -233,19 +235,15 @@ public class Vision extends Subsystem {
     }
     
     double minDistance, minAngle;
-
     public double getMinDistance() {
         return minDistance;
     }
-
     public double getMinAngle() {
         return minAngle;
     }
-
     public double getMaxDistance() {
         return maxDistance;
     }
-
     public double getMaxAngle() {
         return maxAngle;
     }
