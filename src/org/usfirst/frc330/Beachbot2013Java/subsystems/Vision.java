@@ -22,6 +22,9 @@ import javax.microedition.io.Connector;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.25  2013-03-30 04:05:20  jross
+ * fix alliance detection
+ *
  * Revision 1.24  2013-03-30 02:32:05  jross
  * make distances for actual, practice, red, and blue camera distances in vision table
  *
@@ -222,7 +225,7 @@ public class Vision extends Subsystem {
                     System.out.println("Angle: " + maxAngle);
                     return maxAngle;
                 }
-                for (int i = 0; (aP[0][i] < x) || (x<9); i++)
+                for (int i = 0; (aP[visionPosition][i] < x) || (x<9); i++)
                 {
                     leftx = aP[visionPosition][i];
                     rightx = aP[visionPosition][i+1];
