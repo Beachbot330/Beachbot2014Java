@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: LaunchFrisbee.java,v $
+ * Revision 1.18  2013-03-30 01:45:58  jross
+ * change speedCounter check to 25 (0.5 seconds), to give time for frisbees to drop
+ *
  * Revision 1.17  2013-03-29 03:55:43  jross
  * keep shooting if trigger is pressed
  *
@@ -80,6 +83,7 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
         {
             state = finish;
         }
+        speedCounter = 0; 
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
