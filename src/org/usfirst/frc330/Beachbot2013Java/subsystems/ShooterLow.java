@@ -16,6 +16,9 @@ import org.usfirst.frc330.Beachbot2013Java.RobotMap;
 import org.usfirst.frc330.Beachbot2013Java.commands.*;
 /*
  * $Log: ShooterLow.java,v $
+ * Revision 1.14  2013-03-26 05:43:01  jross
+ * whitespace change from robotbuilder
+ *
  * Revision 1.13  2013-03-21 04:42:45  jross
  * save setpoint preferences and implement PIDSource and PIDwrite
  *
@@ -104,6 +107,16 @@ public class ShooterLow extends Subsystem implements PIDSource, PIDOutput {
             Preferences.getInstance().save();
         }
         return Preferences.getInstance().getDouble("shootLowBangBangMinOutput", 0.8);
+    }
+    
+    public double getShootLowGiveUpTime()
+    {
+        if (!Preferences.getInstance().containsKey("shootLowGiveUpTime"))
+        {
+            Preferences.getInstance().putDouble("shootLowGiveUpTime", 1.5);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("shootLowSetpoint", 1.5);
     }
     
     public void ShooterLowMotorToggle(double voltage)
