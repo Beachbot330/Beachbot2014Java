@@ -19,6 +19,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import org.usfirst.frc330.Beachbot2013Java.subsystems.*;
 /*
  * $Log: Robot.java,v $
+ * Revision 1.29  2013-03-28 03:49:59  jross
+ * remove shoot high
+ *
  * Revision 1.28  2013-03-24 18:13:39  jross
  * add action item
  *
@@ -188,6 +191,7 @@ public class Robot extends IterativeRobot {
         auto.readScripts();
         SmartDashboard.putBoolean("BrightCamera", false);
         Robot.vision.readVisionFile();
+        Robot.vision.getVisionPosition();
         Robot.arm.disable();
         Robot.chassis.stopDrive();
         Robot.shooterLow.shoot(0);

@@ -8,6 +8,7 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in th future.
 package org.usfirst.frc330.Beachbot2013Java.subsystems;
+import com.sun.squawk.util.MathUtils;
 import org.usfirst.frc330.Beachbot2013Java.RobotMap;
 import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import edu.wpi.first.wpilibj.*;
@@ -17,6 +18,9 @@ import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Arm.java,v $
+ * Revision 1.37  2013-03-29 04:36:50  jross
+ * remove default command. arm moves with button 3
+ *
  * Revision 1.36  2013-03-29 03:55:03  jross
  * create method to check vision and only move arm if vision is within min and max distance
  *
@@ -207,6 +211,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         double distance;
         
         distance = Robot.vision.getDistance();
+        distance = MathUtils.round(distance*10)/10.0;
         
         if (distance > Robot.vision.getMinDistance() && distance < Robot.vision.getMaxDistance() && distance != prevDistance)
         {
