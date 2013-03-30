@@ -22,6 +22,9 @@ import javax.microedition.io.Connector;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.24  2013-03-30 02:32:05  jross
+ * make distances for actual, practice, red, and blue camera distances in vision table
+ *
  * Revision 1.23  2013-03-29 04:37:45  jross
  * whitespace change from robotbuilder
  *
@@ -183,7 +186,7 @@ public class Vision extends Subsystem {
             System.out.println("Red");
             visionPosition = 2;
         }
-        else if (DriverStation.getInstance().isFMSAttached() && DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kRed)
+        else if (DriverStation.getInstance().isFMSAttached() && DriverStation.getInstance().getAlliance() == DriverStation.Alliance.kBlue)
         {
             System.out.println("Blue");
             visionPosition = 3;
@@ -193,6 +196,7 @@ public class Vision extends Subsystem {
             System.out.println("Practice");
             visionPosition = 1;
         }
+        SmartDashboard.putNumber("visionPosition", visionPosition);
     }
     
     public double armLookupTable(double x)
