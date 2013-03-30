@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: LaunchFrisbee.java,v $
+ * Revision 1.19  2013-03-30 04:05:00  jross
+ * set speedCounter to 0 in initialize so it can't phantom shoot
+ *
  * Revision 1.18  2013-03-30 01:45:58  jross
  * change speedCounter check to 25 (0.5 seconds), to give time for frisbees to drop
  *
@@ -79,26 +82,25 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
     protected void initialize() {
         state = waitingForSpeed;
         timeSinceStart = Timer.getFPGATimestamp();
-        if (Robot.shooterLow.getSpeed() == 0)
-        {
-            state = finish;
-        }
         speedCounter = 0; 
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
+        if (Robot.shooterLow.getSpeed() == 0)
+        {
+            state = solenoidOff;
+        }
         switch (state)
         {
             case waitingForSpeed:
-                if (Math.abs(Robot.shooterLow.getSpeed() - Robot.shooterLow.getShootLowSetpoint()) < 50 )
+                if (Math.abs(Robot.shooterLow.getSpeed() - Robot.shooterLow.getShootLowSetpoint()) < 75 )
                 {
                     speedCounter++;
                 }
                 else
                     speedCounter = 0;
                 
-                if ((speedCounter > 25 || Timer.getFPGATimestamp() > timeSinceStart + 1.5) && Robot.arm.onTarget())
+                if ((speedCounter > 10 || Timer.getFPGATimestamp() > timeSinceStart + Robot.shooterLow.getShootLowGiveUpTime()) && Robot.arm.onTarget())
                 {
                     state = solenoidOn;
                     solenoidOffTime = Robot.shooterLow.launchFrisbeeSolenoidOffTime() + Timer.getFPGATimestamp();
