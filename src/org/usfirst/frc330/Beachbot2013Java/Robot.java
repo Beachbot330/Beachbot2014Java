@@ -19,6 +19,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import org.usfirst.frc330.Beachbot2013Java.subsystems.*;
 /*
  * $Log: Robot.java,v $
+ * Revision 1.30  2013-03-30 02:32:05  jross
+ * make distances for actual, practice, red, and blue camera distances in vision table
+ *
  * Revision 1.29  2013-03-28 03:49:59  jross
  * remove shoot high
  *
@@ -125,10 +128,12 @@ public class Robot extends IterativeRobot {
 //        auto.addCommand(new MarsRock());
         auto.addCommand(new PickupDown());
         auto.addCommand(new PickupFrisbeesOff());
+        auto.addCommand(new PickupFrisbeesOn());
         auto.addCommand(new PickupFrisbeesOnBatteryCompensated());
         auto.addCommand(new PickupUp());
         auto.addCommand(new ShootLow());
         auto.addCommand(new ShootLowCommandGroup());
+        auto.addCommand(new ShootLowBangBang());
         auto.addCommand(new TurnCamera());
         auto.addCommand(new DriveWaypointBackward(0,0,0,0,true));
         auto.addCommand(new TurnGyroWaypointBackward());
