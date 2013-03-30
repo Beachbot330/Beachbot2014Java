@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: LaunchFrisbee.java,v $
+ * Revision 1.17  2013-03-29 03:55:43  jross
+ * keep shooting if trigger is pressed
+ *
  * Revision 1.16  2013-03-26 05:40:09  jross
  * add action item
  *
@@ -91,7 +94,7 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
                 else
                     speedCounter = 0;
                 
-                if ((speedCounter > 10 || Timer.getFPGATimestamp() > timeSinceStart + 1.5) && Robot.arm.onTarget())
+                if ((speedCounter > 25 || Timer.getFPGATimestamp() > timeSinceStart + 1.5) && Robot.arm.onTarget())
                 {
                     state = solenoidOn;
                     solenoidOffTime = Robot.shooterLow.launchFrisbeeSolenoidOffTime() + Timer.getFPGATimestamp();
