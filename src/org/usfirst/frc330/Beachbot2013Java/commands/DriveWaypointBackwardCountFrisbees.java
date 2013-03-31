@@ -7,7 +7,10 @@ package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log: DriveWaypointBackward.java,v $
+ * $Log: DriveWaypointBackwardCountFrisbees.java,v $
+ * Revision 1.1  2013-03-24 18:12:41  jross
+ * create command to drive backward until 4 frisbees are counted. Not finished or tested
+ *
  * Revision 1.3  2013-03-15 02:50:55  echan
  * added cvs log comments
  *
@@ -44,6 +47,14 @@ public class DriveWaypointBackwardCountFrisbees extends DriveWaypointBackward {
     public DriveWaypointBackwardCountFrisbees(double x, double y, double tolerance, double timeout, boolean stopAtEnd) {
         super(x, y, tolerance, timeout, stopAtEnd);
     }
+
+    protected void execute() {
+        super.execute();
+        if (Robot.frisbeePickup.getFrisbeeCount() >= 4)
+            Robot.frisbeePickup.setFrisbeePickupMotorReverse();
+    }
+    
+    
 
     protected boolean isFinished() {
         return super.isFinished();
