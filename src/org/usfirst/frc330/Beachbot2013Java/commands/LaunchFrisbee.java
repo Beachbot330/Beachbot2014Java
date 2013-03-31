@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: LaunchFrisbee.java,v $
+ * Revision 1.20  2013-03-30 21:49:50  jross
+ * open up shooter speed and abort shoot when button is let go
+ *
  * Revision 1.19  2013-03-30 04:05:00  jross
  * set speedCounter to 0 in initialize so it can't phantom shoot
  *
@@ -93,7 +96,7 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
         switch (state)
         {
             case waitingForSpeed:
-                if (Math.abs(Robot.shooterLow.getSpeed() - Robot.shooterLow.getShootLowSetpoint()) < 75 )
+                if (Math.abs(Robot.shooterLow.getSpeed() - Robot.shooterLow.getShootLowSetpoint()) < 50 )
                 {
                     speedCounter++;
                 }
@@ -117,8 +120,11 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
                 break;
             case solenoidOff:    
                 Robot.shooterLow.armLoadShooterOff();
+
                 if (Timer.getFPGATimestamp() > endTime)
                 {
+                    if (Robot.shooterLow.getSpeed() > 0)
+                        Robot.frisbeePickup.decrementFrisbees();
                     if (Robot.oi.shootButton.get() == true)
                     {
                         initialize();
@@ -142,8 +148,6 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
     // Called once after isFinished returns true
     protected void end() {
 //        Robot.shooterLow.armLoadShooterOff();
-        if (Robot.shooterLow.getSpeed() > 0)
-            Robot.frisbeePickup.decrementFrisbees();
         System.out.println("Launch Frisbee Finished");
     }
     // Called when another command which requires one or more of the same
