@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: FrisbeePickup.java,v $
+ * Revision 1.18  2013-03-28 05:55:25  jross
+ * add transfer
+ *
  * Revision 1.17  2013-03-24 18:04:51  jross
  * create methods for battery compensated pickup and send frisbee count data to dashboard
  *
@@ -57,6 +60,7 @@ public class FrisbeePickup extends Subsystem {
         InitializeFrisbeePickup();
         initializeFrisbeeTransfer();
         sensorState = 0;
+        SmartDashboard.putNumber("FrisbeeCount", frisbeeCount);
     }
     
     // Put methods for controlling this subsystem
@@ -194,10 +198,14 @@ public class FrisbeePickup extends Subsystem {
     
     int sensorState = 0;
     int frisbeeCount = 0;
+
+    public int getFrisbeeCount() {
+        return frisbeeCount;
+    }
     private void countFrisbees()
     {
         //TODO find out why counting isn't working
-        if (pickupDiscSensor.get() == false && sensorState == 3)
+        if (pickupDiscSensor.get() == false && sensorState == 0)
         {
             frisbeeCount++;
             sensorState++;
@@ -216,7 +224,7 @@ public class FrisbeePickup extends Subsystem {
             sensorState = 0;
             SmartDashboard.putBoolean("FrisbeeJammed", false);
         }
-        SmartDashboard.putNumber("ToiletSeatTime", sensorState);
+//        SmartDashboard.putNumber("ToiletSeatTime", sensorState);
     }
     
     public void decrementFrisbees()
