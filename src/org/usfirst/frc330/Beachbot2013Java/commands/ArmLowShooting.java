@@ -11,11 +11,13 @@ package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmLowShooting.java,v $
+ * Revision 1.24  2013-03-29 04:40:16  jross
+ * adjust arm automatically
+ *
  * Revision 1.23  2013-03-28 02:59:40  jross
  * don't finish so that the arm can change angles when 2 is pressed
  *
@@ -60,8 +62,7 @@ public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
         Robot.frisbeePickup.setFrisbeePickupDown(); 
         timer = Robot.frisbeePickup.getPickupDownTime() + Robot.arm.armWaitShooting();
         Robot.arm.disable();
-        //Robot.arm.armSetPointLowShooting();
-        Robot.arm.armSetPointLowVision();
+        Robot.arm.armSetPointLowShooting();
         SmartDashboard.putBoolean("BrightCamera", false);
     }
     // Called repeatedly when this Command is scheduled to run
@@ -69,15 +70,11 @@ public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
         if (Robot.frisbeePickup.isPickupDown() && Timer.getFPGATimestamp() > timer) {
             if (!Robot.arm.isEnable())
                 Robot.arm.enable();
-//            if (Robot.oi.shootLowButton.get() == true)
-            {
-                Robot.arm.armSetPointLowCheckVision();
-            }
         }
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.arm.onTarget();
     }
     // Called once after isFinished returns true
     protected void end() {
