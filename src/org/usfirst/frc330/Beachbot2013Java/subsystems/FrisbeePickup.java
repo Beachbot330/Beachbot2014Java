@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: FrisbeePickup.java,v $
+ * Revision 1.19  2013-03-31 05:42:25  jross
+ * turn off frisbee jammed filter
+ *
  * Revision 1.18  2013-03-28 05:55:25  jross
  * add transfer
  *
@@ -222,7 +225,8 @@ public class FrisbeePickup extends Subsystem {
         else
         {
             sensorState = 0;
-            SmartDashboard.putBoolean("FrisbeeJammed", false);
+            if (SmartDashboard.getBoolean("FrisbeeJammed", false))
+                SmartDashboard.putBoolean("FrisbeeJammed", false);
         }
 //        SmartDashboard.putNumber("ToiletSeatTime", sensorState);
     }
