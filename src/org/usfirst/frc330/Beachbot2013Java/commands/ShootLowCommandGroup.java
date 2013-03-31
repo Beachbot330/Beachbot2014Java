@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommandGroup;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 /*
  * $Log: ShootLowCommandGroup.java,v $
+ * Revision 1.5  2013-03-21 04:44:00  jross
+ * turn pickup off when shooting
+ *
  * Revision 1.4  2013-03-17 20:25:33  jross
  * Add bang bang control of the shooter motor
  *
@@ -48,7 +51,7 @@ public class ShootLowCommandGroup extends AutoSpreadsheetCommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
         addSequential(new PickupFrisbeesOff());
-        addParallel(new ArmLowShooting());
+        addParallel(new ArmVariableShooting());
         addSequential(new ShootLowBangBang());
     }
 
