@@ -18,6 +18,9 @@ import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Arm.java,v $
+ * Revision 1.38  2013-03-30 02:32:05  jross
+ * make distances for actual, practice, red, and blue camera distances in vision table
+ *
  * Revision 1.37  2013-03-29 04:36:50  jross
  * remove default command. arm moves with button 3
  *
@@ -206,18 +209,28 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         armSetPoint(Robot.vision.armLookupTable(Robot.vision.getDistance()));
     }
     double prevDistance;
+    double prevShooterAdjust;
     public void armSetPointLowCheckVision()
     {
         double distance;
+        double shooterAdjust;
         
         distance = Robot.vision.getDistance();
         distance = MathUtils.round(distance*10)/10.0;
+        shooterAdjust = Robot.oi.getOperatorJoystick().getRawAxis(3);
+        shooterAdjust *= -(4.0/100.0);
         
-        if (distance > Robot.vision.getMinDistance() && distance < Robot.vision.getMaxDistance() && distance != prevDistance)
+        if (shooterAdjust != prevShooterAdjust)
         {
-            armSetPoint(Robot.vision.armLookupTable(distance));
+            SmartDashboard.putNumber("ShooterAdjust", shooterAdjust);
+        }       
+        
+        if (distance != prevDistance)
+        {
+            armSetPoint(Robot.vision.armLookupTable(distance)+shooterAdjust);
         }
         prevDistance = distance;
+        prevShooterAdjust = shooterAdjust;
     }
     
     public void armSetPointLowPickup() {
