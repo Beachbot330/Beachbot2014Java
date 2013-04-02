@@ -19,6 +19,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import org.usfirst.frc330.Beachbot2013Java.subsystems.*;
 /*
  * $Log: Robot.java,v $
+ * Revision 1.33  2013-04-02 03:09:56  jross
+ * add count frisbees commands
+ *
  * Revision 1.32  2013-04-02 01:58:37  jross
  * add pickup command groups for auto
  *
@@ -169,6 +172,7 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
         chassis.calcPeriodic();
         frisbeePickup.calcPeriodic();
+        arm.calcPeriodic();
         Scheduler.getInstance().run();
     }
     public void teleopInit() {
@@ -184,6 +188,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         chassis.calcPeriodic();
         frisbeePickup.calcPeriodic();
+        arm.calcPeriodic();
         Scheduler.getInstance().run();
     }
     /**
@@ -196,6 +201,7 @@ public class Robot extends IterativeRobot {
     public void disabledPeriodic()
     {
         chassis.calcPeriodic();
+        arm.calcPeriodic();
         Scheduler.getInstance().run();
     }
     
@@ -209,6 +215,6 @@ public class Robot extends IterativeRobot {
         Robot.vision.getVisionPosition();
         Robot.arm.disable();
         Robot.chassis.stopDrive();
-        Robot.shooterLow.shoot(0);
+        Robot.shooterLow.shoot(0);        
     }
 }
