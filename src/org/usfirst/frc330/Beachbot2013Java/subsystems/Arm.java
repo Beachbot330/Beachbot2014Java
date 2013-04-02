@@ -18,6 +18,9 @@ import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Arm.java,v $
+ * Revision 1.39  2013-03-31 05:38:39  jross
+ * add shooter adjustment with operator thumbwheel
+ *
  * Revision 1.38  2013-03-30 02:32:05  jross
  * make distances for actual, practice, red, and blue camera distances in vision table
  *
@@ -210,13 +213,31 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     }
     double prevDistance;
     double prevShooterAdjust;
+    double filteredDistance;
+    
+    public void initFilteredDistance()
+    {
+        filteredDistance = Robot.vision.getDistance();
+        filteredDistance = MathUtils.round(filteredDistance*10)/10.0;
+    }
     public void armSetPointLowCheckVision()
     {
         double distance;
         double shooterAdjust;
+        double setpoint;
         
         distance = Robot.vision.getDistance();
         distance = MathUtils.round(distance*10)/10.0;
+        
+        if (distance > 0 && !Double.isInfinite(distance) && !Double.isNaN(distance))
+        {
+            distance = filteredDistance*.75 + distance*.25;
+        }
+            else 
+        {
+            distance = filteredDistance;
+        }
+        
         shooterAdjust = Robot.oi.getOperatorJoystick().getRawAxis(3);
         shooterAdjust *= -(4.0/100.0);
         
@@ -224,13 +245,14 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         {
             SmartDashboard.putNumber("ShooterAdjust", shooterAdjust);
         }       
-        
-        if (distance != prevDistance)
+        setpoint = Robot.vision.armLookupTable(distance)+shooterAdjust;
+        if (setpoint != Robot.arm.getSetpoint())
         {
-            armSetPoint(Robot.vision.armLookupTable(distance)+shooterAdjust);
+            armSetPoint(setpoint);
         }
         prevDistance = distance;
         prevShooterAdjust = shooterAdjust;
+        filteredDistance = distance;
     }
     
     public void armSetPointLowPickup() {
