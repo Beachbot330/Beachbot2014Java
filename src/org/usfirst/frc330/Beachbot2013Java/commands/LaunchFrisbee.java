@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: LaunchFrisbee.java,v $
+ * Revision 1.21  2013-03-31 06:41:15  jross
+ * fix decrementing of frisbees
+ *
  * Revision 1.20  2013-03-30 21:49:50  jross
  * open up shooter speed and abort shoot when button is let go
  *
@@ -81,6 +84,12 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
     int state;
     int speedCounter = 0;
     double timeSinceStart = 0;
+    
+    private static boolean shooting = false;
+
+    public static boolean isShooting() {
+        return shooting;
+    }
     // Called just before this Command runs the first time
     protected void initialize() {
         state = waitingForSpeed;
@@ -106,6 +115,7 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
                 if ((speedCounter > 10 || Timer.getFPGATimestamp() > timeSinceStart + Robot.shooterLow.getShootLowGiveUpTime()) && Robot.arm.onTarget())
                 {
                     state = solenoidOn;
+                    shooting = true;
                     solenoidOffTime = Robot.shooterLow.launchFrisbeeSolenoidOffTime() + Timer.getFPGATimestamp();
                 }
                 break;
@@ -123,6 +133,7 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
 
                 if (Timer.getFPGATimestamp() > endTime)
                 {
+                    shooting = false;
                     if (Robot.shooterLow.getSpeed() > 0)
                         Robot.frisbeePickup.decrementFrisbees();
                     if (Robot.oi.shootButton.get() == true)
@@ -149,6 +160,7 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
     protected void end() {
 //        Robot.shooterLow.armLoadShooterOff();
         System.out.println("Launch Frisbee Finished");
+        shooting = false;
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
