@@ -19,6 +19,9 @@ import org.usfirst.frc330.Beachbot2013Java.commands.*;
 import org.usfirst.frc330.Beachbot2013Java.subsystems.*;
 /*
  * $Log: Robot.java,v $
+ * Revision 1.32  2013-04-02 01:58:37  jross
+ * add pickup command groups for auto
+ *
  * Revision 1.31  2013-03-30 21:51:25  jross
  * add shootLowBangBang to auto
  *
@@ -149,6 +152,8 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new StopShootLow());
         auto.addCommand(new LaunchFrisbeeNoCheck());
         auto.addCommand(new ArmVariableShooting());
+        auto.addCommand(new DriveWaypointBackwardCountFrisbeesReverseRoller(0,0,0,0,true));
+        auto.addCommand(new DriveWaypointBackwardCountFrisbeesStop(0,0,0,0,true));
         
 //        SmartDashboard.putData(Scheduler.getInstance());
     }
