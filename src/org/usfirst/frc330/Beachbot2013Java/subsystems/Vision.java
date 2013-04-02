@@ -22,6 +22,9 @@ import javax.microedition.io.Connector;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.27  2013-04-02 02:02:14  jross
+ * check distance for NaN or infinite
+ *
  * Revision 1.26  2013-03-30 04:17:11  jross
  * fix aP index to use visionPosition
  *
@@ -208,24 +211,24 @@ public class Vision extends Subsystem {
     public double armLookupTable(double x)
     {
 
-        System.out.println("Distance: " + x);
+//        System.out.println("Distance: " + x);
         try
         {
             if (x != -1)
             {
                 if (Double.isNaN(x) || Double.isInfinite(x))
                 {
-                    System.out.println("Angle: " + Robot.arm.getArmLowShooting());
+//                    System.out.println("Angle: " + Robot.arm.getArmLowShooting());
                     return Robot.arm.getArmLowShooting();                
                 }
                 if (x<getMinDistance())
                 {
-                    System.out.println("Angle: " + minAngle);
+//                    System.out.println("Angle: " + minAngle);
                     return minAngle;
                 }
                 if (x>getMaxDistance())
                 {
-                    System.out.println("Angle: " + maxAngle);
+//                    System.out.println("Angle: " + maxAngle);
                     return maxAngle;
                 }
                 for (int i = 0; (aP[visionPosition][i] < x) || (x<9); i++)
@@ -240,7 +243,7 @@ public class Vision extends Subsystem {
                 dy = righty - lefty; 
                 m = dy/dx;
                 y = m*(x-leftx) + lefty;
-                System.out.println("Angle: " + y);
+//                System.out.println("Angle: " + y);
                 return y;
             }
             else
@@ -353,14 +356,15 @@ public class Vision extends Subsystem {
                 aP[4][lineCount] = 0;
                 lineCount++;
             }
-            System.out.println("Vision Table");
-            
-            for (int i=0; i<9;i++)
-            {
-                for (int j=0; j<5; j++)
-                    System.out.print(aP[j][i] + ", " );
-                System.out.println();
-            }
+//            System.out.println("Vision Table");
+  
+//print out distance table            
+//            for (int i=0; i<9;i++)
+//            {
+//                for (int j=0; j<5; j++)
+//                    System.out.print(aP[j][i] + ", " );
+//                System.out.println();
+//            }
             
         } catch (IOException ex) {
             ex.printStackTrace();
