@@ -18,6 +18,9 @@ import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Arm.java,v $
+ * Revision 1.41  2013-04-02 05:00:26  jross
+ * calculate arm angle adjust perioidically
+ *
  * Revision 1.40  2013-04-02 02:01:42  jross
  * add filter for camera distance and don't update arm setpoint if it hasn't changed (previous distance check didn't work)
  *
@@ -207,7 +210,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     
     public void armSetPointLowShooting() {
 //        armSetPoint(Robot.vision.armLookupTable(Robot.vision.getDistance()));
-        armSetPoint(getArmLowShooting());
+        armSetPoint(getArmLowShooting()+shooterAdjust);
     }
     
     public void armSetPointLowVision()
