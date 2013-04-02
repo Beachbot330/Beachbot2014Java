@@ -7,7 +7,10 @@ package org.usfirst.frc330.Beachbot2013Java.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log$
+ * $Log: DriveWaypointBackward.java,v $
+ * Revision 1.3  2013-03-15 02:50:55  echan
+ * added cvs log comments
+ *
  */
 
 /**
@@ -55,7 +58,7 @@ public class DriveWaypointBackward extends DriveWaypoint {
             angle = angle-180;
         else
             angle = angle+180;
-        System.out.println("Backward Angle: " + angle);
+//        System.out.println("Backward Angle: " + angle);
     }
 
     public Command copy() {

@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: DriveWaypoint.java,v $
+ * Revision 1.8  2013-02-23 19:49:33  echan
+ * Removed the todo
+ *
  * Revision 1.7  2013-02-19 18:47:56  jross
  * create drive waypoint commands for driving backwards
  *
@@ -126,8 +129,8 @@ public class DriveWaypoint extends DriveEncoderGyroRampRel {
             while (robotAngle < calcAngle)
                 calcAngle -= 360;
         }
-        System.out.println("distance: " + calcDistance);
-        System.out.println("angle: " + calcAngle);
+//        System.out.println("distance: " + calcDistance);
+//        System.out.println("angle: " + calcAngle);
         
         super.setParam1(calcDistance);
         super.setParam3(calcAngle);
