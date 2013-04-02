@@ -32,14 +32,17 @@ public class  ArmVariableShooting extends Command implements AutoSpreadsheetComm
         timer = Robot.frisbeePickup.getPickupDownTime() + Robot.arm.armWaitShooting();
         Robot.arm.disable();
         //Robot.arm.armSetPointLowShooting();
+        Robot.arm.initFilteredDistance();
         Robot.arm.armSetPointLowCheckVision();
         SmartDashboard.putBoolean("BrightCamera", false);
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if (Robot.frisbeePickup.isPickupDown() && Timer.getFPGATimestamp() > timer) {
-            if (!Robot.arm.isEnable())
+            if (!Robot.arm.isEnable() && LaunchFrisbee.isShooting() == false)
                 Robot.arm.enable();
+            else if (LaunchFrisbee.isShooting() == true)
+                Robot.arm.disable();
             
             Robot.arm.armSetPointLowCheckVision();
         }
