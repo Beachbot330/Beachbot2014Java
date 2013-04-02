@@ -22,6 +22,9 @@ import javax.microedition.io.Connector;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Vision.java,v $
+ * Revision 1.26  2013-03-30 04:17:11  jross
+ * fix aP index to use visionPosition
+ *
  * Revision 1.25  2013-03-30 04:05:20  jross
  * fix alliance detection
  *
@@ -255,12 +258,18 @@ public class Vision extends Subsystem {
     public double getDistance()
     {
         double age;
+        double distance;
         
         age = SmartDashboard.getNumber("centerAge", 999999);
         if (age < 1 && age >= 0 )
-            return SmartDashboard.getNumber("distanceToCenter",-1);
+            distance = SmartDashboard.getNumber("distanceToCenter",-1);
         else
-            return -1;
+           distance = -1;
+        
+        if (Double.isInfinite(distance) || Double.isNaN(distance))
+                distance = -1;
+        
+        return distance;
     }
     
     public double getAngle()
