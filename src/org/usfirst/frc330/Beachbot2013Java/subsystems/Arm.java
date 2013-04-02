@@ -18,6 +18,9 @@ import org.usfirst.frc330.wpilibj.BeachbotPrefSendablePIDController;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: Arm.java,v $
+ * Revision 1.40  2013-04-02 02:01:42  jross
+ * add filter for camera distance and don't update arm setpoint if it hasn't changed (previous distance check didn't work)
+ *
  * Revision 1.39  2013-03-31 05:38:39  jross
  * add shooter adjustment with operator thumbwheel
  *
@@ -223,7 +226,6 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     public void armSetPointLowCheckVision()
     {
         double distance;
-        double shooterAdjust;
         double setpoint;
         
         distance = Robot.vision.getDistance();
@@ -233,26 +235,36 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         {
             distance = filteredDistance*.75 + distance*.25;
         }
-            else 
+        else 
         {
             distance = filteredDistance;
         }
-        
-        shooterAdjust = Robot.oi.getOperatorJoystick().getRawAxis(3);
-        shooterAdjust *= -(4.0/100.0);
-        
-        if (shooterAdjust != prevShooterAdjust)
-        {
-            SmartDashboard.putNumber("ShooterAdjust", shooterAdjust);
-        }       
+             
         setpoint = Robot.vision.armLookupTable(distance)+shooterAdjust;
         if (setpoint != Robot.arm.getSetpoint())
         {
             armSetPoint(setpoint);
         }
         prevDistance = distance;
-        prevShooterAdjust = shooterAdjust;
+        
         filteredDistance = distance;
+    }
+    double shooterAdjust = 0;
+    public void calcShooterAdjust()
+    {
+        shooterAdjust = Robot.oi.getOperatorJoystick().getRawAxis(3);
+        shooterAdjust *= -(4.0/100.0);
+        
+        if (shooterAdjust != prevShooterAdjust)
+        {
+            SmartDashboard.putNumber("ShooterAdjust", shooterAdjust);
+        }  
+        prevShooterAdjust = shooterAdjust;
+    }
+    
+    public void calcPeriodic()
+    {
+        calcShooterAdjust();
     }
     
     public void armSetPointLowPickup() {
