@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: DriveWaypoint.java,v $
+ * Revision 1.9  2013-04-02 05:07:38  jross
+ * remove print statements
+ *
  * Revision 1.8  2013-02-23 19:49:33  echan
  * Removed the todo
  *
@@ -113,6 +116,12 @@ public class DriveWaypoint extends DriveEncoderGyroRampRel {
         
         calcDistance = Math.sqrt(deltaX*deltaX+deltaY*deltaY);
         calcAngle = Math.toDegrees(MathUtils.atan2(deltaX, deltaY));
+        
+        if (Double.isNaN(calcAngle) || Double.isInfinite(calcAngle))
+        {
+            System.err.println("Infinite calcAngle in DriveWaypoint");
+            calcAngle = 0;
+        }
         
         robotAngle = Robot.chassis.getAngle();
         if (Math.abs(robotAngle-calcAngle)<180)

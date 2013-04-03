@@ -9,7 +9,10 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log$
+ * $Log: TurnGyroWaypoint.java,v $
+ * Revision 1.5  2013-03-15 02:51:17  echan
+ * added cvs log comments
+ *
  */
  
 /**
@@ -63,6 +66,13 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
         deltaY = y - curY;
         
         calcAngle = Math.toDegrees(MathUtils.atan2(deltaX, deltaY));
+        
+        if (Double.isNaN(calcAngle) || Double.isInfinite(calcAngle))
+        {
+            System.err.println("Infinite calcAngle in TurnGyroWaypoint");
+            calcAngle = 0;
+        }
+        
         robotAngle = Robot.chassis.getAngle();
         if (Math.abs(robotAngle-calcAngle)<180)
         {
@@ -78,7 +88,7 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
             while (robotAngle < calcAngle)
                 calcAngle -= 360;
         }
-        System.out.println("angle: " + calcAngle);
+//        System.out.println("angle: " + calcAngle);
         
         super.setParam1(calcAngle);
     }
