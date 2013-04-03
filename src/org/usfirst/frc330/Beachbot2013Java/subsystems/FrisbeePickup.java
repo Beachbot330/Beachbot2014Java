@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: FrisbeePickup.java,v $
+ * Revision 1.20  2013-03-31 06:40:22  jross
+ * don't send FrisbeeJammed false all the time
+ *
  * Revision 1.19  2013-03-31 05:42:25  jross
  * turn off frisbee jammed filter
  *
@@ -201,13 +204,13 @@ public class FrisbeePickup extends Subsystem {
     
     int sensorState = 0;
     int frisbeeCount = 0;
+    boolean frisbeeJammed;
 
     public int getFrisbeeCount() {
         return frisbeeCount;
     }
     private void countFrisbees()
     {
-        //TODO find out why counting isn't working
         if (pickupDiscSensor.get() == false && sensorState == 0)
         {
             frisbeeCount++;
@@ -219,14 +222,18 @@ public class FrisbeePickup extends Subsystem {
             sensorState++;
             if (sensorState == 20)
             {
-                SmartDashboard.putBoolean("FrisbeeJammed", true);
+                frisbeeJammed = true;
+                SmartDashboard.putBoolean("FrisbeeJammed", frisbeeJammed);
             }
         }
         else
         {
             sensorState = 0;
-            if (SmartDashboard.getBoolean("FrisbeeJammed", false))
+            if (frisbeeJammed)
+            {
                 SmartDashboard.putBoolean("FrisbeeJammed", false);
+                frisbeeJammed = false;
+            }
         }
 //        SmartDashboard.putNumber("ToiletSeatTime", sensorState);
     }
