@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: DriveWaypoint.java,v $
+ * Revision 1.10  2013-04-03 05:17:14  jross
+ * trap an infinite calcAngle
+ *
  * Revision 1.9  2013-04-02 05:07:38  jross
  * remove print statements
  *
@@ -124,6 +127,12 @@ public class DriveWaypoint extends DriveEncoderGyroRampRel {
         }
         
         robotAngle = Robot.chassis.getAngle();
+        
+        if (Double.isNaN(robotAngle) || Double.isInfinite(robotAngle))
+        {
+            System.err.println("Infinite robotAngle in DriveWaypoint");
+            robotAngle = 0;
+        }
         if (Math.abs(robotAngle-calcAngle)<180)
         {
             //do nothing

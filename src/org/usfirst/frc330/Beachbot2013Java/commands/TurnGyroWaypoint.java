@@ -10,6 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: TurnGyroWaypoint.java,v $
+ * Revision 1.6  2013-04-03 05:17:14  jross
+ * trap an infinite calcAngle
+ *
  * Revision 1.5  2013-03-15 02:51:17  echan
  * added cvs log comments
  *
@@ -74,6 +77,13 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
         }
         
         robotAngle = Robot.chassis.getAngle();
+        
+        if (Double.isNaN(robotAngle) || Double.isInfinite(robotAngle))
+        {
+            System.err.println("Infinite robotAngle in TurnWaypoint");
+            robotAngle = 0;
+        }
+        
         if (Math.abs(robotAngle-calcAngle)<180)
         {
             //do nothing
