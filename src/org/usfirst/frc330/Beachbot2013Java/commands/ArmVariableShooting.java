@@ -37,6 +37,7 @@ public class  ArmVariableShooting extends Command implements AutoSpreadsheetComm
         SmartDashboard.putBoolean("BrightCamera", false);
     }
     // Called repeatedly when this Command is scheduled to run
+    int counter = 0;
     protected void execute() {
         if (Robot.frisbeePickup.isPickupDown() && Timer.getFPGATimestamp() > timer) {
             if (!Robot.arm.isEnable() && LaunchFrisbee.isShooting() == false)
@@ -46,6 +47,9 @@ public class  ArmVariableShooting extends Command implements AutoSpreadsheetComm
             
             Robot.arm.armSetPointLowCheckVision();
         }
+        if (counter%5 == 0)
+            SmartDashboard.putNumber("ArmPosition", Robot.arm.getArmPosition());
+        counter++;
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

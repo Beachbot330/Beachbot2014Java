@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmClimbing.java,v $
+ * Revision 1.11  2013-04-02 03:59:02  jross
+ * turn off shooter
+ *
  * Revision 1.10  2013-03-24 17:48:04  jross
  * Set flags on dashboard to take screenshot and turn up brightness on camera
  *
@@ -53,7 +56,11 @@ public class  ArmClimbing extends Command implements AutoSpreadsheetCommand{
         SmartDashboard.putBoolean("TakeScreenshot", true);
     }
     // Called repeatedly when this Command is scheduled to run
+    int counter = 0;
     protected void execute() {
+        if (counter%5 == 0)
+            SmartDashboard.putNumber("ArmPosition", Robot.arm.getArmPosition());
+        counter++;
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

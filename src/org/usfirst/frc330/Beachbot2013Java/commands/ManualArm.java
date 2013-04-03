@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ManualArm.java,v $
+ * Revision 1.8  2013-03-29 04:35:24  jross
+ * set arm to 0 during end
+ *
  * Revision 1.7  2013-03-15 02:58:19  echan
  * robotbuilder update
  *
@@ -36,9 +39,12 @@ public class  ManualArm extends Command {
     protected void initialize() {
     }
     // Called repeatedly when this Command is scheduled to run
+    int counter=0;
     protected void execute() {
         Robot.arm.manualArm();
-        SmartDashboard.putNumber("ArmPosition", Robot.arm.getArmPosition());
+        if (counter%5 == 0)
+            SmartDashboard.putNumber("ArmPosition", Robot.arm.getArmPosition());
+        counter++;
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

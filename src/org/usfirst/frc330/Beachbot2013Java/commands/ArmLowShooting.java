@@ -15,6 +15,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: ArmLowShooting.java,v $
+ * Revision 1.25  2013-03-31 17:13:38  jross
+ * revert to LA regional version that doesn't use camera for arm angle. Use ArmVariableShooting for camera arm angle
+ *
  * Revision 1.24  2013-03-29 04:40:16  jross
  * adjust arm automatically
  *
@@ -66,11 +69,15 @@ public class  ArmLowShooting extends Command implements AutoSpreadsheetCommand {
         SmartDashboard.putBoolean("BrightCamera", false);
     }
     // Called repeatedly when this Command is scheduled to run
+    int counter = 0;
     protected void execute() {
         if (Robot.frisbeePickup.isPickupDown() && Timer.getFPGATimestamp() > timer) {
             if (!Robot.arm.isEnable())
                 Robot.arm.enable();
         }
+        if (counter%5 == 0)
+            SmartDashboard.putNumber("ArmPosition", Robot.arm.getArmPosition());
+        counter++;
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

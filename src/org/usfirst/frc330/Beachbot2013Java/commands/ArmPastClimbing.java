@@ -13,7 +13,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log: ArmClimbing.java,v $
+ * $Log: ArmPastClimbing.java,v $
+ * Revision 1.1  2013-03-24 17:53:33  jross
+ * Create new command for putting arm to angle for latching on to corner. ArmClimbing is the angle to rotate to to climb.
+ *
  * Revision 1.9  2013-03-21 07:04:25  jross
  * make pickup go up when climbing, if safe
  *
@@ -49,7 +52,11 @@ public class  ArmPastClimbing extends Command implements AutoSpreadsheetCommand{
         SmartDashboard.putBoolean("TakeScreenshot", true);
     }
     // Called repeatedly when this Command is scheduled to run
+    int counter = 0;
     protected void execute() {
+        if (counter%5 == 0)
+            SmartDashboard.putNumber("ArmPosition", Robot.arm.getArmPosition());
+        counter++;
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
