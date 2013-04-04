@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommandGroup;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 /*
  * $Log: ShootLowCommandGroup.java,v $
+ * Revision 1.6  2013-03-31 06:40:43  jross
+ * change to use vision command
+ *
  * Revision 1.5  2013-03-21 04:44:00  jross
  * turn pickup off when shooting
  *
@@ -51,7 +54,7 @@ public class ShootLowCommandGroup extends AutoSpreadsheetCommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
         addSequential(new PickupFrisbeesOff());
-        addParallel(new ArmVariableShooting());
+        addParallel(new ArmLowShooting());
         addSequential(new ShootLowBangBang());
     }
 
