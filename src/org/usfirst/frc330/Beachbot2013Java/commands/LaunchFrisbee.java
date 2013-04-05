@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
  * $Log: LaunchFrisbee.java,v $
+ * Revision 1.22  2013-04-02 02:02:35  jross
+ * disable arm from moving when shooting
+ *
  * Revision 1.21  2013-03-31 06:41:15  jross
  * fix decrementing of frisbees
  *
@@ -112,7 +115,7 @@ public class  LaunchFrisbee extends Command implements AutoSpreadsheetCommand {
                 else
                     speedCounter = 0;
                 
-                if ((speedCounter > 10 || Timer.getFPGATimestamp() > timeSinceStart + Robot.shooterLow.getShootLowGiveUpTime()) && Robot.arm.onTarget())
+                if ((speedCounter > 10 && Robot.arm.onTarget() ) || Timer.getFPGATimestamp() > (timeSinceStart + Robot.shooterLow.getShootLowGiveUpTime()))
                 {
                     state = solenoidOn;
                     shooting = true;
