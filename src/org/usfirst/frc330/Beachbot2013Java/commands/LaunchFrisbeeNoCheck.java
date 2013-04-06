@@ -15,7 +15,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2013Java.Robot;
 /*
- * $Log: LaunchFrisbeeNoName.java,v $
+ * $Log: LaunchFrisbeeNoCheck.java,v $
+ * Revision 1.1  2013-03-21 02:08:40  echan
+ * removed the to do
+ *
  * Revision 1.1  2013-03-20 03:22:13  echan
  * added a launch frisbee without check
  *
@@ -83,6 +86,7 @@ public class  LaunchFrisbeeNoCheck extends Command implements AutoSpreadsheetCom
                 {
                     state = solenoidOff;
                     endTime = Robot.shooterLow.launchFrisbeeSolenoidOffTime() + Timer.getFPGATimestamp();
+                    SmartDashboard.putBoolean("TakeScreenshot", true);
                 }
                 break;
             case solenoidOff:    
