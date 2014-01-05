@@ -7,6 +7,7 @@ package org.usfirst.frc330.wpilibj;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.SPIDevice;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc330.wpilibj.LCDInterface.Line;
 /*
  * $Log: SmartDashboardLCD.java,v $
  * Revision 1.1  2013-02-09 02:07:19  jross
@@ -28,34 +29,19 @@ public class SmartDashboardLCD {
     /**
      * Create a new device on the SPI bus.<br>The chip select line is active low
      *
-     * @param slot The module of the digital output for the device's chip select pin
-     * @param csChannel	The channel for the digital output for the device's chip select pin
+     * @param lcd
      */
-    public SmartDashboardLCD(int slot, int csChannel) {
-        lcd = new CFA634SPI(slot, csChannel);
+    public SmartDashboardLCD(LCDInterface lcd) {
         lcd.clearScreen();
         lcd.hideCursor();
         lcd.scrollOff();
         lcd.wrapOff();
     }
     
-
-    /**
-     * Create a new device on the SPI bus.<br>The chip select line is active low
-     *
-     * @param cs	The digital output for the device's chip select pin
-     */
-    public SmartDashboardLCD(DigitalOutput cs) {
-        lcd = new CFA634SPI(cs);  
-        lcd.clearScreen();
-        lcd.hideCursor();
-        lcd.scrollOff();
-        lcd.wrapOff();
-    }
     
     String[] lines = new String[4];
     
-    public void addLine(CFA634SPI.Line row, String variable)
+    public void addLine(Line row, String variable)
     {
         lines[row.value] = variable;
         lcd.println(row, 0, variable + ":");
