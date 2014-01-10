@@ -24,7 +24,7 @@ import org.usfirst.frc330.wpilibj.LCDInterface.Line;
 public class SmartDashboardLCD { 
     
     
-    private CFA634SPI lcd;
+    private LCDInterface lcd;
     
     /**
      * Create a new device on the SPI bus.<br>The chip select line is active low
@@ -32,10 +32,11 @@ public class SmartDashboardLCD {
      * @param lcd
      */
     public SmartDashboardLCD(LCDInterface lcd) {
-        lcd.clearScreen();
-        lcd.hideCursor();
-        lcd.scrollOff();
-        lcd.wrapOff();
+        this.lcd = lcd;
+        this.lcd.clearScreen();
+        this.lcd.hideCursor();
+        this.lcd.scrollOff();
+        this.lcd.wrapOff();
     }
     
     
