@@ -87,19 +87,18 @@ public class  DriveEncoder extends Command implements AutoSpreadsheetCommand {
         stopAtEnd = true;
         end();
     }
-
-    public void setParam1(double param1) {
+    public void setParam1(double distance) {
+        this.leftDistance = distance;
+        this.rightDistance = distance;
     }
-
-    public void setParam2(double param2) {
+    public void setParam2(double tolerance) {
+        this.tolerance = tolerance;
     }
-
     public void setParam3(double param3) {
     }
-
     public void setStopAtEnd(boolean stopAtEnd) {
+        this.stopAtEnd = stopAtEnd;
     }
-
     public Command copy() {
         return new DriveEncoder();
     }
