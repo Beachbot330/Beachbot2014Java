@@ -79,7 +79,7 @@ import org.usfirst.frc330.Beachbot2014Java.commands.Wait;
 public class AutoSpreadsheet {
     FileConnection file = null;
     BufferedReader reader = null;
-    final String filename = "file:///2013AutoModesJava.csv";
+    final String filename = "file:///2014AutoModesJava.csv";
     SendableChooser autoChooser;   
     
     public AutoSpreadsheet()
@@ -134,7 +134,7 @@ public class AutoSpreadsheet {
                     comma1 = line.indexOf(",");
                     comma2 = line.substring(comma1+1).indexOf(",")+comma1+1;
                     scriptName = line.substring(comma1+1,comma2).toUpperCase().trim();
-//                    System.out.println("Found Script: " + scriptName);
+                    System.out.println("Found Script: " + scriptName);
                     scriptStarted = true;
                     autoChooser.addObject(scriptName, scriptName);
                 }
@@ -187,7 +187,7 @@ public class AutoSpreadsheet {
                     comma1 = line.indexOf(",");
                     comma2 = line.substring(comma1+1).indexOf(",")+comma1+1;
                     scriptName = line.substring(comma1+1,comma2).toUpperCase().trim();
-//                    System.out.println("Found Script: " + scriptName);
+                    System.out.println("Found Script: " + scriptName);
                     scriptStarted = true;
                     if (scriptName.equals(scriptToRead))
                     {
@@ -296,6 +296,7 @@ public class AutoSpreadsheet {
                         }
                         else if (command instanceof AutoSpreadsheetCommand)
                         {
+                            System.out.println("Found Command: " + command.getName());
                             command = ((AutoSpreadsheetCommand)command).copy();
                             ((AutoSpreadsheetCommand)command).setStopAtEnd(stop);
                             ((AutoSpreadsheetCommand)command).setParam1(param1);

@@ -99,8 +99,8 @@ public class DriveWaypoint extends DriveEncoderGyroRampRel {
             while (robotAngle < calcAngle)
                 calcAngle -= 360;
         }
-//        System.out.println("distance: " + calcDistance);
-//        System.out.println("angle: " + calcAngle);
+        System.out.println("distance: " + calcDistance);
+        System.out.println("angle: " + calcAngle);
         
         super.setParam1(calcDistance);
         super.setParam3(calcAngle);
