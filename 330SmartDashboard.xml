@@ -1,0 +1,224 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="FrisbeeJammed" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="191" y="582"/>
+	</widget>
+	<widget field="Autonomous
+Mode" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="176" y="244"/>
+	</widget>
+	<widget field="BrightCamera" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="241"/>
+	</widget>
+	<widget field="VisionGyroAngle: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="654"/>
+	</widget>
+	<widget field="LowShooterPID" type="BeachbotPrefPIDController" class="edu.beachbot.smartdashboard.extension.BeachbotPrefPIDEditor">
+		<location x="214" y="363"/>
+	</widget>
+	<widget field="Autonomous Mode" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="633"/>
+	</widget>
+	<widget field="LiftRobot" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="599"/>
+	</widget>
+	<widget field="ArmVariableShooting" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="565"/>
+	</widget>
+	<widget field="FullSpeedShootLow" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="531"/>
+	</widget>
+	<widget field="BlockerToggle" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="20" y="494"/>
+	</widget>
+	<widget field="PickupToggle" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="463"/>
+	</widget>
+	<widget field="ShooterLowSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="17" y="320"/>
+	</widget>
+	<widget field="PickupFrisbees" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="91"/>
+	</widget>
+	<widget field="rightDrivePID" type="BeachbotMultiPrefPIDController" class="edu.beachbot.smartdashboard.extension.BeachbotMultiPrefPIDEditor">
+		<location x="1205" y="3"/>
+	</widget>
+	<widget field="voltageLow" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="17" y="342"/>
+	</widget>
+	<widget field="chassisX" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1206" y="264"/>
+	</widget>
+	<widget field="chassisY" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1069" y="265"/>
+	</widget>
+	<widget field="LEDEnable" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="224" y="97"/>
+	</widget>
+	<widget field="AutonomousCommand" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="992" y="379"/>
+	</widget>
+	<widget field="ArmLowShooting" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="5" y="156"/>
+	</widget>
+	<widget field="LaunchFrisbee" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="645" y="61"/>
+	</widget>
+	<widget field="Batt Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="16" y="442"/>
+	</widget>
+	<widget field="distanceToCenter" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="696" y="440"/>
+	</widget>
+	<widget field="PickupUp" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="646" y="31"/>
+	</widget>
+	<widget field="ShootHigh" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="295" y="265"/>
+	</widget>
+	<widget field="angleToRight" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="862" y="415"/>
+	</widget>
+	<widget field="ShooterHighCommand" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="300" y="296"/>
+	</widget>
+	<widget field="LEDOverride" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="224" y="119"/>
+		<height>20</height>
+	</widget>
+	<widget field="ShooterLowRPM" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="17" y="367"/>
+	</widget>
+	<widget field="leftAge" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="533" y="390"/>
+	</widget>
+	<widget field="voltageHigh" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="300" y="342"/>
+	</widget>
+	<widget field="ArmPID" type="BeachbotPrefPIDController" class="edu.beachbot.smartdashboard.extension.BeachbotPrefPIDEditor">
+		<location x="786" y="4"/>
+	</widget>
+	<widget field="Gyro Angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="930" y="293"/>
+	</widget>
+	<widget field="ControlLEDs" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="222" y="170"/>
+	</widget>
+	<widget field="leftDrivePID" type="BeachbotMultiPrefPIDController" class="edu.beachbot.smartdashboard.extension.BeachbotMultiPrefPIDEditor">
+		<location x="1067" y="3"/>
+	</widget>
+	<widget field="angleToCenter" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="695" y="415"/>
+	</widget>
+	<widget field="gyroComp" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="929" y="266"/>
+	</widget>
+	<widget field="leftEncoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="530" y="490"/>
+	</widget>
+	<widget field="Autonomous mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="1165" y="367"/>
+	</widget>
+	<widget field="ShooterLowCommand" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="15" y="296"/>
+	</widget>
+	<widget field="AutoWait" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1041" y="466"/>
+	</widget>
+	<widget field="ShootLowCommandGroup" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="12" y="388"/>
+	</widget>
+	<widget field="PickupDown" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="645" y="-1"/>
+	</widget>
+	<widget field="StopShootHigh" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="422" y="264"/>
+	</widget>
+	<widget field="gyroPID" type="BeachbotMultiPrefPIDController" class="edu.beachbot.smartdashboard.extension.BeachbotMultiPrefPIDEditor">
+		<location x="925" y="3"/>
+	</widget>
+	<widget field="PickupOnCommandGroup" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="201" y="57"/>
+	</widget>
+	<widget field="PickupOffCommandGroup" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="5" y="57"/>
+	</widget>
+	<widget field="angleToLeft" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="533" y="415"/>
+	</widget>
+	<widget field="FrisbeeCount" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="589" y="270"/>
+	</widget>
+	<widget field="SlowPickupFrisbees" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="5" y="27"/>
+	</widget>
+	<widget field="PickupFrisbeesOff" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="199" y="29"/>
+	</widget>
+	<widget field="ShootLow" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="10" y="265"/>
+	</widget>
+	<widget field="SetArmZero" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="169" y="210"/>
+	</widget>
+	<widget field="ArmPosition" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="12" y="220"/>
+	</widget>
+	<widget field="centerAge" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="696" y="389"/>
+	</widget>
+	<widget field="ArmLowPickup" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="395" y="31"/>
+	</widget>
+	<widget field="distanceToRight" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="869" y="439"/>
+	</widget>
+	<widget field="distanceToLeft" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="531" y="442"/>
+	</widget>
+	<widget field="# of Cameras" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="224" y="146"/>
+	</widget>
+	<widget field="PickupFrisbeesOn" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="199" y="2"/>
+	</widget>
+	<widget field="ShiftHigh" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="516" y="-3"/>
+	</widget>
+	<widget field="ReversePickup" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="5" y="1"/>
+	</widget>
+	<widget field="ArmHighShooting" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="5" y="129"/>
+	</widget>
+	<widget field="ArmClimbing" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="7" y="186"/>
+	</widget>
+	<widget field="StopShootLow" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="135" y="266"/>
+	</widget>
+	<widget field="ShiftLow" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="393" y="-3"/>
+	</widget>
+	<widget field="TurnCamera" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="403" y="121"/>
+	</widget>
+	<widget field="rightAge" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="859" y="388"/>
+	</widget>
+	<widget field="ShooterHighSpeed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="300" y="320"/>
+	</widget>
+	<widget field="MarsRock" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="1036" y="433"/>
+	</widget>
+	<widget field="TurnCameraIterative" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="402" y="93"/>
+	</widget>
+	<widget field="rightEncoder" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="862" y="494"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>
