@@ -13,6 +13,7 @@ import org.usfirst.frc330.Beachbot2014Java.commands.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc330.Beachbot2014Java.Robot;
 import org.usfirst.frc330.wpilibj.BeachbotMultiPrefSendablePIDController;
 import org.usfirst.frc330.wpilibj.DummyPIDOutput;
 /**
@@ -35,8 +36,6 @@ public class Chassis extends Subsystem implements PIDSource {
     public BeachbotMultiPrefSendablePIDController gyroPID, leftDrivePID, rightDrivePID;
     private DummyPIDOutput gyroOutput, leftDriveOutput, rightDriveOutput;
     
-    double leftManual = 0;
-    double rightManual = 0;
     
     public static final String DRIVELOW = "DriveLow";
     public final static String DRIVEHIGH = "DriveHigh";
@@ -122,23 +121,17 @@ public class Chassis extends Subsystem implements PIDSource {
     
      public void tankDrive(Joystick leftJoystick, Joystick rightJoystick)
     {
-        leftManual = leftJoystick.getY();
-        
-        leftDrive1.set(leftManual);
-        leftDrive2.set(leftManual);
-        leftDrive3.set(leftManual);
-        
-        rightManual = rightJoystick.getY();
-        
-        rightDrive1.set(rightManual);
-        rightDrive2.set(rightManual);
-        rightDrive3.set(rightManual);
+        tankDrive(leftJoystick.getY(),rightJoystick.getY());
     }
     
     public void tankDrive(double left, double right)
     {
-        leftManual = left;
-        rightManual = right;
+        leftDrive1.set(left);
+        leftDrive2.set(left);
+        leftDrive3.set(left);
+        rightDrive1.set(-right);
+        rightDrive2.set(-right);
+        rightDrive3.set(-right);
     }
     
     public void shiftHigh()
@@ -178,6 +171,8 @@ public class Chassis extends Subsystem implements PIDSource {
     {
         double left, right;
         double gyroRate;
+        left = Robot.oi.leftJoystick.getY();
+        right = Robot.oi.rightJoystick.getY();
         gyroRate = Math.abs(AnalogModule.getInstance(1).getVoltage(1)/0.007); //TODO need to subtract gyro calibrated value
         if (gyroRate > maxGyroRate)
             maxGyroRate = gyroRate;
@@ -195,8 +190,8 @@ public class Chassis extends Subsystem implements PIDSource {
         }
         else
         {
-            left = leftManual-leftDriveOutput.getOutput() - gyroOutput.getOutput();
-            right = rightManual-rightDriveOutput.getOutput() + gyroOutput.getOutput();
+            left = left-leftDriveOutput.getOutput() - gyroOutput.getOutput();
+            right = right-rightDriveOutput.getOutput() + gyroOutput.getOutput();
             tankDrive(left, right);
         }
     
