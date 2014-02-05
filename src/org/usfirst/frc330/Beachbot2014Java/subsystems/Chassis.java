@@ -136,12 +136,14 @@ public class Chassis extends Subsystem implements PIDSource {
     
     public void shiftHigh()
     {
-        shiftSpike.setDirection(Relay.Direction.kForward);
+        shiftSpike.set(Relay.Value.kForward);
+        System.out.println("Shift High");
     }
     
     public void shiftLow()
     {
-        shiftSpike.setDirection(Relay.Direction.kReverse);
+        shiftSpike.set(Relay.Value.kReverse);
+        System.out.println("Shift Low");
     }
     
     public boolean getShiftState()
