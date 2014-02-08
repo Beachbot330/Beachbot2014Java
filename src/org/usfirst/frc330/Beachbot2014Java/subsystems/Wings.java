@@ -29,4 +29,30 @@ public class Wings extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    
+    public boolean areWingsClosed()
+    {
+        if (wingSolenoid.get() == DoubleSolenoid.Value.kReverse)
+            return true;
+        else
+            return false;
+    }
+    
+    public void toggleWings()
+    {
+        if (areWingsClosed())
+            wingSolenoid.set(DoubleSolenoid.Value.kForward);
+        else
+            wingSolenoid.set(DoubleSolenoid.Value.kReverse);
+    }
+  
+    public void setWingsOpen()
+    {
+        wingSolenoid.set(DoubleSolenoid.Value.kForward);
+    }
+    
+    public void setWingsClose()
+    {
+        wingSolenoid.set(DoubleSolenoid.Value.kReverse);
+    }
 }

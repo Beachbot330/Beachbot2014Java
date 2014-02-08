@@ -15,13 +15,13 @@ import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
  *
  */
 
-public class DriveEncoderRel extends DriveEncoder{
-    public DriveEncoderRel(double distance, double tolerance, double timeout, boolean stopAtEnd)
+public class DriveDistanceRel extends DriveDistance{
+    public DriveDistanceRel(double distance, double tolerance, double timeout, boolean stopAtEnd)
     {
         super(distance, tolerance, timeout, stopAtEnd);
     }
     
-    public DriveEncoderRel()
+    public DriveDistanceRel()
     {
         super(0,0,0,true);
     }
@@ -33,7 +33,7 @@ public class DriveEncoderRel extends DriveEncoder{
     }
     
     public Command copy() {
-        return new DriveEncoderRel();
+        return new DriveDistanceRel();
     }
     
     

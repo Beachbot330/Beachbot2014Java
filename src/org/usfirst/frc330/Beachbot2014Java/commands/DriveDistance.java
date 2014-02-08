@@ -16,25 +16,25 @@ import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
 /**
  *
  */
-public class  DriveEncoder extends Command implements AutoSpreadsheetCommand {
+public class  DriveDistance extends Command implements AutoSpreadsheetCommand {
     double leftDistance, rightDistance, tolerance;
     boolean stopAtEnd = false;
     
-    public DriveEncoder()
+    public DriveDistance()
     {
         this(0,0,0,false);
     }
     
-    public DriveEncoder(double distance) {
+    public DriveDistance(double distance) {
         this(distance, 0, 0, false);
     }
     
-    public DriveEncoder(double distance, double tolerance)
+    public DriveDistance(double distance, double tolerance)
     {
         this(distance, tolerance, 0, false);
     }
     
-    public DriveEncoder(double distance, double tolerance, double timeout, boolean stopAtEnd) {
+    public DriveDistance(double distance, double tolerance, double timeout, boolean stopAtEnd) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 	
@@ -105,6 +105,6 @@ public class  DriveEncoder extends Command implements AutoSpreadsheetCommand {
         this.stopAtEnd = stopAtEnd;
     }
     public Command copy() {
-        return new DriveEncoder();
+        return new DriveDistance();
     }
 }

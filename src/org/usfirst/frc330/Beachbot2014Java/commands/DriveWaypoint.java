@@ -9,9 +9,10 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /*
- * 
+ * This will drive the robot forwards to a waypoint on the field based on its 
+ * original starting position.
  */
-public class DriveWaypoint extends DriveEncoderGyroRampRel {
+public class DriveWaypoint extends DriveDistanceAtRelAngleWAccel {
     double x,y;
     public DriveWaypoint(double x, double y, double tolerance, double timeout, boolean stopAtEnd) {
         // Use requires() here to declare subsystem dependencies

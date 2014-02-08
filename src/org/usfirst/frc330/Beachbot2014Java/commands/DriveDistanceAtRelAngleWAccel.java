@@ -14,13 +14,13 @@ import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
 /**
  *
  */
-public class DriveEncoderGyroRampRel extends DriveEncoderGyroRamp {
-    public DriveEncoderGyroRampRel(double distance, double tolerance, double angle, double timeout, boolean stopAtEnd)
+public class DriveDistanceAtRelAngleWAccel extends DriveDistanceAtAngleWAccel {
+    public DriveDistanceAtRelAngleWAccel(double distance, double tolerance, double angle, double timeout, boolean stopAtEnd)
     {
         super(distance, tolerance, angle, timeout, stopAtEnd);
     }
     
-    public DriveEncoderGyroRampRel()
+    public DriveDistanceAtRelAngleWAccel()
     {
         super(0,0,0,0,true);
     }
@@ -32,6 +32,6 @@ public class DriveEncoderGyroRampRel extends DriveEncoderGyroRamp {
     }
 
     public Command copy() {
-        return new DriveEncoderGyroRampRel();
+        return new DriveDistanceAtRelAngleWAccel();
     }
 }

@@ -14,22 +14,22 @@ import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
 /**
  *
  */
-public class  DriveEncoderGyroRamp extends DriveEncoderGyro{
+public class  DriveDistanceAtAngleWAccel extends DriveDistanceAtAngle{
     double maxoutput = 0;
     double maxoutputStepHigh = Robot.chassis.getDriveRampStepHigh();
     double maxoutputStepLow = Robot.chassis.getDriveRampStepLow();
     
-    public DriveEncoderGyroRamp()
+    public DriveDistanceAtAngleWAccel()
     {
         this(0,0,0,0,true);
     }
      
-    public DriveEncoderGyroRamp(double distance, double angle)
+    public DriveDistanceAtAngleWAccel(double distance, double angle)
     {
         this(distance, 0, angle, 0, true);
     }
     
-    public DriveEncoderGyroRamp(double distance, double tolerance, double angle, double timeout, boolean stopAtEnd)
+    public DriveDistanceAtAngleWAccel(double distance, double tolerance, double angle, double timeout, boolean stopAtEnd)
     {
         super(distance, tolerance, angle, timeout, stopAtEnd);
     }
@@ -63,6 +63,6 @@ public class  DriveEncoderGyroRamp extends DriveEncoderGyro{
         Robot.chassis.rightDrivePID.setOutputRange(-maxoutput, maxoutput);
     }
     public Command copy() {
-        return new DriveEncoderGyroRamp();
+        return new DriveDistanceAtAngleWAccel();
     }
 }
