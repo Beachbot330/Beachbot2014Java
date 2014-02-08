@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.tables.ITable;
 import edu.wpi.first.wpilibj.tables.ITableListener;
 /*
@@ -68,8 +69,8 @@ public class MultiPrefSendablePIDController extends PrefSendablePIDController{
 //        System.out.println("readPIDPref: " +name);
         super.readPIDPref(p, i, d, f);
         name = savedName;
-        if (table != null && !gainName.equals(table.getString("gainName", gainName)))
-            table.putString("gainName", gainName);
+        if (!gainName.equals(SmartDashboard.getString(name+"gainName", name+gainName)))
+            SmartDashboard.putString(name+"gainName", name+gainName);
     }
     
     public void setGainName(String gainName)
@@ -77,12 +78,13 @@ public class MultiPrefSendablePIDController extends PrefSendablePIDController{
         readPIDPref(0,0,0,0,gainName);
 
     }
-    private ITable table;
+/*    private ITable table;
     
     public String getSmartDashboardType()
     {
         return "MultiPrefPIDController";
     }
+
     
     public void initTable(ITable table)
     {
@@ -112,4 +114,5 @@ public class MultiPrefSendablePIDController extends PrefSendablePIDController{
     public ITable getTable() {
         return table;    
     }
+    */
 }

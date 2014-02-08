@@ -168,10 +168,11 @@ public class PrefSendablePIDController extends PIDController{
     
     private ITable table;
     
-    public String getSmartDashboardType()
+/*    public String getSmartDashboardType()
     {
         return "PrefPIDController";
     }
+*/    
     
     public void initTable(ITable table)
     {
