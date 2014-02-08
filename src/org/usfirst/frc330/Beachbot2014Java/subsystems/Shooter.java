@@ -33,4 +33,27 @@ public class Shooter extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    
+    public void shootSolenoidOn() {
+        shooter1.set(true);
+        shooter2.set(true);
+        shooter3.set(true);
+        shooter4.set(true);
+    }
+    
+    public void shootSolenoidOff() {
+        shooter1.set(false);
+        shooter2.set(false);
+        shooter3.set(false);
+        shooter4.set(false);
+    }
+    
+    public double shootSolenoidOffTime() {
+        if (!Preferences.getInstance().containsKey("solenoidOffTime"))
+        {
+            Preferences.getInstance().putDouble("solenoidOffTime", 1.0);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("solenoidOffTime", 1.0);
+    }
 }
