@@ -48,6 +48,14 @@ public class Shooter extends Subsystem {
         shooter4.set(false);
     }
     
+    public void triggerSolenoidForward() {
+        triggerLatch.set(DoubleSolenoid.Value.kForward);
+    }
+    
+    public void triggerSolenoidReverse() {
+        triggerLatch.set(DoubleSolenoid.Value.kReverse);
+    }
+    
     public double shootSolenoidOffTime() {
         if (!Preferences.getInstance().containsKey("solenoidOffTime"))
         {

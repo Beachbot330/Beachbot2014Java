@@ -15,16 +15,16 @@ import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
  *
  */
 
-public class  DriveEncoderRamp extends DriveEncoder{
+public class  DriveDistanceAccel extends DriveDistance{
     double maxoutput = 0;
     double maxoutputStepHigh = Robot.chassis.getDriveRampStepHigh();
     double maxoutputStepLow = Robot.chassis.getDriveRampStepLow();
     
-    public DriveEncoderRamp(double distance) {
+    public DriveDistanceAccel(double distance) {
         this(distance, 0, 0, true);
     }
     
-    public DriveEncoderRamp(double distance, double tolerance, double timeout, boolean stopAtEnd) {
+    public DriveDistanceAccel(double distance, double tolerance, double timeout, boolean stopAtEnd) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 	
@@ -62,6 +62,6 @@ public class  DriveEncoderRamp extends DriveEncoder{
     }
     
     public Command copy() {
-        return new DriveEncoderRamp(0);
+        return new DriveDistanceAccel(0);
     }
 }

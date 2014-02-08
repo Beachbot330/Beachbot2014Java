@@ -14,20 +14,20 @@ import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
 /**
  *
  */
-public class  DriveEncoderGyro extends DriveEncoder{
+public class  DriveDistanceAtAngle extends DriveDistance{
     double angle;
     
-    public DriveEncoderGyro()
+    public DriveDistanceAtAngle()
     {
         this(0,0,0,0,true);
     }
     
-    public DriveEncoderGyro(double distance, double angle)
+    public DriveDistanceAtAngle(double distance, double angle)
     {
         this(distance, 0, angle, 0, true);
     }
     
-    public DriveEncoderGyro(double distance, double tolerance, double angle, double timeout, boolean stopAtEnd)
+    public DriveDistanceAtAngle(double distance, double tolerance, double angle, double timeout, boolean stopAtEnd)
     {
         super(distance, tolerance, timeout, stopAtEnd);
         this.angle = angle;
@@ -48,6 +48,6 @@ public class  DriveEncoderGyro extends DriveEncoder{
     }
 
     public Command copy() {
-        return new DriveEncoderGyro();
+        return new DriveDistanceAtAngle();
     }
 }

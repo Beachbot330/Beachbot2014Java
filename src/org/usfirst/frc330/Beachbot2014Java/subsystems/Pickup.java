@@ -12,6 +12,7 @@ import org.usfirst.frc330.Beachbot2014Java.RobotMap;
 import org.usfirst.frc330.Beachbot2014Java.commands.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
  */
@@ -30,5 +31,46 @@ public class Pickup extends Subsystem {
 	
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public void InitializePickupMotorForward()
+    {
+        if (!Preferences.getInstance().containsKey("PickupMotorOutputForward"))
+        {
+            Preferences.getInstance().putDouble("PickupMotorOutputForward", 1);
+            Preferences.getInstance().save();
+        }
+    }
+    
+    public void InitializePickupMotorReverse()
+    {
+        if (!Preferences.getInstance().containsKey("PickupMotorOutputReverse"))
+        {
+            Preferences.getInstance().putDouble("PickupmotorOutputReverse", -1);
+            Preferences.getInstance().save();
+        }
+    }
+    
+    public void setPickupMotorOff() {
+        pickup1.set(0);
+        pickup2.set(0);
+    }
+    
+    public void setPickupMotorForward() {
+        pickup1.set(Preferences.getInstance().getDouble("PickupMotorOutputForward",
+                                                        1));
+        pickup2.set(-Preferences.getInstance().getDouble("PickupMotorOutputForward",
+                                                       1));
+    }
+    
+    public void setPickupMotorReverse() {
+        pickup1.set(-Preferences.getInstance().getDouble("PickupMotorOutputReverse",
+                                                        1));
+        pickup2.set(Preferences.getInstance().getDouble("PickupMotorOutputReverse",
+                                                         1));
+    }
+    
+    public void checkCurrentSensor() {
+        
     }
 }
