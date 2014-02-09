@@ -33,44 +33,62 @@ public class Pickup extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public void InitializePickupMotorForward()
-    {
-        if (!Preferences.getInstance().containsKey("PickupMotorOutputForward"))
-        {
-            Preferences.getInstance().putDouble("PickupMotorOutputForward", 1);
-            Preferences.getInstance().save();
-        }
-    }
-    
-    public void InitializePickupMotorReverse()
-    {
-        if (!Preferences.getInstance().containsKey("PickupMotorOutputReverse"))
-        {
-            Preferences.getInstance().putDouble("PickupmotorOutputReverse", -1);
-            Preferences.getInstance().save();
-        }
-    }
-    
     public void setPickupMotorOff() {
         pickup1.set(0);
         pickup2.set(0);
     }
     
     public void setPickupMotorForward() {
-        pickup1.set(Preferences.getInstance().getDouble("PickupMotorOutputForward",
-                                                        1));
-        pickup2.set(-Preferences.getInstance().getDouble("PickupMotorOutputForward",
-                                                       1));
+        double speed = 1;
+        if (!Preferences.getInstance().containsKey("PickupMotorOutput"))
+        {
+            Preferences.getInstance().putDouble("PickupMotorOutput", speed);
+            Preferences.getInstance().save();
+        }
+        speed = Preferences.getInstance().getDouble("PickupMotorOutput",
+                                                        speed);
+        pickup1.set(speed);
+        pickup2.set(-speed);
     }
     
     public void setPickupMotorReverse() {
-        pickup1.set(-Preferences.getInstance().getDouble("PickupMotorOutputReverse",
-                                                        1));
-        pickup2.set(Preferences.getInstance().getDouble("PickupMotorOutputReverse",
-                                                         1));
+        double speed = 1;
+        if (!Preferences.getInstance().containsKey("PickupMotorOutput"))
+        {
+            Preferences.getInstance().putDouble("PickupMotorOutput", speed);
+            Preferences.getInstance().save();
+        }
+        speed = Preferences.getInstance().getDouble("PickupMotorOutput",
+                                                        speed);
+        pickup1.set(-speed);
+        pickup2.set(speed);
     }
     
-    public void checkCurrentSensor() {
-        
+    public double getCurrent() {
+        return (73.3*currentSensor.getAverageVoltage()/5.0-36.7);
+    }
+    
+    public double getCurrentLimit() {
+        double limit = 20;
+        if (!Preferences.getInstance().containsKey("PickupMotorCurrentLimit"))
+        {
+            Preferences.getInstance().putDouble("PickupMotorCurrentLimit", limit);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("PickupMotorCurrentLimit",
+                                                        limit);
+    }
+    
+    public void setPickupMotorSlowForward() {
+        double speed = 0.3;
+        if (!Preferences.getInstance().containsKey("PickupMotorOutputSlow"))
+        {
+            Preferences.getInstance().putDouble("PickupMotorOutputSlow", speed);
+            Preferences.getInstance().save();
+        }
+        speed = Preferences.getInstance().getDouble("PickupMotorOutputSlow",
+                                                        speed);
+        pickup1.set(speed);
+        pickup2.set(-speed);
     }
 }
