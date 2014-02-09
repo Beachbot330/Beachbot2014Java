@@ -153,12 +153,12 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     }
     
     public void set(double output){
-        if (output > 0 && getArmPosition() > armUpperLimit())
+        if (output > 0 && getArmPosition() > getArmUpperLimit())
         {
             arm1.set(0);
             arm2.set(0);
         }
-        else if (output < 0 && getArmPosition() < armLowerLimit())
+        else if (output < 0 && getArmPosition() < getArmLowerLimit())
         {
             arm1.set(0);
             arm2.set(0);
@@ -170,7 +170,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         }
     }
     
-    public double armUpperLimit() {
+    public double getArmUpperLimit() {
         double armpositionupperlimit = 2;
         if (Preferences.getInstance().containsKey(PREF_Arm_ArmPositionUpperLimit))
         {
@@ -185,7 +185,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         return armpositionupperlimit;
     }
     
-    public double armLowerLimit() {
+    public double getArmLowerLimit() {
         double armpositionlowerlimit = -2;
         if (Preferences.getInstance().containsKey(PREF_Arm_ArmPositionLowerLimit))
         {
@@ -204,40 +204,40 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         SmartDashboard.putNumber("armDashPosition", getArmPosition());
     }
     
-    public void armSetPoint(double setpoint) {
+    public void setArmSetPoint(double setpoint) {
        //armPID.setSetpoint(setpoint);
     }
     
-    public void armSetPointFrontPickup() {
-        armSetPoint(getArmFrontPickup());
+    public void setArmSetPointFrontPickup() {
+        setArmSetPoint(getArmFrontPickup());
     }
     
-    public void armSetPointBackPickup() {
-        armSetPoint(getArmBackPickup());
+    public void setArmSetPointBackPickup() {
+        setArmSetPoint(getArmBackPickup());
     }
     
-    public void armSetPointFrontCheckPickup() {
-        armSetPoint(getArmFrontCheckPickup());
+    public void setArmSetPointFrontCheckPickup() {
+        setArmSetPoint(getArmFrontCheckPickup());
     }
     
-    public void armSetPointBackCheckPickup() {
-        armSetPoint(getArmBackCheckPickup());
+    public void setArmSetPointBackCheckPickup() {
+        setArmSetPoint(getArmBackCheckPickup());
     }
     
-    public void armSetPointFrontLoading() {
-        armSetPoint(getArmFrontLoading());
+    public void setArmSetPointFrontLoading() {
+        setArmSetPoint(getArmFrontLoading());
     }
     
-    public void armSetPointBackLoading() {
-        armSetPoint(getArmBackLoading());
+    public void setArmSetPointBackLoading() {
+        setArmSetPoint(getArmBackLoading());
     }
     
-    public void armSetpointFrontCatching() {
-        armSetPoint(getArmFrontCatching());
+    public void setArmSetpointFrontCatching() {
+        setArmSetPoint(getArmFrontCatching());
     }
     
-    public void armSetpointBackCatching() {
-        armSetPoint(getArmBackCatching());
+    public void setArmSetpointBackCatching() {
+        setArmSetPoint(getArmBackCatching());
     }
     
     
