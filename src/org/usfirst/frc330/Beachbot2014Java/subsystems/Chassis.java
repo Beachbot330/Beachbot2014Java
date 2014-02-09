@@ -225,11 +225,6 @@ public class Chassis extends Subsystem implements PIDSource {
         distance =  ((leftEncoderDistance - prevLeftEncoderDistance) + (rightEncoderDistance - prevRightEncoderDistance))/2;
         x = x + distance * Math.sin(Math.toRadians(gyroAngle));
         y = y + distance * Math.cos(Math.toRadians(gyroAngle));
-        if (counter % 10 == 0)
-        {
-            SmartDashboard.putNumber("chassisX", x);
-            SmartDashboard.putNumber("chassisY", y);
-        }
         prevLeftEncoderDistance = leftEncoderDistance;
         prevRightEncoderDistance = rightEncoderDistance;
     }

@@ -200,10 +200,6 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         return armpositionlowerlimit;
     }
     
-    public void armDashPosition() {
-        SmartDashboard.putNumber("armDashPosition", getArmPosition());
-    }
-    
     public void setArmSetPoint(double setpoint) {
        //armPID.setSetpoint(setpoint);
     }
