@@ -562,6 +562,12 @@ Children:
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: None}
+  - Name: SmartDashboardSender
+    Base: Subsystem
+    Children: []
+    Properties:
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: SendDefaultSmartDashboardData}
   Properties: {}
 - Name: Operator Interface
   Base: OI
@@ -885,6 +891,16 @@ Children:
         name: Number
         validators: *id032
         value: '3'
+  - Name: KinectJoystick
+    Base: Kinect Joystick
+    Children: []
+    Properties:
+      Number: !!robotbuilder.data.properties.ChoicesProperty
+        choices: ['1', '2']
+        default: 1
+        name: Number
+        validators: [KinectJoystick]
+        value: '1'
   Properties: {}
 - Name: Commands
   Base: Commands
@@ -1071,6 +1087,14 @@ Children:
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Pickup}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+  - Name: SendDefaultSmartDashboardData
+    Base: Command
+    Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: SmartDashboardSender}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
   Properties: {}
