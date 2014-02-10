@@ -73,14 +73,14 @@ public class OI {
         
         operatorJoystick = new Joystick(3);
         
-        triggerReleaseButton = new JoystickButton(operatorJoystick, 1);
-        triggerReleaseButton.whenPressed(new ReleaseShooterPistons());
+//        triggerReleaseButton = new JoystickButton(operatorJoystick, 1);
+//        triggerReleaseButton.whenPressed(new ReleaseShooterPistons());
         triggerCloseButton = new JoystickButton(operatorJoystick, 10);
         triggerCloseButton.whileHeld(new TrapShooterPistons());
         pickupReverseButton = new JoystickButton(operatorJoystick, 8);
         pickupReverseButton.whileHeld(new PickupReverse());
         pickupForwardButton = new JoystickButton(operatorJoystick, 7);
-        pickupForwardButton.whileHeld(new PickupForward());
+        pickupForwardButton.whenPressed(new PickupForwardPulse());
         pickupOffButton = new JoystickButton(operatorJoystick, 5);
         pickupOffButton.whileHeld(new PickupOff());
         wingsToggleButton = new JoystickButton(operatorJoystick, 9);

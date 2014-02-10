@@ -797,7 +797,7 @@ Children:
           name: Command
           type: Command
           validators: *id028
-          value: PickupForward
+          value: PickupForwardPulse
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id029
           default: '1'
@@ -811,7 +811,7 @@ Children:
           default: whileHeld
           name: When to Run
           validators: null
-          value: whileHeld
+          value: whenPressed
     - Name: PickupReverseButton
       Base: Joystick Button
       Children: []
@@ -860,30 +860,6 @@ Children:
           name: When to Run
           validators: null
           value: whileHeld
-    - Name: TriggerReleaseButton
-      Base: Joystick Button
-      Children: []
-      Properties:
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id028
-          value: ReleaseShooterPistons
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id029
-          default: '1'
-          name: Button
-          validators: null
-          value: '1'
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: OperatorJoystick}
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id030
-          default: whileHeld
-          name: When to Run
-          validators: null
-          value: whenPressed
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: *id031
