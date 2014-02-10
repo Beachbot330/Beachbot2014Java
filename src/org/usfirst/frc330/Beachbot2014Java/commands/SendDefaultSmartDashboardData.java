@@ -40,6 +40,7 @@ public class  SendDefaultSmartDashboardData extends Command {
             SmartDashboard.putNumber("ChassisY", Robot.chassis.getY());
             SmartDashboard.putNumber("GyroAngle", Robot.chassis.getAngle());
         }
+        count++;
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
