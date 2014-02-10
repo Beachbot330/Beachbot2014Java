@@ -65,7 +65,11 @@ public class Pickup extends Subsystem {
     }
     
     public double getCurrent() {
-        return (73.3*currentSensor.getAverageVoltage()/5.0-36.7);
+        return Math.abs(73.3*currentSensor.getAverageVoltage()/5.0-36.7);
+    }
+    
+    public double getCurrentSensorVoltage() {
+        return currentSensor.getAverageVoltage();
     }
     
     public double getCurrentLimit() {
