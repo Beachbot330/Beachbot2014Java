@@ -96,6 +96,19 @@ public class Pickup extends Subsystem {
         pickup2.set(-speed);
     }
     
+        public void setPickupMotorSlowReverse() {
+        double speed = 0.3;
+        if (!Preferences.getInstance().containsKey("PickupMotorOutputSlow"))
+        {
+            Preferences.getInstance().putDouble("PickupMotorOutputSlow", speed);
+            Preferences.getInstance().save();
+        }
+        speed = Preferences.getInstance().getDouble("PickupMotorOutputSlow",
+                                                        speed);
+        pickup1.set(-speed);
+        pickup2.set(speed);
+    }
+    
     public void calcPeriodic() {
         checkBallHeld();
     }
@@ -112,6 +125,21 @@ public class Pickup extends Subsystem {
         }
         else {
             currentSensorCount = 0;
+        }
+    }
+    
+    public void pickupPulse(boolean direction) {
+        if (!direction) {
+            if (Robot.pickup.getCurrent() > Robot.pickup.getCurrentLimit())
+                Robot.pickup.setPickupMotorSlowForward();
+            else
+                Robot.pickup.setPickupMotorForward();
+        }
+        else {
+            if (Robot.pickup.getCurrent() > Robot.pickup.getCurrentLimit())
+                Robot.pickup.setPickupMotorSlowReverse();
+            else
+                Robot.pickup.setPickupMotorReverse();
         }
     }
 }
