@@ -95,4 +95,23 @@ public class Pickup extends Subsystem {
         pickup1.set(speed);
         pickup2.set(-speed);
     }
+    
+    public void calcPeriodic() {
+        checkBallHeld();
+    }
+    
+    private int currentSensorCount = 0;
+    public boolean isBallHeld()
+    {
+        return currentSensorCount < 10;
+    }
+    
+    private void checkBallHeld() {
+        if (getCurrent() < getCurrentLimit()) {
+            currentSensorCount++;
+        }
+        else {
+            currentSensorCount = 0;
+        }
+    }
 }

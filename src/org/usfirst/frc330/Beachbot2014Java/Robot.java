@@ -111,6 +111,7 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
 //        System.out.println("AP");
         chassis.calcPeriodic();
+        pickup.calcPeriodic();
         Scheduler.getInstance().run();
     }
     public void teleopInit() {
@@ -125,6 +126,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         chassis.calcPeriodic();
+        pickup.calcPeriodic();
         Scheduler.getInstance().run();
     }
     /**
