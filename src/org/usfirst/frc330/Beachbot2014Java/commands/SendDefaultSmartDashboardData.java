@@ -30,15 +30,35 @@ public class  SendDefaultSmartDashboardData extends Command {
     protected void initialize() {
         count = 0;
     }
+    double pickupCurrent = 0;
+    double armPosition = 0;
+    double chassisX = 0;
+    double chassisY = 0;
+    double gyroAngle = 0;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if (count % 10 == 0)
         {
-            SmartDashboard.putNumber("PickupCurrent", Robot.pickup.getCurrent());
-            SmartDashboard.putNumber("ArmPosition", Robot.arm.getArmPosition());
-            SmartDashboard.putNumber("ChassisX", Robot.chassis.getX());
-            SmartDashboard.putNumber("ChassisY", Robot.chassis.getY());
-            SmartDashboard.putNumber("GyroAngle", Robot.chassis.getAngle());
+            if (pickupCurrent != Robot.pickup.getCurrent()) {
+                pickupCurrent = Robot.pickup.getCurrent();
+                SmartDashboard.putNumber("PickupCurrent", pickupCurrent);
+            }
+            if (armPosition != Robot.arm.getArmPosition()) {
+                armPosition = Robot.arm.getArmPosition();
+                SmartDashboard.putNumber("ArmPosition", armPosition);
+            }
+            if (chassisX != Robot.chassis.getX()) {
+                chassisX = Robot.chassis.getX();
+                 SmartDashboard.putNumber("ChassisX", chassisX);
+            }
+            if (chassisY != Robot.chassis.getY()) {
+                chassisY = Robot.chassis.getY();
+                SmartDashboard.putNumber("ChassisY", chassisY);
+            }
+            if (gyroAngle != Robot.chassis.getAngle()) {
+                gyroAngle = Robot.chassis.getAngle();
+                SmartDashboard.putNumber("GyroAngle", gyroAngle);
+            }
         }
         count++;
     }
