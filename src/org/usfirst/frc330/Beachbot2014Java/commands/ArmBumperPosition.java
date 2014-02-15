@@ -42,7 +42,7 @@ public class  ArmBumperPosition extends Command {
     protected boolean isFinished() {
         return Robot.arm.onTarget();
     }
-    // Called once after isFinished returns true
+    // Called once after isFinished returns true 
     protected void end() {
     }
     // Called when another command which requires one or more of the same
