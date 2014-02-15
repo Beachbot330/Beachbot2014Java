@@ -81,12 +81,12 @@ public class Chassis extends Subsystem implements PIDSource {
         SmartDashboard.putData("rightDrivePID", rightDrivePID);
 //        SmartDashboard.putData("leftDrivePIDHigh", leftDrivePIDHigh);
 //        SmartDashboard.putData("rightDrivePIDHigh", rightDrivePIDHigh);
-        final double diameter = 6;
+        final double diameter = 4;
         final double PulseperRevolution = 250;
         final double leftPracticePulsePerRevolution = 360;
         final double encoderGearRatio = 3;
-        final double gearRatio = 64/20;
-        final double Fudgefactor = 0.94;
+        final double gearRatio = 54.0/30.0;
+        final double Fudgefactor = 1.06;
         final double distanceperpulse = Math.PI*diameter/PulseperRevolution/encoderGearRatio/gearRatio * Fudgefactor;
         final double leftPracticedistanceperpulse = Math.PI*diameter/leftPracticePulsePerRevolution/encoderGearRatio/gearRatio * Fudgefactor;
 //        if (Robot.isPracticerobot())
@@ -172,20 +172,9 @@ public class Chassis extends Subsystem implements PIDSource {
     public void pidDrive()
     {
         double left, right;
-        double gyroRate;
         left = Robot.oi.leftJoystick.getY();
         right = Robot.oi.rightJoystick.getY();
-        gyroRate = Math.abs(AnalogModule.getInstance(1).getVoltage(1)/0.007); //TODO need to subtract gyro calibrated value
-        if (gyroRate > maxGyroRate)
-            maxGyroRate = gyroRate;
-        if (counter % 10 == 0)
-        {
-            SmartDashboard.putNumber("leftEncoder", getLeftDistance());
-            SmartDashboard.putNumber("rightEncoder", getRightDistance());
-//            SmartDashboard.putNumber("Gyro", getAngle());
-//            SmartDashboard.putNumber("GyroRate", gyroRate);
-//            SmartDashboard.putNumber("MaxGyroRate", maxGyroRate);
-        }
+
         if (DriverStation.getInstance().isDisabled())
         {
             stopDrive();
