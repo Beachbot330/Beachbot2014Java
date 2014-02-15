@@ -42,6 +42,7 @@ public class RobotMap {
     public static Solenoid shooterShooter4;
     public static DoubleSolenoid shooterTriggerLatch;
     public static DoubleSolenoid wingsWingSolenoid;
+    public static DigitalInput wingsWingLimitSwitch;
     public static SpeedController pickupPickup1;
     public static SpeedController pickupPickup2;
     public static AnalogChannel pickupCurrentSensor;
@@ -111,6 +112,9 @@ public class RobotMap {
         
         wingsWingSolenoid = new DoubleSolenoid(1, 7, 8);      
 	
+        
+        wingsWingLimitSwitch = new DigitalInput(1, 1);
+	LiveWindow.addSensor("Wings", "WingLimitSwitch", wingsWingLimitSwitch);
         
         pickupPickup1 = new Victor(1, 7);
 	LiveWindow.addActuator("Pickup", "Pickup1", (Victor) pickupPickup1);

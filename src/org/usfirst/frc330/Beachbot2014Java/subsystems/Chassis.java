@@ -174,7 +174,6 @@ public class Chassis extends Subsystem implements PIDSource {
         double left, right;
         left = Robot.oi.leftJoystick.getY();
         right = Robot.oi.rightJoystick.getY();
-
         if (DriverStation.getInstance().isDisabled())
         {
             stopDrive();

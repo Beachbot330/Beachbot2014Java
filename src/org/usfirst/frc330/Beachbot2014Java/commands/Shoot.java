@@ -31,7 +31,7 @@ public class  Shoot extends Command implements AutoSpreadsheetCommand{
     protected void initialize() {
         Robot.wings.setWingsOpen();
         timer = Robot.wings.getWingOpenTime() + Robot.arm.armWaitWings();
-        if (!Robot.wings.areWingsClosed() && Timer.getFPGATimestamp() > timer) {
+        if (Robot.wings.areWingsOpen() && Timer.getFPGATimestamp() > timer) {
 //        solenoidOffTime = Robot.shooter.shootSolenoidOffTime() + Timer.getFPGATimestamp();
         Robot.shooter.shootSolenoidOn();
         
@@ -40,7 +40,7 @@ public class  Shoot extends Command implements AutoSpreadsheetCommand{
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (!Robot.wings.areWingsClosed() && Timer.getFPGATimestamp() > timer) {
+        if (!Robot.wings.areWingsOpen() && Timer.getFPGATimestamp() > timer) {
         Robot.shooter.shootSolenoidOn();
         System.out.println("Shoot Execute");
         }

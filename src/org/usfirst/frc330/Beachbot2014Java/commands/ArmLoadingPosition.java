@@ -34,7 +34,7 @@ public class  ArmLoadingPosition extends Command {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (!Robot.wings.areWingsClosed() && Timer.getFPGATimestamp() > timer) {
+        if (Robot.wings.areWingsOpen() && Timer.getFPGATimestamp() > timer) {
             if (!Robot.arm.isEnable())
                 Robot.arm.enable();
         }
