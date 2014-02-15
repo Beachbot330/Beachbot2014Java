@@ -35,6 +35,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         //setDefaultCommand(new MySpecialCommand());
     }
     
+    private static final String PREF_Arm_ArmWingsTimeToWait = "PREF_Arm_ArmWingsTimeToWait";
     private static final String PREF_Arm_ArmPositionLowerLimit = "ArmPositionLowerLimit";
     private static final String PREF_Arm_ArmPositionUpperLimit = "ArmPositionUpperLimit";
     private static final String PREF_Arm_ArmPositionDash = "ArmPositionDash";
@@ -76,61 +77,114 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         Preferences.getInstance().save();
     }
     
-    public double getArmFrontPickup() {
-        if (!Preferences.getInstance().containsKey("armSetpointPickup"))
-        {
-            Preferences.getInstance().putDouble("armSetpointPickup", 1.7);
-            Preferences.getInstance().save();
-        }
-        return Preferences.getInstance().getDouble("armSetpointPickup", 1.7);
-    }
-    
     public double getArmBackPickup() {
-        return -Robot.arm.getArmFrontPickup();
-    }
-    
-    public double getArmFrontCheckPickup() {
-        if (!Preferences.getInstance().containsKey("armSetpointCheckPickup"))
+        if (!Preferences.getInstance().containsKey("armSetpointBackPickup"))
         {
-            Preferences.getInstance().putDouble("armSetpointCheckPickup", 1.6);
+            Preferences.getInstance().putDouble("armSetpointBackPickup", 2.0);
             Preferences.getInstance().save();
         }
-        return Preferences.getInstance().getDouble("armSetpointCheckPickup", 1.6);
+        return Preferences.getInstance().getDouble("armSetpointBackPickup", 2.0);
     }
     
-    public double getArmBackCheckPickup() {
-        return -Robot.arm.getArmFrontCheckPickup();
+    public double getArmFrontBumper() {
+        if (!Preferences.getInstance().containsKey("armSetpointFrontBumper"))
+        {
+            Preferences.getInstance().putDouble("armSetpointFrontBumper", 0.2);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("armSetpointCheckPickup", 0.2);
+    }
+    
+    public double getArmBackBumper() {
+        if (!Preferences.getInstance().containsKey("armSetpointBackBumper"))
+        {
+            Preferences.getInstance().putDouble("armSetpointBackBumper", 1.6);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("armSetpointBackBumper", 1.6);
     }
     
     public double getArmFrontLoading() {
-        if (!Preferences.getInstance().containsKey("armSetpointLoading"))
+        if (!Preferences.getInstance().containsKey("armSetpointFrontLoading"))
         {
-            Preferences.getInstance().putDouble("armSetpointLoading", 1.0);
+            Preferences.getInstance().putDouble("armSetpointFrontLoading", 0.8);
             Preferences.getInstance().save();
         }
-        return Preferences.getInstance().getDouble("armSetpointLoading", 1.0);
+        return Preferences.getInstance().getDouble("armSetpointFrontLoading", 0.8);
+    }
+    
+    public double getArmVertical() {
+        if (!Preferences.getInstance().containsKey("armSetpointPickup"))
+        {
+            Preferences.getInstance().putDouble("armSetpointPickup", 1.0);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("armSetpointPickup", 1.0);
     }
     
     public double getArmBackLoading() {
-        return -Robot.arm.getArmFrontLoading();
+        if (!Preferences.getInstance().containsKey("armSetpointBackLoading"))
+        {
+            Preferences.getInstance().putDouble("armSetpointBackLoading", 1.2);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("armSetpointBackLoading", 1.2);
     }
     
     public double getArmFrontCatching() {
-        if (!Preferences.getInstance().containsKey("armSetpointCatching"))
+        if (!Preferences.getInstance().containsKey("armSetpointFrontCatching"))
         {
-            Preferences.getInstance().putDouble("armSetpointCatching", .9);
+            Preferences.getInstance().putDouble("armSetpointFrontCatching", .9);
             Preferences.getInstance().save();
         }
-        return Preferences.getInstance().getDouble("armSetpointCatching", .9);
+        return Preferences.getInstance().getDouble("armSetpointFrontCatching", .9);
     }
     
     public double getArmBackCatching() {
-        return -Robot.arm.getArmFrontCatching();
+        if (!Preferences.getInstance().containsKey("armSetpointBackCatching"))
+        {
+            Preferences.getInstance().putDouble("armSetpointBackCatching", 1.1);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("armSetpointBackCatching", 1.1);
+    }
+    
+    public double getArmFrontSafePoint() {
+        if (!Preferences.getInstance().containsKey("armFrontSafePoint"))
+        {
+            Preferences.getInstance().putDouble("armFrontSafePoint", .4);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("ArmFrontSafePoint", .4);
+    }
+    
+    public double getArmBackSafePoint() {
+        if (!Preferences.getInstance().containsKey("armBackSafePoint"))
+        {
+            Preferences.getInstance().putDouble("armBackSafePoint", 1.6);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("ArmBackSafePoint", 1.6);
+    }
+    
+    public double armWaitWings() {
+        double armWingsTimeToWait = 0.5;
+        if (Preferences.getInstance().containsKey(PREF_Arm_ArmWingsTimeToWait))
+        {
+            armWingsTimeToWait = Preferences.getInstance().getDouble(
+                            PREF_Arm_ArmWingsTimeToWait,armWingsTimeToWait);
+        } else 
+        {
+            Preferences.getInstance().putDouble(PREF_Arm_ArmWingsTimeToWait, 
+                                                armWingsTimeToWait);
+            Preferences.getInstance().save();
+        }
+        return armWingsTimeToWait;
     }
     
     public void manualArm() {
         double armCommand = Robot.oi.operatorJoystick.getY();
-        /*
+        
         if (Math.abs(armCommand) > 0.10 && armPID.isEnable())
         {
             armPID.disable();
@@ -144,9 +198,30 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         {
             set(0);
         }
-        */
+        
         set(armCommand);
     }
+    
+    public synchronized double getSetpoint() {
+        return armPID.getSetpoint();
+    }
+    
+    public synchronized boolean onTarget() {
+        return armPID.onTarget();
+    }
+    
+    public synchronized boolean isEnable() {
+        return armPID.isEnable();
+    }
+    
+    public synchronized void enable() {
+        armPID.enable();
+    }
+    
+    public synchronized void disable() {
+        armPID.disable();
+    }
+    
     public double getArmPosition()
     {
         return armPotentiometer.getAverageVoltage()-getArmZero();
@@ -168,6 +243,20 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
             arm1.set(output);
             arm2.set(-output);
         }
+    }
+    
+    public boolean isArmInBackSafePoint() {
+        if (Robot.arm.getArmPosition() > Robot.arm.getArmBackSafePoint())
+            return true;
+        else
+            return false;
+    }
+    
+    public boolean isArmInFrontSafePoint() {
+        if (Robot.arm.getArmPosition() < Robot.arm.getArmFrontSafePoint())
+            return true;
+        else
+            return false;
     }
     
     public double getArmUpperLimit() {
@@ -204,20 +293,23 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
        //armPID.setSetpoint(setpoint);
     }
     
+    public void setArmVertical() {
+        setArmSetPoint(getArmVertical());
+    }
     public void setArmSetPointFrontPickup() {
-        setArmSetPoint(getArmFrontPickup());
+        setArmSetPoint(getArmZero());
     }
     
     public void setArmSetPointBackPickup() {
         setArmSetPoint(getArmBackPickup());
     }
     
-    public void setArmSetPointFrontCheckPickup() {
-        setArmSetPoint(getArmFrontCheckPickup());
+    public void setArmSetPointFrontBumper() {
+        setArmSetPoint(getArmFrontBumper());
     }
     
-    public void setArmSetPointBackCheckPickup() {
-        setArmSetPoint(getArmBackCheckPickup());
+    public void setArmSetPointBackBumper() {
+        setArmSetPoint(getArmBackBumper());
     }
     
     public void setArmSetPointFrontLoading() {
@@ -235,7 +327,6 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     public void setArmSetpointBackCatching() {
         setArmSetPoint(getArmBackCatching());
     }
-    
     
     public double pidGet() {
         return getArmPosition();

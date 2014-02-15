@@ -12,6 +12,7 @@ import org.usfirst.frc330.Beachbot2014Java.RobotMap;
 import org.usfirst.frc330.Beachbot2014Java.commands.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
  */
@@ -45,14 +46,23 @@ public class Wings extends Subsystem {
         else
             wingSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
-  
-    public void setWingsOpen()
+    private double wingOpenTime;
+    
+    public double getWingOpenTime()
     {
-        wingSolenoid.set(DoubleSolenoid.Value.kForward);
+        return wingOpenTime;
     }
     
+    public void setWingsOpen()
+    {
+        if (!areWingsClosed())
+            wingOpenTime = Timer.getFPGATimestamp();
+        wingSolenoid.set(DoubleSolenoid.Value.kForward);
+    }
+        
     public void setWingsClose()
     {
         wingSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
+    
 }

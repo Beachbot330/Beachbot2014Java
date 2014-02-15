@@ -64,11 +64,11 @@ public class  AutoPickupOn extends Command {
             case STATE_TEST_BALL:    
                 Robot.pickup.pickupPulse(direction);
                 if (direction) {
-                    if (Robot.arm.getArmPosition() > Robot.arm.getArmFrontCheckPickup()) {
+                    if (Robot.arm.getArmPosition() > Robot.arm.getArmFrontBumper()) {
                         Robot.arm.set(0);
                     }
                 } else {
-                    if (Robot.arm.getArmPosition() < Robot.arm.getArmBackCheckPickup()) {
+                    if (Robot.arm.getArmPosition() < Robot.arm.getArmBackBumper()) {
                         Robot.arm.set(0);
                     }
                 }
