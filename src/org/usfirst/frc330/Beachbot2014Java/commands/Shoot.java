@@ -26,17 +26,24 @@ public class  Shoot extends Command implements AutoSpreadsheetCommand{
         setTimeout(Robot.shooter.shootSolenoidOffTime());
     }
     private double solenoidOffTime;
+    double timer;
     // Called just before this Command runs the first time
     protected void initialize() {
+        Robot.wings.setWingsOpen();
+        timer = Robot.wings.getWingOpenTime() + Robot.arm.armWaitWings();
+        if (!Robot.wings.areWingsClosed() && Timer.getFPGATimestamp() > timer) {
 //        solenoidOffTime = Robot.shooter.shootSolenoidOffTime() + Timer.getFPGATimestamp();
         Robot.shooter.shootSolenoidOn();
         
         System.out.println("Shoot Initialize");
+        }
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        if (!Robot.wings.areWingsClosed() && Timer.getFPGATimestamp() > timer) {
         Robot.shooter.shootSolenoidOn();
         System.out.println("Shoot Execute");
+        }
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
