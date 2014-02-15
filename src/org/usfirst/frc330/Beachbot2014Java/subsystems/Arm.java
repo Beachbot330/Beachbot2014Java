@@ -184,7 +184,6 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     
     public void manualArm() {
         double armCommand = Robot.oi.operatorJoystick.getY();
-        
         if (Math.abs(armCommand) > 0.10 && armPID.isEnable())
         {
             armPID.disable();
@@ -198,9 +197,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         {
             set(0);
         }
-        
-        set(armCommand);
-    }
+        set(armCommand);    }
     
     public synchronized double getSetpoint() {
         return armPID.getSetpoint();

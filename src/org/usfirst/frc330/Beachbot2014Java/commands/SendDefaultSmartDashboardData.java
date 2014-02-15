@@ -28,6 +28,11 @@ public class  SendDefaultSmartDashboardData extends Command {
     int count = 0;
     // Called just before this Command runs the first time
     protected void initialize() {
+        SmartDashboard.putNumber("ChassisX", chassisX);
+        SmartDashboard.putNumber("ChassisY", chassisY);
+        SmartDashboard.putNumber("EncoderLeft", encoderLeft);
+        SmartDashboard.putNumber("EncoderRight", encoderRight);
+        
         count = 0;
     }
     double pickupCurrent = 0;
@@ -35,6 +40,8 @@ public class  SendDefaultSmartDashboardData extends Command {
     double chassisX = 0;
     double chassisY = 0;
     double gyroAngle = 0;
+    double encoderLeft = 0;
+    double encoderRight = 0;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if (count % 10 == 0)
@@ -58,6 +65,14 @@ public class  SendDefaultSmartDashboardData extends Command {
             if (gyroAngle != Robot.chassis.getAngle()) {
                 gyroAngle = Robot.chassis.getAngle();
                 SmartDashboard.putNumber("GyroAngle", gyroAngle);
+            }
+            if (encoderLeft != Robot.chassis.getLeftDistance()) {
+                encoderLeft = Robot.chassis.getLeftDistance();
+                SmartDashboard.putNumber("EncoderLeft", encoderLeft);
+            }
+            if (encoderRight != Robot.chassis.getRightDistance()) {
+                encoderRight = Robot.chassis.getRightDistance();
+                SmartDashboard.putNumber("EncoderRight", encoderRight);
             }
         }
         count++;
