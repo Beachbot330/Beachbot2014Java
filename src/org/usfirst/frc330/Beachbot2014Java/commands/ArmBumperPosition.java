@@ -28,15 +28,18 @@ public class  ArmBumperPosition extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
         Robot.arm.disable();
+        Robot.wings.setWingsOpen();
+        timer = Robot.wings.getWingOpenTime() + Robot.arm.armWaitWings();
         Robot.arm.setArmSetPointFrontBumper();
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (Robot.arm.isArmInFrontSafePoint()) {
+        if (Robot.wings.areWingsOpen() && Timer.getFPGATimestamp() > timer) {
             if (!Robot.arm.isEnable())
                 Robot.arm.enable();
         }
-            
+        else if (Robot.arm.isEnable())
+            Robot.arm.disable();       
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

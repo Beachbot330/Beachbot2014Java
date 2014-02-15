@@ -8,6 +8,7 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
@@ -27,14 +28,18 @@ public class  OppositeArmPickupPosition extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
         Robot.arm.disable();
+        Robot.wings.setWingsOpen();
+        timer = Robot.wings.getWingOpenTime() + Robot.arm.armWaitWings();
         Robot.arm.setArmSetPointBackPickup();
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (Robot.arm.isArmInBackSafePoint()) {
+        if (Robot.wings.areWingsOpen() && Timer.getFPGATimestamp() > timer) {
             if (!Robot.arm.isEnable())
                 Robot.arm.enable();
         }
+        else if (Robot.arm.isEnable())
+            Robot.arm.disable();
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

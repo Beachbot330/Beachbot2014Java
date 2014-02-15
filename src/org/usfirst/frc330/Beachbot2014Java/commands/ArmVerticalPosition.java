@@ -38,6 +38,8 @@ public class  ArmVerticalPosition extends Command {
             if (!Robot.arm.isEnable())
                 Robot.arm.enable();
         }
+        else if (Robot.arm.isEnable())
+            Robot.arm.disable();
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
