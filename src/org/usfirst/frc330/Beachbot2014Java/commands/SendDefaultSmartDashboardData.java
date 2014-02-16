@@ -42,6 +42,7 @@ public class  SendDefaultSmartDashboardData extends Command {
     double gyroAngle = 0;
     double encoderLeft = 0;
     double encoderRight = 0;
+    double shooterDistance = 0;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if (count % 10 == 0)
@@ -73,6 +74,10 @@ public class  SendDefaultSmartDashboardData extends Command {
             if (encoderRight != Robot.chassis.getRightDistance()) {
                 encoderRight = Robot.chassis.getRightDistance();
                 SmartDashboard.putNumber("EncoderRight", encoderRight);
+            }
+            if (shooterDistance != Robot.shooter.getBallDistance()) {
+                shooterDistance = Robot.shooter.getBallDistance();
+                SmartDashboard.putNumber("BallDistance", shooterDistance);
             }
         }
         count++;
