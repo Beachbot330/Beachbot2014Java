@@ -53,8 +53,8 @@ public class OI {
     public JoystickButton shiftHighButton;
     public Joystick leftJoystick;
     public JoystickButton shiftLowButton;
-    public Joystick rightJoystick;
     public JoystickButton shootButton;
+    public Joystick rightJoystick;
     public JoystickButton manualArmButton;
     public JoystickButton wingsToggleButton;
     public JoystickButton pickupOffButton;
@@ -82,15 +82,15 @@ public class OI {
         wingsToggleButton.whenPressed(new WingsToggle());
         manualArmButton = new JoystickButton(operatorJoystick, 2);
         manualArmButton.whileHeld(new ManualArm());
-        shootButton = new JoystickButton(operatorJoystick, 1);
-        shootButton.whenPressed(new Shoot());
         rightJoystick = new Joystick(2);
         
-        shiftLowButton = new JoystickButton(rightJoystick, 1);
+        shootButton = new JoystickButton(rightJoystick, 1);
+        shootButton.whenPressed(new Shoot());
+        shiftLowButton = new JoystickButton(rightJoystick, 2);
         shiftLowButton.whenPressed(new ShiftLow());
         leftJoystick = new Joystick(1);
         
-        shiftHighButton = new JoystickButton(leftJoystick, 1);
+        shiftHighButton = new JoystickButton(leftJoystick, 2);
         shiftHighButton.whenPressed(new ShiftHigh());
 	    
         // SmartDashboard Buttons
