@@ -83,6 +83,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
             Preferences.getInstance().putDouble("armSetpointFrontPickup", .1);
             Preferences.getInstance().save();
         }
+        System.out.println("armSetpointFrontPickup: " + Preferences.getInstance().getDouble("armSetpointFrontPickup", .1));
         return Preferences.getInstance().getDouble("armSetpointFrontPickup", .1);
     }
     public double getArmBackPickup() {
@@ -296,14 +297,14 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     }
     
     public void setArmSetPoint(double setpoint) {
-       //armPID.setSetpoint(setpoint);
+       armPID.setSetpoint(setpoint);
     }
     
     public void setArmVertical() {
         setArmSetPoint(getArmVertical());
     }
     public void setArmSetPointFrontPickup() {
-        setArmSetPoint(getArmZero());
+        setArmSetPoint(getArmFrontPickup());
     }
     
     public void setArmSetPointBackPickup() {

@@ -12,6 +12,7 @@ import org.usfirst.frc330.Beachbot2014Java.RobotMap;
 import org.usfirst.frc330.Beachbot2014Java.commands.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
@@ -32,9 +33,13 @@ public class Wings extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
+    public Wings() {
+        SmartDashboard.putBoolean("WingsOverride", false);
+    }
+    
     public boolean areWingsOpen()
     {
-        if (wingSolenoid.get() == DoubleSolenoid.Value.kForward && wingLimitSwitch.get() == true)
+        if (wingSolenoid.get() == DoubleSolenoid.Value.kForward && (wingLimitSwitch.get() == true || SmartDashboard.getBoolean("WingsOverride", true)))
             return true;
         else
             return false;

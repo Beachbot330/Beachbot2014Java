@@ -31,12 +31,15 @@ public class  ArmPickupPosition extends Command {
         Robot.wings.setWingsOpen();
         timer = Robot.wings.getWingOpenTime() + Robot.arm.armWaitWings();
         Robot.arm.setArmSetPointFrontPickup();
+        System.out.println("ArmPickupPosition Initialize");
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if (Robot.wings.areWingsOpen() && Timer.getFPGATimestamp() > timer) {
-            if (!Robot.arm.isEnable())
+            if (!Robot.arm.isEnable()) {
                 Robot.arm.enable();
+                System.out.println("ArmPickupPositionEnable");
+            }
         }
         else if (Robot.arm.isEnable())
             Robot.arm.disable();
