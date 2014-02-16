@@ -110,8 +110,6 @@ public class OI {
         SmartDashboard.putData("PickupForward", new PickupForward());
         SmartDashboard.putData("PickupOff", new PickupOff());
         SmartDashboard.putData("PickupReverse", new PickupReverse());
-        SmartDashboard.putData("ReleaseShooterPistons", new ReleaseShooterPistons());
-        SmartDashboard.putData("TrapShooterPistons", new TrapShooterPistons());
         SmartDashboard.putData("AutoPickupOn", new AutoPickupOn());
         SmartDashboard.putData("PickupForwardPulse", new PickupForwardPulse());
         SmartDashboard.putData("SendDefaultSmartDashboardData", new SendDefaultSmartDashboardData());
