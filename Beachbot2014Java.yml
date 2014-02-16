@@ -208,7 +208,7 @@ Children:
           default: kRate
           name: PID Source
           validators: null
-          value: kRate
+          value: kDistance
         Distance Per Pulse: !!robotbuilder.data.properties.DoubleProperty {default: 1,
           name: Distance Per Pulse, validators: null, value: 1.0}
         Encoding Type: !!robotbuilder.data.properties.ChoicesProperty
@@ -232,7 +232,7 @@ Children:
           validators: &id015 [DigitalChannel]
           value: '5'
         Reverse Direction: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Reverse Direction, validators: null, value: false}
+          name: Reverse Direction, validators: null, value: true}
     - Name: RightDriveEncoder
       Base: Quadrature Encoder
       Children: []
@@ -254,7 +254,7 @@ Children:
           default: kRate
           name: PID Source
           validators: null
-          value: kRate
+          value: kDistance
         Distance Per Pulse: !!robotbuilder.data.properties.DoubleProperty {default: 1,
           name: Distance Per Pulse, validators: null, value: 1.0}
         Encoding Type: !!robotbuilder.data.properties.ChoicesProperty
@@ -276,7 +276,7 @@ Children:
           validators: *id015
           value: '7'
         Reverse Direction: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Reverse Direction, validators: null, value: false}
+          name: Reverse Direction, validators: null, value: true}
     - Name: Gyro
       Base: Gyro
       Children: []

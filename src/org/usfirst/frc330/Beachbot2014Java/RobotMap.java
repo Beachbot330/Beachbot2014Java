@@ -74,15 +74,15 @@ public class RobotMap {
         chassisShiftSpike = new Relay(1, 1);
 	LiveWindow.addActuator("Chassis", "ShiftSpike", chassisShiftSpike);
         
-        chassisLeftDriveEncoder = new Encoder(1, 5, 1, 6, false, EncodingType.k4X);
+        chassisLeftDriveEncoder = new Encoder(1, 5, 1, 6, true, EncodingType.k4X);
 	LiveWindow.addSensor("Chassis", "LeftDriveEncoder", chassisLeftDriveEncoder);
         chassisLeftDriveEncoder.setDistancePerPulse(1.0);
-        chassisLeftDriveEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
+        chassisLeftDriveEncoder.setPIDSourceParameter(PIDSourceParameter.kDistance);
         chassisLeftDriveEncoder.start();
-        chassisRightDriveEncoder = new Encoder(1, 7, 1, 8, false, EncodingType.k4X);
+        chassisRightDriveEncoder = new Encoder(1, 7, 1, 8, true, EncodingType.k4X);
 	LiveWindow.addSensor("Chassis", "RightDriveEncoder", chassisRightDriveEncoder);
         chassisRightDriveEncoder.setDistancePerPulse(1.0);
-        chassisRightDriveEncoder.setPIDSourceParameter(PIDSourceParameter.kRate);
+        chassisRightDriveEncoder.setPIDSourceParameter(PIDSourceParameter.kDistance);
         chassisRightDriveEncoder.start();
         chassisGyro = new Gyro(1, 1);
 	LiveWindow.addSensor("Chassis", "Gyro", chassisGyro);
