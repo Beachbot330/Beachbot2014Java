@@ -46,6 +46,10 @@ public class  DriveDistanceAtAngle extends DriveDistance{
         Robot.chassis.gyroPID.setSetpoint(angle);
         Robot.chassis.gyroPID.enable();            
     }
+    
+    public void setParam3(double angle) {
+        this.angle = angle;
+    }
 
     public Command copy() {
         return new DriveDistanceAtAngle();
