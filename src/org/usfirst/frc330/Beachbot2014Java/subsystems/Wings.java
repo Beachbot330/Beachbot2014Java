@@ -48,10 +48,12 @@ public class Wings extends Subsystem {
     
     public void toggleWings()
     {
-        if (areWingsOpen())
-            wingSolenoid.set(DoubleSolenoid.Value.kReverse);
-        else
-            wingSolenoid.set(DoubleSolenoid.Value.kForward);
+        if (areWingsOpen()) {
+            setWingsClose();
+        }
+        else {
+            setWingsOpen();
+        }
     }
     private double wingOpenTime;
     
@@ -69,7 +71,8 @@ public class Wings extends Subsystem {
         
     public void setWingsClose()
     {
-        wingSolenoid.set(DoubleSolenoid.Value.kReverse);
+        if (Robot.arm.areWingsSafeToClose())
+            wingSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
     
 }
