@@ -29,6 +29,7 @@ public class  WingsOpen extends Command implements AutoSpreadsheetCommand {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        Robot.wings.setWingsOpen();
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

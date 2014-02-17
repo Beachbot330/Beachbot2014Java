@@ -341,4 +341,11 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     public void pidWrite(double output) {
         set(output);
     }
+    
+        
+    public boolean areWingsSafeToClose() {
+        return ((getArmPosition() < getArmFrontSafePoint() ||  getArmPosition() > getArmBackSafePoint()) && !armPID.isEnable()) || 
+                (getArmPosition() < getArmFrontSafePoint() && armPID.getSetpoint() < getArmFrontSafePoint()) ||
+                (getArmPosition() > getArmBackSafePoint() && armPID.getSetpoint() > getArmBackSafePoint());
+    }
 }

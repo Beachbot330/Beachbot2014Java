@@ -27,10 +27,17 @@ public class  WingsToggle extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
         state = Robot.wings.areWingsOpen();
-        Robot.wings.toggleWings();
+        if (state)
+            Robot.wings.setWingsClose();
+        else
+            Robot.wings.setWingsOpen();
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        if (state)
+            Robot.wings.setWingsClose();
+        else
+            Robot.wings.setWingsOpen();
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
