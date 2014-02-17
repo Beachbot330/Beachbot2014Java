@@ -50,15 +50,24 @@ public class Shooter extends Subsystem {
     
     
     public double shootSolenoidOffTime() {
-        if (!Preferences.getInstance().containsKey("solenoidOffTime"))
+        if (!Preferences.getInstance().containsKey("shooterOffTime"))
         {
-            Preferences.getInstance().putDouble("solenoidOffTime", 1.0);
+            Preferences.getInstance().putDouble("shooterOffTime", 0.2);
             Preferences.getInstance().save();
         }
-        return Preferences.getInstance().getDouble("solenoidOffTime", 1.0);
+        return Preferences.getInstance().getDouble("shooterOffTime", 0.2);
     }
     
     public double getBallDistance() {
         return shooterUltrasonic.getAverageVoltage() / 0.0098;
+    }
+    
+    public boolean isBallInShooter() {
+        return getBallDistance() < 9;
+    }
+    
+    public boolean isBallInWings() {
+        double ballDistance = getBallDistance();
+        return ballDistance > 20 && ballDistance < 60;
     }
 }
