@@ -40,7 +40,7 @@ public class Wings extends Subsystem {
     
     public boolean areWingsOpen()
     {
-        if (wingSolenoid.get() == DoubleSolenoid.Value.kForward && ((wingLeftLimitSwitch.get() == true && wingRightLimitSwitch.get() == true) || SmartDashboard.getBoolean("WingsOverride", false)))
+        if (wingSolenoid.get() == DoubleSolenoid.Value.kForward && (wingOpenTime + getWingsOpenWait()) < Timer.getFPGATimestamp() && ((wingLeftLimitSwitch.get() == true && wingRightLimitSwitch.get() == true) || SmartDashboard.getBoolean("WingsOverride", false)))
             return true;
         else
             return false;
@@ -64,15 +64,31 @@ public class Wings extends Subsystem {
     
     public void setWingsOpen()
     {
-        if (!areWingsOpen())
+        if (wingSolenoid.get() != DoubleSolenoid.Value.kForward) {
             wingOpenTime = Timer.getFPGATimestamp();
-        wingSolenoid.set(DoubleSolenoid.Value.kForward);
+            wingSolenoid.set(DoubleSolenoid.Value.kForward);
+        }
     }
         
     public void setWingsClose()
     {
         if (Robot.arm.areWingsSafeToClose())
             wingSolenoid.set(DoubleSolenoid.Value.kReverse);
+    }
+ 
+    public double getWingsOpenWait() {
+        double wingsOpenWait = 0.75;
+        if (Preferences.getInstance().containsKey("WingsOpenWait"))
+        {
+            wingsOpenWait = Preferences.getInstance().getDouble(
+                            "WingsOpenWait",wingsOpenWait);
+        } else 
+        {
+            Preferences.getInstance().putDouble("WingsOpenWait", 
+                                                wingsOpenWait);
+            Preferences.getInstance().save();
+        }
+        return wingsOpenWait;
     }
     
 }
