@@ -232,7 +232,7 @@ Children:
           validators: &id015 [DigitalChannel]
           value: '5'
         Reverse Direction: !!robotbuilder.data.properties.BooleanProperty {default: false,
-          name: Reverse Direction, validators: null, value: true}
+          name: Reverse Direction, validators: null, value: false}
     - Name: RightDriveEncoder
       Base: Quadrature Encoder
       Children: []
@@ -818,7 +818,7 @@ Children:
           name: Command
           type: Command
           validators: *id028
-          value: ArmPickupPosition
+          value: AutoPickupForward
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id029
           default: '1'
@@ -832,7 +832,7 @@ Children:
           default: whileHeld
           name: When to Run
           validators: null
-          value: whileHeld
+          value: whenPressed
     - Name: WingsToggleButton2
       Base: Joystick Button
       Children: []

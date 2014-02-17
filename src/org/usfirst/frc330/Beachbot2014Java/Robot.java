@@ -110,9 +110,9 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
 //        System.out.println("AP");
+        Scheduler.getInstance().run();
         chassis.calcPeriodic();
         pickup.calcPeriodic();
-        Scheduler.getInstance().run();
     }
     public void teleopInit() {
 	// This makes sure that the autonomous stops running when
@@ -125,9 +125,9 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        Scheduler.getInstance().run();
         chassis.calcPeriodic();
         pickup.calcPeriodic();
-        Scheduler.getInstance().run();
     }
     /**
      * This function called periodically during test mode
