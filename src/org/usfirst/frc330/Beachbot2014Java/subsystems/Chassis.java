@@ -13,7 +13,6 @@ import org.usfirst.frc330.Beachbot2014Java.commands.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc330.Beachbot2014Java.Robot;
 import org.usfirst.frc330.wpilibj.DummyPIDOutput;
 import org.usfirst.frc330.wpilibj.MultiPrefSendablePIDController;
 /**
@@ -248,5 +247,30 @@ public class Chassis extends Subsystem implements PIDSource {
     }
     public double pidGet() {
         return getAngle();
+    }
+    
+    double gain = .5;
+    public void cheesyDrive(Joystick leftJoystick, Joystick rightJoystick)     {
+        double turn = rightJoystick.getAxis(Joystick.AxisType.kX);
+        double throttle = -leftJoystick.getAxis(Joystick.AxisType.kY);
+        double left, right;
+        
+        if (Math.abs(throttle) > 0.15)
+            turn = Math.abs(throttle) * turn * gain;
+        
+        left = throttle  + turn;
+        right = throttle - turn;
+        
+        tankDrive(left + skim(right),right + skim(left));
+//        right = right + skim(left);
+    }
+    
+    private double skim(double v) {
+        // gain determines how much to skim off the top
+        if (v > 1.0)
+          return -((v - 1.0) * gain);
+        else if (v < -1.0)
+          return -((v + 1.0) * gain);
+        return 0;
     }
 }
