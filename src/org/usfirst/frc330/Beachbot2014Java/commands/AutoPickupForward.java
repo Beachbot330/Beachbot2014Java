@@ -38,6 +38,6 @@ public class AutoPickupForward extends CommandGroup {
         addSequential(new WingsOpen());
         addSequential(new MoveArmToFrontPickupPosition());
         addParallel(new PickupForwardPulse());
-        addSequential(new WingsClose());
+//        addSequential(new WingsClose());
     }
 }
