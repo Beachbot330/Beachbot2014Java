@@ -42,7 +42,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     
     public Arm() {
         armPID = new PrefSendablePIDController(0,0,0,this,this, "armPID");
-//        armPID = new PIDController(0,0,0,this,this);
+        armPID.setOutputRange(-0.8, 0.8);
         armPID.setAbsoluteTolerance(0.1);
         Preferences.getInstance().putDouble("ArmAbsoluteTolerance", 0.1);
         SmartDashboard.putData("ArmPID", armPID);
@@ -176,7 +176,6 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         return Preferences.getInstance().getDouble("armBackSafePoint", 1.6);
     }
     
-
     
     public void manualArm() {
         double armCommand = Robot.oi.operatorJoystick.getY();

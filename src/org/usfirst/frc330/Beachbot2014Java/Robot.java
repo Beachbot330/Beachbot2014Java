@@ -88,6 +88,18 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new setGyroComp());
         auto.addCommand(new TurnGyroAbs(0));
         auto.addCommand(new TurnGyroRel(0));
+        auto.addCommand(new WingsOpen());
+        auto.addCommand(new WingsClose());
+        auto.addCommand(new MoveArmToFrontLoadingPosition());
+        auto.addCommand(new MoveArmToFrontBumperPosition());
+        auto.addCommand(new MoveArmToFrontCatchingPosition());
+        auto.addCommand(new MoveArmToFrontPickupPosition());
+        auto.addCommand(new MoveArmToRearBumperPosition());
+        auto.addCommand(new MoveArmToRearCatchingPosition());
+        auto.addCommand(new MoveArmToRearLoadingPosition());
+        auto.addCommand(new MoveArmToRearPickupPosition());
+        auto.addCommand(new MoveArmToVerticalPosition());
+        auto.addCommand(new Shoot());
         
 //        SmartDashboard.putData("Scheduler", Scheduler.getInstance());
         

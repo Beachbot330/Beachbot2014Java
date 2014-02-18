@@ -1004,6 +1004,14 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: Pickup}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
+  - Name: PickupReversePulse
+    Base: Command
+    Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Pickup}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
   - Name: PickupOff
     Base: Command
     Children: []
@@ -1060,7 +1068,7 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: Shooter}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
-  - Name: ArmPickupPosition
+  - Name: MoveArmToFrontPickupPosition
     Base: Command
     Children: []
     Properties:
@@ -1068,7 +1076,7 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: Arm}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
-  - Name: ArmBumperPosition
+  - Name: MoveArmToFrontBumperPosition
     Base: Command
     Children: []
     Properties:
@@ -1076,7 +1084,7 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: Arm}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
-  - Name: ArmLoadingPosition
+  - Name: MoveArmToFrontLoadingPosition
     Base: Command
     Children: []
     Properties:
@@ -1084,7 +1092,7 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: Arm}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
-  - Name: ArmCatchingPosition
+  - Name: MoveArmToFrontCatchingPosition
     Base: Command
     Children: []
     Properties:
@@ -1092,7 +1100,7 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: Arm}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
-  - Name: ArmVerticalPosition
+  - Name: MoveArmToVerticalPosition
     Base: Command
     Children: []
     Properties:
@@ -1100,7 +1108,7 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: Arm}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
-  - Name: OppositeArmPickupPosition
+  - Name: MoveArmToRearPickupPosition
     Base: Command
     Children: []
     Properties:
@@ -1108,7 +1116,7 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: Arm}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
-  - Name: OppositeArmBumperPosition
+  - Name: MoveArmToRearBumperPosition
     Base: Command
     Children: []
     Properties:
@@ -1116,7 +1124,7 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: Arm}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
-  - Name: OppositeArmCatchingPosition
+  - Name: MoveArmToRearCatchingPosition
     Base: Command
     Children: []
     Properties:
@@ -1124,7 +1132,7 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: Arm}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
-  - Name: OppositeArmLoadingPosition
+  - Name: MoveArmToRearLoadingPosition
     Base: Command
     Children: []
     Properties:
@@ -1136,6 +1144,14 @@ Children:
     Base: Command Group
     Children: []
     Properties:
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+  - Name: AutoCatch
+    Base: Command
+    Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Wings}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
   Properties: {}
