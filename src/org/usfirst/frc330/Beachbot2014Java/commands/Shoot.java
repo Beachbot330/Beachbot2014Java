@@ -37,7 +37,6 @@ public class  Shoot extends Command implements AutoSpreadsheetCommand{
             Robot.shooter.shootSolenoidOn();
             shootOffTimer = Timer.getFPGATimestamp() + Robot.shooter.shootSolenoidOffTime();
             shooterOn = true;
-        System.out.println("Shoot Initialize");
         }
     }
     // Called repeatedly when this Command is scheduled to run
@@ -46,7 +45,6 @@ public class  Shoot extends Command implements AutoSpreadsheetCommand{
             Robot.shooter.shootSolenoidOn();
             shootOffTimer = Timer.getFPGATimestamp() + Robot.shooter.shootSolenoidOffTime();
             shooterOn = true;
-        System.out.println("Shoot Execute");
         }
     }
     // Make this return true when this Command no longer needs to run execute()
