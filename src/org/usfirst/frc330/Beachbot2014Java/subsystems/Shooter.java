@@ -68,6 +68,6 @@ public class Shooter extends Subsystem {
     
     public boolean isBallInWings() {
         double ballDistance = getBallDistance();
-        return ballDistance > 20 && ballDistance < 60;
+        return ballDistance > 15 && ballDistance < 60;
     }
 }
