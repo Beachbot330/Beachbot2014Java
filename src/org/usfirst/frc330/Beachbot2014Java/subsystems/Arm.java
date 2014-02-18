@@ -35,7 +35,6 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    private static final String PREF_Arm_ArmWingsTimeToWait = "PREF_Arm_ArmWingsTimeToWait";
     private static final String PREF_Arm_ArmPositionLowerLimit = "ArmPositionLowerLimit";
     private static final String PREF_Arm_ArmPositionUpperLimit = "ArmPositionUpperLimit";
     private static final String PREF_Arm_ArmPositionDash = "ArmPositionDash";
@@ -179,6 +178,10 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     
     public void manualArm() {
         double armCommand = Robot.oi.operatorJoystick.getY();
+        if (armCommand < 0) 
+            armCommand = -(armCommand*armCommand);
+        else
+            armCommand = armCommand*armCommand;
         if (Math.abs(armCommand) > 0.10 && armPID.isEnable())
         {
             armPID.disable();
@@ -328,14 +331,18 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         set(output);
     }
     
-        
     public boolean areWingsSafeToClose() {
         boolean disabled, front, back;
-        System.out.println();
+//        System.out.println();
         disabled = (getArmPosition() < getArmFrontSafePoint() ||  getArmPosition() > getArmBackSafePoint()) && !armPID.isEnable();
         front = (getArmPosition() < getArmFrontSafePoint() && armPID.getSetpoint() < getArmFrontSafePoint());
         back = (getArmPosition() > getArmBackSafePoint() && armPID.getSetpoint() > getArmBackSafePoint());
-        System.out.println("AreWingsSafeToClose: " + disabled + " " + front + " " + back);
+//        System.out.println("AreWingsSafeToClose: " + disabled + " " + front + " " + back);
         return ( disabled || front || back );
+    }
+    
+    public void stopArm() {
+        armPID.disable();
+        set(0);
     }
 }
