@@ -23,7 +23,6 @@ import edu.wpi.first.wpilibj.tables.ITableListener;
  * @author joe
  */
 public class MultiPrefSendablePIDController extends PrefSendablePIDController{
-    double p, i, d;
     String gainName;
 
     public MultiPrefSendablePIDController(double p, double i, double d, PIDSource source, PIDOutput output, double period, String name)
@@ -58,6 +57,7 @@ public class MultiPrefSendablePIDController extends PrefSendablePIDController{
         Preferences.getInstance().putDouble(name+gainName+"P", getP());
         Preferences.getInstance().putDouble(name+gainName+"I", getI());
         Preferences.getInstance().putDouble(name+gainName+"D", getD());
+        Preferences.getInstance().putDouble(name+gainName+"F", getF());
         Preferences.getInstance().save();
 //        System.out.println("Saved PID Preferences: " + this.name);
     }

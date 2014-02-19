@@ -139,7 +139,7 @@ public class PrefSendablePIDController extends PIDController{
         
         if (Preferences.getInstance().containsKey(name + "F"))
         {
-            d = Preferences.getInstance().getDouble(name + "F", f);
+            f = Preferences.getInstance().getDouble(name + "F", f);
         }
         else 
         {
@@ -166,49 +166,53 @@ public class PrefSendablePIDController extends PIDController{
 //        System.out.println("Saved PID Preferences: " + this.name);
     }
     
-    private ITable table;
-    
-/*    public String getSmartDashboardType()
-    {
-        return "PrefPIDController";
-    }
-*/    
-    
-    public void initTable(ITable table)
-    {
-        if(this.table!=null)
-            this.table.removeTableListener(listener);
-        this.table = table;
-        super.initTable(table);
-        if(table!=null){
-            table.putBoolean("save", false);
-            table.addTableListener(listener, false);
-        }
+    public String getGainName() {
+        return name;
     }
     
-    private ITableListener listener = new ITableListener() {
-                boolean prevSave = false;
-
-                public void valueChanged(ITable table, String key, Object value, boolean isNew) {
-//                    System.out.println(key + " changed");
-                    if (key.equals("save"))
-                    {
-//                        System.out.println("prevSave: " + prevSave + "curSave: " + ((Boolean) value).booleanValue());
-                        if (((Boolean) value).booleanValue())
-                        {
-                            if (prevSave == false)
-                            {
-                                PrefSendablePIDController.this.savePIDPref();
-                            }
-                            prevSave = true;
-                        }    
-                        else
-                            prevSave = false;
-                    }                
-                }
-            };
-    
-    public ITable getTable() {
-        return table;    
-    }
+//    private ITable table;
+//    
+///*    public String getSmartDashboardType()
+//    {
+//        return "PrefPIDController";
+//    }
+//*/    
+//    
+//    public void initTable(ITable table)
+//    {
+//        if(this.table!=null)
+//            this.table.removeTableListener(listener);
+//        this.table = table;
+//        super.initTable(table);
+//        if(table!=null){
+//            table.putBoolean("save", false);
+//            table.addTableListener(listener, false);
+//        }
+//    }
+//    
+//    private ITableListener listener = new ITableListener() {
+//                boolean prevSave = false;
+//
+//                public void valueChanged(ITable table, String key, Object value, boolean isNew) {
+////                    System.out.println(key + " changed");
+//                    if (key.equals("save"))
+//                    {
+////                        System.out.println("prevSave: " + prevSave + "curSave: " + ((Boolean) value).booleanValue());
+//                        if (((Boolean) value).booleanValue())
+//                        {
+//                            if (prevSave == false)
+//                            {
+//                                PrefSendablePIDController.this.savePIDPref();
+//                            }
+//                            prevSave = true;
+//                        }    
+//                        else
+//                            prevSave = false;
+//                    }                
+//                }
+//            };
+//    
+//    public ITable getTable() {
+//        return table;    
+//    }
 }

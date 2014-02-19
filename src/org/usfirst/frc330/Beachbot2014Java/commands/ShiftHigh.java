@@ -36,11 +36,11 @@ public class  ShiftHigh extends Command implements AutoSpreadsheetCommand {
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return true;
     }
     // Called once after isFinished returns true
     protected void end() {
-        RobotMap.chassisShiftSpike.set(Relay.Value.kOff);
+//        RobotMap.chassisShiftSpike.set(Relay.Value.kOff);
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run

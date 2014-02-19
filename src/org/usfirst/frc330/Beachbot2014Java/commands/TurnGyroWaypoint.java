@@ -26,7 +26,7 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
     double x, y;
     public TurnGyroWaypoint()
     {
-        super(0,0,0,true);
+        super(0,0,0,true,true);
     }
 
     protected void initialize() {

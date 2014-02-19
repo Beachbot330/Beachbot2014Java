@@ -13,7 +13,6 @@ import org.usfirst.frc330.Beachbot2014Java.commands.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc330.Beachbot2014Java.Robot;
 import org.usfirst.frc330.wpilibj.DummyPIDOutput;
 import org.usfirst.frc330.wpilibj.MultiPrefSendablePIDController;
 /**
@@ -42,6 +41,8 @@ public class Chassis extends Subsystem implements PIDSource {
     public final static String TURNLOW = "TurnLow";
     public final static String TURNHIGH = "TurnHigh";
     
+    double left, right;
+    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void initDefaultCommand() {
@@ -57,30 +58,20 @@ public class Chassis extends Subsystem implements PIDSource {
         compressor.start();
         
         gyroOutput = new DummyPIDOutput();
-//        gyroOutputHigh = new DummyPIDOutput();
         leftDriveOutput = new DummyPIDOutput();
         rightDriveOutput = new DummyPIDOutput();
-//        leftDriveOutputHigh = new DummyPIDOutput();
-//        rightDriveOutputHigh = new DummyPIDOutput();
         
         gyroPID = new MultiPrefSendablePIDController(0.11,0,0,this,gyroOutput,"gyro");
-//      gyroPIDHigh = new MultiPrefSendablePIDController(0.05,0,0,gyro,gyroOutputHigh,"gyroHigh");
         leftDrivePID = new MultiPrefSendablePIDController(0.2,0,0,leftDriveEncoder,leftDriveOutput,"leftDrive");
         rightDrivePID = new MultiPrefSendablePIDController(0.2,0,0,rightDriveEncoder,rightDriveOutput,"rightDrive");
-//        leftDrivePIDHigh = new BeachbotPrefSendablePIDController(0.013,0,0,leftDriveEncoder,leftDriveOutputHigh,"leftDriveHigh");
-//        rightDrivePIDHigh = new BeachbotPrefSendablePIDController(0.013,0,0,rightDriveEncoder,rightDriveOutputHigh,"rightDriveHigh");
         
         leftDrivePID.setOutputRange(-0.8, 0.8);
         rightDrivePID.setOutputRange(-0.8, 0.8);
-//        leftDrivePIDHigh.setOutputRange(-0.8, 0.8);
-//        rightDrivePIDHigh.setOutputRange(-0.8, 0.8);
         
         SmartDashboard.putData("gyroPID", gyroPID);
-//        SmartDashboard.putData("gyroPIDHigh", gyroPIDHigh);
         SmartDashboard.putData("leftDrivePID", leftDrivePID);
         SmartDashboard.putData("rightDrivePID", rightDrivePID);
-//        SmartDashboard.putData("leftDrivePIDHigh", leftDrivePIDHigh);
-//        SmartDashboard.putData("rightDrivePIDHigh", rightDrivePIDHigh);
+        
         final double diameter = 4;
         final double PulseperRevolution = 250;
         final double leftPracticePulsePerRevolution = 360;
@@ -121,29 +112,33 @@ public class Chassis extends Subsystem implements PIDSource {
     
      public void tankDrive(Joystick leftJoystick, Joystick rightJoystick)
     {
-        tankDrive(leftJoystick.getY(),rightJoystick.getY());
+        left = -leftJoystick.getY();
+        right = -rightJoystick.getY();
     }
     
     public void tankDrive(double left, double right)
     {
-        leftDrive1.set(left);
-        leftDrive2.set(left);
-        leftDrive3.set(left);
-        rightDrive1.set(-right);
-        rightDrive2.set(-right);
-        rightDrive3.set(-right);
+        this.left = left;
+        this.right = right;
+    }
+    
+    private void drive(double left, double right) {
+        leftDrive1.set(-left);
+        leftDrive2.set(-left);
+        leftDrive3.set(-left);
+        rightDrive1.set(right);
+        rightDrive2.set(right);
+        rightDrive3.set(right);
     }
     
     public void shiftHigh()
     {
         shiftSpike.set(Relay.Value.kForward);
-        System.out.println("Shift High");
     }
     
     public void shiftLow()
     {
         shiftSpike.set(Relay.Value.kReverse);
-        System.out.println("Shift Low");
     }
     
     public boolean getShiftState()
@@ -172,17 +167,17 @@ public class Chassis extends Subsystem implements PIDSource {
     public void pidDrive()
     {
         double left, right;
-        left = Robot.oi.leftJoystick.getY();
-        right = Robot.oi.rightJoystick.getY();
         if (DriverStation.getInstance().isDisabled())
         {
             stopDrive();
         }
         else
         {
-            left = left-leftDriveOutput.getOutput() - gyroOutput.getOutput();
-            right = right-rightDriveOutput.getOutput() + gyroOutput.getOutput();
-            tankDrive(left, right);
+            left = this.left+leftDriveOutput.getOutput() - gyroOutput.getOutput();
+            right = this.right+rightDriveOutput.getOutput() + gyroOutput.getOutput();
+            drive(left, right);
+            this.left = 0;
+            this.right = 0;
         }
     
     }
@@ -244,16 +239,38 @@ public class Chassis extends Subsystem implements PIDSource {
     {
         if (gyroPID.isEnable())
             gyroPID.disable();
-//        gyroPIDHigh.disable();
         if (leftDrivePID.isEnable())
             leftDrivePID.disable();
         if (rightDrivePID.isEnable())
-            rightDrivePID.disable();
-//        leftDrivePIDHigh.disable();
-//        rightDrivePIDHigh.disable();            
+            rightDrivePID.disable();        
         tankDrive(0, 0);  
     }
     public double pidGet() {
         return getAngle();
+    }
+    
+    double gain = .5;
+    public void cheesyDrive(Joystick leftJoystick, Joystick rightJoystick)     {
+        double turn = rightJoystick.getAxis(Joystick.AxisType.kX);
+        double throttle = -leftJoystick.getAxis(Joystick.AxisType.kY);
+        double left, right;
+        
+        if (Math.abs(throttle) > 0.15)
+            turn = Math.abs(throttle) * turn * gain;
+        
+        left = throttle  + turn;
+        right = throttle - turn;
+        
+        tankDrive(left + skim(right),right + skim(left));
+//        right = right + skim(left);
+    }
+    
+    private double skim(double v) {
+        // gain determines how much to skim off the top
+        if (v > 1.0)
+          return -((v - 1.0) * gain);
+        else if (v < -1.0)
+          return -((v + 1.0) * gain);
+        return 0;
     }
 }
