@@ -42,7 +42,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     
     public Arm() {
         armPID = new PrefSendablePIDController(0,0,0,this,this, "armPID");
-//        armPID = new PIDController(0,0,0,this,this);
+        armPID.setOutputRange(-0.8, 0.8);
         armPID.setAbsoluteTolerance(0.1);
         Preferences.getInstance().putDouble("ArmAbsoluteTolerance", 0.1);
         SmartDashboard.putData("ArmPID", armPID);
@@ -77,6 +77,15 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         Preferences.getInstance().save();
     }
     
+    public double getArmFrontPickup() {
+        if (!Preferences.getInstance().containsKey("armSetpointFrontPickup"))
+        {
+            Preferences.getInstance().putDouble("armSetpointFrontPickup", .1);
+            Preferences.getInstance().save();
+        }
+        System.out.println("armSetpointFrontPickup: " + Preferences.getInstance().getDouble("armSetpointFrontPickup", .1));
+        return Preferences.getInstance().getDouble("armSetpointFrontPickup", .1);
+    }
     public double getArmBackPickup() {
         if (!Preferences.getInstance().containsKey("armSetpointBackPickup"))
         {
@@ -155,7 +164,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
             Preferences.getInstance().putDouble("armFrontSafePoint", .4);
             Preferences.getInstance().save();
         }
-        return Preferences.getInstance().getDouble("ArmFrontSafePoint", .4);
+        return Preferences.getInstance().getDouble("armFrontSafePoint", .4);
     }
     
     public double getArmBackSafePoint() {
@@ -164,23 +173,9 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
             Preferences.getInstance().putDouble("armBackSafePoint", 1.6);
             Preferences.getInstance().save();
         }
-        return Preferences.getInstance().getDouble("ArmBackSafePoint", 1.6);
+        return Preferences.getInstance().getDouble("armBackSafePoint", 1.6);
     }
     
-    public double armWaitWings() {
-        double armWingsTimeToWait = 0.5;
-        if (Preferences.getInstance().containsKey(PREF_Arm_ArmWingsTimeToWait))
-        {
-            armWingsTimeToWait = Preferences.getInstance().getDouble(
-                            PREF_Arm_ArmWingsTimeToWait,armWingsTimeToWait);
-        } else 
-        {
-            Preferences.getInstance().putDouble(PREF_Arm_ArmWingsTimeToWait, 
-                                                armWingsTimeToWait);
-            Preferences.getInstance().save();
-        }
-        return armWingsTimeToWait;
-    }
     
     public void manualArm() {
         double armCommand = Robot.oi.operatorJoystick.getY();
@@ -197,7 +192,8 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         {
             set(0);
         }
-        set(armCommand);    }
+        set(armCommand);    
+    }
     
     public synchronized double getSetpoint() {
         return armPID.getSetpoint();
@@ -287,14 +283,14 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     }
     
     public void setArmSetPoint(double setpoint) {
-       //armPID.setSetpoint(setpoint);
+       armPID.setSetpoint(setpoint);
     }
     
     public void setArmVertical() {
         setArmSetPoint(getArmVertical());
     }
     public void setArmSetPointFrontPickup() {
-        setArmSetPoint(getArmZero());
+        setArmSetPoint(getArmFrontPickup());
     }
     
     public void setArmSetPointBackPickup() {
@@ -330,5 +326,16 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     }
     public void pidWrite(double output) {
         set(output);
+    }
+    
+        
+    public boolean areWingsSafeToClose() {
+        boolean disabled, front, back;
+        System.out.println();
+        disabled = (getArmPosition() < getArmFrontSafePoint() ||  getArmPosition() > getArmBackSafePoint()) && !armPID.isEnable();
+        front = (getArmPosition() < getArmFrontSafePoint() && armPID.getSetpoint() < getArmFrontSafePoint());
+        back = (getArmPosition() > getArmBackSafePoint() && armPID.getSetpoint() > getArmBackSafePoint());
+        System.out.println("AreWingsSafeToClose: " + disabled + " " + front + " " + back);
+        return ( disabled || front || back );
     }
 }

@@ -25,6 +25,7 @@ public class  WingsClose extends Command implements AutoSpreadsheetCommand {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
+        Robot.wings.setWingsClose();
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
@@ -32,7 +33,7 @@ public class  WingsClose extends Command implements AutoSpreadsheetCommand {
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return !Robot.wings.areWingsOpen();
     }
     // Called once after isFinished returns true
     protected void end() {

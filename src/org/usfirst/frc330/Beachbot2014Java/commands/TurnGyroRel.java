@@ -33,7 +33,7 @@ public class  TurnGyroRel extends TurnGyroAbs{
     }
     
     public TurnGyroRel(double angle, double tolerance, double timeout, boolean stopAtEnd) {
-        super(angle,tolerance,timeout,stopAtEnd);
+        super(angle,tolerance,timeout,stopAtEnd,false);
     }
     // Called just before this Command runs the first time
     protected void initialize() {

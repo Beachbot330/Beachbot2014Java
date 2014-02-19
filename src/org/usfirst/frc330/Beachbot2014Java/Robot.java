@@ -88,6 +88,20 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new setGyroComp());
         auto.addCommand(new TurnGyroAbs(0));
         auto.addCommand(new TurnGyroRel(0));
+        auto.addCommand(new WingsOpen());
+        auto.addCommand(new WingsClose());
+        auto.addCommand(new MoveArmToFrontLoadingPosition());
+        auto.addCommand(new MoveArmToFrontBumperPosition());
+        auto.addCommand(new MoveArmToFrontCatchingPosition());
+        auto.addCommand(new MoveArmToFrontPickupPosition());
+        auto.addCommand(new MoveArmToRearBumperPosition());
+        auto.addCommand(new MoveArmToRearCatchingPosition());
+        auto.addCommand(new MoveArmToRearLoadingPosition());
+        auto.addCommand(new MoveArmToRearPickupPosition());
+        auto.addCommand(new MoveArmToVerticalPosition());
+        auto.addCommand(new Shoot());
+        auto.addCommand(new PickupForwardPulse());
+        auto.addCommand(new PickupReversePulse());
         
 //        SmartDashboard.putData("Scheduler", Scheduler.getInstance());
         
@@ -110,9 +124,9 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
 //        System.out.println("AP");
+        Scheduler.getInstance().run();
         chassis.calcPeriodic();
         pickup.calcPeriodic();
-        Scheduler.getInstance().run();
     }
     public void teleopInit() {
 	// This makes sure that the autonomous stops running when
@@ -125,9 +139,9 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        Scheduler.getInstance().run();
         chassis.calcPeriodic();
         pickup.calcPeriodic();
-        Scheduler.getInstance().run();
     }
     /**
      * This function called periodically during test mode
