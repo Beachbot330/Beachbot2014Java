@@ -24,6 +24,14 @@ public class LEDs extends Subsystem {
     
     I2C arduino = new I2C(DigitalModule.getInstance(1),ArduinoAddress);  
     
+    public LEDs() {
+        prevData[0] = 1;
+        prevData[1] = -1;
+        prevData[2] = 114;
+        prevData[3] = 0;
+        
+    }
+    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void initDefaultCommand() {
@@ -37,6 +45,7 @@ public class LEDs extends Subsystem {
     
     int data = 0;
     byte[] receivedData = new byte[4];
+    byte[] prevData = new byte[4];
     
     public void readSmartDashboard() {
         
@@ -49,6 +58,20 @@ public class LEDs extends Subsystem {
             System.out.println("ReceivedData: " + data + " " + receivedData[0] + " " + receivedData[1] + " " + receivedData[2] + " " + receivedData[3]);
             arduino.transaction(receivedData, receivedData.length, null, 0);
             SmartDashboard.putNumber("Arduino/Value",0);
+            if (receivedData[0] == 1)
+                prevData = (byte[]) receivedData.clone();
         }
+    }
+    
+    public void setRed() {
+        receivedData[0] = 1;
+        receivedData[1] = -1;
+        receivedData[2] = 0;
+        receivedData[3] = 0;
+        arduino.transaction(receivedData, receivedData.length, null, 0);
+    }
+    
+    public void restorePrevious() {
+        arduino.transaction(prevData, prevData.length, null, 0);
     }
 }
