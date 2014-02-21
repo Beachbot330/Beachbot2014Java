@@ -44,7 +44,10 @@ public class Wings extends Subsystem {
     
     public boolean areWingsOpen()
     {
-        if (wingSolenoid.get() == DoubleSolenoid.Value.kForward && (wingOpenTime + getWingsOpenWait()) < Timer.getFPGATimestamp() && ((wingLeftLimitSwitch.get() == true && wingRightLimitSwitch.get() == true) || SmartDashboard.getBoolean("WingsOverride", false)))
+        if (wingSolenoid.get() == DoubleSolenoid.Value.kForward
+                && (wingOpenTime + getWingsOpenWait()) < Timer.getFPGATimestamp()
+                && ((wingLeftLimitSwitch.get() == true && wingRightLimitSwitch.get() == true)
+                || SmartDashboard.getBoolean("WingsOverride", false)))
             return true;
         else
             return false;
