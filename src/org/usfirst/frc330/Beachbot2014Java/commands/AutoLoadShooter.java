@@ -41,6 +41,7 @@ public class AutoLoadShooter extends AutoSpreadsheetCommandGroup{
         addSequential(new WingsOpen());
         addSequential(new MoveArmToFrontLoadingPosition());
         addSequential(new PickupOff());
+        addSequential(new MoveArmToRearPickupPosition());
 //        addSequential(new WingsClose());
     }
 
