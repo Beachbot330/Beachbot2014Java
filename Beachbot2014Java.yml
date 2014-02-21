@@ -670,7 +670,7 @@ Children:
           name: Command
           type: Command
           validators: *id028
-          value: Shoot
+          value: ShootAndCatch
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id029
           default: '1'
@@ -767,7 +767,7 @@ Children:
           name: When to Run
           validators: null
           value: whileHeld
-    - Name: WingsToggleButton
+    - Name: CatchButton
       Base: Joystick Button
       Children: []
       Properties:
@@ -776,7 +776,7 @@ Children:
           name: Command
           type: Command
           validators: *id028
-          value: WingsToggle
+          value: AutoCatch
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id029
           default: '1'
@@ -863,7 +863,7 @@ Children:
           name: When to Run
           validators: null
           value: whenPressed
-    - Name: WingsToggleButton2
+    - Name: WingsToggleButton
       Base: Joystick Button
       Children: []
       Properties:
@@ -1176,7 +1176,7 @@ Children:
     Properties:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
-  - Name: AutoCatch
+  - Name: CatchWithSensor
     Base: Command
     Children: []
     Properties:
@@ -1198,6 +1198,18 @@ Children:
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Chassis}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+  - Name: ShootAndCatch
+    Base: Command Group
+    Children: []
+    Properties:
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+  - Name: AutoCatch
+    Base: Command Group
+    Children: []
+    Properties:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
   Properties: {}
