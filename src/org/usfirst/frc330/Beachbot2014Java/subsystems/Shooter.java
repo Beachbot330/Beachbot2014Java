@@ -12,6 +12,7 @@ import org.usfirst.frc330.Beachbot2014Java.RobotMap;
 import org.usfirst.frc330.Beachbot2014Java.commands.*;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
@@ -32,6 +33,11 @@ public class Shooter extends Subsystem {
 	
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public Shooter()     {
+        super();
+        SmartDashboard.putBoolean("BallSensorOverride", false);
     }
     
     public void shootSolenoidOn() {
@@ -63,11 +69,11 @@ public class Shooter extends Subsystem {
     }
     
     public boolean isBallInShooter() {
-        return getBallDistance() < 9;
+        return getBallDistance() < 9 || SmartDashboard.getBoolean("BallSensorOverride", false);
     }
     
     public boolean isBallInWings() {
         double ballDistance = getBallDistance();
-        return ballDistance > 15 && ballDistance < 50;
+        return ballDistance > 15 && ballDistance < 50 || !SmartDashboard.getBoolean("BallSensorOverride", false);
     }
 }
