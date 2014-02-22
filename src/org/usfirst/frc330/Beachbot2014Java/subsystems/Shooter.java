@@ -38,13 +38,16 @@ public class Shooter extends Subsystem {
     public Shooter()     {
         super();
         SmartDashboard.putBoolean("BallSensorOverride", false);
+        SmartDashboard.putBoolean("ShooterDisable", false);
     }
     
     public void shootSolenoidOn() {
-        shooter1.set(true);
-        shooter2.set(true);
-        shooter3.set(true);
-        shooter4.set(true);
+        if (!SmartDashboard.getBoolean("ShooterDisable", false)) {
+            shooter1.set(true);
+            shooter2.set(true);
+            shooter3.set(true);
+            shooter4.set(true);
+        }
     }
     
     public void shootSolenoidOff() {
