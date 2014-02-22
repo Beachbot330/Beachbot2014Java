@@ -719,7 +719,7 @@ Children:
   - Name: OperatorJoystick
     Base: Joystick
     Children:
-    - Name: LoadShooterButton
+    - Name: LoadShooterReverseButton
       Base: Joystick Button
       Children: []
       Properties:
@@ -728,7 +728,7 @@ Children:
           name: Command
           type: Command
           validators: *id028
-          value: AutoLoadShooter
+          value: AutoLoadShooterRear
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id029
           default: '1'
@@ -791,7 +791,7 @@ Children:
           name: When to Run
           validators: null
           value: whenPressed
-    - Name: PickupOffButton
+    - Name: PickupReverseButton
       Base: Joystick Button
       Children: []
       Properties:
@@ -800,7 +800,7 @@ Children:
           name: Command
           type: Command
           validators: *id028
-          value: PickupOff
+          value: AutoPickupReverse
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id029
           default: '1'
@@ -815,7 +815,7 @@ Children:
           name: When to Run
           validators: null
           value: whenPressed
-    - Name: PickupForwardButton
+    - Name: LoadShooterButton
       Base: Joystick Button
       Children: []
       Properties:
@@ -824,7 +824,7 @@ Children:
           name: Command
           type: Command
           validators: *id028
-          value: PickupForwardPulse
+          value: AutoLoadShooter
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id029
           default: '1'
@@ -839,7 +839,7 @@ Children:
           name: When to Run
           validators: null
           value: whenPressed
-    - Name: ArmPickupButton
+    - Name: PickupForwardButton
       Base: Joystick Button
       Children: []
       Properties:
@@ -1207,6 +1207,18 @@ Children:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
   - Name: AutoCatch
+    Base: Command Group
+    Children: []
+    Properties:
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+  - Name: AutoLoadShooterRear
+    Base: Command Group
+    Children: []
+    Properties:
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+  - Name: AutoPickupReverse
     Base: Command Group
     Children: []
     Properties:
