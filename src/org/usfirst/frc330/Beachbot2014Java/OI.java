@@ -117,6 +117,7 @@ public class OI {
         SmartDashboard.putData("AutoPickupOn", new AutoPickupOn());
         SmartDashboard.putData("PickupForwardPulse", new PickupForwardPulse());
         SmartDashboard.putData("SendDefaultSmartDashboardData", new SendDefaultSmartDashboardData());
+        SmartDashboard.putData("MoveArmToZeroPosition", new MoveArmToZeroPosition());
         SmartDashboard.putData("MoveArmToFrontPickupPosition", new MoveArmToFrontPickupPosition());
         SmartDashboard.putData("MoveArmToFrontBumperPosition", new MoveArmToFrontBumperPosition());
         SmartDashboard.putData("MoveArmToFrontLoadingPosition", new MoveArmToFrontLoadingPosition());
