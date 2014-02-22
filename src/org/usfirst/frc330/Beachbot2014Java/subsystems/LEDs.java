@@ -23,8 +23,12 @@ public class LEDs extends Subsystem {
     final int ArduinoAddress = 33<<1;
     
     I2C arduino = new I2C(DigitalModule.getInstance(1),ArduinoAddress);  
+    int data = 0;
+    byte[] receivedData = new byte[4];
+    byte[] prevData = new byte[4];
     
     public LEDs() {
+        super();
         prevData[0] = 1;
         prevData[1] = -1;
         prevData[2] = 114;
@@ -43,9 +47,6 @@ public class LEDs extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    int data = 0;
-    byte[] receivedData = new byte[4];
-    byte[] prevData = new byte[4];
     
     public void readSmartDashboard() {
         
@@ -58,8 +59,13 @@ public class LEDs extends Subsystem {
             System.out.println("ReceivedData: " + data + " " + receivedData[0] + " " + receivedData[1] + " " + receivedData[2] + " " + receivedData[3]);
             arduino.transaction(receivedData, receivedData.length, null, 0);
             SmartDashboard.putNumber("Arduino/Value",0);
-            if (receivedData[0] == 1)
-                prevData = (byte[]) receivedData.clone();
+            if (receivedData[0] == 1) {
+//                prevData = (byte[]) receivedData.clone();
+                prevData[0] = receivedData[0];
+                prevData[1] = receivedData[1];
+                prevData[2] = receivedData[2];
+                prevData[3] = receivedData[3];
+            }
         }
     }
     
