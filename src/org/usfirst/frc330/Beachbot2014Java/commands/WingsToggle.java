@@ -26,7 +26,7 @@ public class  WingsToggle extends Command {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        state = Robot.wings.areWingsOpen();
+        state = Robot.wings.areWingsOpenUnsafe();
         if (state)
             Robot.wings.setWingsClose();
         else

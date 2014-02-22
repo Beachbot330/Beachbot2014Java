@@ -35,14 +35,19 @@ public class Wings extends Subsystem {
     }
     
     public Wings() {
+        super();
         SmartDashboard.putBoolean("WingsOverride", false);
+    }
+    
+    public boolean areWingsOpenUnsafe() {
+        return wingSolenoid.get() == DoubleSolenoid.Value.kForward;
     }
     
     public boolean areWingsOpen()
     {
         if (wingSolenoid.get() == DoubleSolenoid.Value.kForward
                 && (wingOpenTime + getWingsOpenWait()) < Timer.getFPGATimestamp()
-                && ((wingLeftLimitSwitch.get() == true && wingRightLimitSwitch.get() == true)
+                && ((wingLeftLimitSwitch.get() == false && wingRightLimitSwitch.get() == false)
                 || SmartDashboard.getBoolean("WingsOverride", false)))
             return true;
         else
@@ -51,7 +56,7 @@ public class Wings extends Subsystem {
     
     public void toggleWings()
     {
-        if (areWingsOpen()) {
+        if (wingSolenoid.get() == DoubleSolenoid.Value.kForward) {
             setWingsClose();
         }
         else {

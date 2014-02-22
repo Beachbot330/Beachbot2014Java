@@ -251,11 +251,11 @@ public class Chassis extends Subsystem implements PIDSource {
     
     double gain = .5;
     public void cheesyDrive(Joystick leftJoystick, Joystick rightJoystick)     {
-        double turn = rightJoystick.getAxis(Joystick.AxisType.kX);
+        double turn = rightJoystick.getAxis(Joystick.AxisType.kY);
         double throttle = -leftJoystick.getAxis(Joystick.AxisType.kY);
         double left, right;
         
-        if (Math.abs(throttle) > 0.15)
+        if (Math.abs(throttle) > 0.2)
             turn = Math.abs(throttle) * turn * gain;
         
         left = throttle  + turn;
