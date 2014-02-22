@@ -334,13 +334,17 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     }
     
     public boolean areWingsSafeToClose() {
-        boolean disabled, front, back;
-//        System.out.println();
+        return areWingsSafeToClose(getSetpoint());
+    }
+    
+    public boolean areWingsSafeToClose(double setpoint) {
+        boolean disabled, front, back, override;
         disabled = (getArmPosition() < getArmFrontSafePoint() ||  getArmPosition() > getArmBackSafePoint()) && !armPID.isEnable();
-        front = (getArmPosition() < getArmFrontSafePoint() && armPID.getSetpoint() < getArmFrontSafePoint());
-        back = (getArmPosition() > getArmBackSafePoint() && armPID.getSetpoint() > getArmBackSafePoint());
-//        System.out.println("AreWingsSafeToClose: " + disabled + " " + front + " " + back);
-        return ( disabled || front || back || SmartDashboard.getBoolean("ArmOverride", false));
+        front = (getArmPosition() < getArmFrontSafePoint() && setpoint < getArmFrontSafePoint());
+        back = (getArmPosition() > getArmBackSafePoint() && setpoint > getArmBackSafePoint());
+        override = SmartDashboard.getBoolean("ArmOverride", false);
+//        System.out.println("AreWingsSafeToClose: " + disabled + " " + front + " " + back + " " + override);
+        return ( disabled || front || back || override);
     }
     
     public void stopArm() {

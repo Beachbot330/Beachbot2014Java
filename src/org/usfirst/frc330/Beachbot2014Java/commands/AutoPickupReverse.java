@@ -35,7 +35,7 @@ public class AutoPickupReverse extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
         
-        addSequential(new WingsOpen());
+//        addSequential(new WingsOpen());
         addSequential(new MoveArmToRearPickupPosition());
         addParallel(new PickupReversePulse());
 //        addSequential(new WingsClose());
