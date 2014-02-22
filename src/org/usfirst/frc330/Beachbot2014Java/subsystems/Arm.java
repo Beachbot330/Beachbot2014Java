@@ -40,11 +40,13 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     private static final String PREF_Arm_ArmPositionDash = "ArmPositionDash";
     
     public Arm() {
+        super();
         armPID = new PrefSendablePIDController(0,0,0,this,this, "armPID");
         armPID.setOutputRange(-0.8, 0.8);
-        armPID.setAbsoluteTolerance(0.1);
+        armPID.setAbsoluteTolerance(0.18);
         Preferences.getInstance().putDouble("ArmAbsoluteTolerance", 0.1);
         SmartDashboard.putData("ArmPID", armPID);
+        SmartDashboard.putBoolean("ArmOverride", false);
     }
     
     public double getArmZero()
@@ -338,7 +340,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         front = (getArmPosition() < getArmFrontSafePoint() && armPID.getSetpoint() < getArmFrontSafePoint());
         back = (getArmPosition() > getArmBackSafePoint() && armPID.getSetpoint() > getArmBackSafePoint());
 //        System.out.println("AreWingsSafeToClose: " + disabled + " " + front + " " + back);
-        return ( disabled || front || back );
+        return ( disabled || front || back || SmartDashboard.getBoolean("ArmOverride", false));
     }
     
     public void stopArm() {
