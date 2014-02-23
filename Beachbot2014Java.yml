@@ -800,7 +800,7 @@ Children:
           name: Command
           type: Command
           validators: *id028
-          value: AutoPickupReverse
+          value: AutoPickupFar
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id029
           default: '1'
@@ -848,7 +848,7 @@ Children:
           name: Command
           type: Command
           validators: *id028
-          value: AutoPickupForward
+          value: AutoPickupClose
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id029
           default: '1'
@@ -1274,6 +1274,20 @@ Children:
     Base: Command Group
     Children: []
     Properties:
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+  - Name: AutoPickupFar
+    Base: Command Group
+    Children: []
+    Properties:
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+  - Name: MoveArmToPickupFar
+    Base: Command
+    Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: None}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
   Properties: {}

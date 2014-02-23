@@ -14,19 +14,18 @@ import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
  */
-public class  MoveArmToAfterLoading extends MoveArmCommand implements AutoSpreadsheetCommand{
-    public MoveArmToAfterLoading() {
+public class  MoveArmToPickupFar extends MoveArmCommand implements AutoSpreadsheetCommand {
+    public MoveArmToPickupFar() {
         super(0);
     }
     // Called just before this Command runs the first time
     protected void initialize() {
         if (Robot.arm.getArmPosition() > Robot.arm.getArmVertical())
-            setpoint = Robot.arm.getArmBackPickup();
-        else
             setpoint = Robot.arm.getArmFrontPickup();
+        else
+            setpoint = Robot.arm.getArmBackPickup();
         super.initialize();
     }
-    // Called repeatedly when this Command is scheduled to run
     public void setParam1(double param1) {
     }
     public void setParam2(double param2) {
@@ -36,7 +35,6 @@ public class  MoveArmToAfterLoading extends MoveArmCommand implements AutoSpread
     public void setStopAtEnd(boolean stopAtEnd) {
     }
     public Command copy() {
-        return new MoveArmToAfterLoading();
+        return new MoveArmToPickupClose();
     }
- 
 }
