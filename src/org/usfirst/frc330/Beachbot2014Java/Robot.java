@@ -104,6 +104,7 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new Shoot());
         auto.addCommand(new PickupForwardPulse());
         auto.addCommand(new PickupReversePulse());
+        auto.addCommand(new PickupOff());
         
 //        SmartDashboard.putData("Scheduler", Scheduler.getInstance());
         
