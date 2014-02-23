@@ -106,7 +106,6 @@ public class OI {
         SmartDashboard.putData("AutoLoadShooterFront", new AutoLoadShooterFront());
         SmartDashboard.putData("ShiftHigh", new ShiftHigh());
         SmartDashboard.putData("ShiftLow", new ShiftLow());
-        SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
         SmartDashboard.putData("MarsRock", new MarsRock());
         SmartDashboard.putData("Shoot", new Shoot());
         SmartDashboard.putData("ManualArm", new ManualArm());
@@ -119,8 +118,8 @@ public class OI {
         SmartDashboard.putData("PickupReverse", new PickupReverse());
         SmartDashboard.putData("AutoPickupOn", new AutoPickupOn());
         SmartDashboard.putData("PickupForwardPulse", new PickupForwardPulse());
-        SmartDashboard.putData("SendDefaultSmartDashboardData", new SendDefaultSmartDashboardData());
-        SmartDashboard.putData("MoveArmToZeroPosition", new MoveArmToZeroPosition());
+        SmartDashboard.putData("ShooterOn", new ShooterOn());
+        SmartDashboard.putData("ShooterOff", new ShooterOff());
         SmartDashboard.putData("MoveArmToFrontPickupPosition", new MoveArmToFrontPickupPosition());
         SmartDashboard.putData("MoveArmToFrontBumperPosition", new MoveArmToFrontBumperPosition());
         SmartDashboard.putData("MoveArmToFrontLoadingPosition", new MoveArmToFrontLoadingPosition());
