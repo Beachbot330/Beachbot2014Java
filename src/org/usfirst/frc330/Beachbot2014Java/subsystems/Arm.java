@@ -195,7 +195,8 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         }
         else if (!armPID.isEnable())
         {
-            set(0);
+            armPID.setSetpoint(getArmPosition());
+            armPID.enable();
         }
 //        set(armCommand);    
     }

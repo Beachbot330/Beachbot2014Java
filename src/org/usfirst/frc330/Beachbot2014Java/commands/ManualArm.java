@@ -42,9 +42,13 @@ public class  ManualArm extends Command {
     }
     // Called once after isFinished returns true
     protected void end() {
-        Robot.arm.stopArm();
+//        Robot.arm.stopArm();
 //        if (Robot.arm.areWingsSafeToClose())
 //            Robot.wings.setWingsClose();
+        if (!Robot.arm.isEnable()) {
+            Robot.arm.setArmSetPoint(Robot.arm.getArmPosition());
+            Robot.arm.enable();
+        }
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
