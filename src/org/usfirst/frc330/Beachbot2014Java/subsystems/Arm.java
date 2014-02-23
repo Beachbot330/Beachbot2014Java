@@ -124,12 +124,12 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     }
     
     public double getArmVertical() {
-        if (!Preferences.getInstance().containsKey("armSetpointPickup"))
+        if (!Preferences.getInstance().containsKey("armSetpointVertical"))
         {
-            Preferences.getInstance().putDouble("armSetpointPickup", 1.0);
+            Preferences.getInstance().putDouble("armSetpointVertical", 1.6);
             Preferences.getInstance().save();
         }
-        return Preferences.getInstance().getDouble("armSetpointPickup", 1.0);
+        return Preferences.getInstance().getDouble("armSetpointVertical", 1.6);
     }
     
     public double getArmBackLoading() {

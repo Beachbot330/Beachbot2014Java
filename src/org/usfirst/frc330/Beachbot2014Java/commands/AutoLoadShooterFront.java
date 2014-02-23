@@ -10,14 +10,17 @@
 
 
 package org.usfirst.frc330.Beachbot2014Java.commands;
+import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
+import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommandGroup;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoLoadShooter extends CommandGroup {
+public class AutoLoadShooterFront extends AutoSpreadsheetCommandGroup{
     
-    public  AutoLoadShooter() {
+    public  AutoLoadShooterFront() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -34,11 +37,15 @@ public class AutoLoadShooter extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        addParallel(new PickupOn());
+        addParallel(new PickupForward());
         addSequential(new WingsOpen());
-        addSequential(new MoveArmToLoading());
+        addSequential(new MoveArmToFrontLoadingPosition());
         addSequential(new PickupOff());
-        addSequential(new MoveArmToAfterLoading());
+        addSequential(new MoveArmToRearPickupPosition());
 //        addSequential(new WingsClose());
+    }
+
+    public AutoSpreadsheetCommandGroup copy() {
+        return new AutoLoadShooterFront();
     }
 }

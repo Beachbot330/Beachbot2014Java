@@ -50,7 +50,6 @@ public class Wings extends Subsystem {
         time = (wingOpenTime + getWingsOpenWait()) < Timer.getFPGATimestamp();
         limitSwitches = wingLeftLimitSwitch.get() == false && wingRightLimitSwitch.get() == false;
         override = SmartDashboard.getBoolean("WingsOverride", false);
-
 //        System.out.println("AreWingsOpen: " + command + " " + time + " " + limitSwitches + " " + override);
         return command && time && limitSwitches || override;
     }
