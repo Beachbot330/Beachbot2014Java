@@ -197,7 +197,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         {
             set(0);
         }
-        set(armCommand);    
+//        set(armCommand);    
     }
     
     public synchronized double getSetpoint() {
