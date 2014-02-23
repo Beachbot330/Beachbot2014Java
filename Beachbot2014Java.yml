@@ -782,7 +782,7 @@ Children:
           default: '1'
           name: Button
           validators: null
-          value: '6'
+          value: '5'
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
           name: Joystick, validators: null, value: OperatorJoystick}
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
@@ -863,7 +863,7 @@ Children:
           name: When to Run
           validators: null
           value: whenPressed
-    - Name: WingsToggleButton
+    - Name: WingsOpenButton
       Base: Joystick Button
       Children: []
       Properties:
@@ -872,13 +872,37 @@ Children:
           name: Command
           type: Command
           validators: *id028
-          value: WingsToggle
+          value: WingsOpen
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id029
           default: '1'
           name: Button
           validators: null
           value: '8'
+        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
+          name: Joystick, validators: null, value: OperatorJoystick}
+        When to Run: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id030
+          default: whileHeld
+          name: When to Run
+          validators: null
+          value: whenPressed
+    - Name: WingsCloseButton
+      Base: Joystick Button
+      Children: []
+      Properties:
+        Command: !!robotbuilder.data.properties.TypeSelectionProperty
+          default: None
+          name: Command
+          type: Command
+          validators: *id028
+          value: WingsClose
+        Button: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id029
+          default: '1'
+          name: Button
+          validators: null
+          value: '6'
         Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
           name: Joystick, validators: null, value: OperatorJoystick}
         When to Run: !!robotbuilder.data.properties.ChoicesProperty
