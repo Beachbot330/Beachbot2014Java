@@ -85,7 +85,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
             Preferences.getInstance().putDouble("armSetpointFrontPickup", .1);
             Preferences.getInstance().save();
         }
-        System.out.println("armSetpointFrontPickup: " + Preferences.getInstance().getDouble("armSetpointFrontPickup", .1));
+//        System.out.println("armSetpointFrontPickup: " + Preferences.getInstance().getDouble("armSetpointFrontPickup", .1));
         return Preferences.getInstance().getDouble("armSetpointFrontPickup", .1);
     }
     public double getArmBackPickup() {
@@ -185,14 +185,22 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
             armCommand = -(armCommand*armCommand);
         else
             armCommand = armCommand*armCommand;
-        if (Math.abs(armCommand) > 0.10 && armPID.isEnable())
+        if (Math.abs(armCommand) > 0.10)
         {
-            armPID.disable();
-            set(armCommand);
-        }
-        else if (!armPID.isEnable() && Math.abs(armCommand) > 0.10)
-        {
-            set(armCommand);
+            if (armPID.isEnable())
+                armPID.disable();
+            if (Robot.wings.areWingsOpen())
+                    set(armCommand);
+            else if (this.isArmInFrontSafePoint(0.2) && armCommand < 0)
+                set(armCommand);
+            else if (this.isArmInFrontSafePoint(0) && armCommand > 0)
+                set(armCommand);
+            else if (this.isArmInBackSafePoint(0) && armCommand < 0)
+                set(armCommand);
+            else if (this.isArmInBackSafePoint(0.2) && armCommand > 0)
+                set(armCommand);
+            else
+                set(0);
         }
         else if (!armPID.isEnable())
         {
@@ -246,14 +254,22 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     }
     
     public boolean isArmInBackSafePoint() {
-        if (Robot.arm.getArmPosition() > Robot.arm.getArmBackSafePoint())
+        return isArmInBackSafePoint(0);
+    }
+    
+    public boolean isArmInBackSafePoint(double tolerance) {
+        if (Robot.arm.getArmPosition() > (Robot.arm.getArmBackSafePoint() - tolerance))
             return true;
         else
             return false;
-    }
+    }    
     
     public boolean isArmInFrontSafePoint() {
-        if (Robot.arm.getArmPosition() < Robot.arm.getArmFrontSafePoint())
+        return isArmInFrontSafePoint(0);
+    }
+    
+    public boolean isArmInFrontSafePoint(double tolerance) {
+        if (Robot.arm.getArmPosition() < (Robot.arm.getArmFrontSafePoint() + tolerance))
             return true;
         else
             return false;

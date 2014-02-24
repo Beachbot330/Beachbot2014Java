@@ -26,15 +26,16 @@ public class  ManualArm extends Command {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.wings.setWingsOpen();
+//        Robot.wings.setWingsOpen();
+        Robot.arm.stopArm();
     }
     // Called repeatedly when this Command is scheduled to run
     int counter = 0;
     protected void execute() {
-        if (Robot.wings.areWingsOpen())
+//        if (Robot.arm.areWingsSafeToClose() || Robot.wings.areWingsOpen())
             Robot.arm.manualArm();
-        else
-            Robot.arm.stopArm();
+//       else
+//            Robot.arm.stopArm();
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
