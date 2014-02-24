@@ -77,6 +77,6 @@ public class Shooter extends Subsystem {
     
     public boolean isBallInWings() {
         double ballDistance = getBallDistance();
-        return ballDistance > 15 && ballDistance < 50 || !SmartDashboard.getBoolean("BallSensorOverride", false);
+        return ballDistance > 15 && ballDistance < 38 || !SmartDashboard.getBoolean("BallSensorOverride", false);
     }
 }

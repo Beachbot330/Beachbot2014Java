@@ -94,7 +94,7 @@ public class OI {
         wingOpenButton = new JoystickButton(rightJoystick, 3);
         wingOpenButton.whenPressed(new WingsOpen());
         shootButton = new JoystickButton(rightJoystick, 1);
-        shootButton.whenPressed(new ShootAndCatch());
+        shootButton.whenPressed(new Shoot());
         shiftLowButton = new JoystickButton(rightJoystick, 2);
         shiftLowButton.whenPressed(new ShiftLow());
         leftJoystick = new Joystick(1);
