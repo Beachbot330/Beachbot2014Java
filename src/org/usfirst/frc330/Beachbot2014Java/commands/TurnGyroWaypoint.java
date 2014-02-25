@@ -40,14 +40,14 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
     
      /**
      * The first parameter in the AutoSpreadsheet
-     * @param distance The distance to drive
+     * @param x The X component of the waypoint to turn towards
      */
     public void setParam1(double x) {
         this.x = x;
     }
     /**
      * The second parameter in the AutoSpreadsheet
-     * @param angle The angle to maintain while driving
+     * @param y The Y component of the waypoint to turn towards
      */
     public void setParam2(double y) {
         this.y = y;

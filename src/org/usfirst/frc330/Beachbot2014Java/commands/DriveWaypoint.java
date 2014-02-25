@@ -35,14 +35,14 @@ public class DriveWaypoint extends DriveDistanceAtRelAngleWAccel {
     
      /**
      * The first parameter in the AutoSpreadsheet, X
-     * @param X The X component of the waypoint
+     * @param x The X component of the waypoint in inches
      */
     public void setParam1(double x) {
         this.x = x;
     }
     /**
      * The second parameter in the AutoSpreadsheet, Y
-     * @param Y The Y component of the waypoint
+     * @param y The Y component of the waypoint in inches
      */
     public void setParam2(double y) {
         this.y = y;
