@@ -35,7 +35,7 @@ public class Shooter extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public Shooter()     {
+    public Shooter() {
         super();
         SmartDashboard.putBoolean("BallSensorOverride", false);
         SmartDashboard.putBoolean("ShooterDisable", false);
@@ -77,6 +77,7 @@ public class Shooter extends Subsystem {
     
     public boolean isBallInWings() {
         double ballDistance = getBallDistance();
+        //TODO make the ball distances preferences.
         return ballDistance > 15 && ballDistance < 38 && !SmartDashboard.getBoolean("BallSensorOverride", false);
     }
 }

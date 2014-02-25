@@ -116,6 +116,7 @@ public class Pickup extends Subsystem {
     private int currentSensorCount = 0;
     public boolean isBallHeld()
     {
+        //TODO make currentSensorCountLimit a preference
         return currentSensorCount < 10;
     }
     

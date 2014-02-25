@@ -168,7 +168,6 @@ public class Robot extends IterativeRobot {
     public void disabledInit()
     {
 //        System.out.println("In Disabled Init");
-        //TODO turn off pickup
         auto.readScripts();
         Robot.chassis.stopDrive();     
         Robot.arm.stopArm();
