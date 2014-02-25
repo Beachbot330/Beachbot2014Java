@@ -918,16 +918,26 @@ Children:
         name: Number
         validators: *id032
         value: '3'
-  - Name: KinectJoystick
+  - Name: LeftKinectJoystick
     Base: Kinect Joystick
     Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: ['1', '2']
+        choices: &id033 ['1', '2']
         default: 1
         name: Number
-        validators: [KinectJoystick]
+        validators: &id034 [KinectJoystick]
         value: '1'
+  - Name: RightKinectJoystick
+    Base: Kinect Joystick
+    Children: []
+    Properties:
+      Number: !!robotbuilder.data.properties.ChoicesProperty
+        choices: *id033
+        default: 1
+        name: Number
+        validators: *id034
+        value: '2'
   Properties: {}
 - Name: Commands
   Base: Commands
