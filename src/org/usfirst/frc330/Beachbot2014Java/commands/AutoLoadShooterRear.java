@@ -37,6 +37,8 @@ public class AutoLoadShooterRear extends AutoSpreadsheetCommandGroup{
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+        setInterruptible(false);
+        
         addParallel(new PickupReverse());
         addSequential(new WingsOpen());
         addSequential(new MoveArmToRearLoadingPosition());
