@@ -11,7 +11,10 @@ package org.usfirst.frc330.Beachbot2014Java.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
- *
+ * Toggles the wings. Does not return until the wings have finished moving 
+ * (based on limit switches and the Preference WingsOpenWait. Does not use parameters.
+ * Uses the commanded state of the wings, so that it can be called while a previously
+ * commanded WingsOpen or WingsClose are still running.
  */
 public class  WingsToggle extends Command {
     boolean state = false;

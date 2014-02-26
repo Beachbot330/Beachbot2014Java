@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
- *
+ * Does nothing for a commanded amount of time. 
  */
 public class  Wait extends Command implements AutoSpreadsheetCommand {
     public Wait(double timeout) {
@@ -40,6 +40,11 @@ public class  Wait extends Command implements AutoSpreadsheetCommand {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
+
+    /**
+     * The first parameter of the AutospreadSheet, timeout.
+     * @param timeout The time to wait in seconds.
+     */
     public void setParam1(double timeout) {
         setTimeout(timeout);
     }

@@ -12,7 +12,8 @@ import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
- *
+ * Opens the wings. Does not return until the wings have finished closing 
+ * (based on limit switches and the Preference WingsOpenWait. Does not use parameters.
  */
 public class  WingsOpen extends Command implements AutoSpreadsheetCommand {
     public WingsOpen() {

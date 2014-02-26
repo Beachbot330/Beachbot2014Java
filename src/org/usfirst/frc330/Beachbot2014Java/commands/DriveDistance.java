@@ -21,7 +21,7 @@ import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
  * straight from the relative to the current position, see DriveDistanceRel.
  * 
  * @see DriveWaypoint
- * @see TurnWaypoint
+ * @see TurnGyroWaypoint
  * @see DriveDistanceRel
  */
 public class  DriveDistance extends Command implements AutoSpreadsheetCommand {
