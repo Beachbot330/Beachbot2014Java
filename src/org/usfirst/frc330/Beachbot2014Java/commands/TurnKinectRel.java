@@ -10,8 +10,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 
 /**
- *
- * @author Joe-XPS13-W7
+ * Turns to an angle using the Gyro; The Kinect chooses the direction. The angle 
+ * is relative to the current angle of the robot. The height of the right and left
+ * hands is used to choose the direction.
+ * 
+ * @see TurnGyroRel
  */
 public class TurnKinectRel extends TurnGyroRel {
 
