@@ -40,7 +40,6 @@ public class  Wait extends Command implements AutoSpreadsheetCommand {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
-
     /**
      * The first parameter of the AutospreadSheet, timeout.
      * @param timeout The time to wait in seconds.

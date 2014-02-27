@@ -110,17 +110,19 @@ public class Pickup extends Subsystem {
     }
     
     public void calcPeriodic() {
-        checkBallHeld();
+        checkBallInPickup();
     }
     
     private int currentSensorCount = 0;
-    public boolean isBallHeld()
+    public boolean isBallInPickup()
     {
         //TODO make currentSensorCountLimit a preference
+        //TODO see if 10 is too large or small by testing 
         return currentSensorCount < 10;
     }
     
-    private void checkBallHeld() {
+    private void checkBallInPickup() {
+        //TODO current limit may need to be a different value then the one used for pulsing the pickup. This needs to be tested.
         if (getCurrent() < getCurrentLimit()) {
             currentSensorCount++;
         }

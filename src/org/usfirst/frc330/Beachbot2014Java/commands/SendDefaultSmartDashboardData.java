@@ -43,6 +43,7 @@ public class  SendDefaultSmartDashboardData extends Command {
     double encoderLeft = 0;
     double encoderRight = 0;
     double shooterDistance = 0;
+    boolean ballInPickup = false;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         if (count % 10 == 0)
@@ -78,6 +79,10 @@ public class  SendDefaultSmartDashboardData extends Command {
             if (shooterDistance != Robot.shooter.getBallDistance()) {
                 shooterDistance = Robot.shooter.getBallDistance();
                 SmartDashboard.putNumber("BallDistance", shooterDistance);
+            }
+            if (ballInPickup != Robot.pickup.isBallInPickup()) {
+                ballInPickup = Robot.pickup.isBallInPickup();
+                SmartDashboard.putBoolean("BallInPickup", ballInPickup);
             }
         }
         count++;
