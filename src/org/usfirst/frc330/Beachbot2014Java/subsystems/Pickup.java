@@ -118,7 +118,7 @@ public class Pickup extends Subsystem {
     {
         //TODO make currentSensorCountLimit a preference
         //TODO see if 10 is too large or small by testing 
-        return currentSensorCount < 10;
+        return (currentSensorCount < 10 && currentSensorCount>=0);
     }
     
     private void checkBallInPickup() {
@@ -127,8 +127,17 @@ public class Pickup extends Subsystem {
             currentSensorCount++;
         }
         else {
-            currentSensorCount = 0;
+            if(currentSensorCount<0){
+                currentSensorCount++;
+            }
+            else{
+                currentSensorCount = 0;
+            }
         }
+    }
+ 
+    public void resetPulsedPickupBallCounter(){
+        currentSensorCount = -10;
     }
     
     public void pickupPulse(boolean direction) {
@@ -142,6 +151,14 @@ public class Pickup extends Subsystem {
             if (Robot.pickup.getCurrent() > Robot.pickup.getCurrentLimit())
                 Robot.pickup.setPickupMotorSlowReverse();
             else
+                Robot.pickup.setPickupMotorReverse();
+        }
+    }
+        public void pickupOn(boolean direction) {
+        if (!direction) {
+                Robot.pickup.setPickupMotorForward();
+        }
+        else {
                 Robot.pickup.setPickupMotorReverse();
         }
     }
