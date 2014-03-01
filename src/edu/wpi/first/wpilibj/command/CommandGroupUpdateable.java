@@ -16,5 +16,12 @@ public class CommandGroupUpdateable extends CommandGroup {
     synchronized void validate(String message) {
         //do nothing. 
     }
+
+    protected void initialize() {
+        this.removeAllCommands();
+        super.initialize(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
     
 }

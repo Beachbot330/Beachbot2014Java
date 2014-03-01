@@ -719,30 +719,6 @@ Children:
   - Name: OperatorJoystick
     Base: Joystick
     Children:
-    - Name: SafeButton
-      Base: Joystick Button
-      Children: []
-      Properties:
-        Command: !!robotbuilder.data.properties.TypeSelectionProperty
-          default: None
-          name: Command
-          type: Command
-          validators: *id028
-          value: MoveArmToCloseSafePosition
-        Button: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id029
-          default: '1'
-          name: Button
-          validators: null
-          value: '3'
-        Joystick: !!robotbuilder.data.properties.ParentProperty {default: parent,
-          name: Joystick, validators: null, value: OperatorJoystick}
-        When to Run: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id030
-          default: whileHeld
-          name: When to Run
-          validators: null
-          value: whenReleased
     - Name: PickupOffButton
       Base: Joystick Button
       Children: []
@@ -815,7 +791,7 @@ Children:
           name: When to Run
           validators: null
           value: whenPressed
-    - Name: PickupFarButton
+    - Name: MoveArmToOppositeSafeButton
       Base: Joystick Button
       Children: []
       Properties:
@@ -824,7 +800,7 @@ Children:
           name: Command
           type: Command
           validators: *id028
-          value: AutoPickupFar
+          value: MoveArmToOppositeSafe
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id029
           default: '1'
@@ -1416,6 +1392,14 @@ Children:
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: None}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+  - Name: MoveArmToOppositeSafe
+    Base: Command
+    Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Arm}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
   Properties: {}
