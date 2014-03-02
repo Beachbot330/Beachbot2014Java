@@ -17,9 +17,9 @@ import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
  */
-public class ConditionalLoad extends CommandGroupUpdateable {
+public class ConditionalHerd extends CommandGroupUpdateable {
     
-    public  ConditionalLoad() {
+    public  ConditionalHerd() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -36,17 +36,15 @@ public class ConditionalLoad extends CommandGroupUpdateable {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        requires(Robot.arm);
-        requires(Robot.pickup);
-        requires(Robot.wings);
     }
-
+    
     protected void initialize() {
-        super.initialize(); //To change body of generated methods, choose Tools | Templates.
-        if(Robot.pickup.isBallInPickup()){
-            addSequential(new AutoLoadShooter());
+        super.initialize();
+        if(Robot.pickup.isBallInPickup()){  //Herd
+            addParallel(new PickupPulse());
+            addSequential(new MoveArmToCloseLimit());
         }
-        else {
+        else {  //Move to safe
             addSequential(new PickupOff());
             addSequential(new MoveArmToCloseSafePosition());
         }
