@@ -358,8 +358,8 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     public boolean areWingsSafeToClose(double setpoint) {
         boolean disabled, front, back, override;
         disabled = (getArmPosition() < getArmFrontSafePoint() ||  getArmPosition() > getArmBackSafePoint()) && !armPID.isEnable();
-        front = (getArmPosition() < getArmFrontSafePoint() && setpoint < getArmFrontSafePoint());
-        back = (getArmPosition() > getArmBackSafePoint() && setpoint > getArmBackSafePoint());
+        front = (getArmPosition() < getArmFrontSafePoint() && setpoint <= getArmFrontSafePoint());
+        back = (getArmPosition() > getArmBackSafePoint() && setpoint >= getArmBackSafePoint());
         override = SmartDashboard.getBoolean("ArmOverride", false);
 //        System.out.println("AreWingsSafeToClose: " + disabled + " " + front + " " + back + " " + override);
         return ( disabled || front || back || override);
@@ -368,5 +368,22 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     public void stopArm() {
         armPID.disable();
         set(0);
+    }
+    
+    public double getArmSlowSpeed() {
+        if (!Preferences.getInstance().containsKey("armSlowSpeed"))
+        {
+            Preferences.getInstance().putDouble("armSlowSpeed", 0.3);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("armSlowSpeed", 0.3);
+    }
+    
+    /**
+     * 
+     * @return direction, False if the arm is in the front of the robot. 
+     */
+    public boolean getArmDirection() {
+        return (getArmPosition() < getArmVertical());
     }
 }
