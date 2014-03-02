@@ -36,11 +36,12 @@ public class AutoLoadShooter extends CommandGroup {
         // arm.
         this.setInterruptible(false);
         
-        addParallel(new PickupOn());
+        addParallel(new DropBall());
         addSequential(new WingsOpen());
-        addSequential(new MoveArmToLoading());
-        addSequential(new PickupOff());
         addSequential(new MoveArmToAfterLoading());
+        
+//        addSequential(new PickupOff());
+//        addSequential(new MoveArmToAfterLoading());
 //        addSequential(new WingsClose());
     }
 }

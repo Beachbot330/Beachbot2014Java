@@ -26,14 +26,11 @@ public class  PickupOn extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
         direction = Robot.arm.getArmDirection();
-        Robot.pickup.resetPulsedPickupBallCounter();
+//        Robot.pickup.resetPulsedPickupBallCounter();
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (direction)
-            Robot.pickup.setPickupMotorForward();
-        else
-            Robot.pickup.setPickupMotorReverse();
+        Robot.pickup.pickupOn(!direction);
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

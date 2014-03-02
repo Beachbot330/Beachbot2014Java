@@ -387,7 +387,6 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     public boolean getArmDirection() {
         return (getArmPosition() < getArmVertical());
     }
-
     public synchronized void setPIDOutputRange(double maximumOutput) {
         armPID.setOutputRange(-maximumOutput, maximumOutput);
     }

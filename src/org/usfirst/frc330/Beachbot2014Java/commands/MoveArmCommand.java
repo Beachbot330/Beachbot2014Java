@@ -34,18 +34,20 @@ public abstract class MoveArmCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     final protected void execute() {
-        if (Robot.wings.areWingsOpen() || Robot.arm.areWingsSafeToClose(setpoint) && !started) {
+        if ((Robot.wings.areWingsOpen() || Robot.arm.areWingsSafeToClose(setpoint)) && !started) {
                 Robot.arm.setArmSetPoint(setpoint);
                 Robot.arm.enable();
                 started = true;
-                outputRange = 0.05;
+                outputRange = 0.10;
                 Robot.arm.setPIDOutputRange(outputRange);
+//                System.out.println("outputRange: " + outputRange);                
         } else if (started) {
             //TODO make outputRange step a Preference
-            outputRange = outputRange + 0.05;
+            outputRange = outputRange + 0.10;
             if (outputRange > 0.8)
                 outputRange = 0.8;
             Robot.arm.setPIDOutputRange(outputRange);
+//            System.out.println("outputRange: " + outputRange);
         }
     }
 
