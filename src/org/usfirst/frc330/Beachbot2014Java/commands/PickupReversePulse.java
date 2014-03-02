@@ -30,10 +30,7 @@ public class  PickupReversePulse extends Command implements AutoSpreadsheetComma
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (Robot.pickup.getCurrent() > Robot.pickup.getCurrentLimit())
-            Robot.pickup.setPickupMotorSlowReverse();
-        else
-            Robot.pickup.setPickupMotorReverse();
+        Robot.pickup.pickupPulse(true);
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

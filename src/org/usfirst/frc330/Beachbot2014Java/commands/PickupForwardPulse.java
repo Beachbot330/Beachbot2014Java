@@ -30,10 +30,7 @@ public class  PickupForwardPulse extends Command implements AutoSpreadsheetComma
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (Robot.pickup.getCurrent() > Robot.pickup.getCurrentLimit())
-            Robot.pickup.setPickupMotorSlowForward();
-        else
-            Robot.pickup.setPickupMotorForward();
+        Robot.pickup.pickupPulse(false);
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -42,7 +39,7 @@ public class  PickupForwardPulse extends Command implements AutoSpreadsheetComma
     // Called once after isFinished returns true
     protected void end() {
         Robot.pickup.setPickupMotorOff();
-        System.out.println("PickupForwardPulse End");
+//        System.out.println("PickupForwardPulse End");
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run

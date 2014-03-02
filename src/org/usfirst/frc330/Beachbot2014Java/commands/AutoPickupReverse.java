@@ -37,7 +37,7 @@ public class AutoPickupReverse extends CommandGroup {
         
 //        addSequential(new WingsOpen());
         addSequential(new MoveArmToRearPickupPosition());
-        addParallel(new PickupReversePulse());
+        addParallel(new PickupReverse());
 //        addSequential(new WingsClose());
     }
 }
