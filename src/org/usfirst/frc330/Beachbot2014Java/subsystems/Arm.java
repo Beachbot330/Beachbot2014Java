@@ -38,13 +38,14 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     
     private static final String PREF_Arm_ArmPositionLowerLimit = "ArmPositionLowerLimit";
     private static final String PREF_Arm_ArmPositionUpperLimit = "ArmPositionUpperLimit";
-    private static final String PREF_Arm_ArmPositionDash = "ArmPositionDash";
     
     public Arm() {
         super();
         armPID = new PrefSendablePIDController(0,0,0,this,this, "armPID");
-        armPID.setOutputRange(-0.8, 0.8);
-        armPID.setAbsoluteTolerance(0.18);
+        this.setPIDOutputRangeDefault();
+        
+        //TODO get tolerance from Preferences
+        armPID.setAbsoluteTolerance(0.1);
         Preferences.getInstance().putDouble("ArmAbsoluteTolerance", 0.1);
         SmartDashboard.putData("ArmPID", armPID);
         SmartDashboard.putBoolean("ArmOverride", false);
@@ -386,4 +387,15 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     public boolean getArmDirection() {
         return (getArmPosition() < getArmVertical());
     }
+
+    public synchronized void setPIDOutputRange(double maximumOutput) {
+        armPID.setOutputRange(-maximumOutput, maximumOutput);
+    }
+    
+    public synchronized void setPIDOutputRangeDefault() {
+        //TODO get outputRange from preferences. Also need to check in MoveArmCommand
+        armPID.setOutputRange(-0.8, 0.8);
+    }
+    
+    
 }
