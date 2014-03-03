@@ -20,11 +20,12 @@ public abstract class MoveArmCommand extends Command {
     double startPosition = 0;
     double accelDistance = 0;
     double decelDistance = 0;
+    double origDecelDistance = 0;
     double maxSpeed = 0;
     double minSpeed = 0;
 
     public MoveArmCommand(double position) {
-        this(position, 1.0, 0.1, 0.1, 0.1);
+        this(position, 1.0, 0.4, 0.4, 1.2);
     }
     
 //maxSpeed       _______
@@ -43,6 +44,7 @@ public abstract class MoveArmCommand extends Command {
         this.maxSpeed = maxSpeed;
         this.accelDistance = accelDistance;
         this.decelDistance = decelDistance;
+        this.origDecelDistance = decelDistance;
     }
 
     // Called just before this Command runs the first time
@@ -51,13 +53,16 @@ public abstract class MoveArmCommand extends Command {
             Robot.wings.setWingsOpen();
         started = false;
         startPosition = Robot.arm.getArmPosition();
-        if (setpoint - startPosition < accelDistance+decelDistance)
+        outputRange = minSpeed;
+        if (setpoint - startPosition < accelDistance+origDecelDistance)
             decelDistance = setpoint - accelDistance - startPosition;
+        else 
+            decelDistance = origDecelDistance;
+        System.out.println("MoveArmCommand Initialize decelDistance= " + decelDistance + "setpoint " + setpoint + " startPosition " + startPosition + " accelDistance " + accelDistance + " origDecelDistance " + origDecelDistance);
     }
 
     // Called repeatedly when this Command is scheduled to run
     final protected void execute() {
-        double armPosition = Robot.arm.getArmPosition();
         double x, y;
         if ((Robot.wings.areWingsOpen() || Robot.arm.areWingsSafeToClose(setpoint)) && !started) {
                 Robot.arm.setArmSetPoint(setpoint);
@@ -73,12 +78,13 @@ public abstract class MoveArmCommand extends Command {
             if (Robot.arm.getArmPosition() > setpoint) {
                 outputRange = minSpeed;
             } else if (Robot.arm.getArmPosition() <= startPosition + accelDistance) {
-                x = (armPosition - startPosition)/accelDistance;
+                x = (Robot.arm.getArmPosition() - startPosition)/accelDistance;
                 y = maxSpeed - minSpeed;
                 outputRange = y*x+minSpeed;
             } else if (Robot.arm.getArmPosition() >= setpoint - decelDistance) {
-                x = (setpoint - armPosition)/decelDistance;
+                x = (setpoint - Robot.arm.getArmPosition())/decelDistance;
                 outputRange = x*maxSpeed;
+                System.out.println("In Decel Condition x= " + x);
             } else {
                outputRange = maxSpeed;
             }
@@ -96,6 +102,7 @@ public abstract class MoveArmCommand extends Command {
     // Called once after isFinished returns true
     final protected void end() {
         Robot.arm.setPIDOutputRangeDefault();
+        started=false;
     }
 
     // Called when another command which requires one or more of the same
