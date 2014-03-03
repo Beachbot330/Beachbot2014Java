@@ -17,11 +17,32 @@ public abstract class MoveArmCommand extends Command {
     double setpoint; 
     boolean started = false;
     double outputRange = 0;
+    double startPosition = 0;
+    double accelDistance = 0;
+    double decelDistance = 0;
+    double maxSpeed = 0;
+    double minSpeed = 0;
 
     public MoveArmCommand(double position) {
+        this(position, 1.0, 0.1, 0.1, 0.1);
+    }
+    
+//maxSpeed       _______
+//              /       \
+//             /         \
+//minSpeed    |           \
+//           accel      decel
+//         Distance    Distance
+    
+    public MoveArmCommand(double position, double maxSpeed, double minSpeed, double accelDistance, double decelDistance) {
         requires(Robot.arm);
         requires(Robot.wings);
         setpoint = position;
+        this.maxSpeed = maxSpeed;
+        this.minSpeed = minSpeed;
+        this.maxSpeed = maxSpeed;
+        this.accelDistance = accelDistance;
+        this.decelDistance = decelDistance;
     }
 
     // Called just before this Command runs the first time
@@ -29,25 +50,41 @@ public abstract class MoveArmCommand extends Command {
         if (!Robot.arm.areWingsSafeToClose(setpoint))
             Robot.wings.setWingsOpen();
         started = false;
-
+        startPosition = Robot.arm.getArmPosition();
+        if (setpoint - startPosition < accelDistance+decelDistance)
+            decelDistance = setpoint - accelDistance - startPosition;
     }
 
     // Called repeatedly when this Command is scheduled to run
     final protected void execute() {
+        double armPosition = Robot.arm.getArmPosition();
+        double x, y;
         if ((Robot.wings.areWingsOpen() || Robot.arm.areWingsSafeToClose(setpoint)) && !started) {
                 Robot.arm.setArmSetPoint(setpoint);
+                Robot.arm.setPIDOutputRange(minSpeed); 
+                outputRange = minSpeed;
                 Robot.arm.enable();
                 started = true;
-                outputRange = 0.30;
-                Robot.arm.setPIDOutputRange(outputRange);
-//                System.out.println("outputRange: " + outputRange);                
+
+                System.out.println("outputRange: " + outputRange);                
+
         } else if (started) {
-            //TODO make outputRange step a Preference
-            outputRange = outputRange + 0.01;
-            if (outputRange > 0.8)
-                outputRange = 0.8;
+
+            if (Robot.arm.getArmPosition() > setpoint) {
+                outputRange = minSpeed;
+            } else if (Robot.arm.getArmPosition() <= startPosition + accelDistance) {
+                x = (armPosition - startPosition)/accelDistance;
+                y = maxSpeed - minSpeed;
+                outputRange = y*x+minSpeed;
+            } else if (Robot.arm.getArmPosition() >= setpoint - decelDistance) {
+                x = (setpoint - armPosition)/decelDistance;
+                outputRange = x*maxSpeed;
+            } else {
+               outputRange = maxSpeed;
+            }
+
             Robot.arm.setPIDOutputRange(outputRange);
-//            System.out.println("outputRange: " + outputRange);
+            System.out.println("outputRange: " + outputRange);
         }
     }
 
