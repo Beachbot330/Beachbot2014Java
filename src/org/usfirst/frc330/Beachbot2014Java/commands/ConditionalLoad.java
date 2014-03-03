@@ -47,6 +47,7 @@ public class ConditionalLoad extends CommandGroupUpdateable {
             addParallel(new DropBall());
             addSequential(new WingsOpen());
             addSequential(new AutoLoadShooter());
+            addSequential(new WingsClose());
         }
         else {
             addSequential(new PickupOff());

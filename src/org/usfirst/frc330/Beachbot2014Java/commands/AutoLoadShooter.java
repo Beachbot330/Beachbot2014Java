@@ -24,6 +24,9 @@ public class  AutoLoadShooter extends Command {
     }
     // Called just before this Command runs the first time
     private boolean loading;
+    double setpoint; 
+    boolean started = false;
+    double outputRange = 0;
     
     protected void initialize() {
         if(Robot.arm.getIsArmFront()){
@@ -38,17 +41,21 @@ public class  AutoLoadShooter extends Command {
     protected void execute() {
         if(Robot.pickup.isBallInPickup()){
             if(loading == false){
+                started = false;
                 if(Robot.arm.getIsArmFront())
-                    moveArm(Robot.arm.getArmFrontLoading());
+                    moveArm(Robot.arm.getArmFrontCatching());
                 else
-                    moveArm(Robot.arm.getArmBackLoading());
+                    moveArm(Robot.arm.getArmBackCatching());
                 loading = true;
             }
+            else
+                moveArm(Robot.arm.getArmVertical());
             if ((Robot.arm.getIsArmFront() &&                //Not past retry threshold (on current side)
                     Robot.arm.getArmPosition() < Robot.arm.getArmLoadRetryThresholdFront()) ||
                     (Robot.arm.getIsArmRear() &&
                     Robot.arm.getArmPosition() > Robot.arm.getArmLoadRetryThresholdRear())){
                 if(!Robot.pickup.isBallInPickup()){         //dropped ball
+                    System.out.println("I dropped the ball!");
                     initialize();
                 } 
             }
@@ -61,12 +68,25 @@ public class  AutoLoadShooter extends Command {
     }
     // Called once after isFinished returns true
     protected void end() {
+        Robot.arm.setPIDOutputRangeDefault();
     }
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        end();
     }
-    protected void moveArm(double position){
-        
+    protected void moveArm(double setpoint){
+        if ((Robot.wings.areWingsOpen() || Robot.arm.areWingsSafeToClose(setpoint)) && !started) {
+                Robot.arm.setArmSetPoint(setpoint);
+                outputRange = 0.40;
+                Robot.arm.setPIDOutputRange(outputRange);
+                Robot.arm.enable();
+                started = true;                
+        } else if (started) {
+            outputRange = outputRange + 0.01;
+            if (outputRange > 0.8)
+                outputRange = 0.8;
+            Robot.arm.setPIDOutputRange(outputRange);
+        }
     }
 }

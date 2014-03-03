@@ -25,7 +25,7 @@ public class  CatchWithSensor extends Command {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.lEDs.setRed();
+        Robot.lEDs.setGreen();
         Robot.wings.setWingsOpen();
     }
     // Called repeatedly when this Command is scheduled to run
