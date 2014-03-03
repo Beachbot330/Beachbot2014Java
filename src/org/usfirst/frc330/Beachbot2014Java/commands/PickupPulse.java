@@ -26,7 +26,7 @@ public class  PickupPulse extends Command {
     boolean direction = false;
     // Called just before this Command runs the first time
     protected void initialize() {
-        direction = !Robot.arm.getArmDirection();
+        direction = !Robot.arm.getIsArmRear();
         Robot.pickup.resetPulsedPickupBallCounter();
     }
     // Called repeatedly when this Command is scheduled to run

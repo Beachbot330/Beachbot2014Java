@@ -20,7 +20,7 @@ public class  MoveArmToPickupClose extends MoveArmCommand implements AutoSpreads
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        if (Robot.arm.getArmDirection())
+        if (Robot.arm.getIsArmRear())
             setpoint = Robot.arm.getArmFrontPickup();
         else
             setpoint = Robot.arm.getArmBackPickup();

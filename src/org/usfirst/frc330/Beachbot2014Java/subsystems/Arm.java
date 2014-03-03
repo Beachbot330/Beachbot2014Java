@@ -89,7 +89,6 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
 //        System.out.println("armSetpointFrontPickup: " + Preferences.getInstance().getDouble("armSetpointFrontPickup", .1));
         return Preferences.getInstance().getDouble("armSetpointFrontPickup", .1);
     }
-
     public double getArmBackPickup() {
         if (!Preferences.getInstance().containsKey("armSetpointBackPickup"))
         {
@@ -97,6 +96,24 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
             Preferences.getInstance().save();
         }
         return Preferences.getInstance().getDouble("armSetpointBackPickup", 2.0);
+    }
+    
+    public double getArmLoadRetryThresholdFront() {
+        if (!Preferences.getInstance().containsKey("getArmLoadRetryThresholdFront"))
+        {
+            Preferences.getInstance().putDouble("getArmLoadRetryThresholdFront", 2.0);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("getArmLoadRetryThresholdFront", 2.0);
+    }
+    
+    public double getArmLoadRetryThresholdRear() {
+        if (!Preferences.getInstance().containsKey("getArmLoadRetryThresholdRear"))
+        {
+            Preferences.getInstance().putDouble("getArmLoadRetryThresholdRear", 2.0);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("getArmLoadRetryThresholdRear", 2.0);
     }
     
     public double getArmFrontBumper() {
@@ -385,9 +402,14 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
      * 
      * @return direction, False if the arm is in the front of the robot. 
      */
-    public boolean getArmDirection() {
+    public boolean getIsArmRear() {
         return (getArmPosition() < getArmVertical());
     }
+    
+    public boolean getIsArmFront() {
+        return !getIsArmRear();
+    }
+    
     public synchronized void setPIDOutputRange(double maximumOutput) {
         armPID.setOutputRange(-maximumOutput, maximumOutput);
     }

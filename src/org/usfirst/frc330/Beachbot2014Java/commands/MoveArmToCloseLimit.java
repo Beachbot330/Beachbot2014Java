@@ -20,7 +20,7 @@ public class  MoveArmToCloseLimit extends MoveArmCommand implements AutoSpreadsh
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        if (Robot.arm.getArmDirection())
+        if (Robot.arm.getIsArmRear())
             setpoint = Robot.arm.getArmLowerLimit();
         else
             setpoint = Robot.arm.getArmUpperLimit();

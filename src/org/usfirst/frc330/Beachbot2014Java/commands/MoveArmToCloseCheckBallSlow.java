@@ -29,7 +29,7 @@ public class  MoveArmToCloseCheckBallSlow extends Command {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        if (Robot.arm.getArmDirection())
+        if (Robot.arm.getIsArmRear())
             setpoint = Robot.arm.getArmFrontBumper();
         else
             setpoint = Robot.arm.getArmBackBumper();

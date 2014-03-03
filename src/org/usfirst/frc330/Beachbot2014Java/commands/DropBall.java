@@ -31,7 +31,7 @@ public class  DropBall extends Command {
     boolean direction = false;
     // Called just before this Command runs the first time
     protected void initialize() {
-        direction = Robot.arm.getArmDirection();
+        direction = Robot.arm.getIsArmRear();
         Robot.pickup.pickupOn(!direction);
         if (direction)
             setpoint = Robot.arm.getArmFrontLoading();

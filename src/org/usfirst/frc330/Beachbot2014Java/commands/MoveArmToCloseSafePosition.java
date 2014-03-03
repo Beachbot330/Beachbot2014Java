@@ -20,7 +20,7 @@ public class  MoveArmToCloseSafePosition extends MoveArmCommand implements AutoS
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        if (Robot.arm.getArmDirection())
+        if (Robot.arm.getIsArmRear())
             setpoint = Robot.arm.getArmFrontSafePoint();
         else
             setpoint = Robot.arm.getArmBackSafePoint();

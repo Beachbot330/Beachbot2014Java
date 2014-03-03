@@ -44,7 +44,8 @@ public class ConditionalLoad extends CommandGroupUpdateable {
     protected void initialize() {
         super.initialize(); //To change body of generated methods, choose Tools | Templates.
         if(Robot.pickup.isBallInPickup()){
-            //addSequential(new MoveArmToCloseCheckBallSlow());
+            addParallel(new DropBall());
+            addSequential(new WingsOpen());
             addSequential(new AutoLoadShooter());
         }
         else {
