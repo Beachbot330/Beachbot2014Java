@@ -38,12 +38,12 @@ public abstract class MoveArmCommand extends Command {
                 Robot.arm.setArmSetPoint(setpoint);
                 Robot.arm.enable();
                 started = true;
-                outputRange = 0.10;
+                outputRange = 0.30;
                 Robot.arm.setPIDOutputRange(outputRange);
 //                System.out.println("outputRange: " + outputRange);                
         } else if (started) {
             //TODO make outputRange step a Preference
-            outputRange = outputRange + 0.10;
+            outputRange = outputRange + 0.01;
             if (outputRange > 0.8)
                 outputRange = 0.8;
             Robot.arm.setPIDOutputRange(outputRange);
