@@ -58,7 +58,11 @@ public abstract class MoveArmCommand extends Command {
             decelDistance = setpoint - accelDistance - startPosition;
         else 
             decelDistance = origDecelDistance;
-        System.out.println("MoveArmCommand Initialize decelDistance= " + decelDistance + "setpoint " + setpoint + " startPosition " + startPosition + " accelDistance " + accelDistance + " origDecelDistance " + origDecelDistance);
+        if (decelDistance <= 0)
+            decelDistance = 0.001;
+        if (accelDistance <= 0)
+            accelDistance = 0.001;
+//        System.out.println("MoveArmCommand Initialize decelDistance= " + decelDistance + " setpoint " + setpoint + " startPosition " + startPosition + " accelDistance " + accelDistance + " origDecelDistance " + origDecelDistance);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -71,7 +75,7 @@ public abstract class MoveArmCommand extends Command {
                 Robot.arm.enable();
                 started = true;
 
-                System.out.println("outputRange: " + outputRange);                
+//                System.out.println("outputRange: " + outputRange);                
 
         } else if (started) {
 
@@ -90,7 +94,7 @@ public abstract class MoveArmCommand extends Command {
             }
 
             Robot.arm.setPIDOutputRange(outputRange);
-            System.out.println("outputRange: " + outputRange);
+//            System.out.println("outputRange: " + outputRange);
         }
     }
 
