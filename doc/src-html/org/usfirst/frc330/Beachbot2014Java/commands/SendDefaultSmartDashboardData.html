@@ -51,57 +51,62 @@
 <span class="sourceLineNo">043</span>    double encoderLeft = 0;<a name="line.43"></a>
 <span class="sourceLineNo">044</span>    double encoderRight = 0;<a name="line.44"></a>
 <span class="sourceLineNo">045</span>    double shooterDistance = 0;<a name="line.45"></a>
-<span class="sourceLineNo">046</span>    // Called repeatedly when this Command is scheduled to run<a name="line.46"></a>
-<span class="sourceLineNo">047</span>    protected void execute() {<a name="line.47"></a>
-<span class="sourceLineNo">048</span>        if (count % 10 == 0)<a name="line.48"></a>
-<span class="sourceLineNo">049</span>        {<a name="line.49"></a>
-<span class="sourceLineNo">050</span>            if (pickupCurrent != Robot.pickup.getCurrent()) {<a name="line.50"></a>
-<span class="sourceLineNo">051</span>                pickupCurrent = Robot.pickup.getCurrent();<a name="line.51"></a>
-<span class="sourceLineNo">052</span>                SmartDashboard.putNumber("PickupCurrent", pickupCurrent);<a name="line.52"></a>
-<span class="sourceLineNo">053</span>            }<a name="line.53"></a>
-<span class="sourceLineNo">054</span>            if (armPosition != Robot.arm.getArmPosition()) {<a name="line.54"></a>
-<span class="sourceLineNo">055</span>                armPosition = Robot.arm.getArmPosition();<a name="line.55"></a>
-<span class="sourceLineNo">056</span>                SmartDashboard.putNumber("ArmPosition", armPosition);<a name="line.56"></a>
-<span class="sourceLineNo">057</span>            }<a name="line.57"></a>
-<span class="sourceLineNo">058</span>            if (chassisX != Robot.chassis.getX()) {<a name="line.58"></a>
-<span class="sourceLineNo">059</span>                chassisX = Robot.chassis.getX();<a name="line.59"></a>
-<span class="sourceLineNo">060</span>                 SmartDashboard.putNumber("ChassisX", chassisX);<a name="line.60"></a>
-<span class="sourceLineNo">061</span>            }<a name="line.61"></a>
-<span class="sourceLineNo">062</span>            if (chassisY != Robot.chassis.getY()) {<a name="line.62"></a>
-<span class="sourceLineNo">063</span>                chassisY = Robot.chassis.getY();<a name="line.63"></a>
-<span class="sourceLineNo">064</span>                SmartDashboard.putNumber("ChassisY", chassisY);<a name="line.64"></a>
-<span class="sourceLineNo">065</span>            }<a name="line.65"></a>
-<span class="sourceLineNo">066</span>            if (gyroAngle != Robot.chassis.getAngle()) {<a name="line.66"></a>
-<span class="sourceLineNo">067</span>                gyroAngle = Robot.chassis.getAngle();<a name="line.67"></a>
-<span class="sourceLineNo">068</span>                SmartDashboard.putNumber("GyroAngle", gyroAngle);<a name="line.68"></a>
-<span class="sourceLineNo">069</span>            }<a name="line.69"></a>
-<span class="sourceLineNo">070</span>            if (encoderLeft != Robot.chassis.getLeftDistance()) {<a name="line.70"></a>
-<span class="sourceLineNo">071</span>                encoderLeft = Robot.chassis.getLeftDistance();<a name="line.71"></a>
-<span class="sourceLineNo">072</span>                SmartDashboard.putNumber("EncoderLeft", encoderLeft);<a name="line.72"></a>
-<span class="sourceLineNo">073</span>            }<a name="line.73"></a>
-<span class="sourceLineNo">074</span>            if (encoderRight != Robot.chassis.getRightDistance()) {<a name="line.74"></a>
-<span class="sourceLineNo">075</span>                encoderRight = Robot.chassis.getRightDistance();<a name="line.75"></a>
-<span class="sourceLineNo">076</span>                SmartDashboard.putNumber("EncoderRight", encoderRight);<a name="line.76"></a>
-<span class="sourceLineNo">077</span>            }<a name="line.77"></a>
-<span class="sourceLineNo">078</span>            if (shooterDistance != Robot.shooter.getBallDistance()) {<a name="line.78"></a>
-<span class="sourceLineNo">079</span>                shooterDistance = Robot.shooter.getBallDistance();<a name="line.79"></a>
-<span class="sourceLineNo">080</span>                SmartDashboard.putNumber("BallDistance", shooterDistance);<a name="line.80"></a>
-<span class="sourceLineNo">081</span>            }<a name="line.81"></a>
-<span class="sourceLineNo">082</span>        }<a name="line.82"></a>
-<span class="sourceLineNo">083</span>        count++;<a name="line.83"></a>
-<span class="sourceLineNo">084</span>    }<a name="line.84"></a>
-<span class="sourceLineNo">085</span>    // Make this return true when this Command no longer needs to run execute()<a name="line.85"></a>
-<span class="sourceLineNo">086</span>    protected boolean isFinished() {<a name="line.86"></a>
-<span class="sourceLineNo">087</span>        return false;<a name="line.87"></a>
-<span class="sourceLineNo">088</span>    }<a name="line.88"></a>
-<span class="sourceLineNo">089</span>    // Called once after isFinished returns true<a name="line.89"></a>
-<span class="sourceLineNo">090</span>    protected void end() {<a name="line.90"></a>
-<span class="sourceLineNo">091</span>    }<a name="line.91"></a>
-<span class="sourceLineNo">092</span>    // Called when another command which requires one or more of the same<a name="line.92"></a>
-<span class="sourceLineNo">093</span>    // subsystems is scheduled to run<a name="line.93"></a>
-<span class="sourceLineNo">094</span>    protected void interrupted() {<a name="line.94"></a>
-<span class="sourceLineNo">095</span>    }<a name="line.95"></a>
-<span class="sourceLineNo">096</span>}<a name="line.96"></a>
+<span class="sourceLineNo">046</span>    boolean ballInPickup = false;<a name="line.46"></a>
+<span class="sourceLineNo">047</span>    // Called repeatedly when this Command is scheduled to run<a name="line.47"></a>
+<span class="sourceLineNo">048</span>    protected void execute() {<a name="line.48"></a>
+<span class="sourceLineNo">049</span>        if (count % 10 == 0)<a name="line.49"></a>
+<span class="sourceLineNo">050</span>        {<a name="line.50"></a>
+<span class="sourceLineNo">051</span>            if (pickupCurrent != Robot.pickup.getCurrent()) {<a name="line.51"></a>
+<span class="sourceLineNo">052</span>                pickupCurrent = Robot.pickup.getCurrent();<a name="line.52"></a>
+<span class="sourceLineNo">053</span>                SmartDashboard.putNumber("PickupCurrent", pickupCurrent);<a name="line.53"></a>
+<span class="sourceLineNo">054</span>            }<a name="line.54"></a>
+<span class="sourceLineNo">055</span>            if (armPosition != Robot.arm.getArmPosition()) {<a name="line.55"></a>
+<span class="sourceLineNo">056</span>                armPosition = Robot.arm.getArmPosition();<a name="line.56"></a>
+<span class="sourceLineNo">057</span>                SmartDashboard.putNumber("ArmPosition", armPosition);<a name="line.57"></a>
+<span class="sourceLineNo">058</span>            }<a name="line.58"></a>
+<span class="sourceLineNo">059</span>            if (chassisX != Robot.chassis.getX()) {<a name="line.59"></a>
+<span class="sourceLineNo">060</span>                chassisX = Robot.chassis.getX();<a name="line.60"></a>
+<span class="sourceLineNo">061</span>                 SmartDashboard.putNumber("ChassisX", chassisX);<a name="line.61"></a>
+<span class="sourceLineNo">062</span>            }<a name="line.62"></a>
+<span class="sourceLineNo">063</span>            if (chassisY != Robot.chassis.getY()) {<a name="line.63"></a>
+<span class="sourceLineNo">064</span>                chassisY = Robot.chassis.getY();<a name="line.64"></a>
+<span class="sourceLineNo">065</span>                SmartDashboard.putNumber("ChassisY", chassisY);<a name="line.65"></a>
+<span class="sourceLineNo">066</span>            }<a name="line.66"></a>
+<span class="sourceLineNo">067</span>            if (gyroAngle != Robot.chassis.getAngle()) {<a name="line.67"></a>
+<span class="sourceLineNo">068</span>                gyroAngle = Robot.chassis.getAngle();<a name="line.68"></a>
+<span class="sourceLineNo">069</span>                SmartDashboard.putNumber("GyroAngle", gyroAngle);<a name="line.69"></a>
+<span class="sourceLineNo">070</span>            }<a name="line.70"></a>
+<span class="sourceLineNo">071</span>            if (encoderLeft != Robot.chassis.getLeftDistance()) {<a name="line.71"></a>
+<span class="sourceLineNo">072</span>                encoderLeft = Robot.chassis.getLeftDistance();<a name="line.72"></a>
+<span class="sourceLineNo">073</span>                SmartDashboard.putNumber("EncoderLeft", encoderLeft);<a name="line.73"></a>
+<span class="sourceLineNo">074</span>            }<a name="line.74"></a>
+<span class="sourceLineNo">075</span>            if (encoderRight != Robot.chassis.getRightDistance()) {<a name="line.75"></a>
+<span class="sourceLineNo">076</span>                encoderRight = Robot.chassis.getRightDistance();<a name="line.76"></a>
+<span class="sourceLineNo">077</span>                SmartDashboard.putNumber("EncoderRight", encoderRight);<a name="line.77"></a>
+<span class="sourceLineNo">078</span>            }<a name="line.78"></a>
+<span class="sourceLineNo">079</span>            if (shooterDistance != Robot.shooter.getBallDistance()) {<a name="line.79"></a>
+<span class="sourceLineNo">080</span>                shooterDistance = Robot.shooter.getBallDistance();<a name="line.80"></a>
+<span class="sourceLineNo">081</span>                SmartDashboard.putNumber("BallDistance", shooterDistance);<a name="line.81"></a>
+<span class="sourceLineNo">082</span>            }<a name="line.82"></a>
+<span class="sourceLineNo">083</span>            if (ballInPickup != Robot.pickup.isBallInPickup()) {<a name="line.83"></a>
+<span class="sourceLineNo">084</span>                ballInPickup = Robot.pickup.isBallInPickup();<a name="line.84"></a>
+<span class="sourceLineNo">085</span>                SmartDashboard.putBoolean("BallInPickup", ballInPickup);<a name="line.85"></a>
+<span class="sourceLineNo">086</span>            }<a name="line.86"></a>
+<span class="sourceLineNo">087</span>        }<a name="line.87"></a>
+<span class="sourceLineNo">088</span>        count++;<a name="line.88"></a>
+<span class="sourceLineNo">089</span>    }<a name="line.89"></a>
+<span class="sourceLineNo">090</span>    // Make this return true when this Command no longer needs to run execute()<a name="line.90"></a>
+<span class="sourceLineNo">091</span>    protected boolean isFinished() {<a name="line.91"></a>
+<span class="sourceLineNo">092</span>        return false;<a name="line.92"></a>
+<span class="sourceLineNo">093</span>    }<a name="line.93"></a>
+<span class="sourceLineNo">094</span>    // Called once after isFinished returns true<a name="line.94"></a>
+<span class="sourceLineNo">095</span>    protected void end() {<a name="line.95"></a>
+<span class="sourceLineNo">096</span>    }<a name="line.96"></a>
+<span class="sourceLineNo">097</span>    // Called when another command which requires one or more of the same<a name="line.97"></a>
+<span class="sourceLineNo">098</span>    // subsystems is scheduled to run<a name="line.98"></a>
+<span class="sourceLineNo">099</span>    protected void interrupted() {<a name="line.99"></a>
+<span class="sourceLineNo">100</span>    }<a name="line.100"></a>
+<span class="sourceLineNo">101</span>}<a name="line.101"></a>
 
 
 

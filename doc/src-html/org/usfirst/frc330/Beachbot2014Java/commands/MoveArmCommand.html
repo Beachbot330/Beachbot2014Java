@@ -23,49 +23,127 @@
 <span class="sourceLineNo">015</span> */<a name="line.15"></a>
 <span class="sourceLineNo">016</span>public abstract class MoveArmCommand extends Command {<a name="line.16"></a>
 <span class="sourceLineNo">017</span>    double setpoint; <a name="line.17"></a>
-<span class="sourceLineNo">018</span><a name="line.18"></a>
-<span class="sourceLineNo">019</span>    public MoveArmCommand(double position) {<a name="line.19"></a>
-<span class="sourceLineNo">020</span>        requires(Robot.arm);<a name="line.20"></a>
-<span class="sourceLineNo">021</span>        requires(Robot.wings);<a name="line.21"></a>
-<span class="sourceLineNo">022</span>        setpoint = position;<a name="line.22"></a>
-<span class="sourceLineNo">023</span>    }<a name="line.23"></a>
-<span class="sourceLineNo">024</span><a name="line.24"></a>
-<span class="sourceLineNo">025</span>    // Called just before this Command runs the first time<a name="line.25"></a>
-<span class="sourceLineNo">026</span>    protected void initialize() {<a name="line.26"></a>
-<span class="sourceLineNo">027</span>//        Robot.arm.disable();<a name="line.27"></a>
-<span class="sourceLineNo">028</span>//        Robot.arm.setArmSetPoint(setpoint);<a name="line.28"></a>
-<span class="sourceLineNo">029</span>        if (!Robot.arm.areWingsSafeToClose(setpoint))<a name="line.29"></a>
-<span class="sourceLineNo">030</span>            Robot.wings.setWingsOpen();<a name="line.30"></a>
-<span class="sourceLineNo">031</span><a name="line.31"></a>
-<span class="sourceLineNo">032</span>    }<a name="line.32"></a>
-<span class="sourceLineNo">033</span><a name="line.33"></a>
-<span class="sourceLineNo">034</span>    // Called repeatedly when this Command is scheduled to run<a name="line.34"></a>
-<span class="sourceLineNo">035</span>    protected void execute() {<a name="line.35"></a>
-<span class="sourceLineNo">036</span>        if (Robot.wings.areWingsOpen() || Robot.arm.areWingsSafeToClose(setpoint)) {<a name="line.36"></a>
-<span class="sourceLineNo">037</span>//            if (!Robot.arm.isEnable()) {<a name="line.37"></a>
-<span class="sourceLineNo">038</span>                Robot.arm.setArmSetPoint(setpoint);<a name="line.38"></a>
-<span class="sourceLineNo">039</span>                Robot.arm.enable();<a name="line.39"></a>
-<span class="sourceLineNo">040</span>//            }<a name="line.40"></a>
-<span class="sourceLineNo">041</span>        } else if (Robot.arm.isEnable()) {<a name="line.41"></a>
-<span class="sourceLineNo">042</span>            Robot.arm.disable();<a name="line.42"></a>
-<span class="sourceLineNo">043</span>        }<a name="line.43"></a>
-<span class="sourceLineNo">044</span>    }<a name="line.44"></a>
-<span class="sourceLineNo">045</span><a name="line.45"></a>
-<span class="sourceLineNo">046</span>    // Make this return true when this Command no longer needs to run execute()<a name="line.46"></a>
-<span class="sourceLineNo">047</span>    protected boolean isFinished() {<a name="line.47"></a>
-<span class="sourceLineNo">048</span>        return Robot.arm.onTarget();<a name="line.48"></a>
-<span class="sourceLineNo">049</span>    }<a name="line.49"></a>
-<span class="sourceLineNo">050</span><a name="line.50"></a>
-<span class="sourceLineNo">051</span>    // Called once after isFinished returns true<a name="line.51"></a>
-<span class="sourceLineNo">052</span>    protected void end() {<a name="line.52"></a>
-<span class="sourceLineNo">053</span>    }<a name="line.53"></a>
-<span class="sourceLineNo">054</span><a name="line.54"></a>
-<span class="sourceLineNo">055</span>    // Called when another command which requires one or more of the same<a name="line.55"></a>
-<span class="sourceLineNo">056</span>    // subsystems is scheduled to run<a name="line.56"></a>
-<span class="sourceLineNo">057</span>    protected void interrupted() {<a name="line.57"></a>
-<span class="sourceLineNo">058</span>    }<a name="line.58"></a>
-<span class="sourceLineNo">059</span>    <a name="line.59"></a>
-<span class="sourceLineNo">060</span>}<a name="line.60"></a>
+<span class="sourceLineNo">018</span>    boolean started = false;<a name="line.18"></a>
+<span class="sourceLineNo">019</span>    double outputRange = 0;<a name="line.19"></a>
+<span class="sourceLineNo">020</span>    double startPosition = 0;<a name="line.20"></a>
+<span class="sourceLineNo">021</span>    double accelDistance = 0;<a name="line.21"></a>
+<span class="sourceLineNo">022</span>    double decelDistance = 0;<a name="line.22"></a>
+<span class="sourceLineNo">023</span>    double origDecelDistance = 0;<a name="line.23"></a>
+<span class="sourceLineNo">024</span>    double maxSpeed = 0;<a name="line.24"></a>
+<span class="sourceLineNo">025</span>    double minSpeed = 0;<a name="line.25"></a>
+<span class="sourceLineNo">026</span><a name="line.26"></a>
+<span class="sourceLineNo">027</span>    public MoveArmCommand(double position) {<a name="line.27"></a>
+<span class="sourceLineNo">028</span>        this(position, 1.0, 0.4, 0.4, 1.2);<a name="line.28"></a>
+<span class="sourceLineNo">029</span>    }<a name="line.29"></a>
+<span class="sourceLineNo">030</span>    <a name="line.30"></a>
+<span class="sourceLineNo">031</span>//maxSpeed       _______<a name="line.31"></a>
+<span class="sourceLineNo">032</span>//              /       \<a name="line.32"></a>
+<span class="sourceLineNo">033</span>//             /         \<a name="line.33"></a>
+<span class="sourceLineNo">034</span>//minSpeed    |           \<a name="line.34"></a>
+<span class="sourceLineNo">035</span>//           accel      decel<a name="line.35"></a>
+<span class="sourceLineNo">036</span>//         Distance    Distance<a name="line.36"></a>
+<span class="sourceLineNo">037</span>    <a name="line.37"></a>
+<span class="sourceLineNo">038</span>    public MoveArmCommand(double position, double maxSpeed, double minSpeed, double accelDistance, double decelDistance) {<a name="line.38"></a>
+<span class="sourceLineNo">039</span>        requires(Robot.arm);<a name="line.39"></a>
+<span class="sourceLineNo">040</span>        requires(Robot.wings);<a name="line.40"></a>
+<span class="sourceLineNo">041</span>        setpoint = position;<a name="line.41"></a>
+<span class="sourceLineNo">042</span>        this.maxSpeed = maxSpeed;<a name="line.42"></a>
+<span class="sourceLineNo">043</span>        this.minSpeed = minSpeed;<a name="line.43"></a>
+<span class="sourceLineNo">044</span>        this.maxSpeed = maxSpeed;<a name="line.44"></a>
+<span class="sourceLineNo">045</span>        this.accelDistance = accelDistance;<a name="line.45"></a>
+<span class="sourceLineNo">046</span>        this.decelDistance = decelDistance;<a name="line.46"></a>
+<span class="sourceLineNo">047</span>        this.origDecelDistance = decelDistance;<a name="line.47"></a>
+<span class="sourceLineNo">048</span>    }<a name="line.48"></a>
+<span class="sourceLineNo">049</span><a name="line.49"></a>
+<span class="sourceLineNo">050</span>    // Called just before this Command runs the first time<a name="line.50"></a>
+<span class="sourceLineNo">051</span>    protected void initialize() {<a name="line.51"></a>
+<span class="sourceLineNo">052</span>        if (!Robot.arm.areWingsSafeToClose(setpoint))<a name="line.52"></a>
+<span class="sourceLineNo">053</span>            Robot.wings.setWingsOpen();<a name="line.53"></a>
+<span class="sourceLineNo">054</span>        started = false;<a name="line.54"></a>
+<span class="sourceLineNo">055</span>        startPosition = Robot.arm.getArmPosition();<a name="line.55"></a>
+<span class="sourceLineNo">056</span>        outputRange = minSpeed;<a name="line.56"></a>
+<span class="sourceLineNo">057</span>        if (setpoint - startPosition &lt; accelDistance+origDecelDistance)<a name="line.57"></a>
+<span class="sourceLineNo">058</span>            decelDistance = setpoint - accelDistance - startPosition;<a name="line.58"></a>
+<span class="sourceLineNo">059</span>        else <a name="line.59"></a>
+<span class="sourceLineNo">060</span>            decelDistance = origDecelDistance;<a name="line.60"></a>
+<span class="sourceLineNo">061</span>        if (decelDistance &lt;= 0)<a name="line.61"></a>
+<span class="sourceLineNo">062</span>            decelDistance = 0.001;<a name="line.62"></a>
+<span class="sourceLineNo">063</span>        if (accelDistance &lt;= 0)<a name="line.63"></a>
+<span class="sourceLineNo">064</span>            accelDistance = 0.001;<a name="line.64"></a>
+<span class="sourceLineNo">065</span>//        System.out.println("MoveArmCommand Initialize decelDistance= " + decelDistance + " setpoint " + setpoint + " startPosition " + startPosition + " accelDistance " + accelDistance + " origDecelDistance " + origDecelDistance);<a name="line.65"></a>
+<span class="sourceLineNo">066</span>    }<a name="line.66"></a>
+<span class="sourceLineNo">067</span><a name="line.67"></a>
+<span class="sourceLineNo">068</span>    // Called repeatedly when this Command is scheduled to run<a name="line.68"></a>
+<span class="sourceLineNo">069</span>    final protected void execute() {<a name="line.69"></a>
+<span class="sourceLineNo">070</span>        double x, y;<a name="line.70"></a>
+<span class="sourceLineNo">071</span>        if ((Robot.wings.areWingsOpen() || Robot.arm.areWingsSafeToClose(setpoint)) &amp;&amp; !started) {<a name="line.71"></a>
+<span class="sourceLineNo">072</span>                Robot.arm.setArmSetPoint(setpoint);<a name="line.72"></a>
+<span class="sourceLineNo">073</span>                Robot.arm.setPIDOutputRange(minSpeed); <a name="line.73"></a>
+<span class="sourceLineNo">074</span>                outputRange = minSpeed;<a name="line.74"></a>
+<span class="sourceLineNo">075</span>                Robot.arm.enable();<a name="line.75"></a>
+<span class="sourceLineNo">076</span>                started = true;<a name="line.76"></a>
+<span class="sourceLineNo">077</span><a name="line.77"></a>
+<span class="sourceLineNo">078</span>//                System.out.println("outputRange: " + outputRange);                <a name="line.78"></a>
+<span class="sourceLineNo">079</span><a name="line.79"></a>
+<span class="sourceLineNo">080</span>        } else if (started) {<a name="line.80"></a>
+<span class="sourceLineNo">081</span><a name="line.81"></a>
+<span class="sourceLineNo">082</span>            if (setpoint &gt; startPosition) {<a name="line.82"></a>
+<span class="sourceLineNo">083</span>                if (Robot.arm.getArmPosition() &gt; setpoint) {  //past setpoint<a name="line.83"></a>
+<span class="sourceLineNo">084</span>                    outputRange = minSpeed;<a name="line.84"></a>
+<span class="sourceLineNo">085</span>                } else if (Robot.arm.getArmPosition() &lt;= (startPosition + accelDistance)) { //in accell range<a name="line.85"></a>
+<span class="sourceLineNo">086</span>                    x = (Robot.arm.getArmPosition() - startPosition)/accelDistance;<a name="line.86"></a>
+<span class="sourceLineNo">087</span>                    y = maxSpeed - minSpeed;<a name="line.87"></a>
+<span class="sourceLineNo">088</span>                    outputRange = y*x+minSpeed;<a name="line.88"></a>
+<span class="sourceLineNo">089</span>                } else if (Robot.arm.getArmPosition() &gt;= (setpoint - decelDistance)) { //in decell range<a name="line.89"></a>
+<span class="sourceLineNo">090</span>                    x = (setpoint - Robot.arm.getArmPosition())/decelDistance;<a name="line.90"></a>
+<span class="sourceLineNo">091</span>                    y = maxSpeed - minSpeed;<a name="line.91"></a>
+<span class="sourceLineNo">092</span>                    outputRange = x*y + minSpeed;<a name="line.92"></a>
+<span class="sourceLineNo">093</span>    //                System.out.println("In Decel Condition x= " + x);<a name="line.93"></a>
+<span class="sourceLineNo">094</span>                } else { //in middle range<a name="line.94"></a>
+<span class="sourceLineNo">095</span>                   outputRange = maxSpeed;<a name="line.95"></a>
+<span class="sourceLineNo">096</span>                }   <a name="line.96"></a>
+<span class="sourceLineNo">097</span>            } else {<a name="line.97"></a>
+<span class="sourceLineNo">098</span>                if (Robot.arm.getArmPosition() &lt; setpoint) {  //past setpoint<a name="line.98"></a>
+<span class="sourceLineNo">099</span>                    outputRange = minSpeed;<a name="line.99"></a>
+<span class="sourceLineNo">100</span>                } else if (Robot.arm.getArmPosition() &gt;= (startPosition - accelDistance)) { //in accell range<a name="line.100"></a>
+<span class="sourceLineNo">101</span>                    x = (startPosition -Robot.arm.getArmPosition())/accelDistance;<a name="line.101"></a>
+<span class="sourceLineNo">102</span>                    y = maxSpeed - minSpeed;<a name="line.102"></a>
+<span class="sourceLineNo">103</span>                    outputRange = y*x+minSpeed;<a name="line.103"></a>
+<span class="sourceLineNo">104</span>                } else if (Robot.arm.getArmPosition() &lt;= (setpoint + decelDistance)) { //in decell range<a name="line.104"></a>
+<span class="sourceLineNo">105</span>                    x = (Robot.arm.getArmPosition() - setpoint )/decelDistance;<a name="line.105"></a>
+<span class="sourceLineNo">106</span>                    y = maxSpeed - minSpeed;<a name="line.106"></a>
+<span class="sourceLineNo">107</span>                    outputRange = x*y + minSpeed;<a name="line.107"></a>
+<span class="sourceLineNo">108</span>    //                System.out.println("In Decel Condition x= " + x);<a name="line.108"></a>
+<span class="sourceLineNo">109</span>                } else { //in middle range<a name="line.109"></a>
+<span class="sourceLineNo">110</span>                   outputRange = maxSpeed;<a name="line.110"></a>
+<span class="sourceLineNo">111</span>                }<a name="line.111"></a>
+<span class="sourceLineNo">112</span>            }<a name="line.112"></a>
+<span class="sourceLineNo">113</span>            <a name="line.113"></a>
+<span class="sourceLineNo">114</span>        }<a name="line.114"></a>
+<span class="sourceLineNo">115</span>        System.out.println("ArmPosition: " + Robot.arm.getArmPosition() + " outputRange: " + outputRange);<a name="line.115"></a>
+<span class="sourceLineNo">116</span>        Robot.arm.setPIDOutputRange(outputRange);<a name="line.116"></a>
+<span class="sourceLineNo">117</span>//      System.out.println("outputRange: " + outputRange);<a name="line.117"></a>
+<span class="sourceLineNo">118</span>        <a name="line.118"></a>
+<span class="sourceLineNo">119</span>    }<a name="line.119"></a>
+<span class="sourceLineNo">120</span><a name="line.120"></a>
+<span class="sourceLineNo">121</span>    // Make this return true when this Command no longer needs to run execute()<a name="line.121"></a>
+<span class="sourceLineNo">122</span>    final protected boolean isFinished() {<a name="line.122"></a>
+<span class="sourceLineNo">123</span>        return Robot.arm.onTarget() &amp;&amp; started;<a name="line.123"></a>
+<span class="sourceLineNo">124</span>    }<a name="line.124"></a>
+<span class="sourceLineNo">125</span><a name="line.125"></a>
+<span class="sourceLineNo">126</span>    // Called once after isFinished returns true<a name="line.126"></a>
+<span class="sourceLineNo">127</span>    final protected void end() {<a name="line.127"></a>
+<span class="sourceLineNo">128</span>        Robot.arm.setPIDOutputRangeDefault();<a name="line.128"></a>
+<span class="sourceLineNo">129</span>        started=false;<a name="line.129"></a>
+<span class="sourceLineNo">130</span>    }<a name="line.130"></a>
+<span class="sourceLineNo">131</span><a name="line.131"></a>
+<span class="sourceLineNo">132</span>    // Called when another command which requires one or more of the same<a name="line.132"></a>
+<span class="sourceLineNo">133</span>    // subsystems is scheduled to run<a name="line.133"></a>
+<span class="sourceLineNo">134</span>    final protected void interrupted() {<a name="line.134"></a>
+<span class="sourceLineNo">135</span>        end();<a name="line.135"></a>
+<span class="sourceLineNo">136</span>    }<a name="line.136"></a>
+<span class="sourceLineNo">137</span>    <a name="line.137"></a>
+<span class="sourceLineNo">138</span>}<a name="line.138"></a>
 
 
 
