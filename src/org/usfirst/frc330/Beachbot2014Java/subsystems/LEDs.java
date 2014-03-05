@@ -82,10 +82,14 @@ public class LEDs extends Subsystem {
         receivedData[1] = 0;
         receivedData[2] = -1;
         receivedData[3] = 0;
+//        System.out.println("Green before Transaction");
         arduino.transaction(receivedData, receivedData.length, null, 0);
+//        System.out.println("Green after Transaction");
     }
     
     public void restorePrevious() {
+//        System.out.println("RestorePrevious before Transaction");
         arduino.transaction(prevData, prevData.length, null, 0);
+//        System.out.println("RestorePrevious after Transaction");        
     }
 }

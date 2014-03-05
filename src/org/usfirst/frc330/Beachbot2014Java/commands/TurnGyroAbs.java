@@ -93,9 +93,23 @@ public class  TurnGyroAbs extends Command implements AutoSpreadsheetCommand {
         stopAtEnd = true;
         end();
     }
+    /**
+     * The first parameter in the AutoSpreadsheet, angle.
+     * The angle in degrees to turn to, relative to the starting location of the robot.
+     * @param angle in degrees.
+     */
     public void setParam1(double angle) {
         this.angle = angle;
     }
+     /**
+     * The second parameter in the AutoSpreadsheet, tolerance. 
+     * The tolerance in degrees for how close to be to the distance before stopping.
+     * 5 degrees is a reasonable tolerance for normal movements. If a smaller
+     * tolerance is used, the robot may not ever reach the tolerance, and the 
+     * {@link #setTimeout(double) timeout} may be reached.
+     * @param tolerance in inches
+     * @see edu.wpi.first.wpilibj.PIDController#setAbsoluteTolerance
+     */
     public void setParam2(double tolerance) {
         this.tolerance = tolerance;
     }

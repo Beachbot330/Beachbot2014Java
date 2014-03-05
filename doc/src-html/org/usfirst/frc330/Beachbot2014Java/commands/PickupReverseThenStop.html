@@ -21,8 +21,8 @@
 <span class="sourceLineNo">013</span>/**<a name="line.13"></a>
 <span class="sourceLineNo">014</span> *<a name="line.14"></a>
 <span class="sourceLineNo">015</span> */<a name="line.15"></a>
-<span class="sourceLineNo">016</span>public class  PickupReverseFancy extends Command {<a name="line.16"></a>
-<span class="sourceLineNo">017</span>    public PickupReverseFancy() {<a name="line.17"></a>
+<span class="sourceLineNo">016</span>public class  PickupReverseThenStop extends Command {<a name="line.16"></a>
+<span class="sourceLineNo">017</span>    public PickupReverseThenStop() {<a name="line.17"></a>
 <span class="sourceLineNo">018</span>        // Use requires() here to declare subsystem dependencies<a name="line.18"></a>
 <span class="sourceLineNo">019</span>        // eg. requires(chassis);<a name="line.19"></a>
 <span class="sourceLineNo">020</span>        <a name="line.20"></a>
@@ -34,7 +34,7 @@
 <span class="sourceLineNo">026</span>    // Called just before this Command runs the first time<a name="line.26"></a>
 <span class="sourceLineNo">027</span>    protected void initialize() {<a name="line.27"></a>
 <span class="sourceLineNo">028</span>        Robot.pickup.setPickupMotorOff();<a name="line.28"></a>
-<span class="sourceLineNo">029</span>         direction = Robot.arm.getArmPosition() &lt; Robot.arm.getArmVertical();<a name="line.29"></a>
+<span class="sourceLineNo">029</span>         direction = Robot.arm.getIsArmRear();<a name="line.29"></a>
 <span class="sourceLineNo">030</span>    }<a name="line.30"></a>
 <span class="sourceLineNo">031</span>    // Called repeatedly when this Command is scheduled to run<a name="line.31"></a>
 <span class="sourceLineNo">032</span>    protected void execute() {<a name="line.32"></a>

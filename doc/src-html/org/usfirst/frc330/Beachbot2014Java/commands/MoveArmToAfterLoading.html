@@ -28,10 +28,10 @@
 <span class="sourceLineNo">020</span>    }<a name="line.20"></a>
 <span class="sourceLineNo">021</span>    // Called just before this Command runs the first time<a name="line.21"></a>
 <span class="sourceLineNo">022</span>    protected void initialize() {<a name="line.22"></a>
-<span class="sourceLineNo">023</span>        if (Robot.arm.getArmPosition() &gt; Robot.arm.getArmVertical())<a name="line.23"></a>
-<span class="sourceLineNo">024</span>            setpoint = Robot.arm.getArmBackPickup();<a name="line.24"></a>
+<span class="sourceLineNo">023</span>        if (Robot.arm.getIsArmRear())<a name="line.23"></a>
+<span class="sourceLineNo">024</span>            setpoint = Robot.arm.getArmBackCatching();<a name="line.24"></a>
 <span class="sourceLineNo">025</span>        else<a name="line.25"></a>
-<span class="sourceLineNo">026</span>            setpoint = Robot.arm.getArmFrontPickup();<a name="line.26"></a>
+<span class="sourceLineNo">026</span>            setpoint = Robot.arm.getArmFrontCatching();<a name="line.26"></a>
 <span class="sourceLineNo">027</span>        super.initialize();<a name="line.27"></a>
 <span class="sourceLineNo">028</span>    }<a name="line.28"></a>
 <span class="sourceLineNo">029</span>    // Called repeatedly when this Command is scheduled to run<a name="line.29"></a>

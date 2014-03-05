@@ -58,7 +58,11 @@ public abstract class MoveArmCommand extends Command {
             decelDistance = setpoint - accelDistance - startPosition;
         else 
             decelDistance = origDecelDistance;
-        //System.out.println("MoveArmCommand Initialize decelDistance= " + decelDistance + "setpoint " + setpoint + " startPosition " + startPosition + " accelDistance " + accelDistance + " origDecelDistance " + origDecelDistance);
+        if (decelDistance <= 0)
+            decelDistance = 0.001;
+        if (accelDistance <= 0)
+            accelDistance = 0.001;
+//        System.out.println("MoveArmCommand Initialize decelDistance= " + decelDistance + " setpoint " + setpoint + " startPosition " + startPosition + " accelDistance " + accelDistance + " origDecelDistance " + origDecelDistance);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -71,27 +75,47 @@ public abstract class MoveArmCommand extends Command {
                 Robot.arm.enable();
                 started = true;
 
-                //System.out.println("outputRange: " + outputRange);                
+//                System.out.println("outputRange: " + outputRange);                
 
         } else if (started) {
 
-            if (Robot.arm.getArmPosition() > setpoint) {
-                outputRange = minSpeed;
-            } else if (Robot.arm.getArmPosition() <= startPosition + accelDistance) {
-                x = (Robot.arm.getArmPosition() - startPosition)/accelDistance;
-                y = maxSpeed - minSpeed;
-                outputRange = y*x+minSpeed;
-            } else if (Robot.arm.getArmPosition() >= setpoint - decelDistance) {
-                x = (setpoint - Robot.arm.getArmPosition())/decelDistance;
-                outputRange = x*maxSpeed;
-                //System.out.println("In Decel Condition x= " + x);
+            if (setpoint > startPosition) {
+                if (Robot.arm.getArmPosition() > setpoint) {  //past setpoint
+                    outputRange = minSpeed;
+                } else if (Robot.arm.getArmPosition() <= (startPosition + accelDistance)) { //in accell range
+                    x = (Robot.arm.getArmPosition() - startPosition)/accelDistance;
+                    y = maxSpeed - minSpeed;
+                    outputRange = y*x+minSpeed;
+                } else if (Robot.arm.getArmPosition() >= (setpoint - decelDistance)) { //in decell range
+                    x = (setpoint - Robot.arm.getArmPosition())/decelDistance;
+                    y = maxSpeed - minSpeed;
+                    outputRange = x*y + minSpeed;
+    //                System.out.println("In Decel Condition x= " + x);
+                } else { //in middle range
+                   outputRange = maxSpeed;
+                }   
             } else {
-               outputRange = maxSpeed;
+                if (Robot.arm.getArmPosition() < setpoint) {  //past setpoint
+                    outputRange = minSpeed;
+                } else if (Robot.arm.getArmPosition() >= (startPosition - accelDistance)) { //in accell range
+                    x = (startPosition -Robot.arm.getArmPosition())/accelDistance;
+                    y = maxSpeed - minSpeed;
+                    outputRange = y*x+minSpeed;
+                } else if (Robot.arm.getArmPosition() <= (setpoint + decelDistance)) { //in decell range
+                    x = (Robot.arm.getArmPosition() - setpoint )/decelDistance;
+                    y = maxSpeed - minSpeed;
+                    outputRange = x*y + minSpeed;
+    //                System.out.println("In Decel Condition x= " + x);
+                } else { //in middle range
+                   outputRange = maxSpeed;
+                }
             }
-
-            Robot.arm.setPIDOutputRange(outputRange);
-            //System.out.println("outputRange: " + outputRange);
+            
         }
+        System.out.println("ArmPosition: " + Robot.arm.getArmPosition() + " outputRange: " + outputRange);
+        Robot.arm.setPIDOutputRange(outputRange);
+//      System.out.println("outputRange: " + outputRange);
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()
