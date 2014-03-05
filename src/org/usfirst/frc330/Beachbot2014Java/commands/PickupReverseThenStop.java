@@ -26,7 +26,7 @@ public class  PickupReverseThenStop extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
         Robot.pickup.setPickupMotorOff();
-         direction = Robot.arm.getIsArmRear();
+         direction = Robot.arm.getIsArmFront();
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {

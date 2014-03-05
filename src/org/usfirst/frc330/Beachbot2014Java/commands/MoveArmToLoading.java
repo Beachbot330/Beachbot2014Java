@@ -20,7 +20,7 @@ public class  MoveArmToLoading extends MoveArmCommand implements AutoSpreadsheet
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        if (Robot.arm.getIsArmRear()) //This is a specific hack, do not copy
+        if (Robot.arm.getIsArmFront()) //This is a specific hack, do not copy
             setpoint = Robot.arm.getArmFrontLoading();
         else
             setpoint = Robot.arm.getArmBackLoading();

@@ -402,12 +402,12 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
      * 
      * @return direction, False if the arm is in the front of the robot. 
      */
-    public boolean getIsArmRear() {
+    public boolean getIsArmFront() {
         return (getArmPosition() < getArmVertical());
     }
     
-    public boolean getIsArmFront() {
-        return !getIsArmRear();
+    public boolean getIsArmRear() {
+        return !getIsArmFront();
     }
     
     public synchronized void setPIDOutputRange(double maximumOutput) {

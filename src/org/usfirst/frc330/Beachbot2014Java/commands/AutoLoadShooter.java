@@ -29,11 +29,14 @@ public class  AutoLoadShooter extends Command {
     double outputRange = 0;
     
     protected void initialize() {
-        if(Robot.arm.getIsArmFront()){
+        System.out.println("Initialize");
+        if(Robot.arm.getIsArmRear()){
             moveArm(Robot.arm.getArmFrontPickup());
+            System.out.println("Move to Front Pickup");
         }
         else {
             moveArm(Robot.arm.getArmBackPickup());
+            System.out.println("Move to Back Pickup");
         }
         loading = false;
     }
@@ -42,7 +45,7 @@ public class  AutoLoadShooter extends Command {
         if(Robot.pickup.isBallInPickup()){
             if(loading == false){
                 started = false;
-                if(Robot.arm.getIsArmFront())
+                if(Robot.arm.getIsArmRear())
                     moveArm(Robot.arm.getArmFrontCatching());
                 else
                     moveArm(Robot.arm.getArmBackCatching());
@@ -50,15 +53,18 @@ public class  AutoLoadShooter extends Command {
             }
             else
                 moveArm(Robot.arm.getArmVertical());
-            if ((Robot.arm.getIsArmFront() &&                //Not past retry threshold (on current side)
+            if ((Robot.arm.getIsArmRear() &&                //Not past retry threshold (on current side)
                     Robot.arm.getArmPosition() < Robot.arm.getArmLoadRetryThresholdFront()) ||
-                    (Robot.arm.getIsArmRear() &&
+                    (Robot.arm.getIsArmFront() &&
                     Robot.arm.getArmPosition() > Robot.arm.getArmLoadRetryThresholdRear())){
+                System.out.println("I still have the ball");
                 if(!Robot.pickup.isBallInPickup()){         //dropped ball
                     System.out.println("I dropped the ball!");
                     initialize();
                 } 
             }
+            else
+                System.out.println("I no longer care if I have the ball  :P");
         }
             
     }

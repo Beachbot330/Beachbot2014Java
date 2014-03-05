@@ -20,7 +20,7 @@ public class  MoveArmToAfterLoading extends MoveArmCommand implements AutoSpread
     }
     // Called just before this Command runs the first time
     protected void initialize() {
-        if (Robot.arm.getIsArmRear())
+        if (Robot.arm.getIsArmFront())
             setpoint = Robot.arm.getArmBackCatching();
         else
             setpoint = Robot.arm.getArmFrontCatching();
