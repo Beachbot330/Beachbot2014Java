@@ -31,7 +31,7 @@ public abstract class MoveArmCommand extends Command {
 //maxSpeed       _______
 //              /       \
 //             /         \
-//minSpeed    |           \
+//minSpeed    |           |
 //           accel      decel
 //         Distance    Distance
     
@@ -54,8 +54,8 @@ public abstract class MoveArmCommand extends Command {
         started = false;
         startPosition = Robot.arm.getArmPosition();
         outputRange = minSpeed;
-        if (setpoint - startPosition < accelDistance+origDecelDistance)
-            decelDistance = setpoint - accelDistance - startPosition;
+        if (Math.abs(setpoint - startPosition) < accelDistance+origDecelDistance)
+            decelDistance = Math.abs(setpoint - startPosition) - accelDistance;
         else 
             decelDistance = origDecelDistance;
         if (decelDistance <= 0)
@@ -83,11 +83,11 @@ public abstract class MoveArmCommand extends Command {
                 if (Robot.arm.getArmPosition() > setpoint) {  //past setpoint
                     outputRange = minSpeed;
                 } else if (Robot.arm.getArmPosition() <= (startPosition + accelDistance)) { //in accell range
-                    x = (Robot.arm.getArmPosition() - startPosition)/accelDistance;
+                    x = Math.abs(Robot.arm.getArmPosition() - startPosition)/accelDistance;
                     y = maxSpeed - minSpeed;
                     outputRange = y*x+minSpeed;
                 } else if (Robot.arm.getArmPosition() >= (setpoint - decelDistance)) { //in decell range
-                    x = (setpoint - Robot.arm.getArmPosition())/decelDistance;
+                    x = Math.abs(setpoint - Robot.arm.getArmPosition())/decelDistance;
                     y = maxSpeed - minSpeed;
                     outputRange = x*y + minSpeed;
     //                System.out.println("In Decel Condition x= " + x);

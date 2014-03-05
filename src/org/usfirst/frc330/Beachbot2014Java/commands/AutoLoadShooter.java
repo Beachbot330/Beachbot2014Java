@@ -27,41 +27,53 @@ public class  AutoLoadShooter extends Command {
     double setpoint; 
     boolean started = false;
     double outputRange = 0;
+    double startPosition = 0;
+    double accelDistance = 1.5;
+    double decelDistance = 1.2;
+    double origDecelDistance = 1.2;
+    double maxSpeed = 1.0;
+    double minSpeed = 0.4;
+    boolean atPickup = false;
+    boolean frontPickuping;
     
     protected void initialize() {
         System.out.println("Initialize");
+        started = false;
+        loading = false;
         if(Robot.arm.getIsArmRear()){
-            moveArm(Robot.arm.getArmFrontPickup());
-            System.out.println("Move to Front Pickup");
+            moveArm_old(Robot.arm.getArmBackPickup());
+            System.out.println("Move to Rear Pickup");
         }
         else {
-            moveArm(Robot.arm.getArmBackPickup());
-            System.out.println("Move to Back Pickup");
+            moveArm_old(Robot.arm.getArmFrontPickup());
+            System.out.println("Move to Front Pickup");
         }
-        loading = false;
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(Robot.pickup.isBallInPickup()){
-            if(loading == false){
-                started = false;
-                if(Robot.arm.getIsArmRear())
-                    moveArm(Robot.arm.getArmFrontCatching());
-                else
-                    moveArm(Robot.arm.getArmBackCatching());
-                loading = true;
-            }
+        if(Robot.pickup.isBallInPickup() && loading==false){
+            started = false;
+            if(Robot.arm.getIsArmRear())
+                moveArm(Robot.arm.getArmFrontCatching());
             else
-                moveArm(Robot.arm.getArmVertical());
-            if ((Robot.arm.getIsArmRear() &&                //Not past retry threshold (on current side)
-                    Robot.arm.getArmPosition() < Robot.arm.getArmLoadRetryThresholdFront()) ||
-                    (Robot.arm.getIsArmFront() &&
-                    Robot.arm.getArmPosition() > Robot.arm.getArmLoadRetryThresholdRear())){
-                System.out.println("I still have the ball");
+                moveArm(Robot.arm.getArmBackCatching());
+            frontPickuping = Robot.arm.getIsArmFront();
+            loading = true;
+        }
+        if(loading==true){
+            moveArm(Robot.arm.getSetpoint()); //Don't care about location, just update speed
+            if ((!frontPickuping &&                //Not past retry threshold (on current side)
+                    Robot.arm.getArmPosition() > Robot.arm.getArmLoadRetryThresholdRear()) ||
+                    (frontPickuping &&
+                    Robot.arm.getArmPosition() < Robot.arm.getArmLoadRetryThresholdFront()))
+            {
+                System.out.println("Checking for Ball");
                 if(!Robot.pickup.isBallInPickup()){         //dropped ball
                     System.out.println("I dropped the ball!");
                     initialize();
-                } 
+                }
+                else
+                    System.out.println("I still have the ball"); 
             }
             else
                 System.out.println("I no longer care if I have the ball  :P");
@@ -70,7 +82,9 @@ public class  AutoLoadShooter extends Command {
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.arm.onTarget();
+        return (Robot.arm.onTarget() && 
+                (Robot.arm.getSetpoint() == Robot.arm.getArmFrontCatching() ||
+                Robot.arm.getSetpoint() == Robot.arm.getArmBackCatching()));
     }
     // Called once after isFinished returns true
     protected void end() {
@@ -81,7 +95,8 @@ public class  AutoLoadShooter extends Command {
     protected void interrupted() {
         end();
     }
-    protected void moveArm(double setpoint){
+    
+    protected void moveArm_old(double setpoint){
         if ((Robot.wings.areWingsOpen() || Robot.arm.areWingsSafeToClose(setpoint)) && !started) {
                 Robot.arm.setArmSetPoint(setpoint);
                 outputRange = 0.40;
@@ -94,5 +109,73 @@ public class  AutoLoadShooter extends Command {
                 outputRange = 0.8;
             Robot.arm.setPIDOutputRange(outputRange);
         }
+    }
+    protected void moveArm(double setpoint){
+        if(!started){
+                startPosition = Robot.arm.getArmPosition();
+            outputRange = minSpeed;
+            if (Math.abs(setpoint - startPosition) < accelDistance+origDecelDistance)
+                decelDistance = Math.abs(setpoint - startPosition) - accelDistance;
+            else 
+                decelDistance = origDecelDistance;
+            if (decelDistance <= 0)
+                decelDistance = 0.001;
+            if (accelDistance <= 0)
+                accelDistance = 0.001;
+            System.out.println("MoveArmCommand Initialize decelDistance= " + decelDistance + " setpoint " + setpoint + " startPosition " + startPosition + " accelDistance " + accelDistance + " origDecelDistance " + origDecelDistance);
+            
+        }
+        double x, y;
+        if ((Robot.wings.areWingsOpen() || Robot.arm.areWingsSafeToClose(setpoint)) && !started) {
+                Robot.arm.setArmSetPoint(setpoint);
+                Robot.arm.setPIDOutputRange(minSpeed); 
+                outputRange = minSpeed;
+                Robot.arm.enable();
+                started = true;
+
+                System.out.println("outputRange: " + outputRange);                
+
+        } else if (started) {
+
+            if (setpoint > startPosition) {
+                if (Robot.arm.getArmPosition() > setpoint) {  //past setpoint
+                    outputRange = minSpeed;
+                } else if (Robot.arm.getArmPosition() <= (startPosition + accelDistance)) { //in accell range
+                    x = Math.abs(Robot.arm.getArmPosition() - startPosition)/accelDistance;
+                    y = maxSpeed - minSpeed;
+                    outputRange = y*x+minSpeed;
+                    System.out.println(Robot.arm.getArmPosition()+" start: "+startPosition+" accelDistance: "+accelDistance);
+                    System.out.println("In Accel Condition x= " + x);
+                } else if (Robot.arm.getArmPosition() >= (setpoint - decelDistance)) { //in decell range
+                    x = Math.abs(setpoint - Robot.arm.getArmPosition())/decelDistance;
+                    y = maxSpeed - minSpeed;
+                    outputRange = x*y + minSpeed;
+                    System.out.println(Robot.arm.getArmPosition()+" start: "+startPosition+" accelDistance: "+accelDistance);
+                    System.out.println("In Decel Condition x= " + x);
+                } else { //in middle range
+                   outputRange = maxSpeed;
+                }   
+            } else {
+                if (Robot.arm.getArmPosition() < setpoint) {  //past setpoint
+                    outputRange = minSpeed;
+                } else if (Robot.arm.getArmPosition() >= (startPosition - accelDistance)) { //in accell range
+                    x = (startPosition -Robot.arm.getArmPosition())/accelDistance;
+                    y = maxSpeed - minSpeed;
+                    outputRange = y*x+minSpeed;
+                } else if (Robot.arm.getArmPosition() <= (setpoint + decelDistance)) { //in decell range
+                    x = (Robot.arm.getArmPosition() - setpoint )/decelDistance;
+                    y = maxSpeed - minSpeed;
+                    outputRange = x*y + minSpeed;
+    //                System.out.println("In Decel Condition x= " + x);
+                } else { //in middle range
+                   outputRange = maxSpeed;
+                }
+            }
+            
+        }
+        System.out.println("ArmPosition: " + Robot.arm.getArmPosition() + " outputRange: " + outputRange);
+        Robot.arm.setPIDOutputRange(outputRange);
+//      System.out.println("outputRange: " + outputRange);
+        
     }
 }
