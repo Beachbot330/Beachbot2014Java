@@ -10,8 +10,6 @@
 
 
 package org.usfirst.frc330.Beachbot2014Java.commands;
-import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.CommandGroupUpdateable;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
@@ -19,9 +17,9 @@ import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
  */
-public class ConditionalLoad extends CommandGroupUpdateable implements AutoSpreadsheetCommand{
+public class AutoTrussCatch extends CommandGroup {
     
-    public  ConditionalLoad() {
+    public  AutoTrussCatch() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -38,42 +36,11 @@ public class ConditionalLoad extends CommandGroupUpdateable implements AutoSprea
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        requires(Robot.arm);
-        requires(Robot.pickup);
-        requires(Robot.wings);
-    }
-
-    protected void initialize() {
-        super.initialize(); //To change body of generated methods, choose Tools | Templates.
-        if(Robot.pickup.isBallInPickup()){
-            addParallel(new DropBall());
-            addSequential(new WingsOpen());
-            addSequential(new AutoLoadShooter());
-            addSequential(new WingsClose());
-        }
-        else {
-            addSequential(new PickupOff());
-            addSequential(new MoveArmToCloseSafePosition());
-        }
-    }
-
-    public void setParam1(double param1) {
-        
-    }
-
-    public void setParam2(double param2) {
-        
-    }
-
-    public void setParam3(double param3) {
-        
-    }
-
-    public void setStopAtEnd(boolean stopAtEnd) {
-        
-    }
-
-    public Command copy() {
-        return new ConditionalLoad();
+        addSequential(new WingsOpen());
+        addSequential(new ShiftHigh());
+        addSequential(new Shoot());
+        addParallel(new MoveArmToFrontCatchingPosition());
+        addSequential(new DriveDistanceRel(85,6,4,false));
+        addSequential(new AutoCatch());
     }
 }

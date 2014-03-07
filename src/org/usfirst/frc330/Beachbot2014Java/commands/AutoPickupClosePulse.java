@@ -13,15 +13,13 @@ package org.usfirst.frc330.Beachbot2014Java.commands;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.CommandGroupUpdateable;
-import org.usfirst.frc330.Beachbot2014Java.Robot;
 
 /**
  *
  */
-public class ConditionalLoad extends CommandGroupUpdateable implements AutoSpreadsheetCommand{
+public class AutoPickupClosePulse extends CommandGroup implements AutoSpreadsheetCommand{
     
-    public  ConditionalLoad() {
+    public  AutoPickupClosePulse() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -38,42 +36,26 @@ public class ConditionalLoad extends CommandGroupUpdateable implements AutoSprea
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        requires(Robot.arm);
-        requires(Robot.pickup);
-        requires(Robot.wings);
+        addSequential(new MoveArmToPickupClose());
+        addParallel(new PickupPulse());
     }
-
-    protected void initialize() {
-        super.initialize(); //To change body of generated methods, choose Tools | Templates.
-        if(Robot.pickup.isBallInPickup()){
-            addParallel(new DropBall());
-            addSequential(new WingsOpen());
-            addSequential(new AutoLoadShooter());
-            addSequential(new WingsClose());
-        }
-        else {
-            addSequential(new PickupOff());
-            addSequential(new MoveArmToCloseSafePosition());
-        }
-    }
-
     public void setParam1(double param1) {
-        
     }
 
     public void setParam2(double param2) {
-        
     }
 
     public void setParam3(double param3) {
-        
     }
 
     public void setStopAtEnd(boolean stopAtEnd) {
-        
     }
 
     public Command copy() {
-        return new ConditionalLoad();
+        return new AutoPickupClosePulse();
+    }
+
+    protected boolean isFinished() {
+        return super.isFinished() || isTimedOut(); //To change body of generated methods, choose Tools | Templates.
     }
 }

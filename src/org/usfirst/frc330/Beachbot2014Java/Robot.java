@@ -72,6 +72,9 @@ public class Robot extends IterativeRobot {
 	auto = new AutoSpreadsheet();
         auto.readScripts();
         
+        auto.addCommand(new AutoLoadShooter());
+        auto.addCommand(new AutoPickupClosePulse());
+        auto.addCommand(new ConditionalLoad());
         auto.addCommand(new TurnGyroAbs(0));
         auto.addCommand(new TurnGyroRel(0));
         auto.addCommand(new Wait(0));
@@ -111,6 +114,7 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new TurnKinectAbs(0));
         auto.addCommand(new TurnKinectRel(0));
         auto.addCommand(new WaitUntilCommand());
+        auto.addCommand(new AutoPickupClose());
         
 //        SmartDashboard.putData("Scheduler", Scheduler.getInstance());
         
