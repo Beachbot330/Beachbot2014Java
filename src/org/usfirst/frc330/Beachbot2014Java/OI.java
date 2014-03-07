@@ -129,6 +129,7 @@ public class OI {
         SmartDashboard.putData("MoveArmToFrontBumperPosition", new MoveArmToFrontBumperPosition());
         SmartDashboard.putData("MoveArmToFrontLoadingPosition", new MoveArmToFrontLoadingPosition());
         SmartDashboard.putData("MoveArmToFrontCatchingPosition", new MoveArmToFrontCatchingPosition());
+        SmartDashboard.putData("MoveArmToInsideAuto", new MoveArmToInsideAuto());
         SmartDashboard.putData("MoveArmToVerticalPosition", new MoveArmToVerticalPosition());
         SmartDashboard.putData("MoveArmToRearPickupPosition", new MoveArmToRearPickupPosition());
         SmartDashboard.putData("MoveArmToRearBumperPosition", new MoveArmToRearBumperPosition());

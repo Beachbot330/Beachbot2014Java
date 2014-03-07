@@ -98,6 +98,15 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         return Preferences.getInstance().getDouble("armSetpointBackPickup", 2.0);
     }
     
+    public double getArmInsideAuto() {
+        if (!Preferences.getInstance().containsKey("armInsideAuto"))
+        {
+            Preferences.getInstance().putDouble("armInsideAuto", 1.2);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("armInsideAuto", 1.2);
+    }
+    
     public double getArmLoadRetryThresholdFront() {
         if (!Preferences.getInstance().containsKey("getArmLoadRetryThresholdFront"))
         {

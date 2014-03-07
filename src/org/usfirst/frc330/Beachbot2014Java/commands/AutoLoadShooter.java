@@ -37,16 +37,16 @@ public class  AutoLoadShooter extends Command {
     boolean frontPickuping;
     
     protected void initialize() {
-        System.out.println("Initialize");
+        //System.out.println("Initialize");
         started = false;
         loading = false;
         if(Robot.arm.getIsArmRear()){
             moveArm_old(Robot.arm.getArmBackPickup());
-            System.out.println("Move to Rear Pickup");
+            //System.out.println("Move to Rear Pickup");
         }
         else {
             moveArm_old(Robot.arm.getArmFrontPickup());
-            System.out.println("Move to Front Pickup");
+            //System.out.println("Move to Front Pickup");
         }
     }
     // Called repeatedly when this Command is scheduled to run
@@ -132,11 +132,8 @@ public class  AutoLoadShooter extends Command {
                 outputRange = minSpeed;
                 Robot.arm.enable();
                 started = true;
-
                 System.out.println("outputRange: " + outputRange);                
-
         } else if (started) {
-
             if (setpoint > startPosition) {
                 if (Robot.arm.getArmPosition() > setpoint) {  //past setpoint
                     outputRange = minSpeed;
