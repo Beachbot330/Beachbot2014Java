@@ -36,11 +36,13 @@ public class AutoTrussCatch extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        addSequential(new WingsOpen());
+        
+        //addSequential(new ShiftHigh());
         addSequential(new ShiftHigh());
         addSequential(new Shoot());
-        addParallel(new MoveArmToFrontCatchingPosition());
-        addSequential(new DriveDistanceRel(85,6,4,false));
+        //addSequential(new DriveDistanceRel(85,18,0.01,false));
+        addSequential(new DriveDistanceRel(85,6,0.01,false));
+        addSequential(new WingsOpen());
         addSequential(new AutoCatch());
     }
 }
