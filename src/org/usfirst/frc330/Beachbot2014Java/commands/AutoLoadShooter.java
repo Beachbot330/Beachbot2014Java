@@ -68,16 +68,16 @@ public class  AutoLoadShooter extends Command implements AutoSpreadsheetCommand{
                     (frontPickuping &&
                     Robot.arm.getArmPosition() < Robot.arm.getArmLoadRetryThresholdFront()))
             {
-                System.out.println("Checking for Ball");
+                //System.out.println("Checking for Ball");
                 if(!Robot.pickup.isBallInPickup()){         //dropped ball
-                    System.out.println("I dropped the ball!");
+                    //System.out.println("I dropped the ball!");
                     initialize();
                 }
-                else
-                    System.out.println("I still have the ball"); 
+                //else
+                    //System.out.println("I still have the ball"); 
             }
-            else
-                System.out.println("I no longer care if I have the ball  :P");
+            //else
+                //System.out.println("I no longer care if I have the ball  :P");
         }
             
     }
@@ -123,7 +123,7 @@ public class  AutoLoadShooter extends Command implements AutoSpreadsheetCommand{
                 decelDistance = 0.001;
             if (accelDistance <= 0)
                 accelDistance = 0.001;
-            System.out.println("MoveArmCommand Initialize decelDistance= " + decelDistance + " setpoint " + setpoint + " startPosition " + startPosition + " accelDistance " + accelDistance + " origDecelDistance " + origDecelDistance);
+            //System.out.println("MoveArmCommand Initialize decelDistance= " + decelDistance + " setpoint " + setpoint + " startPosition " + startPosition + " accelDistance " + accelDistance + " origDecelDistance " + origDecelDistance);
             
         }
         double x, y;
@@ -133,7 +133,7 @@ public class  AutoLoadShooter extends Command implements AutoSpreadsheetCommand{
                 outputRange = minSpeed;
                 Robot.arm.enable();
                 started = true;
-                System.out.println("outputRange: " + outputRange);                
+                //System.out.println("outputRange: " + outputRange);                
         } else if (started) {
             if (setpoint > startPosition) {
                 if (Robot.arm.getArmPosition() > setpoint) {  //past setpoint
@@ -142,14 +142,14 @@ public class  AutoLoadShooter extends Command implements AutoSpreadsheetCommand{
                     x = Math.abs(Robot.arm.getArmPosition() - startPosition)/accelDistance;
                     y = maxSpeed - minSpeed;
                     outputRange = y*x+minSpeed;
-                    System.out.println(Robot.arm.getArmPosition()+" start: "+startPosition+" accelDistance: "+accelDistance);
-                    System.out.println("In Accel Condition x= " + x);
+                    //System.out.println(Robot.arm.getArmPosition()+" start: "+startPosition+" accelDistance: "+accelDistance);
+                    //System.out.println("In Accel Condition x= " + x);
                 } else if (Robot.arm.getArmPosition() >= (setpoint - decelDistance)) { //in decell range
                     x = Math.abs(setpoint - Robot.arm.getArmPosition())/decelDistance;
                     y = maxSpeed - minSpeed;
                     outputRange = x*y + minSpeed;
-                    System.out.println(Robot.arm.getArmPosition()+" start: "+startPosition+" accelDistance: "+accelDistance);
-                    System.out.println("In Decel Condition x= " + x);
+                    //System.out.println(Robot.arm.getArmPosition()+" start: "+startPosition+" accelDistance: "+accelDistance);
+                    //System.out.println("In Decel Condition x= " + x);
                 } else { //in middle range
                    outputRange = maxSpeed;
                 }   
@@ -171,7 +171,7 @@ public class  AutoLoadShooter extends Command implements AutoSpreadsheetCommand{
             }
             
         }
-        System.out.println("ArmPosition: " + Robot.arm.getArmPosition() + " outputRange: " + outputRange);
+        //System.out.println("ArmPosition: " + Robot.arm.getArmPosition() + " outputRange: " + outputRange);
         Robot.arm.setPIDOutputRange(outputRange);
 //      System.out.println("outputRange: " + outputRange);
         

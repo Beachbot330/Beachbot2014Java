@@ -34,10 +34,11 @@ public class  Shoot extends Command implements AutoSpreadsheetCommand{
 //        Robot.wings.setWingsOpen();
 //        if (Robot.wings.areWingsOpen() && Robot.shooter.isBallInShooter()) {
 //        solenoidOffTime = Robot.shooter.shootSolenoidOffTime() + Timer.getFPGATimestamp();
+          if (Robot.shooter.isBallInShooter()){
             Robot.shooter.shootSolenoidOn();
             shootOffTimer = Timer.getFPGATimestamp() + Robot.shooter.shootSolenoidOffTime();
             shooterOn = true;
-//        }
+          }
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
