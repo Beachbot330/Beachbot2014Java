@@ -112,7 +112,7 @@ public abstract class MoveArmCommand extends Command {
             }
             
         }
-        System.out.println("ArmPosition: " + Robot.arm.getArmPosition() + " outputRange: " + outputRange);
+//        System.out.println("ArmPosition: " + Robot.arm.getArmPosition() + " outputRange: " + outputRange);
         Robot.arm.setPIDOutputRange(outputRange);
 //      System.out.println("outputRange: " + outputRange);
         
