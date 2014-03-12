@@ -39,7 +39,7 @@
 <span class="sourceLineNo">031</span>//maxSpeed       _______<a name="line.31"></a>
 <span class="sourceLineNo">032</span>//              /       \<a name="line.32"></a>
 <span class="sourceLineNo">033</span>//             /         \<a name="line.33"></a>
-<span class="sourceLineNo">034</span>//minSpeed    |           \<a name="line.34"></a>
+<span class="sourceLineNo">034</span>//minSpeed    |           |<a name="line.34"></a>
 <span class="sourceLineNo">035</span>//           accel      decel<a name="line.35"></a>
 <span class="sourceLineNo">036</span>//         Distance    Distance<a name="line.36"></a>
 <span class="sourceLineNo">037</span>    <a name="line.37"></a>
@@ -62,8 +62,8 @@
 <span class="sourceLineNo">054</span>        started = false;<a name="line.54"></a>
 <span class="sourceLineNo">055</span>        startPosition = Robot.arm.getArmPosition();<a name="line.55"></a>
 <span class="sourceLineNo">056</span>        outputRange = minSpeed;<a name="line.56"></a>
-<span class="sourceLineNo">057</span>        if (setpoint - startPosition &lt; accelDistance+origDecelDistance)<a name="line.57"></a>
-<span class="sourceLineNo">058</span>            decelDistance = setpoint - accelDistance - startPosition;<a name="line.58"></a>
+<span class="sourceLineNo">057</span>        if (Math.abs(setpoint - startPosition) &lt; accelDistance+origDecelDistance)<a name="line.57"></a>
+<span class="sourceLineNo">058</span>            decelDistance = Math.abs(setpoint - startPosition) - accelDistance;<a name="line.58"></a>
 <span class="sourceLineNo">059</span>        else <a name="line.59"></a>
 <span class="sourceLineNo">060</span>            decelDistance = origDecelDistance;<a name="line.60"></a>
 <span class="sourceLineNo">061</span>        if (decelDistance &lt;= 0)<a name="line.61"></a>
@@ -91,11 +91,11 @@
 <span class="sourceLineNo">083</span>                if (Robot.arm.getArmPosition() &gt; setpoint) {  //past setpoint<a name="line.83"></a>
 <span class="sourceLineNo">084</span>                    outputRange = minSpeed;<a name="line.84"></a>
 <span class="sourceLineNo">085</span>                } else if (Robot.arm.getArmPosition() &lt;= (startPosition + accelDistance)) { //in accell range<a name="line.85"></a>
-<span class="sourceLineNo">086</span>                    x = (Robot.arm.getArmPosition() - startPosition)/accelDistance;<a name="line.86"></a>
+<span class="sourceLineNo">086</span>                    x = Math.abs(Robot.arm.getArmPosition() - startPosition)/accelDistance;<a name="line.86"></a>
 <span class="sourceLineNo">087</span>                    y = maxSpeed - minSpeed;<a name="line.87"></a>
 <span class="sourceLineNo">088</span>                    outputRange = y*x+minSpeed;<a name="line.88"></a>
 <span class="sourceLineNo">089</span>                } else if (Robot.arm.getArmPosition() &gt;= (setpoint - decelDistance)) { //in decell range<a name="line.89"></a>
-<span class="sourceLineNo">090</span>                    x = (setpoint - Robot.arm.getArmPosition())/decelDistance;<a name="line.90"></a>
+<span class="sourceLineNo">090</span>                    x = Math.abs(setpoint - Robot.arm.getArmPosition())/decelDistance;<a name="line.90"></a>
 <span class="sourceLineNo">091</span>                    y = maxSpeed - minSpeed;<a name="line.91"></a>
 <span class="sourceLineNo">092</span>                    outputRange = x*y + minSpeed;<a name="line.92"></a>
 <span class="sourceLineNo">093</span>    //                System.out.println("In Decel Condition x= " + x);<a name="line.93"></a>
@@ -120,7 +120,7 @@
 <span class="sourceLineNo">112</span>            }<a name="line.112"></a>
 <span class="sourceLineNo">113</span>            <a name="line.113"></a>
 <span class="sourceLineNo">114</span>        }<a name="line.114"></a>
-<span class="sourceLineNo">115</span>        System.out.println("ArmPosition: " + Robot.arm.getArmPosition() + " outputRange: " + outputRange);<a name="line.115"></a>
+<span class="sourceLineNo">115</span>//        System.out.println("ArmPosition: " + Robot.arm.getArmPosition() + " outputRange: " + outputRange);<a name="line.115"></a>
 <span class="sourceLineNo">116</span>        Robot.arm.setPIDOutputRange(outputRange);<a name="line.116"></a>
 <span class="sourceLineNo">117</span>//      System.out.println("outputRange: " + outputRange);<a name="line.117"></a>
 <span class="sourceLineNo">118</span>        <a name="line.118"></a>

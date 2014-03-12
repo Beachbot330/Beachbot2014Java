@@ -39,7 +39,7 @@
 <span class="sourceLineNo">031</span>    boolean direction = false;<a name="line.31"></a>
 <span class="sourceLineNo">032</span>    // Called just before this Command runs the first time<a name="line.32"></a>
 <span class="sourceLineNo">033</span>    protected void initialize() {<a name="line.33"></a>
-<span class="sourceLineNo">034</span>        direction = Robot.arm.getIsArmRear();<a name="line.34"></a>
+<span class="sourceLineNo">034</span>        direction = Robot.arm.getIsArmFront();<a name="line.34"></a>
 <span class="sourceLineNo">035</span>        Robot.pickup.pickupOn(!direction);<a name="line.35"></a>
 <span class="sourceLineNo">036</span>        if (direction)<a name="line.36"></a>
 <span class="sourceLineNo">037</span>            setpoint = Robot.arm.getArmFrontLoading();<a name="line.37"></a>

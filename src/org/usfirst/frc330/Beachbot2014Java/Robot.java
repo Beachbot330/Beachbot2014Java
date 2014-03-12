@@ -117,6 +117,11 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new AutoPickupClose());
         auto.addCommand(new DriveDistanceAtKinectAngle());
         auto.addCommand(new StopDrive());
+        auto.addCommand(new CheckKinect());
+        auto.addCommand(new DriveKinectWaypointLeft(0,0,0,0,false));
+        auto.addCommand(new DriveKinectWaypointRight(0,0,0,0,false));
+        auto.addCommand(new TurnKinectWaypointLeft());
+        auto.addCommand(new TurnKinectWaypointRight());
         
 //        SmartDashboard.putData("Scheduler", Scheduler.getInstance());
         
