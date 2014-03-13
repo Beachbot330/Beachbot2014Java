@@ -238,11 +238,11 @@ public class Chassis extends Subsystem implements PIDSource {
     public void stopDrive()
     {
         if (gyroPID.isEnable())
-            gyroPID.disable();
+            gyroPID.reset();
         if (leftDrivePID.isEnable())
-            leftDrivePID.disable();
+            leftDrivePID.reset();
         if (rightDrivePID.isEnable())
-            rightDrivePID.disable();        
+            rightDrivePID.reset();        
         tankDrive(0, 0);  
     }
     public double pidGet() {

@@ -394,7 +394,7 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     }
     
     public void stopArm() {
-        armPID.disable();
+        armPID.reset();
         set(0);
     }
     
