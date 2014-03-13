@@ -32,7 +32,7 @@ public class DriveKinectWaypointRight extends DriveWaypoint {
     }
 
     protected boolean isFinished() {
-        return super.isFinished() || quit; //To change body of generated methods, choose Tools | Templates.
+        return quit || super.isFinished(); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

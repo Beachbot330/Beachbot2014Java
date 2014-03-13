@@ -28,7 +28,7 @@ public class TurnKinectWaypointRight extends TurnGyroWaypoint {
     }
 
     protected boolean isFinished() {
-        return super.isFinished() || quit;
+        return quit || super.isFinished();
     }
     
     
