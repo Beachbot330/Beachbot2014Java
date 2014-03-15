@@ -209,10 +209,19 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     public double getArm2BallHoldingPoint() {
         if (!Preferences.getInstance().containsKey("arm2BallHoldingPoint"))
         {
-            Preferences.getInstance().putDouble("arm2BallHoldingPoint", 1.1);
+            Preferences.getInstance().putDouble("arm2BallHoldingPoint", 1.2);
             Preferences.getInstance().save();
         }
-        return Preferences.getInstance().getDouble("arm2BallHoldingPoint", 1.1);
+        return Preferences.getInstance().getDouble("arm2BallHoldingPoint", 1.2);
+    }
+    
+    public double getArm2BallDropoffPoint() {
+        if (!Preferences.getInstance().containsKey("arm2BallDropoffPoint"))
+        {
+            Preferences.getInstance().putDouble("arm2BallDropoffPoint", .3);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("arm2BallDropoffPoint", .3);
     }
     
     public void manualArm() {
@@ -382,6 +391,10 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     
     public void setArmSetpoint2BallHolding() {
         setArmSetPoint(getArm2BallHoldingPoint());
+    }
+    
+    public void setArmSetpoint2BallDropoff() {
+        setArmSetPoint(getArm2BallDropoffPoint());
     }
     
     public double pidGet() {

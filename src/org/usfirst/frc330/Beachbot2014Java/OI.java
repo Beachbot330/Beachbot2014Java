@@ -129,6 +129,7 @@ public class OI {
         SmartDashboard.putData("PickupReverse", new PickupReverse());
         SmartDashboard.putData("PickupForwardPulse", new PickupForwardPulse());
         SmartDashboard.putData("MoveArmTo2BallHoldingPosition", new MoveArmTo2BallHoldingPosition());
+        SmartDashboard.putData("MoveArmTo2BallDropoffPosition", new MoveArmTo2BallDropoffPosition());
         SmartDashboard.putData("MoveArmToFrontPickupPosition", new MoveArmToFrontPickupPosition());
         SmartDashboard.putData("MoveArmToFrontBumperPosition", new MoveArmToFrontBumperPosition());
         SmartDashboard.putData("MoveArmToFrontLoadingPosition", new MoveArmToFrontLoadingPosition());
