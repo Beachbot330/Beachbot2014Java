@@ -107,6 +107,7 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new MoveArmToRearLoadingPosition());
         auto.addCommand(new MoveArmToRearPickupPosition());
         auto.addCommand(new MoveArmToVerticalPosition());
+        auto.addCommand(new MoveArmTo2BallHoldingPosition());
         auto.addCommand(new Shoot());
         auto.addCommand(new PickupForwardPulse());
         auto.addCommand(new PickupReversePulse());

@@ -128,6 +128,7 @@ public class OI {
         SmartDashboard.putData("PickupOff", new PickupOff());
         SmartDashboard.putData("PickupReverse", new PickupReverse());
         SmartDashboard.putData("PickupForwardPulse", new PickupForwardPulse());
+        SmartDashboard.putData("MoveArmTo2BallHoldingPosition", new MoveArmTo2BallHoldingPosition());
         SmartDashboard.putData("MoveArmToFrontPickupPosition", new MoveArmToFrontPickupPosition());
         SmartDashboard.putData("MoveArmToFrontBumperPosition", new MoveArmToFrontBumperPosition());
         SmartDashboard.putData("MoveArmToFrontLoadingPosition", new MoveArmToFrontLoadingPosition());
@@ -195,7 +196,6 @@ public class OI {
     public void checkKinect() {
         kinectDirection = (Robot.oi.getLeftKinectJoystick().getY() > Robot.oi.getRightKinectJoystick().getY());
     }
-
     public boolean getKinectDirection() {
         return kinectDirection;
     }
