@@ -46,12 +46,14 @@ public class ConditionalLoad extends CommandGroupUpdateable implements AutoSprea
     protected void initialize() {
         super.initialize(); //To change body of generated methods, choose Tools | Templates.
         if(Robot.pickup.isBallInPickup()){
+            System.out.println("Yes, Ball");
             addParallel(new DropBall());
             addSequential(new WingsOpen());
             addSequential(new AutoLoadShooter());
             addSequential(new WingsClose());
         }
         else {
+            System.out.println("No Ball");
             addSequential(new PickupOff());
             addSequential(new MoveArmToCloseSafePosition());
         }
