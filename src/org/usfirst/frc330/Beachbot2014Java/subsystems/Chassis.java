@@ -110,6 +110,17 @@ public class Chassis extends Subsystem implements PIDSource {
                                                    0.02);
     }
     
+    public double getKinectDriveRightSpeed() {
+        if (!Preferences.getInstance().containsKey("KinectDriveRightSpeed"))
+        {
+            Preferences.getInstance().putDouble("KinectDriveRightSpeed", 
+                                                0.7);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("KinectDriveRightSpeed", 
+                                                   0.7);
+    }
+    
      public void tankDrive(Joystick leftJoystick, Joystick rightJoystick)
     {
         left = -leftJoystick.getY();
