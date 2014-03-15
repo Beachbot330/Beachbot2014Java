@@ -206,6 +206,23 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         return Preferences.getInstance().getDouble("armBackSafePoint", 1.6);
     }
     
+    public double getArm2BallHoldingPoint() {
+        if (!Preferences.getInstance().containsKey("arm2BallHoldingPoint"))
+        {
+            Preferences.getInstance().putDouble("arm2BallHoldingPoint", 1.2);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("arm2BallHoldingPoint", 1.2);
+    }
+    
+    public double getArm2BallDropoffPoint() {
+        if (!Preferences.getInstance().containsKey("arm2BallDropoffPoint"))
+        {
+            Preferences.getInstance().putDouble("arm2BallDropoffPoint", .3);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("arm2BallDropoffPoint", .3);
+    }
     
     public void manualArm() {
         double armCommand = Robot.oi.operatorJoystick.getY() * 0.75;
@@ -370,6 +387,14 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     
     public void setArmSetpointBackCatching() {
         setArmSetPoint(getArmBackCatching());
+    }
+    
+    public void setArmSetpoint2BallHolding() {
+        setArmSetPoint(getArm2BallHoldingPoint());
+    }
+    
+    public void setArmSetpoint2BallDropoff() {
+        setArmSetPoint(getArm2BallDropoffPoint());
     }
     
     public double pidGet() {

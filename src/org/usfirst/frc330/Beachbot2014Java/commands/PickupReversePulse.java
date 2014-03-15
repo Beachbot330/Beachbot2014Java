@@ -53,6 +53,6 @@ public class  PickupReversePulse extends Command implements AutoSpreadsheetComma
     public void setStopAtEnd(boolean stopAtEnd) {
     }
     public Command copy() {
-        return new PickupForwardPulse();
+        return new PickupReversePulse();
     }
 }
