@@ -44,7 +44,7 @@ public class  PickupForwardPulse extends Command implements AutoSpreadsheetComma
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        System.out.println("PickupForwardPulse Interrupt");
+//        System.out.println("PickupForwardPulse Interrupt");
     }
     public void setParam1(double param1) {
     }
