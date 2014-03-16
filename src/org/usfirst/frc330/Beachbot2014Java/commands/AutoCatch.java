@@ -35,8 +35,8 @@ public class AutoCatch extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
         addSequential(new WingsOpen());
-        addSequential(new MoveArmToFrontCatchingPosition());
+        addSequential(new MoveArmToCloseCatchingPosition());
         addSequential(new CatchWithSensor());
-        addSequential(new MoveArmToFrontCatchingPosition());
+        addSequential(new MoveArmToCloseCatchingPosition());
     }
 }

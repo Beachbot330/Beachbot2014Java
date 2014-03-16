@@ -8,16 +8,23 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 package org.usfirst.frc330.Beachbot2014Java.commands;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
  */
-public class  MoveArmTo2BallDropoffPosition extends MoveArmCommand implements AutoSpreadsheetCommand {
-    public MoveArmTo2BallDropoffPosition() {
-        super(Robot.arm.getArm2BallDropoffPoint());
+public class  MoveArmToCloseCatchingPosition extends MoveArmCommand implements AutoSpreadsheetCommand {
+    public MoveArmToCloseCatchingPosition() {
+        super(0);
+    }
+    // Called just before this Command runs the first time
+    protected void initialize() {
+        if (Robot.arm.getIsArmFront())
+            setpoint = Robot.arm.getArmFrontCatching();
+        else
+            setpoint = Robot.arm.getArmBackCatching();
+        super.initialize();
     }
     public void setParam1(double param1) {
     }
@@ -28,6 +35,6 @@ public class  MoveArmTo2BallDropoffPosition extends MoveArmCommand implements Au
     public void setStopAtEnd(boolean stopAtEnd) {
     }
     public Command copy() {
-        return new MoveArmTo2BallDropoffPosition();
+        return new MoveArmToCloseCatchingPosition();
     }
 }
