@@ -48,6 +48,15 @@ public class Shooter extends Subsystem {
             shooter4.set(true);
         }
     }
+
+    public void lowPowerShootSolenoidOn() {
+        if (!SmartDashboard.getBoolean("ShooterDisable", false)) {
+            shooter1.set(true);
+            shooter2.set(true);
+            shooter3.set(false);
+            shooter4.set(false);
+        }
+    }    
     
     public void shootSolenoidOff() {
         shooter1.set(false);
