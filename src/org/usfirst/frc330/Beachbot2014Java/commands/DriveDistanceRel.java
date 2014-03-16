@@ -32,7 +32,7 @@ public class DriveDistanceRel extends DriveDistance{
         double leftEncoder, rightEncoder;
         leftEncoder = Robot.chassis.getLeftDistance();
         rightEncoder = Robot.chassis.getRightDistance();
-        System.out.println("leftDistance: " + leftDistance + " leftEncoder: " + leftEncoder + " rightDistance " + rightDistance + " rightEncoder " + rightEncoder);
+//        System.out.println("leftDistance: " + leftDistance + " leftEncoder: " + leftEncoder + " rightDistance " + rightDistance + " rightEncoder " + rightEncoder);
         leftDistance = leftDistance + leftEncoder;
         rightDistance = rightDistance + rightEncoder;
         super.initialize();
