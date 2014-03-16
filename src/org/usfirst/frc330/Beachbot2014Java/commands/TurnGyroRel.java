@@ -20,7 +20,7 @@ import org.usfirst.frc330.Beachbot2014Java.commands.TurnGyroAbs;
  *
  */
 public class  TurnGyroRel extends TurnGyroAbs{
-    
+    double origAngle = 0;
     public TurnGyroRel(double angle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -34,11 +34,17 @@ public class  TurnGyroRel extends TurnGyroAbs{
     
     public TurnGyroRel(double angle, double tolerance, double timeout, boolean stopAtEnd) {
         super(angle,tolerance,timeout,stopAtEnd,true);
+        origAngle = angle;
     }
     // Called just before this Command runs the first time
     protected void initialize() {
         angle = angle+Robot.chassis.getAngle();
         super.initialize();
+    }
+
+    protected void end() {
+        super.end(); //To change body of generated methods, choose Tools | Templates.
+        angle = origAngle;
     }
     public Command copy() {
         return new TurnGyroRel(0);

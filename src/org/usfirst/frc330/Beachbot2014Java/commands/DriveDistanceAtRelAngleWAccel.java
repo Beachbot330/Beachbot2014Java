@@ -15,9 +15,11 @@ import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
  *
  */
 public class DriveDistanceAtRelAngleWAccel extends DriveDistanceAtAngleWAccel {
+    double origDistance = 0;
     public DriveDistanceAtRelAngleWAccel(double distance, double tolerance, double angle, double timeout, boolean stopAtEnd)
     {
         super(distance, tolerance, angle, timeout, stopAtEnd);
+        origDistance = distance;
     }
     
     public DriveDistanceAtRelAngleWAccel()
@@ -29,6 +31,12 @@ public class DriveDistanceAtRelAngleWAccel extends DriveDistanceAtAngleWAccel {
         leftDistance = leftDistance + Robot.chassis.getLeftDistance();
         rightDistance = rightDistance + Robot.chassis.getRightDistance();
         super.initialize();
+    }
+
+    protected void end() {
+        super.end(); //To change body of generated methods, choose Tools | Templates.
+        leftDistance = origDistance;
+        rightDistance = origDistance;
     }
 
     public Command copy() {
