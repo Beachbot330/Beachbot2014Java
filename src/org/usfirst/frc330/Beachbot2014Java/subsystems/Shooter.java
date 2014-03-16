@@ -85,6 +85,15 @@ public class Shooter extends Subsystem {
     public boolean isBallInWings() {
         double ballDistance = getBallDistance();
         //TODO make the ball distances preferences.
-        return ballDistance > 15 && ballDistance < 38 && !SmartDashboard.getBoolean("BallSensorOverride", false);
+        return ballDistance > 15 && ballDistance < getCatchHeight() && !SmartDashboard.getBoolean("BallSensorOverride", false);
+    }
+    
+    public double getCatchHeight() {
+        if (!Preferences.getInstance().containsKey("catchHeight"))
+        {
+            Preferences.getInstance().putDouble("catchHeight", 38);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("catchHeight", 38);
     }
 }
