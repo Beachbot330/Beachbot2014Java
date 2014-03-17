@@ -28,6 +28,9 @@ public class  KillAllCommands extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         Scheduler.getInstance().removeAll();
+        Robot.chassis.stopDrive();     
+        Robot.arm.stopArm();
+        Robot.pickup.setPickupMotorOff();
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

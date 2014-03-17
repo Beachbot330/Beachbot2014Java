@@ -7,6 +7,7 @@
 package org.usfirst.frc330.Beachbot2014Java.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 
 /**
@@ -23,7 +24,11 @@ public class DriveKinectWaypointLeft extends DriveWaypoint {
         return new DriveKinectWaypointLeft(0,0,0,0,false);
     }
     boolean quit = false;
+    double offset = 0;
     protected void initialize() {
+        offset = SmartDashboard.getNumber("KinectLeftOffset", 0);
+        System.out.println("KinectLeftOffset " + offset);
+        setParam1(x + offset);
         if (Robot.oi.getKinectDirection() == true ) {
             super.initialize(); 
         }

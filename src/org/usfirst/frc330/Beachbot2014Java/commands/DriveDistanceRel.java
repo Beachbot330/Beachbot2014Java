@@ -16,9 +16,11 @@ import org.usfirst.frc330.Beachbot2014Java.subsystems.Chassis;
  */
 
 public class DriveDistanceRel extends DriveDistance{
+    double origDistance = 0;
     public DriveDistanceRel(double distance, double tolerance, double timeout, boolean stopAtEnd)
     {
         super(distance, tolerance, timeout, stopAtEnd);
+        origDistance = distance;
     }
     
     public DriveDistanceRel()
@@ -27,9 +29,19 @@ public class DriveDistanceRel extends DriveDistance{
     }
 
     protected void initialize() {
-        leftDistance = leftDistance + Robot.chassis.getLeftDistance();
-        rightDistance = rightDistance + Robot.chassis.getRightDistance();
+        double leftEncoder, rightEncoder;
+        leftEncoder = Robot.chassis.getLeftDistance();
+        rightEncoder = Robot.chassis.getRightDistance();
+//        System.out.println("leftDistance: " + leftDistance + " leftEncoder: " + leftEncoder + " rightDistance " + rightDistance + " rightEncoder " + rightEncoder);
+        leftDistance = leftDistance + leftEncoder;
+        rightDistance = rightDistance + rightEncoder;
         super.initialize();
+    }
+
+    protected void end() {
+        super.end(); 
+        leftDistance = origDistance;
+        rightDistance = origDistance;
     }
     
     public Command copy() {

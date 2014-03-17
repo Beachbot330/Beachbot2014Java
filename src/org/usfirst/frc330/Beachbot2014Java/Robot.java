@@ -126,6 +126,10 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new TurnKinectWaypointRight());
         auto.addCommand(new PickupPulse());
         auto.addCommand(new MoveArmTo2BallDropoffPosition());
+        auto.addCommand(new AutoWait());
+        
+        SmartDashboard.putNumber("KinectRightOffset", 0);
+        SmartDashboard.putNumber("KinectLeftOffset", 0);
         
 //        SmartDashboard.putData("Scheduler", Scheduler.getInstance());
         
