@@ -38,17 +38,17 @@ public class  AutoLoadShooter extends Command implements AutoSpreadsheetCommand{
     boolean frontPickuping;
     
     protected void initialize() {
-        System.out.println("Initialize");
+        //System.out.println("Initialize");
         started = false;
         loading = false;
         if(Robot.arm.getIsArmRear()){
             moveArm_old(Robot.arm.getArmBackPickup());
-            System.out.println("Move to Rear Pickup");
+            //System.out.println("Move to Rear Pickup");
         }
         else {
             moveArm_old(Robot.arm.getArmFrontPickup());
             
-            System.out.println("Move to Front Pickup");
+            //System.out.println("Move to Front Pickup");
         }
     }
     // Called repeatedly when this Command is scheduled to run
@@ -69,16 +69,16 @@ public class  AutoLoadShooter extends Command implements AutoSpreadsheetCommand{
                     (frontPickuping &&
                     Robot.arm.getArmPosition() < Robot.arm.getArmLoadRetryThresholdFront()))
             {
-                System.out.println("Checking for Ball");
+                //System.out.println("Checking for Ball");
                 if(!Robot.pickup.isBallInPickup()){         //dropped ball
-                    System.out.println("I dropped the ball!");
+                    //System.out.println("I dropped the ball!");
                     initialize();
                 }
-                else
-                    System.out.println("I still have the ball"); 
+                //else
+                    //System.out.println("I still have the ball"); 
             }
-            else
-                System.out.println("I no longer care if I have the ball  :P");
+            //else
+                //System.out.println("I no longer care if I have the ball  :P");
         }
             
     }
@@ -95,7 +95,7 @@ public class  AutoLoadShooter extends Command implements AutoSpreadsheetCommand{
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        System.out.println("autoLoadShooter Interrupted");
+        //System.out.println("autoLoadShooter Interrupted");
         end();
     }
     

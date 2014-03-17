@@ -10,8 +10,6 @@
 
 
 package org.usfirst.frc330.Beachbot2014Java.commands;
-import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.CommandGroupUpdateable;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
@@ -19,9 +17,9 @@ import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
  */
-public class ConditionalLoad extends CommandGroupUpdateable implements AutoSpreadsheetCommand{
+public class ShooterEjectGroup extends CommandGroupUpdateable {
     
-    public  ConditionalLoad() {
+    public  ShooterEjectGroup() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -39,43 +37,14 @@ public class ConditionalLoad extends CommandGroupUpdateable implements AutoSprea
         // a CommandGroup containing them would require both the chassis and the
         // arm.
         requires(Robot.arm);
-        requires(Robot.pickup);
-        requires(Robot.wings);
+        requires(Robot.shooter);
     }
-
     protected void initialize() {
         super.initialize(); //To change body of generated methods, choose Tools | Templates.
-        if(Robot.pickup.isBallInPickup()){
-            //System.out.println("Yes, Ball");
-            addParallel(new DropBall());
-            addSequential(new WingsOpen());
-            addSequential(new AutoLoadShooter());
-            addSequential(new WingsClose());
+        addSequential(new ShooterEject());
+        if(Robot.arm.getIsArmFront()){
+            addSequential(new Wait(1));
+            addSequential(new MoveArmToFrontSafePosition());
         }
-        else {
-            //System.out.println("No Ball");
-            addSequential(new PickupOff());
-            addSequential(new MoveArmToCloseSafePosition());
-        }
-    }
-
-    public void setParam1(double param1) {
-        
-    }
-
-    public void setParam2(double param2) {
-        
-    }
-
-    public void setParam3(double param3) {
-        
-    }
-
-    public void setStopAtEnd(boolean stopAtEnd) {
-        
-    }
-
-    public Command copy() {
-        return new ConditionalLoad();
     }
 }
