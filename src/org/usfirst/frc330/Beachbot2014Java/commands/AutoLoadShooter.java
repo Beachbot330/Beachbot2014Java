@@ -29,11 +29,11 @@ public class  AutoLoadShooter extends Command implements AutoSpreadsheetCommand{
     boolean started = false;
     double outputRange = 0;
     double startPosition = 0;
-    double accelDistance = 1.5;
+    double accelDistance = 0.4;
     double decelDistance = 1.2;
     double origDecelDistance = 1.2;
     double maxSpeed = 1.0;
-    double minSpeed = 0.4;
+    double minSpeed = 0.5;
     boolean atPickup = false;
     boolean frontPickuping;
     
