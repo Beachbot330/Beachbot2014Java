@@ -1,5 +1,5 @@
 ,Sequential,Timeout,continue,Param1,Param2,Param3,Comment
-Script_Name,1Ball_Right_RearPickup,,,,,,Working
+Script_Name,1Ball_Right_RearPickup,,,,,,Needs to be tested
 WingsOpen,S,1,continue,,,,
 AutoPickupClose,S,1.5,Continue,,,,
 ConditionalLoad,S,4,continue,,,,
@@ -13,7 +13,7 @@ DriveKinectWaypointRight,S,2,continue,0,140,6,
 Shoot,S,2,continue,,,,
 End,,,,,,,
 ,,,,,,,
-Script_Name,1Ball_Left_RearPickup,,,,,,Working
+Script_Name,1Ball_Left_RearPickup,,,,,,Needs to be tested
 WingsOpen,S,1,continue,,,,
 AutoPickupClose,S,1.5,Continue,,,,
 ConditionalLoad,S,4,continue,,,,
@@ -27,7 +27,7 @@ DriveKinectWaypointRight,S,2,continue,-108,140,6,
 Shoot,S,2,continue,,,,
 End,,,,,,,
 ,,,,,,,
-Script_Name,1Ball_Center_RearPickup,,,,,,Working
+Script_Name,1Ball_Center_RearPickup,,,,,,Needs to be tested
 WingsOpen,S,1,continue,,,,
 AutoPickupClose,S,1.5,Continue,,,,
 ConditionalLoad,S,4,continue,,,,
@@ -41,7 +41,7 @@ DriveKinectWaypointRight,S,2,continue,-36,140,6,
 Shoot,S,2,continue,,,,
 End,,,,,,,
 ,,,,,,,
-Script_Name,1Ball_Right_TopDrop,,,,,,Working
+Script_Name,1Ball_Right_TopDrop,,,,,,Needs to be fixed for new arm
 PickupReversePulse,P,2,continue,,,,
 MoveArmToInsideAuto,S,1,continue,,,,
 Wait,S,0.75,continue,,,,
@@ -58,13 +58,14 @@ DriveKinectWaypointRight,S,2.5,continue,0,157,6,
 Shoot,S,2,continue,,,,
 End,,,,,,,
 ,,,,,,,
-Script_Name,1Ball_Left_TopDrop,,,,,,Read for Test
-PickupReversePulse,P,2,continue,,,,
-MoveArmToInsideAuto,S,1,continue,,,,
-Wait,S,0.75,continue,,,,
+Script_Name,1Ball_Left_TopDrop,,,,,,Needs to be tested
+PickupForwardPulse,P,2,continue,,,,
 WingsOpen,S,1,continue,,,,
 MoveArmTo2BallDropoffPosition,S,1,continue,,,,
+PickupReverse,S,2,continue,,,,
+Wait,S,0.5,continue,,,,
 PickupOff,S,1,continue,,,,
+MoveArmToBackSafePosition,S,1,continue,,,,
 WingsClose,S,1,continue,,,,
 ShiftHigh,S,1,stop,,,,
 CheckKinect,S,1,continue,,,,
@@ -75,7 +76,7 @@ DriveKinectWaypointRight,S,2.5,continue,-108,157,6,
 Shoot,S,2,continue,,,,
 End,,,,,,,
 ,,,,,,,
-Script_Name,1Ball_Center_TopDrop,,,,,,Ready for Testing
+Script_Name,1Ball_Center_TopDrop,,,,,,Needs to be fixed for new arm
 PickupReversePulse,P,2,continue,,,,
 MoveArmToInsideAuto,S,1,continue,,,,
 Wait,S,0.75,continue,,,,
@@ -92,7 +93,7 @@ DriveKinectWaypointRight,S,2.5,continue,-36,157,6,
 Shoot,S,2,continue,,,,
 End,,,,,,,
 ,,,,,,,
-Script_Name,RearPickup_Straight,,,,,,Working
+Script_Name,RearPickup_Straight,,,,,,Needs to be tested
 WingsOpen,S,1,continue,,,,
 AutoPickupClose,S,1.5,Continue,,,,
 ConditionalLoad,S,3,continue,,,,
@@ -102,7 +103,7 @@ Shoot,S,2,continue,,,,
 End,,,,,,,
 ,,,,,,,
 ,,,,,,,
-Script_Name,2Ball_Straight,,,,,,Working
+Script_Name,2Ball_Straight,,,,,,Needs to be fixed for new arm
 PickupReversePulse,P,2,continue,,,,
 MoveArmToInsideAuto,S,1,continue,,,,
 Wait,S,0.75,continue,,,,
