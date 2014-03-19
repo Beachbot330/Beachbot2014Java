@@ -11,6 +11,7 @@
 
 package org.usfirst.frc330.Beachbot2014Java.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 
@@ -29,31 +30,60 @@ public class  DropBall extends Command {
     }
     double setpoint = 0;
     boolean direction = false;
+    boolean isArmPastPosition;
+    double dropoffTimer;
+    boolean isDroppedOff;
     // Called just before this Command runs the first time
     protected void initialize() {
+        isDroppedOff = false;
         direction = Robot.arm.getIsArmFront();
         Robot.pickup.pickupOn(!direction);
-        if (direction)
+        if (direction) {
             setpoint = Robot.arm.getArmFrontLoading();
-        else
+            //System.out.println("ArmFrontLoading");
+        }
+            else {
             setpoint = Robot.arm.getArmBackLoading();
+            //System.out.println("ArmBackLoading");
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        System.out.println(Robot.arm.getArmPosition());
+        if (direction) {
+            isArmPastPosition = Robot.arm.getArmPosition() > setpoint;
+            //if (isArmPastPosition)
+                //System.out.println("Not Past");
+            //else
+                //System.out.println("PastPositionFront");
+        }
+        else {
+            isArmPastPosition = Robot.arm.getArmPosition() < setpoint;
+            //System.out.println("PastPositionBack");
+        }
+        
+        if (isArmPastPosition && !isDroppedOff) {
+            //System.out.println("REVERSING");
+            if (direction) {
+                Robot.pickup.setPickupMotorReverseDropoff();
+            }
+            else
+                Robot.pickup.setPickupMotorForwardDropoff();
+            dropoffTimer = Timer.getFPGATimestamp();
+            isDroppedOff = true;
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (direction)
-            return Robot.arm.getArmPosition() > setpoint;
-        else
-            return Robot.arm.getArmPosition() < setpoint;
+        return (isDroppedOff && (Timer.getFPGATimestamp() > dropoffTimer + .5));
     }
 
     // Called once after isFinished returns true
     protected void end() {
         Robot.pickup.setPickupMotorOff();
+        //System.out.println("DropBallEnd");
     }
 
     // Called when another command which requires one or more of the same
