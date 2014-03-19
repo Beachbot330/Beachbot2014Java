@@ -114,6 +114,19 @@ public class Pickup extends Subsystem {
         }
         speed = Preferences.getInstance().getDouble("PickupMotorOutputDropoff",
                                                         speed);
+        pickup1.set(-speed);
+        pickup2.set(speed);
+    }
+    
+    public void setPickupMotorForwardDropoff() {
+        double speed = 0.5;
+        if (!Preferences.getInstance().containsKey("PickupMotorOutputDropoff"))
+        {
+            Preferences.getInstance().putDouble("PickupMotorOutputDropoff", speed);
+            Preferences.getInstance().save();
+        }
+        speed = Preferences.getInstance().getDouble("PickupMotorOutputDropoff",
+                                                        speed);
         pickup1.set(speed);
         pickup2.set(-speed);
     }

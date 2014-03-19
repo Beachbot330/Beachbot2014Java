@@ -38,21 +38,38 @@ public class  DropBall extends Command {
         isDroppedOff = false;
         direction = Robot.arm.getIsArmFront();
         Robot.pickup.pickupOn(!direction);
-        if (direction)
+        if (direction) {
             setpoint = Robot.arm.getArmFrontLoading();
-        else
+            //System.out.println("ArmFrontLoading");
+        }
+            else {
             setpoint = Robot.arm.getArmBackLoading();
+            //System.out.println("ArmBackLoading");
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (direction)
+        System.out.println(Robot.arm.getArmPosition());
+        if (direction) {
             isArmPastPosition = Robot.arm.getArmPosition() > setpoint;
-        else
+            //if (isArmPastPosition)
+                //System.out.println("Not Past");
+            //else
+                //System.out.println("PastPositionFront");
+        }
+        else {
             isArmPastPosition = Robot.arm.getArmPosition() < setpoint;
+            //System.out.println("PastPositionBack");
+        }
         
         if (isArmPastPosition && !isDroppedOff) {
-            Robot.pickup.setPickupMotorReverseDropoff();
+            //System.out.println("REVERSING");
+            if (direction) {
+                Robot.pickup.setPickupMotorReverseDropoff();
+            }
+            else
+                Robot.pickup.setPickupMotorForwardDropoff();
             dropoffTimer = Timer.getFPGATimestamp();
             isDroppedOff = true;
         }
@@ -60,12 +77,13 @@ public class  DropBall extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Timer.getFPGATimestamp() > dropoffTimer + .5);
+        return (isDroppedOff && (Timer.getFPGATimestamp() > dropoffTimer + .5));
     }
 
     // Called once after isFinished returns true
     protected void end() {
         Robot.pickup.setPickupMotorOff();
+        //System.out.println("DropBallEnd");
     }
 
     // Called when another command which requires one or more of the same
