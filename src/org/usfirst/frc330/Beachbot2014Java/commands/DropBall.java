@@ -11,6 +11,7 @@
 
 package org.usfirst.frc330.Beachbot2014Java.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 
@@ -29,8 +30,12 @@ public class  DropBall extends Command {
     }
     double setpoint = 0;
     boolean direction = false;
+    boolean isArmPastPosition;
+    double dropoffTimer;
+    boolean isDroppedOff;
     // Called just before this Command runs the first time
     protected void initialize() {
+        isDroppedOff = false;
         direction = Robot.arm.getIsArmFront();
         Robot.pickup.pickupOn(!direction);
         if (direction)
@@ -41,14 +46,21 @@ public class  DropBall extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        if (direction)
+            isArmPastPosition = Robot.arm.getArmPosition() > setpoint;
+        else
+            isArmPastPosition = Robot.arm.getArmPosition() < setpoint;
+        
+        if (isArmPastPosition && !isDroppedOff) {
+            Robot.pickup.setPickupMotorReverseDropoff();
+            dropoffTimer = Timer.getFPGATimestamp();
+            isDroppedOff = true;
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (direction)
-            return Robot.arm.getArmPosition() > setpoint;
-        else
-            return Robot.arm.getArmPosition() < setpoint;
+        return (Timer.getFPGATimestamp() > dropoffTimer + .5);
     }
 
     // Called once after isFinished returns true
