@@ -109,6 +109,7 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new MoveArmToRearPickupPosition());
         auto.addCommand(new MoveArmToVerticalPosition());
         auto.addCommand(new MoveArmTo2BallHoldingPosition());
+        auto.addCommand(new MoveArmToPickupClose());
         auto.addCommand(new Shoot());
         auto.addCommand(new PickupForwardPulse());
         auto.addCommand(new PickupReversePulse());
@@ -193,6 +194,7 @@ public class Robot extends IterativeRobot {
     public void disabledInit()
     {
 //        System.out.println("In Disabled Init");
+        if (autonomousCommand != null) autonomousCommand.cancel();
         auto.readScripts();
         Robot.chassis.stopDrive();     
         Robot.arm.stopArm();
