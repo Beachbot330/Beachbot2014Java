@@ -56,9 +56,11 @@ public class  AutoLoadShooter extends Command implements AutoSpreadsheetCommand{
         if(Robot.pickup.isBallInPickup() && loading==false){
             started = false;
             if(Robot.arm.getIsArmRear())
-                moveArm(Robot.arm.getArmFrontCatching());
+                //moveArm(Robot.arm.getArmFrontCatching());
+                moveArm(Robot.arm.getArmFrontSafePoint());
             else
-                moveArm(Robot.arm.getArmBackCatching());
+                //moveArm(Robot.arm.getArmBackCatching());
+                moveArm(Robot.arm.getArmBackSafePoint());
             frontPickuping = Robot.arm.getIsArmFront();
             loading = true;
         }

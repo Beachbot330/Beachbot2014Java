@@ -410,9 +410,9 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     
     public boolean areWingsSafeToClose(double setpoint) {
         boolean disabled, front, back, override, centered;
-        disabled = (getArmPosition() < getArmFrontSafePoint() ||  getArmPosition() > getArmBackSafePoint()) && !armPID.isEnable();
-        front = (getArmPosition() < getArmFrontSafePoint() && setpoint <= getArmFrontSafePoint());
-        back = (getArmPosition() > getArmBackSafePoint() && setpoint >= getArmBackSafePoint());
+        disabled = (getArmPosition() < getArmFrontSafePoint() +0.15 ||  getArmPosition() > getArmBackSafePoint() -0.15) && !armPID.isEnable();
+        front = (getArmPosition() < getArmFrontSafePoint() +0.15 && setpoint <= getArmFrontSafePoint() +0.15);
+        back = (getArmPosition() > getArmBackSafePoint()-0.15 && setpoint >= getArmBackSafePoint()-0.15);
         override = SmartDashboard.getBoolean("ArmOverride", false);
         centered = Math.abs(getArmPosition() - getArmVertical()) < 0.15;
         centered = centered && Math.abs(setpoint - getArmVertical()) < 0.15;

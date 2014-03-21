@@ -51,6 +51,8 @@ public class ConditionalLoad extends CommandGroupUpdateable implements AutoSprea
             addSequential(new WingsOpen());
             addSequential(new AutoLoadShooter());
             addSequential(new WingsClose());
+            addSequential(new Wait(0.3));
+            addSequential(new MoveArmToCloseCatchingPosition());
         }
         else {
             //System.out.println("No Ball");
