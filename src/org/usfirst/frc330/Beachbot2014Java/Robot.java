@@ -96,6 +96,7 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new TurnGyroRel(0));
         auto.addCommand(new WingsOpen());
         auto.addCommand(new WingsClose());
+        auto.addCommand(new MoveArmTo2BallDragPosition());
         auto.addCommand(new MoveArmToFrontLoadingPosition());
         auto.addCommand(new MoveArmToFrontSafePosition());
         auto.addCommand(new MoveArmToFrontBumperPosition());

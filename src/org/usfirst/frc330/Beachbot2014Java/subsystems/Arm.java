@@ -206,6 +206,15 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         return Preferences.getInstance().getDouble("armBackSafePoint", 1.6);
     }
     
+    public double getArm2BallDrag() {
+        if (!Preferences.getInstance().containsKey("arm2BallDrag"))
+        {
+            Preferences.getInstance().putDouble("arm2BallDrag", 2.9);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("arm2BallDrag", 2.9);
+    }
+    
     public double getArm2BallHoldingPoint() {
         if (!Preferences.getInstance().containsKey("arm2BallHoldingPoint"))
         {
