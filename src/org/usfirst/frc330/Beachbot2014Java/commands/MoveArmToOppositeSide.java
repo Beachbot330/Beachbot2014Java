@@ -14,10 +14,19 @@ import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
  */
-public class  MoveArmTo2BallDragPosition extends MoveArmCommand implements AutoSpreadsheetCommand{
-    public MoveArmTo2BallDragPosition() {
-        super(Robot.arm.getArm2BallDrag());
+public class  MoveArmToOppositeSide extends MoveArmCommand implements AutoSpreadsheetCommand {
+    public MoveArmToOppositeSide() {
+        super(0);
     }
+    // Called just before this Command runs the first time
+    protected void initialize() {
+        if (Robot.arm.getIsArmFront())
+            setpoint = Robot.arm.getArmBackCatching();
+        else
+            setpoint = Robot.arm.getArmFrontCatching();
+        super.initialize();
+    }
+    
     public void setParam1(double param1) {
     }
     public void setParam2(double param2) {
@@ -27,6 +36,6 @@ public class  MoveArmTo2BallDragPosition extends MoveArmCommand implements AutoS
     public void setStopAtEnd(boolean stopAtEnd) {
     }
     public Command copy() {
-        return new MoveArmToRearCatchingPosition();
+        return new MoveArmToOppositeSide();
     }
 }

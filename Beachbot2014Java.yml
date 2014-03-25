@@ -815,7 +815,7 @@ Children:
           name: When to Run
           validators: null
           value: whenPressed
-    - Name: MoveArmToOppositeSafeButton
+    - Name: MoveArmToOppositeSideButton
       Base: Joystick Button
       Children: []
       Properties:
@@ -824,7 +824,7 @@ Children:
           name: Command
           type: Command
           validators: *id028
-          value: MoveArmToOppositeSafe
+          value: MoveArmToOppositeSide
         Button: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id029
           default: '1'
@@ -1676,6 +1676,14 @@ Children:
     Properties:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
+  - Name: MoveArmToOppositeSide
+    Base: Command
+    Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Arm}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
   - Name: MoveArmTo2BallDragPosition
     Base: Command
     Children: []
@@ -1703,6 +1711,6 @@ Properties:
     validators: null, value: 330}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
-  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\allenpeters\NetBeansProjects',
+  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Joe-XPS13-W7\NetBeansProjects',
     extension: null, folder: true, name: Java Project Directory, validators: null,
     value: ..\}
