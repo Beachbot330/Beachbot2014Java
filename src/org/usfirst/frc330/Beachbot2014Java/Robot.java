@@ -132,6 +132,7 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new PickupReverse());
         auto.addCommand(new PickupOn());
         auto.addCommand(new KinectDrive());
+        auto.addCommand(new RearPickupOn());
         
         SmartDashboard.putNumber("KinectRightOffset", 0);
         SmartDashboard.putNumber("KinectLeftOffset", 0);

@@ -10,14 +10,16 @@
 
 
 package org.usfirst.frc330.Beachbot2014Java.commands;
+import edu.wpi.first.wpilibj.command.AutoSpreadsheetCommand;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoPickupReverse extends CommandGroup {
+public class RearPickupOn extends CommandGroup implements AutoSpreadsheetCommand{
     
-    public  AutoPickupReverse() {
+    public  RearPickupOn() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -37,7 +39,27 @@ public class AutoPickupReverse extends CommandGroup {
         
 //        addSequential(new WingsOpen());
         addSequential(new MoveArmToRearPickupPosition());
-        addParallel(new PickupReverse());
+        addParallel(new PickupOn());
 //        addSequential(new WingsClose());
+    }
+
+    public void setParam1(double param1) {
+    }
+
+    public void setParam2(double param2) {
+    }
+
+    public void setParam3(double param3) {
+    }
+
+    public void setStopAtEnd(boolean stopAtEnd) {
+    }
+
+    public Command copy() {
+        return new RearPickupOn();
+    }
+    
+    protected boolean isFinished() {
+        return super.isFinished() || isTimedOut(); //To change body of generated methods, choose Tools | Templates.
     }
 }

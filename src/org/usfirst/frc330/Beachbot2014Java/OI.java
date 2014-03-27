@@ -162,7 +162,7 @@ public class OI {
         SmartDashboard.putData("CheesyDrive", new CheesyDrive());
         SmartDashboard.putData("ShootAndCatch", new ShootAndCatch());
         SmartDashboard.putData("AutoCatch", new AutoCatch());
-        SmartDashboard.putData("AutoPickupReverse", new AutoPickupReverse());
+        SmartDashboard.putData("AutoPickupReverse", new RearPickupOn());
         SmartDashboard.putData("PickupPulse", new PickupPulse());
         SmartDashboard.putData("AutoPickupClose", new AutoPickupClose());
         SmartDashboard.putData("PickupOn", new PickupOn());
