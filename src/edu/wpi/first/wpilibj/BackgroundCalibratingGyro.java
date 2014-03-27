@@ -126,18 +126,21 @@ public class BackgroundCalibratingGyro extends Gyro {
 
             value = calibratingResult[highestCountIndex].value - calibratingResult[lowestCountIndex].value;
             count = calibratingResult[highestCountIndex].count - calibratingResult[lowestCountIndex].count;
+            if (count > (kCalibrateSeconds - 1) * kSamplesPerSecond) {
+                newCenter = m_center + (int) ((double)value / (double)count + .5);
 
-            newCenter = m_center + (int) ((double)value / (double)count + .5);
+                m_offset = ((double)value / (double)count) - (int)value/count;
+                m_center = newCenter;
+                m_analog.setAccumulatorCenter(m_center);
 
-            m_offset = ((double)value / (double)count) - (int)value/count;
-            m_center = newCenter;
-            m_analog.setAccumulatorCenter(m_center);
-            
-            m_analog.setAccumulatorDeadband(0); ///< TODO: compute / parameterize this
+                m_analog.setAccumulatorDeadband(0); ///< TODO: compute / parameterize this
+                calibrated = true;
+                tempAccumulation.count = 0;
+                tempAccumulation.value = 0;
+            } else {
+                calibrated = false;
+            }
             m_analog.resetAccumulator();
-            calibrated = true;
-            tempAccumulation.count = 0;
-            tempAccumulation.value = 0;
         }
     }    
     
