@@ -86,7 +86,7 @@ public class Shooter extends Subsystem {
             Preferences.getInstance().save();
         }
         return Preferences.getInstance().getDouble("isBallInShooterDistance", 9);
-    }
+    } 
      
     public boolean isBallInShooter() {
         return getBallDistance() < Robot.shooter.isBallInShooterDistance() 
