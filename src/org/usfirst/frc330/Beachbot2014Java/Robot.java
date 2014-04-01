@@ -195,6 +195,7 @@ public class Robot extends IterativeRobot {
     
     public void disabledPeriodic()
     {
+        auto.checkForChange();
         chassis.calcPeriodic();
         RobotMap.chassisGyro.calibrateGyro();
         Scheduler.getInstance().run();

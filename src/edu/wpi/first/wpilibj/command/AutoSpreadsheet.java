@@ -84,6 +84,7 @@ public class AutoSpreadsheet {
     
     public AutoSpreadsheet()
     {
+        selectedAuto = new String();
 //        System.out.println("begin of AutoSpreadsheet Constructor");
         autoChooser = new SendableChooser();
 //        System.out.println(MarsRock.class.getName());
@@ -105,12 +106,15 @@ public class AutoSpreadsheet {
 
 
     public CommandGroup getSelected() {
+        checkForChange();
         if (autoChooser.getSelected() instanceof MarsRock)
         {
             CommandGroup cg = new CommandGroup();
             cg.addSequential(new MarsRock());
             return (CommandGroup)cg;
         }
+        else if (currentCommandGroup != null)
+            return currentCommandGroup;
         else
             return buildScript((String)autoChooser.getSelected());
     }
@@ -156,7 +160,9 @@ public class AutoSpreadsheet {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            currentCommandGroup = null;
         }
+        currentCommandGroup = null;
     }
     
     public CommandGroup buildScript(String scriptToRead)
@@ -341,5 +347,23 @@ public class AutoSpreadsheet {
             }
         }
         return cg;
+    }
+    
+    String selectedAuto;
+    CommandGroup currentCommandGroup = null;
+    
+    public void checkForChange() {
+        if (autoChooser.getSelected() instanceof MarsRock) {
+            CommandGroup cg = new CommandGroup();
+            cg.addSequential(new MarsRock());
+            currentCommandGroup = cg;
+            return;
+        }
+
+        if(!selectedAuto.equalsIgnoreCase((String)autoChooser.getSelected())) {
+            selectedAuto = (String)autoChooser.getSelected();
+            currentCommandGroup = buildScript(selectedAuto);
+            System.out.println("Selected Auto: " + selectedAuto);
+        }
     }
 }
