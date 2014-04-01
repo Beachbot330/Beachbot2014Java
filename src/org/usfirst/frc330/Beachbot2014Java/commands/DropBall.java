@@ -50,7 +50,7 @@ public class  DropBall extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println(Robot.arm.getArmPosition());
+        //System.out.println(Robot.arm.getArmPosition());
         if (direction) {
             isArmPastPosition = Robot.arm.getArmPosition() > setpoint;
             //if (isArmPastPosition)
