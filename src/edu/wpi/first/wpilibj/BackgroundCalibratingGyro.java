@@ -11,14 +11,14 @@ package edu.wpi.first.wpilibj;
  * The Gyro class tracks the robots heading based on the starting position. As the robot
  * rotates the new heading is computed by integrating the rate of rotation returned
  * by the sensor. When the class is instantiated, it does a short calibration routine
- * where it samples the gyro while at rest to determine the default offset. This is
- * subtracted from each sample to determine the heading.
+ * where it samples the gyro while at rest to determine the default offset. 
+ * The backgroundCalibratingGyro also calibrates when disabled, as long as calibrateGyro
+ * is called. startGyro should be called when enabled to finish the calibration 
+ * process. This calibration value is subtracted from each sample to determine the heading.
  */
 public class BackgroundCalibratingGyro extends Gyro {
 
     static final int kCalibrateSeconds = 5;
-    
-    
    
     private AccumulatorResult[] calibratingResult;
     private AccumulatorResult[] prevCalibratingResult;
@@ -80,7 +80,10 @@ public class BackgroundCalibratingGyro extends Gyro {
         super(channel);
     }
     
-    
+    /**
+     * Calibrate the gyro in the background. calibrateGyro should be called 
+     * when disabled.
+     */
     public void calibrateGyro() {
         if (!calibrated)
         {
@@ -99,6 +102,10 @@ public class BackgroundCalibratingGyro extends Gyro {
         }
     }
     
+    /**
+     * Use the latest gyro data to complete the calibration. This should be called
+     * when transitioning to enabled (for example teleopInit and autonomousInit.
+     */
     public void startGyro() {
         
         if (!calibrated)
@@ -116,14 +123,19 @@ public class BackgroundCalibratingGyro extends Gyro {
                     lowestCount = calibratingResult[i].count;
                     lowestCountIndex = i;
                 }
-                value += calibratingResult[i].value;
-                count += calibratingResult[i].count;
             }
-            if (count == 0)
+            if (lowestCountIndex == 0)
                 highestCountIndex = kCalibrateSeconds - 1;
             else
                 highestCountIndex = lowestCountIndex - 1;
-
+            
+//            System.out.println("highestCountIndex: " + highestCountIndex);
+//            System.out.println("lowestCountIndex: " + lowestCountIndex);
+//            System.out.println("calibratingResult[highestCountIndex].value: " + calibratingResult[highestCountIndex].value);
+//            System.out.println("calibratingResult[lowestCountIndex].value: " + calibratingResult[lowestCountIndex].value);
+//            System.out.println("calibratingResult[highestCountIndex].count: " + calibratingResult[highestCountIndex].count);
+//            System.out.println("calibratingResult[lowestCountIndex].count: " + calibratingResult[lowestCountIndex].count);
+            
             value = calibratingResult[highestCountIndex].value - calibratingResult[lowestCountIndex].value;
             count = calibratingResult[highestCountIndex].count - calibratingResult[lowestCountIndex].count;
             if (count > (kCalibrateSeconds - 1) * kSamplesPerSecond) {
@@ -144,6 +156,9 @@ public class BackgroundCalibratingGyro extends Gyro {
         }
     }    
     
+    /**
+     * Restart the calibration process. Calibration will stop when startGyro() is called.
+     */
     public void restartCalibration() {
         stopTime = Timer.getFPGATimestamp() + 1.0;
         m_analog.resetAccumulator();
