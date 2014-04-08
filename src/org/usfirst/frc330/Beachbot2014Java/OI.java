@@ -224,4 +224,8 @@ public class OI {
         return kinectDirection;
     }
     
+    public boolean getKinectShootCancel() {
+        return (Robot.oi.getLeftKinectJoystick().getY() < 0.3 && Robot.oi.getRightKinectJoystick().getY() < 0.3);
+    }
+    
 }
