@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) FIRST 2008-2012. All Rights Reserved.                        */
+/* Copyright (c) FIRST 2008-2012, Joe Ross 2014. All Rights Reserved.         */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -12,9 +12,11 @@ package edu.wpi.first.wpilibj;
  * rotates the new heading is computed by integrating the rate of rotation returned
  * by the sensor. When the class is instantiated, it does a short calibration routine
  * where it samples the gyro while at rest to determine the default offset. 
- * The backgroundCalibratingGyro also calibrates when disabled, as long as calibrateGyro
- * is called. startGyro should be called when enabled to finish the calibration 
+ * The BackgroundCalibratingGyro also calibrates when disabled, as long as calibrateGyro
+ * is called. startGyro should be called when first enabled to finish the calibration 
  * process. This calibration value is subtracted from each sample to determine the heading.
+ * 
+ * @author Joe Ross, Team 330
  */
 public class BackgroundCalibratingGyro extends Gyro {
 
@@ -105,6 +107,8 @@ public class BackgroundCalibratingGyro extends Gyro {
     /**
      * Use the latest gyro data to complete the calibration. This should be called
      * when transitioning to enabled (for example teleopInit and autonomousInit.
+     * If the less then 5 seconds elapsed from the time calibrateGyro is first called
+     * and startGyro is called, the previous calibration value is used.
      */
     public void startGyro() {
         
