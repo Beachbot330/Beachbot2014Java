@@ -225,7 +225,9 @@ public class OI {
     }
     
     public boolean getKinectShootCancel() {
-        return (Robot.oi.getLeftKinectJoystick().getY() < 0.3 && Robot.oi.getRightKinectJoystick().getY() < 0.3);
+        boolean cancel = Robot.oi.getLeftKinectJoystick().getY() > 0.5 && Robot.oi.getRightKinectJoystick().getY() >0.5;
+//        System.out.println("KinectShootCancel: " + cancel);
+        return (cancel);
     }
     
 }
