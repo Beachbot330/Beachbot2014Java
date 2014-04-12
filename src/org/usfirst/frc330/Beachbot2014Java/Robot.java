@@ -128,6 +128,7 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new TurnKinectWaypointRight());
         auto.addCommand(new PickupPulse());
         auto.addCommand(new MoveArmTo2BallDropoffPosition());
+        auto.addCommand(new MoveArmTo1BallDropoffPosition());
         auto.addCommand(new AutoWait());
         auto.addCommand(new PickupReverse());
         auto.addCommand(new PickupOn());
