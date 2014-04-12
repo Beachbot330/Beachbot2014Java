@@ -12,6 +12,7 @@ import org.usfirst.frc330.Beachbot2014Java.RobotMap;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc330.Beachbot2014Java.Robot;
 /**
  *
  */
@@ -78,8 +79,18 @@ public class Shooter extends Subsystem {
         return shooterUltrasonic.getAverageVoltage() / 0.0098;
     }
     
+    private double isBallInShooterDistance() {
+        if (!Preferences.getInstance().containsKey("isBallInShooterDistance"))
+        {
+            Preferences.getInstance().putDouble("isBallInShooterDistance", 9);
+            Preferences.getInstance().save();
+        }
+        return Preferences.getInstance().getDouble("isBallInShooterDistance", 9);
+    } 
+     
     public boolean isBallInShooter() {
-        return getBallDistance() < 9 || SmartDashboard.getBoolean("BallSensorOverride", false);
+        return getBallDistance() < Robot.shooter.isBallInShooterDistance() 
+                || SmartDashboard.getBoolean("BallSensorOverride", false);
     }
     
     public boolean isBallInWings() {

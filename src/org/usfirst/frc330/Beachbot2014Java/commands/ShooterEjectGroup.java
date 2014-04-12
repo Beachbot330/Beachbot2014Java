@@ -44,7 +44,7 @@ public class ShooterEjectGroup extends CommandGroupUpdateable {
         addSequential(new ShooterEject());
         if(Robot.arm.getIsArmFront()){
             addSequential(new Wait(1));
-            addSequential(new MoveArmToFrontSafePosition());
+            addSequential(new MoveArmToFrontCatchingPosition());
         }
     }
 }

@@ -78,37 +78,45 @@ public abstract class MoveArmCommand extends Command {
 //                System.out.println("outputRange: " + outputRange);                
 
         } else if (started) {
+            if (Robot.wings.areWingsOpen() || Robot.arm.areWingsSafeToClose(setpoint)) {
 
-            if (setpoint > startPosition) {
-                if (Robot.arm.getArmPosition() > setpoint) {  //past setpoint
-                    outputRange = minSpeed;
-                } else if (Robot.arm.getArmPosition() <= (startPosition + accelDistance)) { //in accell range
-                    x = Math.abs(Robot.arm.getArmPosition() - startPosition)/accelDistance;
-                    y = maxSpeed - minSpeed;
-                    outputRange = y*x+minSpeed;
-                } else if (Robot.arm.getArmPosition() >= (setpoint - decelDistance)) { //in decell range
-                    x = Math.abs(setpoint - Robot.arm.getArmPosition())/decelDistance;
-                    y = maxSpeed - minSpeed;
-                    outputRange = x*y + minSpeed;
-    //                System.out.println("In Decel Condition x= " + x);
-                } else { //in middle range
-                   outputRange = maxSpeed;
-                }   
-            } else {
-                if (Robot.arm.getArmPosition() < setpoint) {  //past setpoint
-                    outputRange = minSpeed;
-                } else if (Robot.arm.getArmPosition() >= (startPosition - accelDistance)) { //in accell range
-                    x = (startPosition -Robot.arm.getArmPosition())/accelDistance;
-                    y = maxSpeed - minSpeed;
-                    outputRange = y*x+minSpeed;
-                } else if (Robot.arm.getArmPosition() <= (setpoint + decelDistance)) { //in decell range
-                    x = (Robot.arm.getArmPosition() - setpoint )/decelDistance;
-                    y = maxSpeed - minSpeed;
-                    outputRange = x*y + minSpeed;
-    //                System.out.println("In Decel Condition x= " + x);
-                } else { //in middle range
-                   outputRange = maxSpeed;
+                if (setpoint > startPosition) {
+                    if (Robot.arm.getArmPosition() > setpoint) {  //past setpoint
+                        outputRange = minSpeed;
+                    } else if (Robot.arm.getArmPosition() <= (startPosition + accelDistance)) { //in accell range
+                        x = Math.abs(Robot.arm.getArmPosition() - startPosition)/accelDistance;
+                        y = maxSpeed - minSpeed;
+                        outputRange = y*x+minSpeed;
+                    } else if (Robot.arm.getArmPosition() >= (setpoint - decelDistance)) { //in decell range
+                        x = Math.abs(setpoint - Robot.arm.getArmPosition())/decelDistance;
+                        y = maxSpeed - minSpeed;
+                        outputRange = x*y + minSpeed;
+        //                System.out.println("In Decel Condition x= " + x);
+                    } else { //in middle range
+                       outputRange = maxSpeed;
+                    }   
+                } else {
+                    if (Robot.arm.getArmPosition() < setpoint) {  //past setpoint
+                        outputRange = minSpeed;
+                    } else if (Robot.arm.getArmPosition() >= (startPosition - accelDistance)) { //in accell range
+                        x = (startPosition -Robot.arm.getArmPosition())/accelDistance;
+                        y = maxSpeed - minSpeed;
+                        outputRange = y*x+minSpeed;
+                    } else if (Robot.arm.getArmPosition() <= (setpoint + decelDistance)) { //in decell range
+                        x = (Robot.arm.getArmPosition() - setpoint )/decelDistance;
+                        y = maxSpeed - minSpeed;
+                        outputRange = x*y + minSpeed;
+        //                System.out.println("In Decel Condition x= " + x);
+                    } else { //in middle range
+                       outputRange = maxSpeed;
+                    }
                 }
+                if (!Robot.arm.isEnable())
+                    Robot.arm.enable();
+            }
+            else {
+                if (Robot.arm.isEnable())
+                    Robot.arm.disable();
             }
             
         }

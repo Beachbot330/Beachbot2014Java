@@ -128,11 +128,13 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new TurnKinectWaypointRight());
         auto.addCommand(new PickupPulse());
         auto.addCommand(new MoveArmTo2BallDropoffPosition());
+        auto.addCommand(new MoveArmTo1BallDropoffPosition());
         auto.addCommand(new AutoWait());
         auto.addCommand(new PickupReverse());
         auto.addCommand(new PickupOn());
         auto.addCommand(new KinectDrive());
         auto.addCommand(new RearPickupOn());
+        auto.addCommand(new KinectConditionalShoot());
         
         SmartDashboard.putNumber("KinectRightOffset", 0);
         SmartDashboard.putNumber("KinectLeftOffset", 0);
@@ -195,6 +197,7 @@ public class Robot extends IterativeRobot {
     
     public void disabledPeriodic()
     {
+        auto.checkForChange();
         chassis.calcPeriodic();
         RobotMap.chassisGyro.calibrateGyro();
         Scheduler.getInstance().run();
