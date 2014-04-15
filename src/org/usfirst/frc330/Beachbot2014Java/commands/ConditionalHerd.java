@@ -48,7 +48,7 @@ public class ConditionalHerd extends CommandGroupUpdateable {
         }
         else {  //Move to safe
             addSequential(new PickupOff());
-            addSequential(new MoveArmToCloseSafePosition());
+            addSequential(new MoveArmToCloseCatchingPosition());
         }
     }
 }
