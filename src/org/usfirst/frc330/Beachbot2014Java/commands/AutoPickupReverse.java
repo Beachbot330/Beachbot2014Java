@@ -11,15 +11,13 @@
 
 package org.usfirst.frc330.Beachbot2014Java.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.CommandGroupUpdateable;
-import org.usfirst.frc330.Beachbot2014Java.Robot;
 
 /**
  *
  */
-public class PrepareShooterEject extends CommandGroupUpdateable {
+public class AutoPickupReverse extends CommandGroup {
     
-    public  PrepareShooterEject() {
+    public  AutoPickupReverse() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -36,15 +34,5 @@ public class PrepareShooterEject extends CommandGroupUpdateable {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        requires(Robot.arm);
-    }
-    protected void initialize() {
-        super.initialize(); //To change body of generated methods, choose Tools | Templates.
-        if(Robot.arm.getIsArmFront()){
-            //System.out.println("The arm is in the front");
-            addSequential(new MoveArmToFrontPickupPosition());
-        }
-        else
-            addSequential(new MoveArmToRearPickupPosition());
     }
 }

@@ -474,7 +474,6 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
         //TODO get outputRange from preferences. Also need to check in MoveArmCommand
         armPID.setOutputRange(-0.8, 0.8);
     }
-
     public void setGainName(String gainName) {
         armPID.setGainName(gainName);
     }
