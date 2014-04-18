@@ -11,15 +11,13 @@
 
 package org.usfirst.frc330.Beachbot2014Java.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.CommandGroupUpdateable;
-import org.usfirst.frc330.Beachbot2014Java.Robot;
 
 /**
  *
  */
-public class ConditionalHerd extends CommandGroupUpdateable {
+public class AutoPickupReverse extends CommandGroup {
     
-    public  ConditionalHerd() {
+    public  AutoPickupReverse() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -36,19 +34,5 @@ public class ConditionalHerd extends CommandGroupUpdateable {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        requires(Robot.arm);
-        requires(Robot.pickup);
-    }
-    
-    protected void initialize() {
-        super.initialize();
-        if(Robot.pickup.isBallInPickup()){  //Herd
-            addParallel(new PickupPulse());
-            addSequential(new MoveArmToCloseLimit());
-        }
-        else {  //Move to safe
-            addSequential(new PickupOff());
-            addSequential(new MoveArmToCloseCatchingPosition());
-        }
     }
 }

@@ -32,7 +32,6 @@ public class RobotMap {
     public static Relay chassisShiftSpike;
     public static Encoder chassisLeftDriveEncoder;
     public static Encoder chassisRightDriveEncoder;
-
     public static SpeedController armArm1;
     public static SpeedController armArm2;
     public static AnalogChannel armArmPotentiometer;
@@ -87,7 +86,6 @@ public class RobotMap {
         chassisRightDriveEncoder.setDistancePerPulse(1.0);
         chassisRightDriveEncoder.setPIDSourceParameter(PIDSourceParameter.kDistance);
         chassisRightDriveEncoder.start();
-
         armArm1 = new Jaguar(1, 9);
 	LiveWindow.addActuator("Arm", "Arm1", (Jaguar) armArm1);
         

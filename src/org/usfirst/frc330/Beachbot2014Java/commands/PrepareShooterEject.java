@@ -45,6 +45,6 @@ public class PrepareShooterEject extends CommandGroupUpdateable {
             addSequential(new MoveArmToFrontPickupPosition());
         }
         else
-            addSequential(new MoveArmToRearCatchingPosition());
+            addSequential(new MoveArmToRearPickupPosition());
     }
 }
