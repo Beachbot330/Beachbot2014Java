@@ -133,6 +133,8 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new PickupReverse());
         auto.addCommand(new PickupOn());
         auto.addCommand(new KinectDrive());
+        auto.addCommand(new KinectDriveRight());
+        auto.addCommand(new KinectDriveLeft());
         auto.addCommand(new RearPickupOn());
         auto.addCommand(new KinectConditionalShoot());
         auto.addCommand(new KinectConditionalShooterEject());
