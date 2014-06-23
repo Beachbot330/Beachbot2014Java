@@ -138,6 +138,7 @@ public class Robot extends IterativeRobot {
         auto.addCommand(new RearPickupOn());
         auto.addCommand(new KinectConditionalShoot());
         auto.addCommand(new KinectConditionalShooterEject());
+        auto.addCommand(new KinectDrivePercentageOnPath(0,0,0,0,false));
         
         SmartDashboard.putNumber("KinectRightOffset", 0);
         SmartDashboard.putNumber("KinectLeftOffset", 0);
