@@ -5,6 +5,7 @@
  */
 package org.usfirst.frc330.Beachbot2014Java.commands;
 
+import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 
 /**
@@ -18,7 +19,9 @@ public class KinectDrivePercentageOnPath extends DriveWaypoint {
         super(0, 0, tolerance, timeout, stopAtEnd);
         finalX = x;
         finalY = y;
-        prevDelta = 0;
+        this.x = 0;
+        this.y = 0;
+        prevDelta = 3;
     }
     
 
@@ -30,9 +33,11 @@ public class KinectDrivePercentageOnPath extends DriveWaypoint {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        delta = Robot.oi.getRightKinectJoystick().getY() - Robot.oi.getLeftKinectJoystick().getY();
+        delta = (Robot.oi.getRightKinectJoystick().getY() - Robot.oi.getLeftKinectJoystick().getY())/2;
+
         if (Math.abs(delta - prevDelta) > 0.05)
         {
+            System.out.println("delta: " + delta + " prevDelta: " + prevDelta);            
             //may need to scale so that a value above a threshold still gives a full scale output
             calcXY(finalX * delta, finalY * Math.abs(delta));
             Robot.chassis.gyroPID.setSetpoint(angle);
@@ -40,19 +45,31 @@ public class KinectDrivePercentageOnPath extends DriveWaypoint {
             Robot.chassis.rightDrivePID.setSetpoint(y);
         }
         prevDelta = delta;
+        super.execute();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;
     }
-
-    // Called once after isFinished returns true
-    protected void end() {
+    
+    public Command copy() {
+        return new KinectDrivePercentageOnPath(0,0,0,0,false);
     }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
+     /**
+     * The first parameter in the AutoSpreadsheet, X
+     * @param x The X component of the end of the path in inches
+     */
+    public void setParam1(double x) {
+        this.finalX = x;
+        this.x = 0;
+    }
+    /**
+     * The second parameter in the AutoSpreadsheet, Y
+     * @param y The Y component of the end of the path in inches
+     */
+    public void setParam2(double y) {
+        this.finalY = y;
+        this.y = 0;
     }
 }
