@@ -36,6 +36,6 @@ public class StowArm extends CommandGroup {
         // arm.
         addSequential(new MoveArmToVerticalPosition());
         //addSequential(new Wait(0.5));
-        addSequential(new WingsClose());
+        //addSequential(new WingsClose());
     }
 }
