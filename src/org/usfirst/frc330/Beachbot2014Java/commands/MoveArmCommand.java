@@ -121,6 +121,14 @@ public abstract class MoveArmCommand extends Command {
             
         }
 //        System.out.println("ArmPosition: " + Robot.arm.getArmPosition() + " outputRange: " + outputRange);
+        if (outputRange < minSpeed)
+        {
+//            System.out.println("outputRange < minSpeed" + outputRange + " " + minSpeed);
+            outputRange = minSpeed;
+
+        }
+        if (outputRange > maxSpeed)
+            outputRange = maxSpeed;
         Robot.arm.setPIDOutputRange(outputRange);
 //      System.out.println("outputRange: " + outputRange);
         

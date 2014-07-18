@@ -467,6 +467,11 @@ public class Arm extends Subsystem implements PIDSource, PIDOutput{
     }
     
     public synchronized void setPIDOutputRange(double maximumOutput) {
+        if (maximumOutput == 0)
+            maximumOutput = 0.01;
+        if (maximumOutput < 0)
+            System.out.println("Maximum Output is negative: " + maximumOutput);
+        maximumOutput = Math.abs(maximumOutput);
         armPID.setOutputRange(-maximumOutput, maximumOutput);
     }
     
