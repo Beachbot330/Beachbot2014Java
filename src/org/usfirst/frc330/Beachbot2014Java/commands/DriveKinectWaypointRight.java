@@ -12,7 +12,8 @@ import org.usfirst.frc330.Beachbot2014Java.Robot;
 
 /**
  * If the Kinect arms are to the right, execute the DriveWaypoint command, otherwise return quickly.
- * {@inheritDoc}
+ * DriveWaypoint will drive the robot forwards to a waypoint on the field based on its 
+ * original starting position.
  */
 public class DriveKinectWaypointRight extends DriveWaypoint {
 

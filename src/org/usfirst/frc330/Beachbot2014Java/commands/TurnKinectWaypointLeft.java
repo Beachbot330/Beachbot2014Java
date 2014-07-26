@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc330.Beachbot2014Java.Robot;
 
 /**
- * If the arm is to the left, Turn to a Waypoint, otherwise advance to the next command.
- * {@inheritDoc}
+ * If the arm is to the left, execute the TurnGyroWaypoint command, otherwise advance to the next command.
+ * The TurnGyroWaypoint command turns in place towards a waypoint using the gyro.
  */
 public class TurnKinectWaypointLeft extends TurnGyroWaypoint {
 

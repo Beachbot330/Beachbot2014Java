@@ -19,8 +19,7 @@ import org.usfirst.frc330.Beachbot2014Java.Robot;
  */
  
 /**
- *
- * @author joe
+ * Turn in place towards a waypoint using the gyro.
  */
 public class TurnGyroWaypoint extends TurnGyroAbs {
     double x, y;
@@ -52,7 +51,10 @@ public class TurnGyroWaypoint extends TurnGyroAbs {
     public void setParam2(double y) {
         this.y = y;
     }
-    
+    /**
+     * The third parameter in the AutoSpreadsheet
+     * @param tolerance the angle tolerance in degrees. When the robot rotates to inside the tolerance, the command stops.
+     */
     public void setParam3(double tolerance)
     {
         super.setParam2(tolerance);
